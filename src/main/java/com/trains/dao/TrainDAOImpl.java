@@ -9,40 +9,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class TrainDAOImpl implements TrainDAO {
-    private SessionFactory sessionFactory;
+public class TrainDAOImpl extends MainDAO  {
 
-    @Autowired
-    public void setSessionFactory(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
-    }
-
-
-    @Override
-    public List<Train> allTrains() {
+    public List<Train> allTrain() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from Train").list();
     }
 
-    @Override
-    public void add(Train train) {
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(train);
-    }
 
-    @Override
-    public void delete(Train train) {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(train);
-    }
-
-    @Override
-    public void edit(Train train) {
-        Session session = sessionFactory.getCurrentSession();
-        session.update(train);
-    }
-
-    @Override
     public Train getById(int idTrain) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(Train.class,idTrain);

@@ -4,15 +4,13 @@ import com.trains.model.Train;
 import com.trains.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
+@RequestMapping("/train")
 public class TrainController {
     private TrainService trainService;
 
@@ -21,8 +19,8 @@ public class TrainController {
         this.trainService = trainService;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public ModelAndView allTrains() {
+    @GetMapping(value = "/")
+    public ModelAndView getAllTrains() {
         List<Train> trains = trainService.allTrains();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("trains");
@@ -31,45 +29,55 @@ public class TrainController {
     }
 
 
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
-    public ModelAndView editTrain (@PathVariable("id") int id) {
+    @GetMapping(value = "/edit/{id}")
+    public ModelAndView update (@PathVariable("id") int id) {
         Train train = trainService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("editTrain");
+        modelAndView.setViewName("edit-Train");
         modelAndView.addObject("train",train);
         return modelAndView;
     }
 
 
-    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    @PostMapping(value = "/edit")
     public ModelAndView editTrain(@ModelAttribute("train") Train train) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/train/");
         trainService.edit(train);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.GET)
+    @GetMapping(value = "/add")
     public ModelAndView addTrainPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("addTrain");
+        modelAndView.setViewName("add-Train");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView addTrain(@ModelAttribute("train") Train train) {
+    @PostMapping(value = "/add")
+    public ModelAndView create(@ModelAttribute("train") Train train) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/train/");
         trainService.add(train);
         return modelAndView;
     }
 
-    @RequestMapping(value = "/delete/{id}",method = RequestMethod.GET)
-    public ModelAndView deleteTrain(@PathVariable("id") int idTrain) {
+    @GetMapping(value = "/delete/{id}")
+    public ModelAndView delete(@PathVariable("id") int idTrain) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/");
+        modelAndView.setViewName("redirect:/train/");
         Train train = trainService.getById(idTrain);
         trainService.delete(train);
         return modelAndView;
     }
+
+//    @DeleteMapping(value = "/delete/{id}")
+//    public void delete(@PathVariable("id") int idTrain) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("redirect:/");
+//        Train train = trainService.getById(idTrain);
+//        trainService.delete(train);
+//       return modelAndView;
+//    }
+
 }

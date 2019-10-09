@@ -5,36 +5,41 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Objects;
 
 @Entity
 @Table(name = "trains")
 public class Train {
 
     @Id
-    @Column (name = "idTrain")
-    private int idTrain;
-    @Column (name = "station")
-    private String stationName;
-    @Column(name = "countFreeSits")
+    @Column (name = "id_train")
+    private int id;
+    @Column (name = "start_station")
+    private String startStationName;
+    @Column (name = "end_station")
+    private String endStationName;
+    @Column(name = "count_free_sits")
     private int countFreeSits;
 
 
-    public int getIdTrain() {
-        return idTrain;
+    public int getId() {
+        return id;
     }
 
-    public void setIdTrain(int idTrain) {
-        this.idTrain = idTrain;
+    public void setId(int idTrain) {
+        this.id = idTrain;
     }
 
-    public String getStationName() {
-        return stationName;
+    public String getStartStationName() {
+        return startStationName;
     }
 
-    public void setStationName(String stationName) {
-        this.stationName = stationName;
+    public void setStartStationName(String stationName) {
+        this.startStationName = stationName;
     }
+
+    public String getEndStationName() { return endStationName; }
+
+    public void setEndStationName(String endStationName) { this.endStationName = endStationName; }
 
     public int getCountFreeSits() {
         return countFreeSits;
@@ -46,23 +51,11 @@ public class Train {
 
     @Override
     public String toString() {
-        return "train number "+getIdTrain()+"  "+
-                "station "+getStationName()+"  "+
-                "count of sits "+getCountFreeSits();
+        return "TrainEntity{" +
+                "id=" + id +
+                ", Start station is " + startStationName +
+                ", End station is "+endStationName+
+                ", countFreeSits= " + countFreeSits + " }";
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Train train = (Train) o;
-        return getIdTrain() == train.getIdTrain() &&
-                getCountFreeSits() == train.getCountFreeSits() &&
-                Objects.equals(getStationName(), train.getStationName());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getIdTrain(), getStationName(), getCountFreeSits());
-    }
 }
