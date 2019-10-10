@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan (basePackages = "com.trains")
-public class WebConfig extends WebMvcConfigurerAdapter {
+public class WebConfig {
 
     @Bean
     ViewResolver viewResolver() {
@@ -21,11 +21,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         viewResolver.setSuffix(".jsp");
         return viewResolver;
     }
-
-    @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-        configurer.enable();
-    }
-
 
 }
