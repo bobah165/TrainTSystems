@@ -10,7 +10,7 @@
 <body>
 
 
-<form action="http://localhost:8080/train/edit" method="post">
+<form action="/train/edit" method="post">
 
     <label for="id">Id Train</label>
     <input type="text" name="id" id="id">

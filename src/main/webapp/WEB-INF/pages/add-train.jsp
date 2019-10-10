@@ -8,7 +8,7 @@
 
 
 
-<form action="http://localhost:8080/train/add" method="post">
+<form action="/train/add" method="post">
 
     <label for="id">Id Train</label>
     <input type="text" name="id" id="id">

@@ -8,7 +8,7 @@
 <body>
 
 
-<form action="http://localhost:8080/passenger/add" method="post">
+<form action="/passenger/add" method="post">
 
     <label for="name">Name </label>
     <input type="text" name="name" id="name">

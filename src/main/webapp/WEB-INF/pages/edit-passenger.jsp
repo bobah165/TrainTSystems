@@ -8,7 +8,7 @@
 <body>
 
 
-<form action="http://localhost:8080/passenger/edit" method="post">
+<form action="/passenger/edit" method="post">
 
     <input type="hidden" name="id" value="${passenger.id}">
 
