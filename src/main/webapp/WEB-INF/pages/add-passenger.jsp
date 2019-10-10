@@ -7,9 +7,8 @@
 </head>
 <body>
 
-<c:url value="/passenger/add" var="var"/>
 
-<form action="${var}" method="post">
+<form action="http://localhost:8080/passenger/add" method="post">
 
     <label for="name">Name </label>
     <input type="text" name="name" id="name">

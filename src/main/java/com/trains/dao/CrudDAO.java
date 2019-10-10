@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class MainDAO {
+public class CrudDAO {
     protected SessionFactory sessionFactory;
 
     @Autowired

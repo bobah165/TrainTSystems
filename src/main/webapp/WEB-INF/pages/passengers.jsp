@@ -28,8 +28,8 @@
 </table>
 
 <h2>ADD</h2>
-<c:url value="/passenger/add" var="add" />
-<a href="${add}">Add new Passenger</a>
+<c:url value="/passenger/add" var="addPass" />
+<a href="${addPass}">Add new Passenger</a>
 
 </body>
 </html>

@@ -1,17 +1,14 @@
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit Train</title>
-
+    <title>Add</title>
 </head>
 <body>
 
-    <c:url value="/train/edit" var="var"/>
 
-<form action="${var}" method="post">
+
+<form action="http://localhost:8080/train/add" method="post">
 
     <label for="id">Id Train</label>
     <input type="text" name="id" id="id">
@@ -25,7 +22,8 @@
     <label for="countFreeSits">Free Sits</label>
     <input type="text" name="countFreeSits" id="countFreeSits">
 
-    <input type="submit" value="Edit Train">
+    <input type="submit" value="Add new Train">
+
 
 </form>
 

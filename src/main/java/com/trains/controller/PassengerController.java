@@ -33,7 +33,7 @@ public class PassengerController {
     public ModelAndView update (@PathVariable("id") int id) {
         Passenger passenger = passengerService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("edit-Passenger");
+        modelAndView.setViewName("edit-passenger");
         modelAndView.addObject("passenger",passenger);
         return modelAndView;
     }
@@ -48,9 +48,9 @@ public class PassengerController {
     }
 
     @GetMapping(value = "/add")
-    public ModelAndView addPassPage() {
+    public ModelAndView getPassPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-Passenger");
+        modelAndView.setViewName("add-passenger");
         return modelAndView;
     }
 

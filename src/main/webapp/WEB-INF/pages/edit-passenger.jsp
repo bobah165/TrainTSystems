@@ -7,9 +7,8 @@
 </head>
 <body>
 
-<c:url value="/passenger/edit" var="var"/>
 
-<form action="${var}" method="post">
+<form action="http://localhost:8080/passenger/edit" method="post">
 
     <input type="hidden" name="id" value="${passenger.id}">
 

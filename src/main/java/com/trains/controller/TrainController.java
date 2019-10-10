@@ -33,7 +33,7 @@ public class TrainController {
     public ModelAndView update (@PathVariable("id") int id) {
         Train train = trainService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("edit-Train");
+        modelAndView.setViewName("edit-train");
         modelAndView.addObject("train",train);
         return modelAndView;
     }
@@ -48,9 +48,9 @@ public class TrainController {
     }
 
     @GetMapping(value = "/add")
-    public ModelAndView addTrainPage() {
+    public ModelAndView getTrainPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-Train");
+        modelAndView.setViewName("add-train");
         return modelAndView;
     }
 
