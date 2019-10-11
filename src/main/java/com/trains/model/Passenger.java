@@ -1,6 +1,7 @@
 package com.trains.model;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
@@ -15,7 +16,7 @@ public class Passenger {
     @Column(name = "surname")
     private String surname;
     @Column(name = "birthday")
-    private LocalDate birthday;
+    private Date birthday;
 
     public int getId() {
         return id;
@@ -41,11 +42,11 @@ public class Passenger {
         this.surname = surname;
     }
 
-    public LocalDate getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(LocalDate birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 
@@ -55,7 +56,8 @@ public class Passenger {
                 "id=" + id +
                 ", name is " + name +
                 ", surname is "+surname+
-                ", birthday is " + birthday + " }";
+                ", birthday is " + birthday +
+        " }";
     }
 
 
