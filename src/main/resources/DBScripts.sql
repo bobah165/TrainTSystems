@@ -19,5 +19,8 @@ create table passengers
     foreign key (id_train) references trains (id_train)
 );
 
-insert into passengers (name, surname, birthday)
-values ('Ivan','Ivanov','1982-10-12');
+insert into trains (id_train, start_station, end_station, count_free_sits)
+value (7,'Moscow','Piter',20);
+
+insert into passengers (name, surname, birthday, login,password,id_train)
+values ('Alex','ivanov','1995-4-12','vare','vera',7);
