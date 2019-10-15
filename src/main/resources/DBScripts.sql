@@ -9,10 +9,14 @@ create table trains
 
 create table passengers
 (
-    id_pasenger serial primary key,
+    id_passenger serial primary key,
     name varchar(50) not null,
     surname varchar(50) not null,
-    birthday date not null
+    birthday date not null,
+    login varchar(50) not null,
+    password varchar(50) not null,
+    id_train numeric(10),
+    foreign key (id_train) references trains (id_train)
 );
 
 insert into passengers (name, surname, birthday)
