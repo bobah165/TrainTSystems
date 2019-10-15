@@ -1,6 +1,7 @@
 package com.trains.controller;
 
 
+import com.trains.model.PassFromTrainDTO;
 import com.trains.model.Passenger;
 import com.trains.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,16 +25,17 @@ public class PassengerController {
     public ModelAndView allPassengers() {
     List<Passenger> passengers = passengerService.allPassengers();
     ModelAndView modelAndView = new ModelAndView();
-    modelAndView.setViewName("passengers");
+    modelAndView.setViewName("passenger-view/passengers");
     modelAndView.addObject("passengersList",passengers);
     return modelAndView;
 }
+
 
     @GetMapping(value = "/edit/{id}")
     public ModelAndView update (@PathVariable("id") int id) {
         Passenger passenger = passengerService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("edit-passenger");
+        modelAndView.setViewName("passenger-view/edit-passenger");
         modelAndView.addObject("passenger",passenger);
         return modelAndView;
     }
@@ -50,7 +52,7 @@ public class PassengerController {
     @GetMapping(value = "/add")
     public ModelAndView getPassPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-passenger");
+        modelAndView.setViewName("passenger-view/add-passenger");
         return modelAndView;
     }
 
@@ -62,7 +64,7 @@ public class PassengerController {
         return modelAndView;
     }
 
-    @GetMapping(value = "/delete/{id}")
+    @GetMapping (value = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") int idPassenger) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/passenger/");
@@ -70,6 +72,5 @@ public class PassengerController {
         passengerService.delete(passenger);
         return modelAndView;
     }
-
 
 }

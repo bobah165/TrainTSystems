@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class PassengerDAOImpl extends CrudDAO {
+public class PassengerDAO extends CrudDAO {
 
     public List<Passenger> allPassengers() {
         Session session = sessionFactory.getCurrentSession();

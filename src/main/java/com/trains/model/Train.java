@@ -1,10 +1,9 @@
 package com.trains.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "trains")
@@ -19,7 +18,17 @@ public class Train {
     private String endStationName;
     @Column(name = "count_free_sits")
     private int countFreeSits;
+    @OneToMany(mappedBy = "train",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Passenger> passengers;
 
+
+    public List<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(List<Passenger> passengers) {
+        this.passengers = passengers;
+    }
 
     public int getId() {
         return id;

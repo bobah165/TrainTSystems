@@ -14,6 +14,7 @@
         <th>Start Station</th>
         <th>End Station</th>
         <th>count of sits</th>
+        <th>Passengers</th>
         <th>action</th>
     </tr>
     <c:forEach var="train" items="${trainList}">
@@ -22,6 +23,9 @@
             <td>${train.startStationName}</td>
             <td>${train.endStationName}</td>
             <td>${train.countFreeSits}</td>
+            <td>
+                <a href="/passfromtrain/${train.id}">passengers</a>
+            </td>
             <td>
                 <a href="/train/edit/${train.id}">edit</a>
                 <a href="/train/delete/${train.id}">delete</a>

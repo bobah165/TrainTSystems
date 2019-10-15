@@ -21,6 +21,16 @@
     <label for="birthday">Birthday</label>
     <input type="text" name="birthday" id="birthday">
 
+    <label for="login">login</label>
+    <input type="text" name="login" id="login">
+
+    <label for="password">password</label>
+    <input type="text" name="password" id="password">
+
+    <label for="train">Id Train</label>
+    <input type="text" name="train" id="train">
+
+
     <input type="submit" value="Add Passenger">
     
 </form>

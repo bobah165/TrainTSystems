@@ -2,13 +2,12 @@ package com.trains.model;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "passengers")
 public class Passenger {
     @Id
-    @Column(name = "id_pasenger")
+    @Column(name = "id_passenger")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
@@ -17,6 +16,38 @@ public class Passenger {
     private String surname;
     @Column(name = "birthday")
     private Date birthday;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "password")
+    private String password;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_train")
+    private Train train;
+
+
+    public Train getTrain() {
+        return train;
+    }
+
+    public void setTrain(Train train) {
+        this.train = train;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getId() {
         return id;
