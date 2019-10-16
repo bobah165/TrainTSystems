@@ -8,7 +8,6 @@ import java.util.Set;
 @Entity
 @Table(name = "trains")
 public class Train {
-
     @Id
     @Column (name = "id_train")
     private int id;
@@ -18,6 +17,7 @@ public class Train {
     private String endStationName;
     @Column(name = "count_free_sits")
     private int countFreeSits;
+
     @OneToMany(mappedBy = "train",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Passenger> passengers;
 

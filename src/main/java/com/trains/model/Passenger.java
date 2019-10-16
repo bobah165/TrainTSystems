@@ -20,6 +20,7 @@ public class Passenger {
     private String login;
     @Column(name = "password")
     private String password;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_train")
     private Train train;

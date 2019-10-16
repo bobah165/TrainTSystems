@@ -1,6 +1,6 @@
 package com.trains.dao;
 
-import com.trains.model.PassFromTrainDTO;
+import com.trains.dto.PassFromTrainDTO;
 import com.trains.model.Passenger;
 import com.trains.model.Train;
 import org.hibernate.Session;
@@ -20,17 +20,17 @@ public class CrudDAO {
     }
 
 
-    public void add(Object object) {
+    public <T> void add(T object) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(object);
     }
 
-    public void delete(Object object) {
+    public <T> void delete(T object) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(object);
     }
 
-    public void edit(Object object) {
+    public <T> void edit(T object) {
         Session session = sessionFactory.getCurrentSession();
         session.update(object);
     }
@@ -42,11 +42,13 @@ public class CrudDAO {
         Train train = session.get(Train.class,idTrain);
 
         for (Passenger pass:passengers ) {
-            PassFromTrainDTO passFromTrain = new PassFromTrainDTO();
-            passFromTrain.setName(pass.getName());
-            passFromTrain.setSurname(pass.getSurname());
-            passFromTrain.setTrainId(train.getId());
-            passFromTrainDTOS.add(passFromTrain);
+            if (idTrain==pass.getTrain().getId()) {
+                PassFromTrainDTO passFromTrain = new PassFromTrainDTO();
+                passFromTrain.setName(pass.getName());
+                passFromTrain.setSurname(pass.getSurname());
+                passFromTrain.setTrainId(train.getId());
+                passFromTrainDTOS.add(passFromTrain);
+            }
         }
 
         return passFromTrainDTOS;

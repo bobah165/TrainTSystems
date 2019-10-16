@@ -14,6 +14,7 @@
         <th>birthday</th>
         <th>login</th>
         <th>password</th>
+        <th>Train</th>
         <th>action</th>
     </tr>
     <c:forEach var="passenger" items="${passengersList}">
@@ -23,6 +24,7 @@
         <td>${passenger.birthday}</td>
         <td>${passenger.login}</td>
         <td>${passenger.password}</td>
+        <td>${passenger.train.id}</td>
         <td>
             <a href="/passenger/edit/${passenger.id}">edit</a>
             <a href="/passenger/delete/${passenger.id}">delete</a>

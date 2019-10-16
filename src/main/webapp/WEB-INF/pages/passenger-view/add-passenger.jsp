@@ -28,7 +28,7 @@
     <input type="text" name="password" id="password">
 
     <label for="train">Id Train</label>
-    <input type="text" name="train" id="train">
+    <input type="number" name="train.id" id="train">
 
 
     <input type="submit" value="Add Passenger">

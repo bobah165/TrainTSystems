@@ -14,7 +14,7 @@
 <form method="post" action="/train/edit">
 
     <label for="id">Id Train</label>
-    <input type="text" name="id" id="id">
+    <input type="number" name="id" id="id">
 
     <label for="startStationName">Start Station</label>
     <input type="text" name="startStationName" id="startStationName">

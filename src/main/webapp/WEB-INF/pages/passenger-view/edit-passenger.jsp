@@ -1,14 +1,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <html>
 <head>
     <title>Edit Passenger</title>
 </head>
 <body>
-
 
 
 <form action="/passenger/edit" method="post">
@@ -30,6 +28,8 @@
     <label for="password">password</label>
     <input type="text" name="password" id="password">
 
+    <label for="train">Id Train</label>
+    <input type="number" name="train.id" id="train">
 
     <input type="submit" value="Edit Passenger">
 

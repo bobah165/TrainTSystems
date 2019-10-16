@@ -1,7 +1,7 @@
 package com.trains.service;
 
 import com.trains.dao.PassengerDAO;
-import com.trains.model.PassFromTrainDTO;
+import com.trains.dto.PassFromTrainDTO;
 import com.trains.model.Passenger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

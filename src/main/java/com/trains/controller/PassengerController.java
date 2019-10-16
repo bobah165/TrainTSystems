@@ -1,7 +1,6 @@
 package com.trains.controller;
 
 
-import com.trains.model.PassFromTrainDTO;
 import com.trains.model.Passenger;
 import com.trains.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;

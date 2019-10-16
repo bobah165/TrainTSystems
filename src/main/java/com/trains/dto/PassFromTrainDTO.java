@@ -1,4 +1,4 @@
-package com.trains.model;
+package com.trains.dto;
 
 public class PassFromTrainDTO {
     private String name;
