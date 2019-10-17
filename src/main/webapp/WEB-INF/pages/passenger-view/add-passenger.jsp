@@ -1,7 +1,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <html>
 <head>
     <title>Add Passenger</title>
@@ -27,8 +26,8 @@
     <label for="password">password</label>
     <input type="text" name="password" id="password">
 
-    <label for="train">Id Train</label>
-    <input type="number" name="train.id" id="train">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email">
 
 
     <input type="submit" value="Add Passenger">

@@ -1,9 +1,6 @@
-create table trains
-(
-    id_train numeric(10) PRIMARY KEY,
-    start_station VARCHAR(50) NOT NULL,
-    end_station VARCHAR(50) NOT NULL,
-    count_free_sits numeric(10) NOT NULL
+create table trains (
+    id_train serial primary key,
+    count_sits numeric(10) not null
 );
 
 
@@ -15,12 +12,24 @@ create table passengers
     birthday date not null,
     login varchar(50) not null,
     password varchar(50) not null,
-    id_train numeric(10),
-    foreign key (id_train) references trains (id_train)
+    email varchar(50) not null
 );
 
-insert into trains (id_train, start_station, end_station, count_free_sits)
-value (7,'Moscow','Piter',20);
+create table tickets
+(
+    id_ticket serial primary key,
+    departure_station varchar(50) not null,
+    arrival_station varchar(50) not null,
+    departure_date date not null,
+    arrival_date date not null,
+    id_train integer not null,
+    foreign key (id_train) references trains (id_train),
+    id_passenger integer not null,
+    foreign key (id_passenger) references passengers (id_passenger)
+);
 
-insert into passengers (name, surname, birthday, login,password,id_train)
-values ('Alex','ivanov','1995-4-12','vare','vera',7);
+create table stations
+(
+    id_station serial primary key,
+    name_station varchar(50) not null
+);

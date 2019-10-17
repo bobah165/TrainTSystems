@@ -28,8 +28,8 @@
     <label for="password">password</label>
     <input type="text" name="password" id="password">
 
-    <label for="train">Id Train</label>
-    <input type="number" name="train.id" id="train">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email">
 
     <input type="submit" value="Edit Passenger">
 

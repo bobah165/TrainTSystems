@@ -2,6 +2,7 @@ package com.trains.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "passengers")
@@ -20,18 +21,26 @@ public class Passenger {
     private String login;
     @Column(name = "password")
     private String password;
+    @Column(name = "email")
+    private String email;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_train")
-    private Train train;
+    @OneToMany(mappedBy = "passenger",cascade =CascadeType.ALL,orphanRemoval = true)
+    private List<Ticket> tickets;
 
-
-    public Train getTrain() {
-        return train;
+    public List<Ticket> getTickets() {
+        return tickets;
     }
 
-    public void setTrain(Train train) {
-        this.train = train;
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getLogin() {

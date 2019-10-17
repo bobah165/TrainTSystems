@@ -16,14 +16,8 @@
     <label for="id">Id Train</label>
     <input type="number" name="id" id="id">
 
-    <label for="startStationName">Start Station</label>
-    <input type="text" name="startStationName" id="startStationName">
-
-    <label for="endStationName">End Station</label>
-    <input type="text" name="endStationName" id="endStationName">
-
-    <label for="countFreeSits">Free Sits</label>
-    <input type="text" name="countFreeSits" id="countFreeSits">
+    <label for="countSits">Count of Sits</label>
+    <input type="text" name="countSits" id="countSits">
 
     <input type="submit" value="Edit Train">
 

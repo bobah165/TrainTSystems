@@ -41,15 +41,15 @@ public class CrudDAO {
         List<Passenger> passengers = session.createQuery("from Passenger").list();
         Train train = session.get(Train.class,idTrain);
 
-        for (Passenger pass:passengers ) {
-            if (idTrain==pass.getTrain().getId()) {
-                PassFromTrainDTO passFromTrain = new PassFromTrainDTO();
-                passFromTrain.setName(pass.getName());
-                passFromTrain.setSurname(pass.getSurname());
-                passFromTrain.setTrainId(train.getId());
-                passFromTrainDTOS.add(passFromTrain);
-            }
-        }
+//        for (Passenger pass:passengers ) {
+//            if (idTrain==pass.getTrain().getId()) {
+//                PassFromTrainDTO passFromTrain = new PassFromTrainDTO();
+//                passFromTrain.setName(pass.getName());
+//                passFromTrain.setSurname(pass.getSurname());
+//                passFromTrain.setTrainId(train.getId());
+//                passFromTrainDTOS.add(passFromTrain);
+//            }
+  //      }
 
         return passFromTrainDTOS;
     }

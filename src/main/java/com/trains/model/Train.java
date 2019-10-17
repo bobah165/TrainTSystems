@@ -3,7 +3,6 @@ package com.trains.model;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "trains")
@@ -11,24 +10,39 @@ public class Train {
     @Id
     @Column (name = "id_train")
     private int id;
-    @Column (name = "start_station")
-    private String startStationName;
-    @Column (name = "end_station")
-    private String endStationName;
-    @Column(name = "count_free_sits")
-    private int countFreeSits;
+    @Column(name = "count_sits")
+    private int countSits;
 
     @OneToMany(mappedBy = "train",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Passenger> passengers;
+    private List<Ticket> tickets;
 
+    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Timetable> timetables;
 
-    public List<Passenger> getPassengers() {
-        return passengers;
+    public List<Timetable> getTimetables() {
+        return timetables;
     }
 
-    public void setPassengers(List<Passenger> passengers) {
-        this.passengers = passengers;
+    public void setTimetables(List<Timetable> timetables) {
+        this.timetables = timetables;
     }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public int getCountSits() {
+        return countSits;
+    }
+
+    public void setCountSits(int countSits) {
+        this.countSits = countSits;
+    }
+
 
     public int getId() {
         return id;
@@ -38,33 +52,12 @@ public class Train {
         this.id = idTrain;
     }
 
-    public String getStartStationName() {
-        return startStationName;
-    }
-
-    public void setStartStationName(String stationName) {
-        this.startStationName = stationName;
-    }
-
-    public String getEndStationName() { return endStationName; }
-
-    public void setEndStationName(String endStationName) { this.endStationName = endStationName; }
-
-    public int getCountFreeSits() {
-        return countFreeSits;
-    }
-
-    public void setCountFreeSits(int countSits) {
-        this.countFreeSits = countSits;
-    }
 
     @Override
     public String toString() {
         return "TrainEntity{" +
                 "id=" + id +
-                ", Start station is " + startStationName +
-                ", End station is "+endStationName+
-                ", countFreeSits= " + countFreeSits + " }";
+                ", countFreeSits= " + countSits + " }";
     }
 
 }
