@@ -33,3 +33,17 @@ create table stations
     id_station serial primary key,
     name_station varchar(50) not null
 );
+
+
+create table time_table
+(
+    id serial primary key,
+    id_train integer,
+    id_station integer,
+    arrival_time date not null,
+    departure_time date not null,
+    count_free_sits numeric(5) not null,
+    UNIQUE (id_station,id_train),
+    foreign key (id_train) references trains (id_train),
+    foreign key (id_station) references stations (id_station)
+);

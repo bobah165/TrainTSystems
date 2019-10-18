@@ -1,16 +1,18 @@
 package com.trains.dao;
 
-import com.trains.dto.PassFromTrainDTO;
-import com.trains.model.Passenger;
-import com.trains.model.Train;
+
+import com.trains.dto.TrainFromStationDTO;
+import com.trains.model.Station;
+import com.trains.model.Timetable;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Repository
 public class CrudDAO {
     protected SessionFactory sessionFactory;
 
@@ -35,23 +37,23 @@ public class CrudDAO {
         session.update(object);
     }
 
-    public List<PassFromTrainDTO> getPassFromTrain(int idTrain) {
+    public List<TrainFromStationDTO> getTrainFromStation(int idStation) {
         Session session = sessionFactory.getCurrentSession();
-        List<PassFromTrainDTO> passFromTrainDTOS = new ArrayList<>();
-        List<Passenger> passengers = session.createQuery("from Passenger").list();
-        Train train = session.get(Train.class,idTrain);
+        List<TrainFromStationDTO> trainFromStationDTOS = new ArrayList<>();
+        List<Timetable> timetables = session.createQuery("from Timetable where station.id_station = "+idStation).list();
+        Station station = session.get(Station.class, idStation);
 
-//        for (Passenger pass:passengers ) {
-//            if (idTrain==pass.getTrain().getId()) {
-//                PassFromTrainDTO passFromTrain = new PassFromTrainDTO();
-//                passFromTrain.setName(pass.getName());
-//                passFromTrain.setSurname(pass.getSurname());
-//                passFromTrain.setTrainId(train.getId());
-//                passFromTrainDTOS.add(passFromTrain);
-//            }
-  //      }
+        for (Timetable timetable : timetables) {
+            TrainFromStationDTO trainFromStationDTO = new TrainFromStationDTO();
+            trainFromStationDTO.setIdTrain(timetable.getTrain().getId());
+            trainFromStationDTO.setNameStation(station.getNameStation());
+            trainFromStationDTO.setDepartureTime(timetable.getDepartureTime());
+            trainFromStationDTO.setArrivalTime(timetable.getArrivalTime());
 
-        return passFromTrainDTOS;
+            trainFromStationDTOS.add(trainFromStationDTO);
+        }
+
+        return trainFromStationDTOS;
     }
 
 }

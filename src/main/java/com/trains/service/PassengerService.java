@@ -1,7 +1,6 @@
 package com.trains.service;
 
 import com.trains.dao.PassengerDAO;
-import com.trains.dto.PassFromTrainDTO;
 import com.trains.model.Passenger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,8 +32,6 @@ public class PassengerService {
     public Passenger getById(int idPassenger) {
         return passengerDAO.getById(idPassenger);
     }
-
-    public List<PassFromTrainDTO> getPass(int id) {return passengerDAO.getPassFromTrain(id); }
 }
 
 
