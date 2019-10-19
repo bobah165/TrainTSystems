@@ -1,6 +1,7 @@
 package com.trains.controller;
 
-import com.trains.model.Train;
+import com.trains.model.dto.TrainDTO;
+import com.trains.model.entity.Train;
 import com.trains.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class TrainController {
 
     @GetMapping(value = "/")
     public ModelAndView getAllTrains() {
-        List<Train> trains = trainService.allTrains();
+        List<TrainDTO> trains = trainService.allTrains();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-view/trains");
         modelAndView.addObject("trainList",trains);
@@ -30,8 +31,8 @@ public class TrainController {
 
 
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView update (@PathVariable("id") int id) {
-        Train train = trainService.getById(id);
+    public ModelAndView getEditPage (@PathVariable("id") int id) {
+        TrainDTO train = trainService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-view/edit-train");
         modelAndView.addObject("train",train);
@@ -40,7 +41,7 @@ public class TrainController {
 
 
     @PostMapping (value = "/edit")
-    public ModelAndView editTrain(@ModelAttribute("train") Train train) {
+    public ModelAndView update (@ModelAttribute("train") TrainDTO train) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/train/");
         trainService.edit(train);
@@ -55,7 +56,7 @@ public class TrainController {
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("train") Train train) {
+    public ModelAndView create(@ModelAttribute("train") TrainDTO train) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/train/");
         trainService.add(train);
@@ -63,11 +64,10 @@ public class TrainController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") int idTrain) {
+    public ModelAndView delete(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/train/");
-        Train train = trainService.getById(idTrain);
-        trainService.delete(train);
+        trainService.delByID(id);
         return modelAndView;
     }
 

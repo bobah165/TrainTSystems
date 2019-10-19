@@ -1,0 +1,25 @@
+package com.trains.util;
+
+import com.trains.model.dto.StationDTO;
+import com.trains.model.entity.Station;
+import org.springframework.stereotype.Component;
+
+@Component
+public class StationMapper {
+
+    public Station mapDtoToEntity (StationDTO stationDTO) {
+        Station station = new Station();
+        station.setNameStation(stationDTO.getNameStation());
+        station.setId(stationDTO.getId());
+        station.setTimetables(stationDTO.getTimetables());
+        return station;
+    }
+
+    public StationDTO mapEntityToDto (Station station) {
+        StationDTO stationDTO = new StationDTO();
+        stationDTO.setId(station.getId());
+        stationDTO.setNameStation(station.getNameStation());
+        stationDTO.setTimetables(station.getTimetables());
+        return stationDTO;
+    }
+}

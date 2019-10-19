@@ -13,8 +13,7 @@
 
 <form method="post" action="/train/edit">
 
-    <label for="id">Id Train</label>
-    <input type="number" name="id" id="id">
+    <input type="hidden" name="id" value="${train.id}">
 
     <label for="countSits">Count of Sits</label>
     <input type="text" name="countSits" id="countSits">

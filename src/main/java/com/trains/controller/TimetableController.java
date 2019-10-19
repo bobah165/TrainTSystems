@@ -1,6 +1,6 @@
 package com.trains.controller;
 
-import com.trains.model.Timetable;
+import com.trains.model.dto.TimetableDTO;
 import com.trains.service.TimetableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +12,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/timetable")
 public class TimetableController {
-    TimetableService timetableService;
+    private TimetableService timetableService;
 
     @Autowired
     public void setTimetableService(TimetableService timetableService) {
@@ -20,8 +20,8 @@ public class TimetableController {
     }
 
     @GetMapping(value = "/")
-    public ModelAndView allPassengers() {
-        List<Timetable> timetables = timetableService.allTimetable();
+    public ModelAndView allTimetable() {
+        List<TimetableDTO> timetables = timetableService.allTimetable();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("timetable-view/timetables");
         modelAndView.addObject("timetablesList",timetables);
@@ -29,8 +29,8 @@ public class TimetableController {
     }
 
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView update (@PathVariable("id") int id) {
-        Timetable timetable = timetableService.getById(id);
+    public ModelAndView getEditPage (@PathVariable("id") int id) {
+        TimetableDTO timetable = timetableService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("timetable-view/edit-timetable");
         modelAndView.addObject("timetable",timetable);
@@ -39,7 +39,7 @@ public class TimetableController {
 
 
     @PostMapping(value = "/edit")
-    public ModelAndView editPassenger(@ModelAttribute("timetable") Timetable timetable) {
+    public ModelAndView update(@ModelAttribute("timetable") TimetableDTO timetable) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/timetable/");
         timetableService.edit(timetable);
@@ -47,14 +47,14 @@ public class TimetableController {
     }
 
     @GetMapping(value = "/add")
-    public ModelAndView getPassPage() {
+    public ModelAndView getAddPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("timetable-view/add-timetable");
         return modelAndView;
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("timetable") Timetable timetable) {
+    public ModelAndView create(@ModelAttribute("timetable") TimetableDTO timetable) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/timetable/");
         timetableService.add(timetable);
@@ -65,8 +65,7 @@ public class TimetableController {
     public ModelAndView delete(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/timetable/");
-        Timetable timetable = timetableService.getById(id);
-        timetableService.delete(timetable);
+        timetableService.delByID(id);
         return modelAndView;
     }
 

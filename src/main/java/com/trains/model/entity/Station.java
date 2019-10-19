@@ -1,4 +1,4 @@
-package com.trains.model;
+package com.trains.model.entity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,7 +9,7 @@ public class Station {
     @Id
     @Column (name = "id_station")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_station;
+    private int id;
 
     @Column(name = "name_station")
     private String nameStation;
@@ -25,12 +25,12 @@ public class Station {
         this.timetables = timetables;
     }
 
-    public int getId_station() {
-        return id_station;
+    public int getId() {
+        return id;
     }
 
-    public void setId_station(int id_station) {
-        this.id_station = id_station;
+    public void setId(int id_station) {
+        this.id = id_station;
     }
 
     public String getNameStation() {

@@ -20,7 +20,7 @@
     <c:forEach var="timetable" items="${timetablesList}">
         <tr>
             <td>${timetable.train.id}</td>
-            <td>${timetable.station.id_station}</td>
+            <td>${timetable.station.id}</td>
             <td>${timetable.arrivalTime}</td>
             <td>${timetable.departureTime}</td>
             <td>${timetable.countFreeSits}</td>

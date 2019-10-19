@@ -1,7 +1,6 @@
-package com.trains.model;
+package com.trains.model.entity;
 
 import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.NaturalIdCache;
 
 import javax.persistence.*;
 import java.sql.Date;

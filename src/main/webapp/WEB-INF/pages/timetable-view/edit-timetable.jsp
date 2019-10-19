@@ -12,7 +12,7 @@
 
     <input type="hidden" name="train.id" value="${timetable.train.id}">
 
-    <input type="hidden" name="station.id_station" value="${timetable.station.id_station}">
+    <input type="hidden" name="station.id" value="${timetable.station.id}">
 
     <label for="arrivalTime">Arrival Time</label>
     <input type="text" name="arrivalTime" id="arrivalTime">

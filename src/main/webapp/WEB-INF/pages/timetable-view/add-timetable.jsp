@@ -12,7 +12,7 @@
     <input type="text" name="train.id" id="idTrain">
 
     <label for="idStation">Station</label>
-    <input type="text" name="station.id_station" id="idStation">
+    <input type="text" name="station.id" id="idStation">
 
     <label for="arrivalTime">Arrival Time</label>
     <input type="text" name="arrivalTime" id="arrivalTime">

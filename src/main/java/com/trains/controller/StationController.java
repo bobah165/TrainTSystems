@@ -1,6 +1,7 @@
 package com.trains.controller;
 
-import com.trains.model.Station;
+import com.trains.model.dto.StationDTO;
+import com.trains.model.dto.TrainFromStationDTO;
 import com.trains.service.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ public class StationController {
 
     @GetMapping(value = "/")
     public ModelAndView allPassengers() {
-        List<Station> stations = stationService.allStations();
+        List<StationDTO> stations = stationService.allStations();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("station-view/stations");
         modelAndView.addObject("stationsList", stations);
@@ -29,8 +30,8 @@ public class StationController {
     }
 
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView update (@PathVariable("id") int id) {
-        Station station = stationService.getById(id);
+    public ModelAndView getEditPage (@PathVariable("id") int id) {
+        StationDTO station = stationService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("station-view/edit-station");
         modelAndView.addObject("station",station);
@@ -39,7 +40,7 @@ public class StationController {
 
 
     @PostMapping(value = "/edit")
-    public ModelAndView editPassenger(@ModelAttribute("station") Station station) {
+    public ModelAndView update(@ModelAttribute("station") StationDTO station) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/station/");
         stationService.edit(station);
@@ -54,19 +55,28 @@ public class StationController {
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("station") Station station) {
+    public ModelAndView create(@ModelAttribute("station") StationDTO station) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/station/");
         stationService.add(station);
         return modelAndView;
     }
 
+
     @GetMapping (value = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/station/");
-        Station station = stationService.getById(id);
-        stationService.delete(station);
+        stationService.delByID(id);
+        return modelAndView;
+    }
+
+    @GetMapping("/trainfromstation/{id}")
+    public ModelAndView getTatinFromStation (@PathVariable("id") int id) {
+        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("station-view/get-trains");
+        modelAndView.addObject("trainsList",trainFromStation);
         return modelAndView;
     }
 

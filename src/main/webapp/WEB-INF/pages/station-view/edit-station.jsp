@@ -8,7 +8,7 @@
 
 <form action="/station/edit" method="post">
 
-    <input type="hidden" name="id_station" value="${station.id_station}">
+    <input type="hidden" name="id" value="${station.id}">
 
     <label for="nameStation">Station Name </label>
     <input type="text" name="nameStation" id="nameStation">

@@ -1,6 +1,6 @@
 package com.trains.controller;
 
-import com.trains.model.Ticket;
+import com.trains.model.dto.TicketDTO;
 import com.trains.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +20,8 @@ public class TicketController {
     }
 
     @GetMapping(value = "/")
-    public ModelAndView allPassengers() {
-        List<Ticket> tickets = ticketService.allTickets();
+    public ModelAndView allTickets() {
+        List<TicketDTO> tickets = ticketService.allTickets();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/tickets");
         modelAndView.addObject("ticketsList",tickets);
@@ -29,8 +29,8 @@ public class TicketController {
     }
 
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView update (@PathVariable("id") int id) {
-        Ticket ticket = ticketService.getById(id);
+    public ModelAndView getEditPage (@PathVariable("id") int id) {
+        TicketDTO ticket = ticketService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/edit-ticket");
         modelAndView.addObject("ticket",ticket);
@@ -39,7 +39,7 @@ public class TicketController {
 
 
     @PostMapping(value = "/edit")
-    public ModelAndView editPassenger(@ModelAttribute("ticket") Ticket ticket) {
+    public ModelAndView update (@ModelAttribute("ticket") TicketDTO ticket) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/ticket/");
         ticketService.edit(ticket);
@@ -47,14 +47,14 @@ public class TicketController {
     }
 
     @GetMapping(value = "/add")
-    public ModelAndView getPassPage() {
+    public ModelAndView getAddPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/add-ticket");
         return modelAndView;
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("ticket") Ticket ticket) {
+    public ModelAndView create(@ModelAttribute("ticket") TicketDTO ticket) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/ticket/");
         ticketService.add(ticket);
@@ -65,8 +65,7 @@ public class TicketController {
     public ModelAndView delete(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/ticket/");
-        Ticket ticket = ticketService.getById(id);
-        ticketService.delete(ticket);
+        ticketService.delByID(id);
         return modelAndView;
     }
 

@@ -1,7 +1,7 @@
 package com.trains.controller;
 
 
-import com.trains.model.Passenger;
+import com.trains.model.dto.PassengerDTO;
 import com.trains.service.PassengerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,7 +22,7 @@ public class PassengerController {
 
 @GetMapping(value = "/")
     public ModelAndView allPassengers() {
-    List<Passenger> passengers = passengerService.allPassengers();
+    List<PassengerDTO> passengers = passengerService.allPassengers();
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("passenger-view/passengers");
     modelAndView.addObject("passengersList",passengers);
@@ -31,8 +31,8 @@ public class PassengerController {
 
 
     @GetMapping(value = "/edit/{id}")
-    public ModelAndView update (@PathVariable("id") int id) {
-        Passenger passenger = passengerService.getById(id);
+    public ModelAndView getEditPage (@PathVariable("id") int id) {
+        PassengerDTO passenger = passengerService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("passenger-view/edit-passenger");
         modelAndView.addObject("passenger",passenger);
@@ -41,7 +41,7 @@ public class PassengerController {
 
 
     @PostMapping(value = "/edit")
-    public ModelAndView editPassenger(@ModelAttribute("passenger") Passenger passenger) {
+    public ModelAndView update (@ModelAttribute("passenger") PassengerDTO passenger) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/passenger/");
         passengerService.edit(passenger);
@@ -56,7 +56,7 @@ public class PassengerController {
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("passenger") Passenger passenger) {
+    public ModelAndView create(@ModelAttribute("passenger") PassengerDTO passenger) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/passenger/");
         passengerService.add(passenger);
@@ -64,11 +64,10 @@ public class PassengerController {
     }
 
     @GetMapping (value = "/delete/{id}")
-    public ModelAndView delete(@PathVariable("id") int idPassenger) {
+    public ModelAndView delete(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/passenger/");
-        Passenger passenger = passengerService.getById(idPassenger);
-        passengerService.delete(passenger);
+        passengerService.delByID(id);
         return modelAndView;
     }
 

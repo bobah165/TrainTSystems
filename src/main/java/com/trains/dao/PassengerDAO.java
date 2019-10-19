@@ -1,6 +1,6 @@
 package com.trains.dao;
 
-import com.trains.model.Passenger;
+import com.trains.model.entity.Passenger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +13,12 @@ public class PassengerDAO extends CrudDAO {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from Passenger").list();
     }
+
+    public void delByID (int id) {
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(session.get(Passenger.class,id));
+    }
+
 
     public Passenger getById(int idPassenger) {
         Session session = sessionFactory.getCurrentSession();

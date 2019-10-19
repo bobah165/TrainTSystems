@@ -1,4 +1,4 @@
-package com.trains.dto;
+package com.trains.model.dto;
 
 import java.sql.Date;
 

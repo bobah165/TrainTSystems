@@ -1,4 +1,4 @@
-package com.trains.model;
+package com.trains.model.entity;
 
 
 import javax.persistence.*;

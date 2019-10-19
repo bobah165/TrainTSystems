@@ -11,18 +11,18 @@
 <table>
     <tr>
         <th>name</th>
-        <th>Trains</th>
+        <th>Train</th>
         <th>action</th>
     </tr>
     <c:forEach var="station" items="${stationsList}">
         <tr>
             <td>${station.nameStation}</td>
             <td>
-                <a href="/trainfromstation/${station.id_station}">Train TimeTable</a>
+                <a href="/station/trainfromstation/${station.id}">Train TimeTable</a>
             </td>
             <td>
-                <a href="/station/edit/${station.id_station}">edit</a>
-                <a href="/station/delete/${station.id_station}">delete</a>
+                <a href="/station/edit/${station.id}">edit</a>
+                <a href="/station/delete/${station.id}">delete</a>
             </td>
         </tr>
     </c:forEach>
