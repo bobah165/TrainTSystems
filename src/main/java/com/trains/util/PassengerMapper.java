@@ -17,6 +17,7 @@ public class PassengerMapper {
         passenger.setPassword(passengerDTO.getPassword());
         passenger.setSurname(passengerDTO.getSurname());
         passenger.setTickets(passengerDTO.getTickets());
+        passenger.setUser(passengerDTO.getUser());
         return passenger;
     }
 
@@ -30,6 +31,7 @@ public class PassengerMapper {
         passengerDTO.setPassword(passenger.getPassword());
         passengerDTO.setSurname(passenger.getSurname());
         passengerDTO.setTickets(passenger.getTickets());
+        passengerDTO.setUser(passenger.getUser());
         return passengerDTO;
     }
 }

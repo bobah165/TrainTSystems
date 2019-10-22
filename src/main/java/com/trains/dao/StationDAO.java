@@ -22,6 +22,19 @@ public class StationDAO extends CrudDAO {
         return session.get(Station.class,id);
     }
 
+    public Station getByName (String name) {
+        Session session = sessionFactory.getCurrentSession();
+        List<Station> stations = session.createQuery("from Station ").list();
+        Station station = new Station();
+        for (Station stationFromList: stations) {
+            if(stationFromList.getNameStation().equals(name)) {
+                station = stationFromList;
+                break;
+            }
+        }
+        return station;
+    }
+
     public void delByID (int id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(session.get(Station.class,id));

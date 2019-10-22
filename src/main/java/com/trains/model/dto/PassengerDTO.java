@@ -2,8 +2,10 @@ package com.trains.model.dto;
 
 
 import com.trains.model.entity.Ticket;
+import com.trains.model.entity.User;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public class PassengerDTO {
@@ -16,6 +18,15 @@ public class PassengerDTO {
     private String password;
     private String email;
     private List<Ticket> tickets;
+    private String user;
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user;
+    }
 
     public int getId() {
         return id;

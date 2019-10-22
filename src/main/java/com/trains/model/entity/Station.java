@@ -2,6 +2,7 @@ package com.trains.model.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "stations")
@@ -41,5 +42,16 @@ public class Station {
         this.nameStation = nameStation;
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Station station = (Station) object;
+        return getId() == station.getId();
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

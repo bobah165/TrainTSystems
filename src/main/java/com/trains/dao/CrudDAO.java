@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class CrudDAO {
+public abstract class CrudDAO {
     protected SessionFactory sessionFactory;
 
     @Autowired
@@ -29,4 +29,5 @@ public class CrudDAO {
         session.update(object);
     }
 
+    public abstract <T> T getById(int id);
 }

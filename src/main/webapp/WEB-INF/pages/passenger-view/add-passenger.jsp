@@ -29,6 +29,8 @@
     <label for="email">Email</label>
     <input type="text" name="email" id="email">
 
+    <label for="user">user</label>
+    <input type="text" name="user" id="user">
 
     <input type="submit" value="Add Passenger">
     

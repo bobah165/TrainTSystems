@@ -63,4 +63,10 @@ public class StationService {
 
     public void delByID (int id) { stationDAO.delByID(id); }
 
+    public StationDTO getByName (String name) {
+        Station station = stationDAO.getByName(name);
+        StationDTO stationDTO = stationMapper.mapEntityToDto(station);
+        return stationDTO;
+    }
+
 }

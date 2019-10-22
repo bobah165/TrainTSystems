@@ -2,7 +2,9 @@ package com.trains.service;
 
 import com.trains.dao.TimetableDAO;
 import com.trains.model.dto.TimetableDTO;
+import com.trains.model.entity.Station;
 import com.trains.model.entity.Timetable;
+import com.trains.model.entity.Train;
 import com.trains.util.TimetableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +56,11 @@ public class TimetableService {
         return timetableDTO; }
 
     public void delByID (int id) { timetableDAO.delByID(id); }
+
+    public TimetableDTO getTimetableByTrainAndStation (Train train, Station station) {
+        Timetable timetable = timetableDAO.getTimetableByTrainAndStation(train,station);
+        TimetableDTO timetableDTO = timetableMapper.mapEntityToDto(timetable);
+        return timetableDTO;
+    }
 
 }

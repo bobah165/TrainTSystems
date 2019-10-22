@@ -1,7 +1,9 @@
 package com.trains.service;
 
 import com.trains.dao.TrainDAO;
+import com.trains.model.dto.PassengersFromTrainDTO;
 import com.trains.model.dto.TrainDTO;
+import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.model.entity.Train;
 import com.trains.util.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,6 +60,14 @@ public class TrainService {
     }
 
     public void delByID (int id) { trainDAO.delByID(id); }
+
+    public List<PassengersFromTrainDTO> getPassengerFromTrain (int idTrain) {
+        return trainDAO.getPassengerFromTrain(idTrain);
+    }
+
+    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB) {
+        return trainDAO.getTrainsFromStations(stationNameA,stationNameB);
+    }
 
 }
 

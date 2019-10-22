@@ -71,4 +71,20 @@ public class PassengerController {
         return modelAndView;
     }
 
+//    @GetMapping (value = "/buy")
+//    public ModelAndView buyPageTicket(){
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("passenger-view/buy-ticket");
+//        return modelAndView;
+//    }
+//
+//    @PostMapping (value = "/buy")
+//    public ModelAndView buyPassenger(@ModelAttribute("passenger") PassengerDTO passengerDTO) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("redirect:/ticket/add/");
+//        passengerService.add(passengerDTO);
+//        return modelAndView;
+//    }
+
+
 }

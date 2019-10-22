@@ -3,6 +3,7 @@ package com.trains.model.entity;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "trains")
@@ -60,4 +61,16 @@ public class Train {
                 ", countFreeSits= " + countSits + " }";
     }
 
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Train train = (Train) object;
+        return getId() == train.getId();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId());
+    }
 }

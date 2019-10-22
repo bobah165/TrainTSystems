@@ -3,6 +3,7 @@ package com.trains.service;
 import com.trains.dao.TicketDAO;
 import com.trains.model.dto.TicketDTO;
 import com.trains.model.entity.Ticket;
+import com.trains.model.entity.Train;
 import com.trains.util.TicketMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,5 +56,14 @@ public class TicketService {
         return ticketDTO; }
 
     public void delByID (int id) { ticketDAO.delByID(id); }
+
+    public List<TicketDTO> getByTrain (Train train) {
+        List<Ticket> tickets = ticketDAO.getByTrain(train);
+        List<TicketDTO> ticketDTOS = new ArrayList<>();
+        for (Ticket ticket:tickets) {
+            ticketDTOS.add(ticketMapper.mapEntityToDto(ticket));
+        }
+        return ticketDTOS;
+    }
 
 }

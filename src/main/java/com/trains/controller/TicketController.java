@@ -4,6 +4,7 @@ import com.trains.model.dto.TicketDTO;
 import com.trains.service.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,6 +67,14 @@ public class TicketController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/ticket/");
         ticketService.delByID(id);
+        return modelAndView;
+    }
+
+
+    @GetMapping(value = "/message")
+    public ModelAndView getMessage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("ticket-view/message-ticket");
         return modelAndView;
     }
 
