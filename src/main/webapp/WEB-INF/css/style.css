@@ -1,0 +1,64 @@
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 14px;
+    border-collapse: collapse;
+    text-align: center;
+    margin: auto;
+}
+th, td:first-child {
+    background: #AFCDE7;
+    color: white;
+    padding: 10px 20px;
+}
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+td {
+    background: #D8E6F3;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.welcome h1 {
+    display: none;
+}
+
+
+
+nav {
+    height: 60px;
+    border-top: 1px solid blue;
+    border-bottom: 1px solid blue;
+}
+
+nav ul.menu {
+    text-align: center;
+    font-size: 0;
+}
+
+nav ul.menu li {
+    display: inline-block;
+    font-size: 13px;
+}
+
+nav ul.menu li a {
+    color: black;
+    text-transform: uppercase;
+    font-family: 'Lobster', cursive;
+    font-size: 1.3em;
+    text-decoration: none;
+    padding-right: 22px;
+    padding-left: 22px;
+    display: block;
+    min-height: 60px;
+    line-height: 60px;
+}

@@ -5,11 +5,12 @@ import com.trains.model.dto.PassengersFromTrainDTO;
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.model.entity.Train;
-import com.trains.util.TrainMapper;
+import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +66,8 @@ public class TrainService {
         return trainDAO.getPassengerFromTrain(idTrain);
     }
 
-    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB) {
-        return trainDAO.getTrainsFromStations(stationNameA,stationNameB);
+    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime, Time endTime) {
+        return trainDAO.getTrainsFromStations(stationNameA,stationNameB,startTime,endTime);
     }
 
 }

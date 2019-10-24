@@ -5,11 +5,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Table(name = "passengers")
@@ -22,8 +20,11 @@ public class Passenger implements UserDetails {
     private String name;
     @Column(name = "surname")
     private String surname;
+
     @Column(name = "birthday")
-    private Date birthday;
+   // @Convert(converter = LocalDateConverter.class)
+    private LocalDate birthday;
+
     @Column(name = "login")
     private String login;
     @Column(name = "password")
@@ -131,11 +132,11 @@ public class Passenger implements UserDetails {
         this.surname = surname;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

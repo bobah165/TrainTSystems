@@ -7,12 +7,12 @@ create table trains (
 create table passengers
 (
     id_passenger serial primary key,
-    name varchar(50) not null,
-    surname varchar(50) not null,
-    birthday date not null,
-    login varchar(50) not null,
-    password varchar(50) not null,
-    email varchar(50) not null
+    name varchar(50),
+    surname varchar(50),
+    birthday date,
+    login varchar(50),
+    password varchar(50),
+    email varchar(50)
 );
 
 create table tickets

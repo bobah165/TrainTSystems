@@ -1,8 +1,11 @@
-package com.trains.util;
+package com.trains.util.mapperForDTO;
 
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.entity.Train;
 import org.springframework.stereotype.Component;
+
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Component
 public class TrainMapper {
@@ -13,6 +16,9 @@ public class TrainMapper {
         train.setId(trainDTO.getId());
         train.setTickets(trainDTO.getTickets());
         train.setTimetables(trainDTO.getTimetables());
+        train.setTrainNumber(trainDTO.getTrainNumber());
+        train.setTrainWay(trainDTO.getTrainWay());
+        train.setDepartureDate(trainDTO.getDepartureDate().toLocalDate());
         return train;
     }
 
@@ -22,6 +28,9 @@ public class TrainMapper {
         trainDTO.setId(train.getId());
         trainDTO.setTickets(train.getTickets());
         trainDTO.setTimetables(train.getTimetables());
+        trainDTO.setTrainNumber(train.getTrainNumber());
+        trainDTO.setTrainWay(train.getTrainWay());
+        trainDTO.setDepartureDate(Date.valueOf(train.getDepartureDate()));
         return trainDTO;
     }
 }

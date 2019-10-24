@@ -15,10 +15,10 @@
     <input type="text" name="station.id" id="idStation">
 
     <label for="arrivalTime">Arrival Time</label>
-    <input type="text" name="arrivalTime" id="arrivalTime">
+    <input type="time" name="arrivalTime" id="arrivalTime">
 
     <label for="departureTime">Departure Time</label>
-    <input type="text" name="departureTime" id="departureTime">
+    <input type="time" name="departureTime" id="departureTime">
 
     <label for="countFreeSits">Count Free Sits</label>
     <input type="text" name="countFreeSits" id="countFreeSits">

@@ -1,16 +1,20 @@
 package com.trains.controller;
 
 import com.trains.model.dto.*;
+import com.trains.model.entity.Timetable;
 import com.trains.service.*;
-import com.trains.util.PassengerMapper;
-import com.trains.util.StationMapper;
-import com.trains.util.TrainMapper;
+import com.trains.util.mapperForDTO.PassengerMapper;
+import com.trains.util.mapperForDTO.StationMapper;
+import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -24,6 +28,8 @@ public class BuyTicketController {
 
     private String departureStation;
     private String arrivalStation;
+
+
     private int trainID;
     private TrainMapper trainMapper;
     private PassengerMapper passengerMapper;
@@ -87,15 +93,17 @@ public class BuyTicketController {
         return modelAndView;
     }
 
+
+
     //таблица поездов по результатам поиска
-    @GetMapping(value = "/trainstation")
-    public ModelAndView getTrainstAB (){
-        ModelAndView modelAndView = new ModelAndView();
-        List<TrainFromStationAToB> trainFromStationAToBS =  trainService.getTrainsFromStations(departureStation,arrivalStation);
-        modelAndView.setViewName("train-view/get-train-from-stations");
-        modelAndView.addObject("trainListfromAtoB",trainFromStationAToBS);
-        return modelAndView;
-    }
+//    @GetMapping(value = "/trainstation")
+//    public ModelAndView getTrainstAB (){
+//        ModelAndView modelAndView = new ModelAndView();
+//        List<TrainFromStationAToB> trainFromStationAToBS =  trainService.getTrainsFromStations(departureStation,arrivalStation);
+//        modelAndView.setViewName("train-view/get-train-from-stations");
+//        modelAndView.addObject("trainListfromAtoB",trainFromStationAToBS);
+//        return modelAndView;
+//    }
 
     //начало процесса оформления билета, форма для заполнения данных пассажира
     @GetMapping(value = "/passenger/{id}")
@@ -140,8 +148,8 @@ public class BuyTicketController {
 
         // создаем билет для пассажира
         TicketDTO ticket = new TicketDTO();
-        ticket.setDepartureStation(departureStation);
-        ticket.setArrivalStation(arrivalStation);
+       ticket.setDepartureStation(departureStation);
+       ticket.setArrivalStation(arrivalStation);
         //добавление информацию о поезде в билет
         ticket.setTrain(trainMapper.mapDtoToEntity(trainDTO));
         ticket.setPassenger(passengerMapper.mapDtoToEntity(currentPassenger));
@@ -155,14 +163,14 @@ public class BuyTicketController {
             return modelAndView;
         }
         TimetableDTO timetableB = timetableService.getTimetableByTrainAndStation(trainMapper.mapDtoToEntity(trainDTO),stationMapper.mapDtoToEntity(stationB));
-        Date arDate = timetableA.getArrivalTime();
-        Date depDate = timetableB.getDepartureTime();
-        ticket.setArrivalDate(arDate);
-        ticket.setDepartureDate(depDate);
+        String arDate = timetableA.getArrivalTime();
+        String depDate = timetableB.getDepartureTime();
+        ticket.setArrivalDate(Date.valueOf("2019-10-10"));
+        ticket.setDepartureDate(Date.valueOf("2019-10-11"));
         ticketService.add(ticket);
 
         //задаем количество свободных мест с учетом нового пассажира
-        trainDTO.setCountSits(trainDTO.getCountSits()-1);
+        timetableA.setCountFreeSits(timetableA.getCountFreeSits()-1);
 
         modelAndView.setViewName("redirect:/ticket/");
 

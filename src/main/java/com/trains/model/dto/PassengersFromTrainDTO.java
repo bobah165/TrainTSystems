@@ -1,11 +1,12 @@
 package com.trains.model.dto;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class PassengersFromTrainDTO {
     private String name;
     private String surname;
-    private Date birthday;
+    private LocalDate birthday;
     private int ticketID;
 
     public String getName() {
@@ -24,11 +25,11 @@ public class PassengersFromTrainDTO {
         this.surname = surname;
     }
 
-    public Date getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
 

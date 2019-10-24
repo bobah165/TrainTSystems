@@ -3,16 +3,21 @@
 <html>
 <head>
     <title>Get Trains From Stations</title>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+    </style>
 </head>
 <body>
 
+
+
 <table>
     <tr>
-        <th>Train ID</th>
+        <th>Train Number</th>
         <th>Departure Station</th>
         <th>Arrival Station</th>
-        <th>Departure Date</th>
-        <th>Arrival Date</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
         <th>count of free sits</th>
         <th>Buy</th>
     </tr>

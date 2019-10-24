@@ -1,7 +1,10 @@
 package com.trains.model.entity;
 
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,7 +13,13 @@ import java.util.Objects;
 public class Train {
     @Id
     @Column (name = "id_train")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @NaturalId(mutable = true)
+    @Column (name = "train_number")
+    private int trainNumber;
+
     @Column(name = "count_sits")
     private int countSits;
 
@@ -19,6 +28,30 @@ public class Train {
 
     @OneToMany(mappedBy = "train", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Timetable> timetables;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_way")
+    private TrainWay trainWay;
+
+    @NaturalId(mutable = true)
+    @Column(name = "departure_date")
+    private LocalDate departureDate;
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(LocalDate departure_date) {
+        this.departureDate = departure_date;
+    }
+
+    public TrainWay getTrainWay() {
+        return trainWay;
+    }
+
+    public void setTrainWay(TrainWay trainWay) {
+        this.trainWay = trainWay;
+    }
 
     public List<Timetable> getTimetables() {
         return timetables;
@@ -44,6 +77,13 @@ public class Train {
         this.countSits = countSits;
     }
 
+    public int getTrainNumber() {
+        return trainNumber;
+    }
+
+    public void setTrainNumber(int trainNumber) {
+        this.trainNumber = trainNumber;
+    }
 
     public int getId() {
         return id;

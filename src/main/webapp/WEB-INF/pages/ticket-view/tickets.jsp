@@ -4,27 +4,30 @@
 <html>
 <head>
     <title>Tickets</title>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+    </style>
 </head>
 <body>
 
 <table>
     <tr>
+        <th>Train</th>
+        <th>Passenger</th>
         <th>departure station</th>
         <th>arrival station</th>
         <th>departure date</th>
         <th>arrival date</th>
-        <th>Train</th>
-        <th>Passenger</th>
         <th>action</th>
     </tr>
     <c:forEach var="ticket" items="${ticketsList}">
         <tr>
+            <td>${ticket.train.id}</td>
+            <td>${ticket.passenger.id}</td>
             <td>${ticket.departureStation}</td>
             <td>${ticket.arrivalStation}</td>
             <td>${ticket.departureDate}</td>
             <td>${ticket.arrivalDate}</td>
-            <td>${ticket.train.id}</td>
-            <td>${ticket.passenger.id}</td>
             <td>
                 <a href="/ticket/edit/${ticket.id}">edit</a>
                 <a href="/ticket/delete/${ticket.id}">delete</a>

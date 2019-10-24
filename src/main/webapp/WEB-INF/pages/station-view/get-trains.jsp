@@ -3,6 +3,9 @@
 <html>
 <head>
     <title>Get Tarins from Station</title>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+    </style>
 </head>
 <body>
 

@@ -3,6 +3,9 @@
 <html>
 <head>
     <title>Get Passengers From Train</title>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+    </style>
 </head>
 <body>
 

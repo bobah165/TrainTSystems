@@ -1,4 +1,4 @@
-package com.trains.util;
+package com.trains.util.mapperForDTO;
 
 import com.trains.model.dto.StationDTO;
 import com.trains.model.entity.Station;

@@ -18,6 +18,17 @@ public class Station {
     @OneToMany(mappedBy = "station", cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Timetable> timetables;
 
+    @OneToMany(mappedBy = "station", cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<TrainWay> trainWays;
+
+    public List<TrainWay> getTrainWays() {
+        return trainWays;
+    }
+
+    public void setTrainWays(List<TrainWay> trainWays) {
+        this.trainWays = trainWays;
+    }
+
     public List<Timetable> getTimetables() {
         return timetables;
     }

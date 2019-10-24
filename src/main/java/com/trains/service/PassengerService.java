@@ -3,7 +3,7 @@ package com.trains.service;
 import com.trains.dao.PassengerDAO;
 import com.trains.model.dto.PassengerDTO;
 import com.trains.model.entity.Passenger;
-import com.trains.util.PassengerMapper;
+import com.trains.util.mapperForDTO.PassengerMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -7,8 +7,10 @@ import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 import java.util.TreeSet;
 
 @Repository
@@ -48,7 +50,8 @@ public class TrainDAO extends CrudDAO {
     }
 
 
-    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB) {
+    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime,Time endTime)
+    {
         Session session = sessionFactory.getCurrentSession();
         List<Timetable> timetables = session.createQuery("from Timetable").list();
         List<Station> stations = session.createQuery("from Station").list();
@@ -72,7 +75,7 @@ public class TrainDAO extends CrudDAO {
             //находим поезда проезжающие через станцию А
             if (timetable.getStation().getId() == stationA.getId()) {
                 TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
-                trainFromStationAToB.setTrainID(timetable.getTrain().getId());
+                trainFromStationAToB.setTrainID(timetable.getTrain().getTrainNumber());
                 trainFromStationAToB.setDeprtureStation(stationNameA);
                 trainFromStationAToB.setArrivalStation(stationNameB);
                 trainFromStationAToB.setArrivalTime(timetable.getArrivalTime());
@@ -84,7 +87,7 @@ public class TrainDAO extends CrudDAO {
             //находим поезда проезжающие через станцию В
             if (timetable.getStation().getId() == stationB.getId()) {
                 TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
-                trainFromStationAToB.setTrainID(timetable.getTrain().getId());
+                trainFromStationAToB.setTrainID(timetable.getTrain().getTrainNumber());
                 trainFromStationAToB.setDeprtureStation(stationNameA);
                 trainFromStationAToB.setArrivalStation(stationNameB);
                 trainFromStationAToB.setArrivalTime(timetable.getArrivalTime());
@@ -104,7 +107,18 @@ public class TrainDAO extends CrudDAO {
                         }
                     }
                 }
-        return trainFromStationAToBS;
+
+            //ищем поезда в деапазоне времени
+        List<TrainFromStationAToB> trainFromStationAToBS1 = new ArrayList<>();
+            trainFromStationAToBS1.addAll(trainFromStationAToBS);
+        for (TrainFromStationAToB trainFromStationAToB: trainFromStationAToBS) {
+            if(!(trainFromStationAToB.getDepartureTime().after(startTime)&&trainFromStationAToB.getDepartureTime().before(endTime))){
+               trainFromStationAToBS1.remove(trainFromStationAToB);
+            }
+       }
+
+
+        return trainFromStationAToBS1;
     }
 
 }

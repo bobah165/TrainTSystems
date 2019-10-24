@@ -3,6 +3,10 @@
 <html>
 <head>
     <title>Timetables</title>
+
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+    </style>
 </head>
 <body>
 

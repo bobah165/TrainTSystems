@@ -2,10 +2,8 @@ package com.trains.model.dto;
 
 
 import com.trains.model.entity.Ticket;
-import com.trains.model.entity.User;
 
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 
 public class PassengerDTO {

@@ -5,20 +5,30 @@
 
 <head>
     <title>Trains</title>
+
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+    </style>
+
 </head>
 
 <body>
+
 <table>
     <tr>
-        <th>Train ID</th>
+        <th>Train Number</th>
+        <th>Way</th>
         <th>count of sits</th>
+        <th>Departure Date</th>
         <th>Passengers</th>
         <th>action</th>
     </tr>
     <c:forEach var="train" items="${trainList}">
         <tr>
-            <td>${train.id}</td>
+            <td>${train.trainNumber}</td>
+            <td>${train.trainWay.id}</td>
             <td>${train.countSits}</td>
+            <td>${train.departureDate}</td>
             <td>
                 <a href="/train/passfromtrain/${train.id}">Passengers</a>
             </td>

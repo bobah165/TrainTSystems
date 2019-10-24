@@ -5,7 +5,7 @@ import com.trains.model.dto.TimetableDTO;
 import com.trains.model.entity.Station;
 import com.trains.model.entity.Timetable;
 import com.trains.model.entity.Train;
-import com.trains.util.TimetableMapper;
+import com.trains.util.mapperForDTO.TimetableMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

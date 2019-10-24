@@ -3,13 +3,15 @@ package com.trains.model.dto;
 import com.trains.model.entity.Station;
 import com.trains.model.entity.Train;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class TimetableDTO {
     private int id;
     private Train train;
     private Station station;
-    private Date arrivalTime;
-    private Date departureTime;
+    private String arrivalTime;
+    private String departureTime;
     private int countFreeSits;
 
     public int getId() {
@@ -36,19 +38,19 @@ public class TimetableDTO {
         this.station = station;
     }
 
-    public Date getArrivalTime() {
+    public String getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(String arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public Date getDepartureTime() {
+    public String getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(String departureTime) {
         this.departureTime = departureTime;
     }
 

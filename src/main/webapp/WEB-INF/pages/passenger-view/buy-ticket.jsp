@@ -21,7 +21,7 @@
     <input type="text" name="surname" id="surname">
 
     <label for="birthday">Birthday</label>
-    <input type="text" name="birthday" id="birthday">
+    <input type="date" name="birthday" id="birthday">
 
 
     <input type="submit" value="Add Passenger">

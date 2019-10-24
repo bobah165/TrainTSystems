@@ -1,12 +1,14 @@
 package com.trains.model.dto;
 
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 public class TrainFromStationDTO {
     private int idTrain;
     private String nameStation;
-    private Date departureTime;
-    private Date arrivalTime;
+    private Time departureTime;
+    private Time arrivalTime;
 
     public int getIdTrain() {
         return idTrain;
@@ -24,19 +26,19 @@ public class TrainFromStationDTO {
         this.nameStation = nameStation;
     }
 
-    public Date getDepartureTime() {
+    public Time getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(Time departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Date getArrivalTime() {
+    public Time getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(Time arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

@@ -4,6 +4,8 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Time;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "time_table")
@@ -25,9 +27,9 @@ public class Timetable {
     private Station station;
 
     @Column(name = "arrival_time")
-    private Date arrivalTime;
+    private Time arrivalTime;
     @Column(name = "departure_time")
-    private Date departureTime;
+    private Time departureTime;
     @Column(name = "count_free_sits")
     private int countFreeSits;
 
@@ -56,19 +58,19 @@ public class Timetable {
         this.station = station;
     }
 
-    public Date getArrivalTime() {
+    public Time getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Date arrivalTime) {
+    public void setArrivalTime(Time arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
-    public Date getDepartureTime() {
+    public Time getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Date departureTime) {
+    public void setDepartureTime(Time departureTime) {
         this.departureTime = departureTime;
     }
 

@@ -2,7 +2,9 @@ package com.trains.model.entity;
 
 
 import javax.persistence.*;
+import java.nio.file.LinkOption;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tickets")
@@ -17,9 +19,9 @@ public class Ticket {
     @Column(name = "arrival_station")
     private String arrivalStation;
     @Column(name = "departure_date")
-    private Date departureDate;
+    private LocalDate departureDate;
     @Column(name = "arrival_date")
-    private Date arrivalDate;
+    private LocalDate arrivalDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_train")
@@ -69,19 +71,19 @@ public class Ticket {
         this.arrivalStation = arrivalStation;
     }
 
-    public Date getDepartureDate() {
+    public LocalDate getDepartureDate() {
         return departureDate;
     }
 
-    public void setDepartureDate(Date departureDate) {
+    public void setDepartureDate(LocalDate departureDate) {
         this.departureDate = departureDate;
     }
 
-    public Date getArrivalDate() {
+    public LocalDate getArrivalDate() {
         return arrivalDate;
     }
 
-    public void setArrivalDate(Date arrivalDate) {
+    public void setArrivalDate(LocalDate arrivalDate) {
         this.arrivalDate = arrivalDate;
     }
 }

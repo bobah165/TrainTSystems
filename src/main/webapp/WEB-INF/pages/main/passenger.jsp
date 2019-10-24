@@ -1,0 +1,29 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Passenger</title>
+    <style>
+        <%@include file="/WEB-INF/css/style.css"%>
+    </style>
+</head>
+<body>
+
+<div class="top_bar"></div>
+<div class="welcome">
+    <img src='<c:url value="/ROOT/train.jpg"></c:url>'  width="600" height="250"/>
+</div>
+
+<header>
+    <div class="top_bar"></div>
+    <nav>
+        <ul class="menu">
+            <li><a href="/buy/trainfromstations/">find train</a> </li>
+            <li><a href="/buy/passenger/">Buy tickets</a> </li>
+            <li><a href="/station/">Shedule</a> </li>
+        </ul>
+    </nav>
+</header>
+
+</body>
+</html>

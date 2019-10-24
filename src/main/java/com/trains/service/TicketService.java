@@ -4,7 +4,7 @@ import com.trains.dao.TicketDAO;
 import com.trains.model.dto.TicketDTO;
 import com.trains.model.entity.Ticket;
 import com.trains.model.entity.Train;
-import com.trains.util.TicketMapper;
+import com.trains.util.mapperForDTO.TicketMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

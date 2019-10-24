@@ -18,10 +18,10 @@
     <input type="text" name="arrivalStation" id="arrivalStation">
 
     <label for="departureDate">Departure Date</label>
-    <input type="text" name="departureDate" id="departureDate">
+    <input type="date" name="departureDate" id="departureDate">
 
     <label for="arrivalDate">Arrival Date</label>
-    <input type="text" name="arrivalDate" id="arrivalDate">
+    <input type="date" name="arrivalDate" id="arrivalDate">
 
     <label for="train">Train</label>
     <input type="text" name="train.id" id="train">

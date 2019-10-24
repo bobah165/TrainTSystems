@@ -15,6 +15,15 @@
 
     <input type="hidden" name="id" value="${train.id}">
 
+    <label for="trainNumber">Train Number</label>
+    <input type="number" name="trainNumber" id="trainNumber">
+
+    <label for="trainWay">Train Way</label>
+    <input type="number" name="trainWay.id" id="trainWay">
+
+    <label for="departureDate">Departure Date</label>
+    <input type="date" name="departureDate" id="departureDate">
+
     <label for="countSits">Count of Sits</label>
     <input type="text" name="countSits" id="countSits">
 

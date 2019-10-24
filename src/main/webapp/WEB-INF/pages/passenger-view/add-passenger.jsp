@@ -18,7 +18,7 @@
     <input type="text" name="surname" id="surname">
 
     <label for="birthday">Birthday</label>
-    <input type="text" name="birthday" id="birthday">
+    <input type="date" name="birthday" id="birthday">
 
     <label for="login">login</label>
     <input type="text" name="login" id="login">
@@ -30,9 +30,16 @@
     <input type="text" name="email" id="email">
 
     <label for="user">user</label>
-    <input type="text" name="user" id="user">
+    <input type="text" name="user" id = "user" list="users">
+    <datalist id="users">
+        <option>passenger</option>
+        <option>employee</option>
+    </datalist>
+
 
     <input type="submit" value="Add Passenger">
+
+
     
 </form>
 
