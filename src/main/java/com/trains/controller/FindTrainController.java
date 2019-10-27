@@ -33,7 +33,8 @@ public class FindTrainController {
     @GetMapping(value = "/trainfromstations")
     public ModelAndView getTrainPageWithStations() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("train-view/find-train-by-stations");
+      //  modelAndView.setViewName("train-view/find-train-by-stations");
+        modelAndView.setViewName("train-view/new-train");
         return modelAndView;
     }
 

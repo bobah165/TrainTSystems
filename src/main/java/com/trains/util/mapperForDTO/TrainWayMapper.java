@@ -14,9 +14,9 @@ public class TrainWayMapper {
         trainWay.setDaysInWay(trainWayDTO.getDaysInWay());
         trainWay.setFreeSeats(trainWayDTO.getFreeSeats());
         trainWay.setId(trainWayDTO.getId());
-        trainWay.setShedule(Time.valueOf(trainWayDTO.getShedule()+":00"));
+        trainWay.setShedule(Time.valueOf(trainWayDTO.getShedule()));
         trainWay.setStation(trainWayDTO.getStation());
-        trainWay.setStopTime(Time.valueOf(trainWayDTO.getStopTime()+":00"));
+        trainWay.setStopTime(Time.valueOf(trainWayDTO.getStopTime()));
         trainWay.setNumberWay(trainWayDTO.getNumberWay());
         trainWay.setTrains(trainWayDTO.getTrains());
         return trainWay;

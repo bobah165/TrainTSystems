@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -131,6 +132,7 @@ public class BuyTicketController {
         ticketInformDTO.setIdPassenger(passenger.getId());
 
         ticketInformService.edit(ticketInformDTO);
+
         // проверка покупки билета за 10 минут
         if((LocalTime.parse(ticketInformDTO.getDepartureTime()).minusMinutes(10)).isAfter((new Time(System.currentTimeMillis())).toLocalTime())) {
             modelAndView.setViewName("redirect:/ticket/message/");
@@ -152,7 +154,43 @@ public class BuyTicketController {
             }
         }
 
+        //добавление билета
        ticketService.addTicketByTrainDTOPassengerDTO(train,passenger);
+
+        // учет добавленного билета в количестве свободных мест от станции до станции
+        List<TrainWayDTO> trainOneWAy = new ArrayList<>();
+        List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
+        for (TrainWayDTO trainWayDTO: trainWayDTOS){
+            trainOneWAy.add(trainWayDTO);
+            }
+
+        // поиск станций на которые покупается билет
+        int numberDepartureStaitionInList =0;
+        int numberArrivlStaitionInList =0;
+        int counter =0;
+        for (TrainWayDTO trainWayDTO: trainOneWAy) {
+            counter++;
+            if(trainWayDTO.getStation().getNameStation().equals(ticketInformDTO.getDepartureStation())) {
+                if(trainWayDTO.getFreeSeats()>0) {
+                    trainWayDTO.setFreeSeats(train.getCountSits() - 1);
+                    trainWayService.edit(trainWayDTO);
+                    numberDepartureStaitionInList = counter;
+                }
+            }
+            if (trainWayDTO.getStation().getNameStation().equals(ticketInformDTO.getArrivalStation())) {
+                    numberArrivlStaitionInList = counter;
+            }
+        }
+
+        if(++numberDepartureStaitionInList!=numberArrivlStaitionInList) {
+
+            for (int j = numberDepartureStaitionInList; j<numberArrivlStaitionInList;j++ ) {
+                if(trainOneWAy.get(j).getFreeSeats()>0) {
+                    trainOneWAy.get(j).setFreeSeats(train.getCountSits() - 1);
+                    trainWayService.edit(trainOneWAy.get(j));
+                }
+            }
+        }
 
         modelAndView.setViewName("redirect:/buy/ticket/");
 
