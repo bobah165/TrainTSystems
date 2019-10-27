@@ -30,7 +30,7 @@
             <td>${trainAB.arrivalTime}</td>
             <td>${trainAB.countFreeSits}</td>
             <td>
-                <a href="/buy/passenger/${trainAB.trainID}">buy ticket</a>
+                <a href="/buy/${trainAB.trainID}">buy ticket</a>
             </td>
         </tr>
     </c:forEach>

@@ -9,6 +9,15 @@ public class TrainFromStationDTO {
     private String nameStation;
     private Time departureTime;
     private Time arrivalTime;
+    private Date date;
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public int getIdTrain() {
         return idTrain;

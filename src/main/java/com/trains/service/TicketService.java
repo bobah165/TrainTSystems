@@ -1,10 +1,15 @@
 package com.trains.service;
 
 import com.trains.dao.TicketDAO;
+import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.TicketDTO;
+import com.trains.model.dto.TrainDTO;
+import com.trains.model.entity.Passenger;
 import com.trains.model.entity.Ticket;
 import com.trains.model.entity.Train;
+import com.trains.util.mapperForDTO.PassengerMapper;
 import com.trains.util.mapperForDTO.TicketMapper;
+import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +22,8 @@ import java.util.List;
 public class TicketService {
     private TicketMapper ticketMapper;
     private TicketDAO ticketDAO;
+    private TrainMapper trainMapper;
+    private PassengerMapper passengerMapper;
 
     @Autowired
     public void setTicketDAO(TicketDAO ticketDAO) {
@@ -26,6 +33,16 @@ public class TicketService {
     @Autowired
     public void setTicketMapper(TicketMapper ticketMapper) {
         this.ticketMapper = ticketMapper;
+    }
+
+    @Autowired
+    public void setTrainMapper(TrainMapper trainMapper) {
+        this.trainMapper = trainMapper;
+    }
+
+    @Autowired
+    public void setPassengerMapper(PassengerMapper passengerMapper) {
+        this.passengerMapper = passengerMapper;
     }
 
     public List<TicketDTO> allTickets() {
@@ -64,6 +81,10 @@ public class TicketService {
             ticketDTOS.add(ticketMapper.mapEntityToDto(ticket));
         }
         return ticketDTOS;
+    }
+
+    public void addTicketByTrainDTOPassengerDTO (TrainDTO trainDTO, PassengerDTO passengerDTO) {
+        ticketDAO.addTicketByTrainDTOPassengerDTO(trainMapper.mapDtoToEntity(trainDTO),passengerMapper.mapDtoToEntity(passengerDTO));
     }
 
 }

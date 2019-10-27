@@ -15,7 +15,6 @@ public class TrainMapper {
         train.setCountSits(trainDTO.getCountSits());
         train.setId(trainDTO.getId());
         train.setTickets(trainDTO.getTickets());
-        train.setTimetables(trainDTO.getTimetables());
         train.setTrainNumber(trainDTO.getTrainNumber());
         train.setTrainWay(trainDTO.getTrainWay());
         train.setDepartureDate(trainDTO.getDepartureDate().toLocalDate());
@@ -27,7 +26,6 @@ public class TrainMapper {
         trainDTO.setCountSits(train.getCountSits());
         trainDTO.setId(train.getId());
         trainDTO.setTickets(train.getTickets());
-        trainDTO.setTimetables(train.getTimetables());
         trainDTO.setTrainNumber(train.getTrainNumber());
         trainDTO.setTrainWay(train.getTrainWay());
         trainDTO.setDepartureDate(Date.valueOf(train.getDepartureDate()));

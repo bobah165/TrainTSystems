@@ -1,6 +1,7 @@
 package com.trains.model.entity;
 
 
+import org.hibernate.annotations.Proxy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -22,7 +23,6 @@ public class Passenger implements UserDetails {
     private String surname;
 
     @Column(name = "birthday")
-   // @Convert(converter = LocalDateConverter.class)
     private LocalDate birthday;
 
     @Column(name = "login")

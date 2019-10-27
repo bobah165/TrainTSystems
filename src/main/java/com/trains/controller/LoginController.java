@@ -25,7 +25,7 @@ public class LoginController {
     @GetMapping(value = "/")
     public ModelAndView getStartPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/auth-view/index");
+        modelAndView.setViewName("main/main-page");
         return modelAndView;
     }
 

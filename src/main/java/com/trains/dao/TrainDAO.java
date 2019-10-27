@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
@@ -50,10 +51,10 @@ public class TrainDAO extends CrudDAO {
     }
 
 
-    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime,Time endTime)
+    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime, Time endTime, LocalDate departureDate)
     {
         Session session = sessionFactory.getCurrentSession();
-        List<Timetable> timetables = session.createQuery("from Timetable").list();
+        List<TrainWay> timetables = session.createQuery("from TrainWay ").list();
         List<Station> stations = session.createQuery("from Station").list();
         // находим инофрмаци о станциях в БД
         Station stationA = new Station();
@@ -68,45 +69,72 @@ public class TrainDAO extends CrudDAO {
         }
 
         List<TrainFromStationAToB> trainFromStationAToBS = new ArrayList<>();
-        List<TrainFromStationAToB> getTrainFromStationA = new ArrayList<>();
-        List<TrainFromStationAToB> getTrainFromStationB = new ArrayList<>();
+        List<TrainWay> getTrainWayA = new ArrayList<>();
+        List<TrainWay> getTrainWayB = new ArrayList<>();
+        List<TrainWay> trainWaysBetweenAandB = new ArrayList<>();
 
-        for (Timetable timetable: timetables) {
-            //находим поезда проезжающие через станцию А
+        for (TrainWay timetable: timetables) {
+            //находим маршруты поездов через станцию А
             if (timetable.getStation().getId() == stationA.getId()) {
-                TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
-                trainFromStationAToB.setTrainID(timetable.getTrain().getTrainNumber());
-                trainFromStationAToB.setDeprtureStation(stationNameA);
-                trainFromStationAToB.setArrivalStation(stationNameB);
-                trainFromStationAToB.setArrivalTime(timetable.getArrivalTime());
-                trainFromStationAToB.setDepartureTime(timetable.getDepartureTime());
-                trainFromStationAToB.setCountFreeSits(timetable.getCountFreeSits());
-
-                getTrainFromStationA.add(trainFromStationAToB);
+                getTrainWayA.add(timetable);
             }
-            //находим поезда проезжающие через станцию В
+            //находим маршруты поездов через станцию В
             if (timetable.getStation().getId() == stationB.getId()) {
-                TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
-                trainFromStationAToB.setTrainID(timetable.getTrain().getTrainNumber());
-                trainFromStationAToB.setDeprtureStation(stationNameA);
-                trainFromStationAToB.setArrivalStation(stationNameB);
-                trainFromStationAToB.setArrivalTime(timetable.getArrivalTime());
-                trainFromStationAToB.setDepartureTime(timetable.getDepartureTime());
-                trainFromStationAToB.setCountFreeSits(timetable.getCountFreeSits());
-
-                getTrainFromStationB.add(trainFromStationAToB);
+                getTrainWayB.add(timetable);
+            }
+        }
+        // находим маршруты поездов проходящих и через А и через В
+        for (TrainWay trainWayA: getTrainWayA ) {
+            for (TrainWay trainWayB: getTrainWayB) {
+                if(trainWayA.getNumberWay()==trainWayB.getNumberWay()){
+                    trainWaysBetweenAandB.add(trainWayA);
+                }
             }
         }
 
-            //ищем поезда проезжающие и через станию А и через станцию В
-            for(TrainFromStationAToB trainFromStationA: getTrainFromStationA){
-                for (TrainFromStationAToB trainFromStationB:getTrainFromStationB) {
+            //ищем поезда проезжающие по этим маршрутам
+            List<Train> allTrains = session.createQuery("from Train ").list();
+            List<Train> trainsFromAtoB = new ArrayList<>();
+            for (Train train: allTrains) {
+                for (TrainWay trainWay: trainWaysBetweenAandB)
+                if (train.getTrainWay().getNumberWay()==trainWay.getNumberWay()) {
+                    trainsFromAtoB.add(train);
+                }
+            }
 
-                    if (trainFromStationA.getTrainID()==trainFromStationB.getTrainID()) {
-                        trainFromStationAToBS.add(trainFromStationA);
+            int days = 0; // количество дней в пути
+            // получение даты у поездов которые несколько дней в пути
+            for (Train train:trainsFromAtoB) {
+                for (TrainWay trainWay: timetables) {
+                    if (train.getTrainWay().getNumberWay()==trainWay.getNumberWay()) {
+                        if (trainWay.getStation().getNameStation().equals(stationNameA)){
+                            days = trainWay.getDaysInWay();
                         }
                     }
                 }
+                if (train.getDepartureDate().plusDays(days-1).isEqual(departureDate)) {
+                    TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
+                    trainFromStationAToB.setTrainID(train.getId());
+                    trainFromStationAToB.setCountFreeSits(train.getCountSits()); //пересчитать
+                    trainFromStationAToB.setArrivalStation(stationNameB);
+                    trainFromStationAToB.setDeprtureStation(stationNameA);
+
+                    Time depTime = Time.valueOf("00:00:00");
+                    Time arrivTime = Time.valueOf("00:00:00");
+                    for (TrainWay trainWay : timetables) {
+                        if (train.getTrainWay().getNumberWay() == trainWay.getNumberWay()) {
+                            if (trainWay.getStation().getNameStation().equals(stationNameA)) {
+                                depTime = trainWay.getShedule();
+                                arrivTime = trainWay.getStopTime();
+                            }
+                        }
+                    }
+                    trainFromStationAToB.setDepartureTime(depTime);
+                    trainFromStationAToB.setArrivalTime(arrivTime);
+
+                    trainFromStationAToBS.add(trainFromStationAToB);
+                }
+            }
 
             //ищем поезда в деапазоне времени
         List<TrainFromStationAToB> trainFromStationAToBS1 = new ArrayList<>();

@@ -9,7 +9,7 @@ import java.time.LocalTime;
 public class Main {
     public static void main(String[] args) {
 
-        Timestamp time = new Timestamp(System.currentTimeMillis());
+        Time time = new Time(System.currentTimeMillis());
         System.out.println(time);
     }
 }

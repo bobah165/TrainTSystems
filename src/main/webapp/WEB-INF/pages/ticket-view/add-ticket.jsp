@@ -8,17 +8,6 @@
 
 <form method="post" action="/ticket/add">
 
-    <label for="departureStation">Departure Station </label>
-    <input type="text" name="departureStation" id="departureStation">
-
-    <label for="arrivalStation">Arrival Station</label>
-    <input type="text" name="arrivalStation" id="arrivalStation">
-
-    <label for="departureDate">Departure Date</label>
-    <input type="date" name="departureDate" id="departureDate">
-
-    <label for="arrivalDate">Arrival Date</label>
-    <input type="date" name="arrivalDate" id="arrivalDate">
 
     <label for="train">Train</label>
     <input type="text" name="train.id" id="train">

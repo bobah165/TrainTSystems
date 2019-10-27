@@ -5,12 +5,15 @@ import com.trains.model.dto.PassengersFromTrainDTO;
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.model.entity.Train;
+import com.trains.model.entity.TrainWay;
 import com.trains.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -60,11 +63,30 @@ public class TrainController {
         return modelAndView;
     }
 
+//    @PostMapping(value = "/add")
+//    public ModelAndView create(@ModelAttribute("train") TrainDTO train) {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("redirect:/train/");
+//        trainService.add(train);
+//        return modelAndView;
+//    }
+
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("train") TrainDTO train) {
+    public ModelAndView create(@ModelAttribute("train") TrainDTO train,
+                               @RequestParam String shedule) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/train/");
         trainService.add(train);
+        if (shedule.equals("everyday")) {
+            for (int i=0;i<14;i++) {
+            LocalDate date = train.getDepartureDate().toLocalDate();
+            date = date.plusDays(1);
+            TrainDTO train1 = train;
+            train.setDepartureDate(Date.valueOf(date));
+            trainService.add(train1);
+            }
+        }
+
+        modelAndView.setViewName("redirect:/train/");
         return modelAndView;
     }
 
@@ -84,31 +106,5 @@ public class TrainController {
         modelAndView.addObject("passfromtrainList",passengersFromTrainDTOS);
         return modelAndView;
     }
-
-//    @GetMapping(value = "/trainfromstations")
-//    public ModelAndView getTrainPageWithStations() {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("train-view/find-train-by-stations");
-//        return modelAndView;
-//    }
-//
-//    @PostMapping(value = "/trainfromstations")
-//    public ModelAndView getTrainsFromStations(@RequestParam String stationA,
-//                                              @RequestParam String stationB) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        departureStation = stationA;
-//        arrivalStation = stationB;
-//        modelAndView.setViewName("redirect:/train/trainstation");
-//        return modelAndView;
-//    }
-//
-//    @GetMapping(value = "/trainstation")
-//    public ModelAndView getTrainstAB (){
-//        ModelAndView modelAndView = new ModelAndView();
-//        List<TrainFromStationAToB> trainFromStationAToBS =  trainService.getTrainsFromStations(departureStation,arrivalStation);
-//        modelAndView.setViewName("train-view/get-train-from-stations");
-//        modelAndView.addObject("trainListfromAtoB",trainFromStationAToBS);
-//        return modelAndView;
-//    }
 
 }

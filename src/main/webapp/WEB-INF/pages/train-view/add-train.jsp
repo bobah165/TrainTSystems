@@ -16,11 +16,18 @@
     <label for="trainWay">Train Way</label>
     <input type="number" name="trainWay.id" id="trainWay">
 
-    <label for="departureDate">Departure Date</label>
+    <label for="departureDate">Shedule</label>
     <input type="date" name="departureDate" id="departureDate">
 
     <label for="countSits">Count of Sits</label>
-    <input type="text" name="countSits" id="countSits">
+    <input type="number" name="countSits" id="countSits">
+
+    <label for="shedule">Shedule</label>
+    <input type="text" name="shedule" id="shedule" list="ways">
+    <datalist id="ways">
+        <option>everyday</option>
+        <option>other</option>
+    </datalist>
 
     <input type="submit" value="Add new Train">
 

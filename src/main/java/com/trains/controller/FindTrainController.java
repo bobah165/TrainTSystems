@@ -68,10 +68,10 @@ public class FindTrainController {
         SearchStationDTO searchStationDTO = searchStationService.getById(1);
         List<TrainFromStationAToB> trainFromStationAToBS =
                 trainService.getTrainsFromStations(searchStationDTO.getDepartureStation(), searchStationDTO.getArrivalStation(),
-                        Time.valueOf(searchStationDTO.getStartTime()),Time.valueOf(searchStationDTO.getEndTime()));
+                        Time.valueOf(searchStationDTO.getStartTime()),Time.valueOf(searchStationDTO.getEndTime()),searchStationDTO.getDepartureDate().toLocalDate());
         modelAndView.setViewName("train-view/get-train-from-stations");
         modelAndView.addObject("trainListfromAtoB",trainFromStationAToBS);
-        searchStationService.delByID(1);
+       // searchStationService.delByID(1);
         return modelAndView;
     }
 

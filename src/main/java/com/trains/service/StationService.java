@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,8 +60,8 @@ public class StationService {
         return stationDTO;
     }
 
-    public List<TrainFromStationDTO> getTrainFromStation(int id) {
-        return stationDAO.getTrainFromStation(id);
+    public List<TrainFromStationDTO> getTrainFromStation(int id, Date departureDate, LocalTime startTime, LocalTime endTime) {
+        return stationDAO.getTrainFromStation(id,departureDate,startTime,endTime);
     }
 
     public void delByID (int id) { stationDAO.delByID(id); }

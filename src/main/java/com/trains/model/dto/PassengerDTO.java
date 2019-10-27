@@ -89,4 +89,14 @@ public class PassengerDTO {
     public void setTickets(List<Ticket> tickets) {
         this.tickets = tickets;
     }
+
+    @Override
+    public String toString() {
+        return "Passenger {" +
+                "id=" + id +
+                ", name is " + name +
+                ", surname is "+surname+
+                ", birthday is " + birthday +
+                " }";
+    }
 }

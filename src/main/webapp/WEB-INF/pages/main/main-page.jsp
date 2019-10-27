@@ -2,13 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Employee</title>
+    <title>Main Page</title>
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
     </style>
-
 </head>
 <body>
+
 
 <div class="top_bar"></div>
 <div class="welcome">
@@ -19,10 +19,8 @@
     <div class="top_bar"></div>
     <nav>
         <ul class="menu">
-            <li><a href="/train/">Train List</a> </li>
-            <li><a href="/station/">Stations List</a> </li>
-            <li><a href="/train/add/">Add Train</a> </li>
-            <li><a href="/station/add/">Add Station</a> </li>
+            <li><a href="/main/empl/">Employees</a> </li>
+            <li><a href="/main/pass/">passengers</a> </li>
         </ul>
     </nav>
 </header>

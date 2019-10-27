@@ -9,10 +9,6 @@ import java.sql.Date;
 public class TicketDTO {
 
     private int id;
-    private String departureStation;
-    private String arrivalStation;
-    private Date departureDate;
-    private Date arrivalDate;
     private Train train;
     private Passenger passenger;
 
@@ -22,38 +18,6 @@ public class TicketDTO {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getDepartureStation() {
-        return departureStation;
-    }
-
-    public void setDepartureStation(String departureStation) {
-        this.departureStation = departureStation;
-    }
-
-    public String getArrivalStation() {
-        return arrivalStation;
-    }
-
-    public void setArrivalStation(String arrivalStation) {
-        this.arrivalStation = arrivalStation;
-    }
-
-    public Date getDepartureDate() {
-        return departureDate;
-    }
-
-    public void setDepartureDate(Date departureDate) {
-        this.departureDate = departureDate;
-    }
-
-    public Date getArrivalDate() {
-        return arrivalDate;
-    }
-
-    public void setArrivalDate(Date arrivalDate) {
-        this.arrivalDate = arrivalDate;
     }
 
     public Train getTrain() {
@@ -71,4 +35,5 @@ public class TicketDTO {
     public void setPassenger(Passenger passenger) {
         this.passenger = passenger;
     }
+
 }

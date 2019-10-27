@@ -21,7 +21,8 @@
         <th>count of sits</th>
         <th>Departure Date</th>
         <th>Passengers</th>
-        <th>action</th>
+        <th>Delete Train</th>
+        <th>Edit Train</th>
     </tr>
     <c:forEach var="train" items="${trainList}">
         <tr>
@@ -30,11 +31,13 @@
             <td>${train.countSits}</td>
             <td>${train.departureDate}</td>
             <td>
-                <a href="/train/passfromtrain/${train.id}">Passengers</a>
+                <button class=""><a href="/train/passfromtrain/${train.id}" class="btn">Passengers</a></button>
             </td>
             <td>
-                <a href="/train/edit/${train.id}">edit</a>
-                <a href="/train/delete/${train.id}">delete</a>
+               <button><a href="/train/edit/${train.id}" class="btn">edit</a></button>
+            </td>
+            <td>
+                <button><a href="/train/delete/${train.id}" class="btn">delete</a></button>
             </td>
         </tr>
     </c:forEach>

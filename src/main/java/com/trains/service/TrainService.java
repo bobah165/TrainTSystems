@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,8 +67,8 @@ public class TrainService {
         return trainDAO.getPassengerFromTrain(idTrain);
     }
 
-    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime, Time endTime) {
-        return trainDAO.getTrainsFromStations(stationNameA,stationNameB,startTime,endTime);
+    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime, Time endTime, LocalDate departureDate) {
+        return trainDAO.getTrainsFromStations(stationNameA,stationNameB,startTime,endTime, departureDate);
     }
 
 }

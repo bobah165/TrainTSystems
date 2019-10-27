@@ -1,13 +1,8 @@
 package com.trains.model.dto;
 
 import com.trains.model.entity.Ticket;
-import com.trains.model.entity.Timetable;
 import com.trains.model.entity.TrainWay;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.sql.Date;
 import java.util.List;
 
@@ -17,7 +12,6 @@ public class TrainDTO {
     private int trainNumber;
     private int countSits;
     private List<Ticket> tickets;
-    private List<Timetable> timetables;
     private TrainWay trainWay;
     private Date departureDate;
 
@@ -69,11 +63,12 @@ public class TrainDTO {
         this.tickets = tickets;
     }
 
-    public List<Timetable> getTimetables() {
-        return timetables;
+    @Override
+    public String toString() {
+        return "TrainEntity{" +
+                "id=" + id +
+                ", countFreeSits= " + countSits + " }";
     }
 
-    public void setTimetables(List<Timetable> timetables) {
-        this.timetables = timetables;
-    }
+
 }

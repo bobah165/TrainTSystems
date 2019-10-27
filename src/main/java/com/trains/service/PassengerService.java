@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,10 @@ public class PassengerService {
     }
 
     public void delByID (int id) {passengerDAO.delByID(id); }
+
+    public int getPassengerId (String name, String surname, Date birthday) {
+        return passengerDAO.getPassengerId(name, surname,birthday);
+    }
 }
 
 

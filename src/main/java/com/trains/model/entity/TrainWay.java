@@ -30,7 +30,7 @@ public class TrainWay {
     private int freeSeats;
 
     @NaturalId(mutable = true)
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_station")
     private Station station;
 

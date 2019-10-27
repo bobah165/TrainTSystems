@@ -8,9 +8,8 @@
 
 <h1>You have been registrated on this train or there is no free sit</h1>
 
-<h2>ADD</h2>
-<c:url value="/train/" var="train" />
-<a href="${train}">Back to Timetable</a>
+<c:url value="/main/pass" var="pass" />
+<a href="${pass}">Back to main</a>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package com.trains.model.entity;
 
 
 import org.hibernate.annotations.NaturalId;
+import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -26,10 +27,7 @@ public class Train {
     @OneToMany(mappedBy = "train",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<Ticket> tickets;
 
-    @OneToMany(mappedBy = "train", cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<Timetable> timetables;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_way")
     private TrainWay trainWay;
 
@@ -51,14 +49,6 @@ public class Train {
 
     public void setTrainWay(TrainWay trainWay) {
         this.trainWay = trainWay;
-    }
-
-    public List<Timetable> getTimetables() {
-        return timetables;
-    }
-
-    public void setTimetables(List<Timetable> timetables) {
-        this.timetables = timetables;
     }
 
     public List<Ticket> getTickets() {

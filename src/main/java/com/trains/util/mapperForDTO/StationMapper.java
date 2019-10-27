@@ -11,7 +11,6 @@ public class StationMapper {
         Station station = new Station();
         station.setNameStation(stationDTO.getNameStation());
         station.setId(stationDTO.getId());
-        station.setTimetables(stationDTO.getTimetables());
         return station;
     }
 
@@ -19,7 +18,6 @@ public class StationMapper {
         StationDTO stationDTO = new StationDTO();
         stationDTO.setId(station.getId());
         stationDTO.setNameStation(station.getNameStation());
-        stationDTO.setTimetables(station.getTimetables());
         return stationDTO;
     }
 }

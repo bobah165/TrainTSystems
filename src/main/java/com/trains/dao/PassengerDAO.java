@@ -4,6 +4,7 @@ import com.trains.model.entity.Passenger;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Date;
 import java.util.List;
 
 @Repository
@@ -23,5 +24,22 @@ public class PassengerDAO extends CrudDAO {
     public Passenger getById(int idPassenger) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(Passenger.class,idPassenger);
+    }
+
+    public int getPassengerId (String name, String surname, Date birthday) {
+        int getID = 0;
+        Session session = sessionFactory.getCurrentSession();
+        List<Passenger> passengers = session.createQuery("from Passenger").list();
+        for (Passenger passenger: passengers) {
+            boolean b = passenger.getName().equals(name);
+            boolean b1 =passenger.getSurname().equals(surname);
+            boolean b2 = passenger.getBirthday().isEqual(birthday.toLocalDate());
+            if (passenger.getName().equals(name)&&passenger.getSurname().equals(surname)&&passenger.getBirthday().isEqual(birthday.toLocalDate())) {
+                        getID = passenger.getId();
+                        break;
+                    } else getID = -1;
+            }
+
+        return getID;
     }
 }

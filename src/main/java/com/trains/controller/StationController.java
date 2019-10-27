@@ -1,23 +1,36 @@
 package com.trains.controller;
 
 import com.trains.model.dto.StationDTO;
+import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationDTO;
+import com.trains.model.entity.Station;
+import com.trains.model.entity.Train;
 import com.trains.service.StationService;
+import com.trains.service.TrainService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
 @RequestMapping("/station")
 public class StationController {
     private StationService stationService;
+    private TrainService trainService;
 
     @Autowired
     public void setStationService(StationService stationService) {
         this.stationService = stationService;
+    }
+
+    @Autowired
+    public void setTrainService(TrainService trainService) {
+        this.trainService = trainService;
     }
 
     @GetMapping(value = "/")
@@ -71,10 +84,33 @@ public class StationController {
         return modelAndView;
     }
 
-    @GetMapping("/trainfromstation/{id}")
-    public ModelAndView getTatinFromStation (@PathVariable("id") int id) {
-        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(id);
+//    @GetMapping("/trainfromstation/{id}")
+//    public ModelAndView getTatinFromStation (@PathVariable("id") int id) {
+//        TrainDTO train = trainService.getById(id);
+//        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(id,train.getDepartureDate());
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("station-view/get-trains");
+//        modelAndView.addObject("trainsList",trainFromStation);
+//        return modelAndView;
+//    }
+
+    @GetMapping(value = "/findtrains")
+    public ModelAndView findTrainsPage() {
         ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("station-view/find-trains");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/findtrains")
+    public ModelAndView getTrains(@RequestParam String nameStation,
+                                  @RequestParam Date departureDate,
+                                  @RequestParam String startTime,
+                                  @RequestParam String endTime) {
+        ModelAndView modelAndView = new ModelAndView();
+        StationDTO station = stationService.getByName(nameStation);
+        LocalTime start = LocalTime.parse(startTime);
+        LocalTime end = LocalTime.parse(endTime);
+        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(station.getId(),departureDate,start,end);
         modelAndView.setViewName("station-view/get-trains");
         modelAndView.addObject("trainsList",trainFromStation);
         return modelAndView;
