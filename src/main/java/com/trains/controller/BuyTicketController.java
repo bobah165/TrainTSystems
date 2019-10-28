@@ -1,6 +1,7 @@
 package com.trains.controller;
 
 import com.trains.model.dto.*;
+import com.trains.model.entity.FreeSeats;
 import com.trains.model.entity.Ticket;
 import com.trains.model.entity.Train;
 import com.trains.service.*;
@@ -25,6 +26,12 @@ public class BuyTicketController {
     private TrainWayService trainWayService;
     private PassengerService passengerService;
     private TicketService ticketService;
+    private FreeSeatsService freeSeatsService;
+
+    @Autowired
+    public void setFreeSeatsService(FreeSeatsService freeSeatsService) {
+        this.freeSeatsService = freeSeatsService;
+    }
 
     @Autowired
     public void setTrainWayService(TrainWayService trainWayService) {
@@ -114,18 +121,41 @@ public class BuyTicketController {
                                                 @RequestParam("birthday") Date birthday) {
         ModelAndView modelAndView = new ModelAndView();
 
+        // проверка на зарегистртрованных пассажиров
+        TicketInformDTO ticketInformDTO = ticketInformService.getById(1); // будет ID зарегистрированного пользователя
+        TrainDTO train = trainService.getById(ticketInformDTO.getIdTrain());
+        List<TicketDTO> ticketDTOS = ticketService.allTickets();
+        for (TicketDTO ticketDTO: ticketDTOS) {
+            boolean b = ticketDTO.getPassenger().getName().equals(name);
+            boolean b1 = ticketDTO.getPassenger().getSurname().equals(surname);
+            boolean b2 = ticketDTO.getPassenger().getBirthday().isEqual(birthday.toLocalDate());
+            boolean b3 = ticketDTO.getTrain().getId()==train.getId();
+            if (b&&b1&&b2&&b3){
+                modelAndView.setViewName("redirect:/ticket/message/");
+                return modelAndView;
+            }
+        }
+
         PassengerDTO passenger = passengerService.getById(1);//будет ID зарегистрированного пользователя
+       // PassengerDTO passenger = new PassengerDTO();
         int i = passengerService.getPassengerId(name,surname,birthday);
         if (i<0) {
             passenger.setBirthday(birthday);
             passenger.setName(name);
             passenger.setSurname(surname);
+
+//            passenger.setLogin("none");
+//            passenger.setPassword("none");
+//            passenger.setUser("passenger");
+//            passenger.setEmail(passengerLogin.getEmail());
+
             passengerService.edit(passenger);
+            //passengerService.edit(passenger);
         } else {
             passenger = passengerService.getById(passengerService.getPassengerId(name, surname, birthday));
         }
 
-        TicketInformDTO ticketInformDTO = ticketInformService.getById(1); // будет ID зарегистрированного пользователя
+
         ticketInformDTO.setName(name);
         ticketInformDTO.setSurname(surname);
         ticketInformDTO.setBirthday(birthday);
@@ -134,60 +164,84 @@ public class BuyTicketController {
         ticketInformService.edit(ticketInformDTO);
 
         // проверка покупки билета за 10 минут
-        if((LocalTime.parse(ticketInformDTO.getDepartureTime()).minusMinutes(10)).isAfter((new Time(System.currentTimeMillis())).toLocalTime())) {
+        LocalTime depTime10minutes = LocalTime.parse(ticketInformDTO.getDepartureTime()).minusMinutes(10);
+        LocalTime depTime = LocalTime.parse(ticketInformDTO.getDepartureTime());
+        LocalTime currentTime = new Time(System.currentTimeMillis()).toLocalTime();
+        if(currentTime.isAfter(depTime10minutes)&&currentTime.isBefore(depTime)) {
             modelAndView.setViewName("redirect:/ticket/message/");
             return modelAndView;
         }
 
-        TrainDTO train = trainService.getById(ticketInformDTO.getIdTrain());
-
-        // проверка на зарегистртрованных пассажиров
-        List<TicketDTO> ticketDTOS = ticketService.allTickets();
-        for (TicketDTO ticketDTO: ticketDTOS) {
-            boolean b = ticketDTO.getPassenger().getName().equals(passenger.getName());
-            boolean b1 = ticketDTO.getPassenger().getSurname().equals(passenger.getSurname());
-            boolean b2 = ticketDTO.getPassenger().getBirthday().isEqual(passenger.getBirthday().toLocalDate());
-            boolean b3 = ticketDTO.getTrain().getId()==train.getId();
-            if (b&&b1&&b2&&b3){
-                modelAndView.setViewName("redirect:/ticket/message/");
-                return modelAndView;
-            }
-        }
 
         //добавление билета
        ticketService.addTicketByTrainDTOPassengerDTO(train,passenger);
 
+
         // учет добавленного билета в количестве свободных мест от станции до станции
+        //находим все станции для маршрута поезда
         List<TrainWayDTO> trainOneWAy = new ArrayList<>();
         List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
         for (TrainWayDTO trainWayDTO: trainWayDTOS){
+            if (trainWayDTO.getNumberWay()==train.getTrainWay().getNumberWay())
             trainOneWAy.add(trainWayDTO);
             }
 
-        // поиск станций на которые покупается билет
-        int numberDepartureStaitionInList =0;
-        int numberArrivlStaitionInList =0;
-        int counter =0;
-        for (TrainWayDTO trainWayDTO: trainOneWAy) {
-            counter++;
-            if(trainWayDTO.getStation().getNameStation().equals(ticketInformDTO.getDepartureStation())) {
-                if(trainWayDTO.getFreeSeats()>0) {
-                    trainWayDTO.setFreeSeats(train.getCountSits() - 1);
-                    trainWayService.edit(trainWayDTO);
-                    numberDepartureStaitionInList = counter;
+        //добавляем данные о поезде в таблицу free_sets
+        List<FreeSeatsDTO> freeSeatsDTOS = freeSeatsService.allSeats();
+        List<FreeSeatsDTO> freeSeatInWay = new ArrayList<>();
+        for (FreeSeatsDTO freeSeatsDTO: freeSeatsDTOS){
+            for(TrainWayDTO trainWayDTO:trainOneWAy) {
+                if (freeSeatsDTO.getIdTrain() == train.getId()
+                        && freeSeatsDTO.getStationName().equals(trainWayDTO.getStation().getNameStation())) {
+                    freeSeatInWay.add(freeSeatsDTO);
                 }
             }
-            if (trainWayDTO.getStation().getNameStation().equals(ticketInformDTO.getArrivalStation())) {
-                    numberArrivlStaitionInList = counter;
+        }
+        // если в таблице нет информации то заполняем ее
+        if (freeSeatInWay.isEmpty()) {
+            for (TrainWayDTO trainWayDTO:trainOneWAy) {
+                FreeSeatsDTO freeSeats = new FreeSeatsDTO();
+                freeSeats.setStationName(trainWayDTO.getStation().getNameStation());
+                freeSeats.setIdTrain(train.getId());
+                freeSeats.setFreeSeats(train.getCountSits());
+                freeSeatsService.add(freeSeats);
             }
         }
 
-        if(++numberDepartureStaitionInList!=numberArrivlStaitionInList) {
+        // поиск станций на которые покупается билет
 
-            for (int j = numberDepartureStaitionInList; j<numberArrivlStaitionInList;j++ ) {
-                if(trainOneWAy.get(j).getFreeSeats()>0) {
-                    trainOneWAy.get(j).setFreeSeats(train.getCountSits() - 1);
-                    trainWayService.edit(trainOneWAy.get(j));
+        for (FreeSeatsDTO freeSeatsDTO: freeSeatInWay) {
+            // поиск станции отправления
+            if(freeSeatsDTO.getStationName().equals(ticketInformDTO.getDepartureStation())) {
+                if(freeSeatsDTO.getFreeSeats()>0) {
+                    freeSeatsDTO.setFreeSeats(freeSeatsDTO.getFreeSeats() - 1);
+                    freeSeatsService.edit(freeSeatsDTO);
+                }
+            }
+        }
+
+        FreeSeatsDTO freeSeatsDTOdeparture = freeSeatsService.getByStationAndTrainID(ticketInformDTO.getDepartureStation(),ticketInformDTO.getIdTrain());
+        FreeSeatsDTO freeSeatsDTOarrival = freeSeatsService.getByStationAndTrainID(ticketInformDTO.getArrivalStation(),ticketInformDTO.getIdTrain());
+        if(((freeSeatsDTOdeparture.getId()+1)!=freeSeatsDTOarrival.getId())||
+                ((freeSeatsDTOdeparture.getId()-1)!=freeSeatsDTOarrival.getId())) {
+
+                int depNumber =  freeSeatInWay.indexOf(freeSeatsDTOdeparture);
+                int arrNumber = freeSeatInWay.indexOf(freeSeatsDTOarrival);
+            if (depNumber>arrNumber) {
+                for (int j = (depNumber-1); j>arrNumber;j-- ) {
+                    if(freeSeatInWay.get(j).getFreeSeats()>0) {
+                        freeSeatInWay.get(j).setFreeSeats(freeSeatInWay.get(j).getFreeSeats() - 1);
+                        freeSeatsService.edit(freeSeatInWay.get(j));
+                    }
+                }
+            }
+
+            if (depNumber<arrNumber) {
+                for (int j = depNumber+1; j<arrNumber;j++ ) {
+                    if(freeSeatInWay.get(j).getFreeSeats()>0) {
+                        freeSeatInWay.get(j).setFreeSeats(freeSeatInWay.get(j).getFreeSeats()-1);
+                        freeSeatsService.edit(freeSeatInWay.get(j));
+                    }
                 }
             }
         }
