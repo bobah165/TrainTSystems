@@ -136,26 +136,15 @@ public class BuyTicketController {
             }
         }
 
-        PassengerDTO passenger = passengerService.getById(1);//будет ID зарегистрированного пользователя
-       // PassengerDTO passenger = new PassengerDTO();
+        // проверка на наличие уже зарегистрированного пассажира
         int i = passengerService.getPassengerId(name,surname,birthday);
         if (i<0) {
-            passenger.setBirthday(birthday);
-            passenger.setName(name);
-            passenger.setSurname(surname);
-
-//            passenger.setLogin("none");
-//            passenger.setPassword("none");
-//            passenger.setUser("passenger");
-//            passenger.setEmail(passengerLogin.getEmail());
-
-            passengerService.edit(passenger);
-            //passengerService.edit(passenger);
-        } else {
-            passenger = passengerService.getById(passengerService.getPassengerId(name, surname, birthday));
+            passengerService.addPassengerByNameSurnameDate(name, surname,birthday);
         }
+        PassengerDTO passenger = passengerService.getById(passengerService.getPassengerId(name, surname, birthday));
 
 
+        // заполняем информаци о пассажире в общую информационну таблицу о билете
         ticketInformDTO.setName(name);
         ticketInformDTO.setSurname(surname);
         ticketInformDTO.setBirthday(birthday);
@@ -163,7 +152,7 @@ public class BuyTicketController {
 
         ticketInformService.edit(ticketInformDTO);
 
-        // проверка покупки билета за 10 минут
+        // проверка покупки билета за 10 минут до отправления поезда
         LocalTime depTime10minutes = LocalTime.parse(ticketInformDTO.getDepartureTime()).minusMinutes(10);
         LocalTime depTime = LocalTime.parse(ticketInformDTO.getDepartureTime());
         LocalTime currentTime = new Time(System.currentTimeMillis()).toLocalTime();
@@ -197,7 +186,8 @@ public class BuyTicketController {
                 }
             }
         }
-        // если в таблице нет информации то заполняем ее
+
+        // если в таблице нет информации о свободных местах то заполняем ее
         if (freeSeatInWay.isEmpty()) {
             for (TrainWayDTO trainWayDTO:trainOneWAy) {
                 FreeSeatsDTO freeSeats = new FreeSeatsDTO();
@@ -209,7 +199,6 @@ public class BuyTicketController {
         }
 
         // поиск станций на которые покупается билет
-
         for (FreeSeatsDTO freeSeatsDTO: freeSeatInWay) {
             // поиск станции отправления
             if(freeSeatsDTO.getStationName().equals(ticketInformDTO.getDepartureStation())) {
@@ -220,18 +209,22 @@ public class BuyTicketController {
             }
         }
 
+        // добавление билетов (уменьшение числа свободных мест)
         FreeSeatsDTO freeSeatsDTOdeparture = freeSeatsService.getByStationAndTrainID(ticketInformDTO.getDepartureStation(),ticketInformDTO.getIdTrain());
         FreeSeatsDTO freeSeatsDTOarrival = freeSeatsService.getByStationAndTrainID(ticketInformDTO.getArrivalStation(),ticketInformDTO.getIdTrain());
         if(((freeSeatsDTOdeparture.getId()+1)!=freeSeatsDTOarrival.getId())||
                 ((freeSeatsDTOdeparture.getId()-1)!=freeSeatsDTOarrival.getId())) {
 
-                int depNumber =  freeSeatInWay.indexOf(freeSeatsDTOdeparture);
-                int arrNumber = freeSeatInWay.indexOf(freeSeatsDTOarrival);
+            int depNumber =  freeSeatInWay.indexOf(freeSeatsDTOdeparture);
+            int arrNumber = freeSeatInWay.indexOf(freeSeatsDTOarrival);
             if (depNumber>arrNumber) {
                 for (int j = (depNumber-1); j>arrNumber;j-- ) {
                     if(freeSeatInWay.get(j).getFreeSeats()>0) {
                         freeSeatInWay.get(j).setFreeSeats(freeSeatInWay.get(j).getFreeSeats() - 1);
                         freeSeatsService.edit(freeSeatInWay.get(j));
+                    } else {
+                        modelAndView.setViewName("redirect:/ticket/message/");
+                        return modelAndView;
                     }
                 }
             }
@@ -241,6 +234,9 @@ public class BuyTicketController {
                     if(freeSeatInWay.get(j).getFreeSeats()>0) {
                         freeSeatInWay.get(j).setFreeSeats(freeSeatInWay.get(j).getFreeSeats()-1);
                         freeSeatsService.edit(freeSeatInWay.get(j));
+                    } else {
+                        modelAndView.setViewName("redirect:/ticket/message/");
+                        return modelAndView;
                     }
                 }
             }

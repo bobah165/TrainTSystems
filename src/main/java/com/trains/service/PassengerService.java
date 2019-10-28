@@ -60,6 +60,10 @@ public class PassengerService {
     public int getPassengerId (String name, String surname, Date birthday) {
         return passengerDAO.getPassengerId(name, surname,birthday);
     }
+
+    public void addPassengerByNameSurnameDate (String name, String surname, Date birthday) {
+        passengerDAO.addPassengerByNameSurnameDate(name,surname,birthday);
+    }
 }
 
 

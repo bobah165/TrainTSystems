@@ -42,4 +42,21 @@ public class PassengerDAO extends CrudDAO {
 
         return getID;
     }
+
+    public void addPassengerByNameSurnameDate (String name, String surname, Date birthday) {
+        Session session = sessionFactory.getCurrentSession();
+        Passenger passenger = new Passenger();
+
+        passenger.setBirthday(birthday.toLocalDate());
+        passenger.setName(name);
+        passenger.setSurname(surname);
+
+        passenger.setLogin("none");
+        passenger.setPassword("none");
+        passenger.setUser("passenger");
+        passenger.setEmail("none");
+
+        session.persist(passenger);
+
+    }
 }
