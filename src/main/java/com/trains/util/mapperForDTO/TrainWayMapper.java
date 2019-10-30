@@ -12,7 +12,6 @@ public class TrainWayMapper {
     public TrainWay mapDtoToEntity (TrainWayDTO trainWayDTO) {
         TrainWay trainWay = new TrainWay();
         trainWay.setDaysInWay(trainWayDTO.getDaysInWay());
-        trainWay.setFreeSeats(trainWayDTO.getFreeSeats());
         trainWay.setId(trainWayDTO.getId());
         trainWay.setShedule(Time.valueOf(trainWayDTO.getShedule()));
         trainWay.setStation(trainWayDTO.getStation());
@@ -25,7 +24,6 @@ public class TrainWayMapper {
     public TrainWayDTO mapEntityToDto (TrainWay trainWay) {
         TrainWayDTO trainWayDTO = new TrainWayDTO();
         trainWayDTO.setDaysInWay(trainWay.getDaysInWay());
-        trainWayDTO.setFreeSeats(trainWay.getFreeSeats());
         trainWayDTO.setId(trainWay.getId());
         trainWayDTO.setShedule(trainWay.getShedule().toString());
         trainWayDTO.setStation(trainWay.getStation());

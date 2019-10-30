@@ -27,8 +27,6 @@
     <label for="daysInWay">Days in way</label>
     <input type="text" name="daysInWay" id="daysInWay">
 
-    <label for="freeSeats">Free seats</label>
-    <input type="text" name="freeSeats" id="freeSeats">
 
     <input type="submit" value="Add new Way">
 

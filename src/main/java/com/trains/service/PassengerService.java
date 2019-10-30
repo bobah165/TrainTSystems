@@ -64,6 +64,12 @@ public class PassengerService {
     public void addPassengerByNameSurnameDate (String name, String surname, Date birthday) {
         passengerDAO.addPassengerByNameSurnameDate(name,surname,birthday);
     }
+
+    public PassengerDTO getPassengerBylogin (String login) {
+        Passenger passenger = passengerDAO.getPassengerBylogin(login);
+        PassengerDTO passengerDTO = passengerMapper.mapEntityToDto(passenger);
+        return passengerDTO;
+    }
 }
 
 

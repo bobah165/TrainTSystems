@@ -115,7 +115,7 @@ public class TrainDAO extends CrudDAO {
                 if (train.getDepartureDate().plusDays(days-1).isEqual(departureDate)) {
                     TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
                     trainFromStationAToB.setTrainID(train.getId());
-                    trainFromStationAToB.setCountFreeSits(train.getCountSits()); //пересчитать
+                    trainFromStationAToB.setCountFreeSits(train.getCountSits());
                     trainFromStationAToB.setArrivalStation(stationNameB);
                     trainFromStationAToB.setDeprtureStation(stationNameA);
 
@@ -144,6 +144,16 @@ public class TrainDAO extends CrudDAO {
                trainFromStationAToBS1.remove(trainFromStationAToB);
             }
        }
+
+        List<FreeSeats> freeSeats = session.createQuery("from FreeSeats ").list();
+        for(TrainFromStationAToB trainFromStationAToB: trainFromStationAToBS1) {
+            for(FreeSeats freeSeat: freeSeats) {
+                if (trainFromStationAToB.getTrainID()==freeSeat.getIdTrain()
+                &&trainFromStationAToB.getDeprtureStation().equals(freeSeat.getStationName())) {
+                    trainFromStationAToB.setCountFreeSits(freeSeat.getFreeSeats());
+                }
+            }
+        }
 
 
         return trainFromStationAToBS1;

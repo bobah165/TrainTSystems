@@ -16,7 +16,6 @@
         <th>Shedule</th>
         <th>stop time</th>
         <th>days in way</th>
-        <th>free seats</th>
         <th>action</th>
     </tr>
     <c:forEach var="way" items="${wayList}">
@@ -26,7 +25,6 @@
             <td>${way.shedule}</td>
             <td>${way.stopTime}</td>
             <td>${way.daysInWay}</td>
-            <td>${way.freeSeats}</td>
 
             <td>
                 <a href="/way/edit/${way.id}">edit</a>

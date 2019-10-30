@@ -1,9 +1,8 @@
 package com.trains.controller;
 
 import com.trains.model.dto.*;
-import com.trains.model.entity.FreeSeats;
-import com.trains.model.entity.Ticket;
 import com.trains.model.entity.Train;
+import com.trains.model.entity.TrainWay;
 import com.trains.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -71,11 +70,13 @@ public class BuyTicketController {
         TrainDTO trainDTO = new TrainDTO();
         for (TrainDTO train: trains){
             String depDate1 = train.getDepartureDate().toString();
+            //String depDate1 = trainService.getDateOfStation(trainID,searchStationDTO.getDepartureStation());
             String depDate2 = searchStationDTO.getDepartureDate().toString();
             if ((depDate1.equals(depDate2)) && train.getId()==trainID) {
                 trainDTO = train;
             }
         }
+
 
         Time departureTime = Time.valueOf("00:00:00");
         Time arrivalTime = Time.valueOf("00:00:00");
@@ -121,9 +122,9 @@ public class BuyTicketController {
                                                 @RequestParam("birthday") Date birthday) {
         ModelAndView modelAndView = new ModelAndView();
 
-        // проверка на зарегистртрованных пассажиров
+        // проверка на наличие билета у зарегистртрованных пассажиров на поезд
         TicketInformDTO ticketInformDTO = ticketInformService.getById(1); // будет ID зарегистрированного пользователя
-        TrainDTO train = trainService.getById(ticketInformDTO.getIdTrain());
+        TrainDTO train = trainService.getById(ticketInformDTO.getIdTrain()); //информация о поезде на который покупается билет
         List<TicketDTO> ticketDTOS = ticketService.allTickets();
         for (TicketDTO ticketDTO: ticketDTOS) {
             boolean b = ticketDTO.getPassenger().getName().equals(name);
@@ -136,7 +137,8 @@ public class BuyTicketController {
             }
         }
 
-        // проверка на наличие уже зарегистрированного пассажира
+        // добавление пассажира: если такой пассажир не зарегистрирован, то добавляем, если есть то вытаскиваем о нем
+        // информацию из БД
         int i = passengerService.getPassengerId(name,surname,birthday);
         if (i<0) {
             passengerService.addPassengerByNameSurnameDate(name, surname,birthday);

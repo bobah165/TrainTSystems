@@ -26,8 +26,6 @@ public class TrainWay {
     private Time stopTime;
     @Column(name = "days_in_way")
     private int daysInWay;
-    @Column(name = "free_seats")
-    private int freeSeats;
 
     @NaturalId(mutable = true)
     @ManyToOne(fetch = FetchType.EAGER)
@@ -83,14 +81,6 @@ public class TrainWay {
 
     public void setDaysInWay(int daysInWay) {
         this.daysInWay = daysInWay;
-    }
-
-    public int getFreeSeats() {
-        return freeSeats;
-    }
-
-    public void setFreeSeats(int freeSeats) {
-        this.freeSeats = freeSeats;
     }
 
     public Station getStation() {

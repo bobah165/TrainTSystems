@@ -46,7 +46,7 @@ public class FindTrainController {
                                               @RequestParam String endTime) {
         ModelAndView modelAndView = new ModelAndView();
         SearchStationDTO searchStationDTO = new SearchStationDTO();
-        searchStationDTO.setId(1);
+        searchStationDTO.setId(1); // надо подставить ID залогиневшегося пользователя
         searchStationDTO.setDepartureDate(departureDate);
         searchStationDTO.setStartTime(startTime);
         searchStationDTO.setDepartureStation(stationA);
@@ -66,13 +66,12 @@ public class FindTrainController {
     @GetMapping(value = "/trainstation")
     public ModelAndView getTrainstAB (){
         ModelAndView modelAndView = new ModelAndView();
-        SearchStationDTO searchStationDTO = searchStationService.getById(1);
+        SearchStationDTO searchStationDTO = searchStationService.getById(1); //подставить ID залогинившегося пользователя
         List<TrainFromStationAToB> trainFromStationAToBS =
                 trainService.getTrainsFromStations(searchStationDTO.getDepartureStation(), searchStationDTO.getArrivalStation(),
                         Time.valueOf(searchStationDTO.getStartTime()),Time.valueOf(searchStationDTO.getEndTime()),searchStationDTO.getDepartureDate().toLocalDate());
         modelAndView.setViewName("train-view/get-train-from-stations");
         modelAndView.addObject("trainListfromAtoB",trainFromStationAToBS);
-       // searchStationService.delByID(1);
         return modelAndView;
     }
 

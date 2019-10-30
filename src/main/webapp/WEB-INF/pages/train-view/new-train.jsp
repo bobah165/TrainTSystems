@@ -26,7 +26,7 @@
     <div class="submit-block">
         <div class="submit-button">
             <i class="fa fa-train" aria-hidden="true"></i><br>
-            <input type="submit" value="Отправить">
+            <input type="submit" value="Найти">
         </div>
     </div>
 </form>

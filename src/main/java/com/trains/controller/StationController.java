@@ -84,15 +84,7 @@ public class StationController {
         return modelAndView;
     }
 
-//    @GetMapping("/trainfromstation/{id}")
-//    public ModelAndView getTatinFromStation (@PathVariable("id") int id) {
-//        TrainDTO train = trainService.getById(id);
-//        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(id,train.getDepartureDate());
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("station-view/get-trains");
-//        modelAndView.addObject("trainsList",trainFromStation);
-//        return modelAndView;
-//    }
+
 
     @GetMapping(value = "/findtrains")
     public ModelAndView findTrainsPage() {

@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Find Trains</title>
+    <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
 </head>
 <body>
 

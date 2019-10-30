@@ -2,6 +2,7 @@ package com.trains.dao;
 
 import com.trains.model.entity.Passenger;
 import org.hibernate.Session;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
@@ -58,5 +59,18 @@ public class PassengerDAO extends CrudDAO {
 
         session.persist(passenger);
 
+    }
+
+    public Passenger getPassengerBylogin (String login) {
+        Session session = sessionFactory.getCurrentSession();
+        Passenger passengerLog = new Passenger();
+        List<Passenger> passengers = session.createQuery("from Passenger ").list();
+        for (Passenger passenger: passengers) {
+            if (passenger.getLogin().equals(login)) {
+                passengerLog = passenger;
+            }
+        }
+
+        return passengerLog;
     }
 }

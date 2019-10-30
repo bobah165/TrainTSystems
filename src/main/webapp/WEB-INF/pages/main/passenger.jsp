@@ -19,8 +19,8 @@
     <nav>
         <ul class="menu">
             <li><a href="/findtrain/trainfromstations/">find train</a> </li>
-            <li><a href="/buy/passenger/">Buy tickets</a> </li>
             <li><a href="/station/findtrains/">Shedule</a> </li>
+            <li><a href="/logout">Quit</a> </li>
         </ul>
     </nav>
 </header>
