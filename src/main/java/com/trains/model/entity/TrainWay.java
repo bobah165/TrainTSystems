@@ -20,10 +20,10 @@ public class TrainWay {
     @Column(name = "number_way")
     private int numberWay;
 
-    @Column(name = "shedule" )
-    private Time shedule;
-    @Column (name = "stop_time")
-    private Time stopTime;
+    @Column(name = "departure_time" )
+    private Time departureTime;
+    @Column (name = "arrival_time")
+    private Time arrivalTime;
     @Column(name = "days_in_way")
     private int daysInWay;
 
@@ -59,20 +59,20 @@ public class TrainWay {
         this.id = id;
     }
 
-    public Time getShedule() {
-        return shedule;
+    public Time getDepartureTime() {
+        return departureTime;
     }
 
-    public void setShedule(Time shedule) {
-        this.shedule = shedule;
+    public void setDepartureTime(Time shedule) {
+        this.departureTime = shedule;
     }
 
-    public Time getStopTime() {
-        return stopTime;
+    public Time getArrivalTime() {
+        return arrivalTime;
     }
 
-    public void setStopTime(Time stopTime) {
-        this.stopTime = stopTime;
+    public void setArrivalTime(Time stopTime) {
+        this.arrivalTime = stopTime;
     }
 
     public int getDaysInWay() {
@@ -89,5 +89,14 @@ public class TrainWay {
 
     public void setStation(Station station) {
         this.station = station;
+    }
+
+    @Override
+    public String toString() {
+        return "Train Way {" +
+                "id=" + id +
+                ", number is " + numberWay +
+                ", station is "+station.getNameStation()+
+                " }";
     }
 }

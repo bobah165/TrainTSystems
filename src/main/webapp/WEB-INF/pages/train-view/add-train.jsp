@@ -22,8 +22,8 @@
     <label for="countSits">Count of Sits</label>
     <input type="number" name="countSits" id="countSits">
 
-    <label for="shedule">Shedule</label>
-    <input type="text" name="shedule" id="shedule" list="ways">
+    <label for="schedule">Schedule</label>
+    <input type="text" name="schedule" id="schedule" list="ways">
     <datalist id="ways">
         <option>everyday</option>
         <option>other</option>

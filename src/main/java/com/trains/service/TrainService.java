@@ -6,7 +6,6 @@ import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.model.dto.TrainWayDTO;
 import com.trains.model.entity.Train;
-import com.trains.model.entity.TrainWay;
 import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -4,6 +4,8 @@ import com.trains.model.dto.SearchStationDTO;
 import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.service.SearchStationService;
 import com.trains.service.TrainService;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +20,8 @@ import java.util.List;
 public class FindTrainController {
     private TrainService trainService;
     private SearchStationService searchStationService;
+    private static Logger logger =Logger.getLogger(FindTrainController.class);
+
 
     @Autowired
     public void setTrainService(TrainService trainService) {
@@ -35,6 +39,7 @@ public class FindTrainController {
         ModelAndView modelAndView = new ModelAndView();
       //  modelAndView.setViewName("train-view/find-train-by-stations");
         modelAndView.setViewName("train-view/new-train");
+        logger.debug("Read view train-view/new-train");
         return modelAndView;
     }
 
@@ -55,6 +60,7 @@ public class FindTrainController {
         modelAndView.setViewName("redirect:/findtrain/trainstation/");
         if (!searchStationService.allTrains().isEmpty()) {
             searchStationService.edit(searchStationDTO);
+            logger.info("Edit search station "+searchStationDTO);
         } else searchStationService.add(searchStationDTO);
 
         return modelAndView;
@@ -67,6 +73,7 @@ public class FindTrainController {
     public ModelAndView getTrainstAB (){
         ModelAndView modelAndView = new ModelAndView();
         SearchStationDTO searchStationDTO = searchStationService.getById(1); //подставить ID залогинившегося пользователя
+        logger.info("Get by id search sttion "+searchStationDTO);
         List<TrainFromStationAToB> trainFromStationAToBS =
                 trainService.getTrainsFromStations(searchStationDTO.getDepartureStation(), searchStationDTO.getArrivalStation(),
                         Time.valueOf(searchStationDTO.getStartTime()),Time.valueOf(searchStationDTO.getEndTime()),searchStationDTO.getDepartureDate().toLocalDate());

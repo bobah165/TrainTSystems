@@ -130,4 +130,15 @@ public class TicketInform {
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
     }
+
+
+    @Override
+    public String toString() {
+        return "Ticket Info {" +
+                "id=" + id +
+                ", name is " + name +
+                ", surname is "+surname+
+                ", train id is " + idTrain +
+                " }";
+    }
 }

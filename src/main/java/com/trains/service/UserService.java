@@ -34,4 +34,5 @@ public class UserService {
     }
 
     public User getByName(String name) {return userDAO.getByName(name);}
+
 }

@@ -22,6 +22,9 @@
        Birthday ${ticketInfo.birthday}<br>
    </h2>
 
+   <c:url value="/main/pass" var="pass" />
+   <a href="${pass}">Back to main menu</a>
+
 
 
 

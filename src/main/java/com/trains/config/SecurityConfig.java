@@ -25,7 +25,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/registration","/login").anonymous()
-                .antMatchers("/main/**","/").authenticated()
+                 .antMatchers("/").authenticated()
+               // .antMatchers("/pass/**","/main","/").hasRole("user")
                 .and().csrf().disable()
                 .formLogin()
                 .loginPage("/login")
@@ -35,8 +36,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) {
-        auth.authenticationProvider(authProvider);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.inMemoryAuthentication()
+//                .withUser("bob").password("1234").roles("user")
+//                .and()
+//                .withUser("alex").password("1234").roles("admin");
+
+       auth.authenticationProvider(authProvider);
     }
 
 }

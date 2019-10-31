@@ -52,4 +52,12 @@ public class Ticket {
         this.id = id;
     }
 
+    @Override
+    public String toString() {
+        return "Ticket {" +
+                "id=" + id +
+                ", train id is " + train.getId() +
+                ", passenger id is "+passenger.getId()+
+                " }";
+    }
 }

@@ -2,7 +2,9 @@ package com.trains.controller;
 
 import com.trains.model.dto.TrainWayDTO;
 import com.trains.service.TrainWayService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.event.LoggerListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +15,7 @@ import java.util.List;
 @RequestMapping("/way")
 public class TrainWayController {
     private TrainWayService trainWayService;
+    private static Logger logger = Logger.getLogger(TrainController.class);
 
     @Autowired
     public void setTrainWayService(TrainWayService trainWayService) {
@@ -22,8 +25,10 @@ public class TrainWayController {
     @GetMapping(value = "/")
     public ModelAndView getAllTrains() {
         List<TrainWayDTO> ways = trainWayService.allWays();
+        logger.info("Get all ways");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-way-view/ways");
+        logger.info("Read view /train-way-view/ways");
         modelAndView.addObject("wayList",ways);
         return modelAndView;
     }
@@ -32,8 +37,10 @@ public class TrainWayController {
     @GetMapping(value = "/edit/{id}")
     public ModelAndView getEditPage (@PathVariable("id") int id) {
         TrainWayDTO way = trainWayService.getById(id);
+        logger.info("Get train way by id = "+id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-way-view/edit-way");
+        logger.info("Read view /train-way-view/edit-way");
         modelAndView.addObject("way",way);
         return modelAndView;
     }
@@ -44,6 +51,7 @@ public class TrainWayController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/way/");
         trainWayService.edit(way);
+        logger.info("Edit way "+way);
         return modelAndView;
     }
 
@@ -51,6 +59,7 @@ public class TrainWayController {
     public ModelAndView getTrainPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-way-view/add-way");
+        logger.info("Read view train-way-view/add-way");
         return modelAndView;
     }
 
@@ -59,6 +68,7 @@ public class TrainWayController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/way/");
         trainWayService.add(way);
+        logger.info("Add way "+way);
         return modelAndView;
     }
 
@@ -67,6 +77,7 @@ public class TrainWayController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/way/");
         trainWayService.delByID(id);
+        logger.info("Get train way by id = "+id);
         return modelAndView;
     }
 }

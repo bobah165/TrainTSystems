@@ -19,17 +19,17 @@
     <div id="wrapper">
         <div id="login" class="animate form">
             <form  action="/registration" autocomplete="on" method="post">
-                <h1>Вход</h1>
+                <h1>Registration</h1>
                 <p>
-                    <label for="username" class="uname" data-icon="u" > Ваш логин</label>
+                    <label for="username" class="uname" data-icon="u" > Login </label>
                     <input id="username" name="login" required="required" type="text"/>
                 </p>
                 <p>
-                    <label for="password" class="youpasswd" data-icon="p"> Ваш пароль </label>
+                    <label for="password" class="youpasswd" data-icon="p"> Password </label>
                     <input id="password" name="password" required="required" type="password"  />
                 </p>
                 <p>
-                    <label for="birthday" class="youpasswd" data-icon="p"> День рождения </label>
+                    <label for="birthday" class="youpasswd" data-icon="p"> Birthday </label>
                     <input id="birthday" name="birthday" required="required" type="date"  />
                 </p>
                 <p>
@@ -37,29 +37,16 @@
                     <input id="email" name="email" required="required" type="text"  />
                 </p>
                 <p>
-                    <label for="name" class="youpasswd" data-icon="p"> Имя </label>
+                    <label for="name" class="youpasswd" data-icon="p"> Name </label>
                     <input id="name" name="name" required="required" type="text"  />
                 </p>
                 <p>
-                    <label for="surname" class="youpasswd" data-icon="p"> Фамилия </label>
+                    <label for="surname" class="youpasswd" data-icon="p"> Surname </label>
                     <input id="surname" name="surname" required="required" type="text"  />
                 </p>
-                <p>
-                    <label for="user" class="youpasswd" data-icon="p"> Пользователь </label>
-                    <input id="user" name="user" required="required" type="text" list="users"  />
-                    <datalist id="users">
-                        <option>passenger</option>
-                        <option>employee</option>
-                    </datalist>
-                </p>
 
-
-                <p class="keeplogin">
-                    <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
-                    <label for="loginkeeping">Запомнить меня</label>
-                </p>
                 <p class="login button">
-                    <input type="submit" value="Войти" />
+                    <input type="submit" value="Submit" />
                 </p>
             </form>
         </div>

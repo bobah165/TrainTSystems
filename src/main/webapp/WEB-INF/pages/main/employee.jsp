@@ -21,8 +21,6 @@
         <ul class="menu">
             <li><a href="/train/">Train List</a> </li>
             <li><a href="/station/">Stations List</a> </li>
-            <li><a href="/train/add/">Add Train</a> </li>
-            <li><a href="/station/add/">Add Station</a> </li>
             <li><a href="/logout">Quit</a> </li>
         </ul>
     </nav>

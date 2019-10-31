@@ -7,6 +7,7 @@ import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainWay;
 import com.trains.service.TrainService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ public class TrainController {
     private TrainService trainService;
     private String departureStation;
     private String arrivalStation;
+    private static Logger logger = Logger.getLogger(TrainController.class);
 
     @Autowired
     public void setTrainService(TrainService trainService) {
@@ -31,8 +33,10 @@ public class TrainController {
     @GetMapping(value = "/")
     public ModelAndView getAllTrains() {
         List<TrainDTO> trains = trainService.allTrains();
+        logger.info("Get all trains");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-view/trains");
+        logger.info("Read view /train-view/trains");
         modelAndView.addObject("trainList",trains);
         return modelAndView;
     }
@@ -41,8 +45,10 @@ public class TrainController {
     @GetMapping(value = "/edit/{id}")
     public ModelAndView getEditPage (@PathVariable("id") int id) {
         TrainDTO train = trainService.getById(id);
+        logger.info("Get train by id = "+id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-view/edit-train");
+        logger.info("Read file /train-view/edit-train");
         modelAndView.addObject("train",train);
         return modelAndView;
     }
@@ -53,6 +59,7 @@ public class TrainController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/train/");
         trainService.edit(train);
+        logger.info("Edit train "+train);
         return modelAndView;
     }
 
@@ -63,20 +70,15 @@ public class TrainController {
         return modelAndView;
     }
 
-//    @PostMapping(value = "/add")
-//    public ModelAndView create(@ModelAttribute("train") TrainDTO train) {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("redirect:/train/");
-//        trainService.add(train);
-//        return modelAndView;
-//    }
+
 
     @PostMapping(value = "/add")
     public ModelAndView create(@ModelAttribute("train") TrainDTO train,
-                               @RequestParam String shedule) {
+                               @RequestParam String schedule) {
         ModelAndView modelAndView = new ModelAndView();
         trainService.add(train);
-        if (shedule.equals("everyday")) {
+        logger.info("Add train "+train);
+        if (schedule.equals("everyday")) {
             for (int i=0;i<14;i++) {
             LocalDate date = train.getDepartureDate().toLocalDate();
             date = date.plusDays(1);
@@ -95,14 +97,17 @@ public class TrainController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/train/");
         trainService.delByID(id);
+        logger.info("Delete train by id = "+id);
         return modelAndView;
     }
 
     @GetMapping(value = "/passfromtrain/{id}")
     public ModelAndView getPassFromTrain (@PathVariable("id") int id) {
         List<PassengersFromTrainDTO> passengersFromTrainDTOS = trainService.getPassengerFromTrain(id);
+        logger.info("Get passengers from train");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-view/get-passengers");
+        logger.info("Read view /train-view/get-passengers");
         modelAndView.addObject("passfromtrainList",passengersFromTrainDTOS);
         return modelAndView;
     }

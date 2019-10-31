@@ -21,8 +21,8 @@
         <th>count of sits</th>
         <th>Departure Date</th>
         <th>Passengers</th>
-        <th>Delete Train</th>
         <th>Edit Train</th>
+        <th>Delete Train</th>
     </tr>
     <c:forEach var="train" items="${trainList}">
         <tr>

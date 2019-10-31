@@ -7,6 +7,7 @@ import com.trains.model.entity.Station;
 import com.trains.model.entity.Train;
 import com.trains.service.StationService;
 import com.trains.service.TrainService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import java.util.List;
 public class StationController {
     private StationService stationService;
     private TrainService trainService;
+    private static Logger logger = Logger.getLogger(StationController.class);
 
     @Autowired
     public void setStationService(StationService stationService) {
@@ -36,8 +38,10 @@ public class StationController {
     @GetMapping(value = "/")
     public ModelAndView allPassengers() {
         List<StationDTO> stations = stationService.allStations();
+        logger.info("Get all stations");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("station-view/stations");
+        logger.info("Read view /station-view/stations");
         modelAndView.addObject("stationsList", stations);
         return modelAndView;
     }
@@ -45,8 +49,10 @@ public class StationController {
     @GetMapping(value = "/edit/{id}")
     public ModelAndView getEditPage (@PathVariable("id") int id) {
         StationDTO station = stationService.getById(id);
+        logger.info("Get station by id = "+id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("station-view/edit-station");
+        logger.info("Read view /station-view/edit-station");
         modelAndView.addObject("station",station);
         return modelAndView;
     }
@@ -57,6 +63,7 @@ public class StationController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/station/");
         stationService.edit(station);
+        logger.info("Edit station "+station);
         return modelAndView;
     }
 
@@ -64,6 +71,7 @@ public class StationController {
     public ModelAndView getPassPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("station-view/add-station");
+        logger.info("Read view /station-view/add-station");
         return modelAndView;
     }
 
@@ -72,6 +80,7 @@ public class StationController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/station/");
         stationService.add(station);
+        logger.info("Add station "+station);
         return modelAndView;
     }
 
@@ -81,6 +90,7 @@ public class StationController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/station/");
         stationService.delByID(id);
+        logger.info("Delete station by id = "+id);
         return modelAndView;
     }
 

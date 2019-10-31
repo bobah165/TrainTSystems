@@ -4,6 +4,7 @@ import com.trains.model.dto.*;
 import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainWay;
 import com.trains.service.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,7 @@ public class BuyTicketController {
     private PassengerService passengerService;
     private TicketService ticketService;
     private FreeSeatsService freeSeatsService;
+    private static Logger logger = Logger.getLogger(BuyTicketController.class);
 
     @Autowired
     public void setFreeSeatsService(FreeSeatsService freeSeatsService) {
@@ -66,7 +68,9 @@ public class BuyTicketController {
     public ModelAndView addTicket(@PathVariable("trainID") int trainID){
         ModelAndView modelAndView = new ModelAndView();
         List<TrainDTO> trains = trainService.allTrains();
+        logger.info("Get all trains");
         SearchStationDTO searchStationDTO = searchStationService.getById(1);
+        logger.info("Get information search station "+searchStationDTO);
         TrainDTO trainDTO = new TrainDTO();
         for (TrainDTO train: trains){
             String depDate1 = train.getDepartureDate().toString();
@@ -77,10 +81,10 @@ public class BuyTicketController {
             }
         }
 
-
         Time departureTime = Time.valueOf("00:00:00");
         Time arrivalTime = Time.valueOf("00:00:00");
         List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
+        logger.info("Get all ways");
         for (TrainWayDTO trainWayDTO:trainWayDTOS){
             int currentWay = trainDTO.getTrainWay().getNumberWay();
             if (trainWayDTO.getNumberWay()== currentWay){
@@ -108,10 +112,9 @@ public class BuyTicketController {
         ticketInform.setName("none");
         ticketInform.setSurname("none");
 
-
         ticketInformService.add(ticketInform);
+        logger.info("Add ticket information "+ticketInform);
         modelAndView.setViewName("passenger-view/buy-ticket");
-
 
         return modelAndView;
     }
@@ -124,8 +127,11 @@ public class BuyTicketController {
 
         // проверка на наличие билета у зарегистртрованных пассажиров на поезд
         TicketInformDTO ticketInformDTO = ticketInformService.getById(1); // будет ID зарегистрированного пользователя
+        logger.info("Get ticket information "+ticketInformDTO);
         TrainDTO train = trainService.getById(ticketInformDTO.getIdTrain()); //информация о поезде на который покупается билет
+        logger.info("Get train in which passenger buy ticket "+train);
         List<TicketDTO> ticketDTOS = ticketService.allTickets();
+        logger.info("Get all tickes");
         for (TicketDTO ticketDTO: ticketDTOS) {
             boolean b = ticketDTO.getPassenger().getName().equals(name);
             boolean b1 = ticketDTO.getPassenger().getSurname().equals(surname);
@@ -140,11 +146,13 @@ public class BuyTicketController {
         // добавление пассажира: если такой пассажир не зарегистрирован, то добавляем, если есть то вытаскиваем о нем
         // информацию из БД
         int i = passengerService.getPassengerId(name,surname,birthday);
+        logger.info("Get passenger id by name, surname, birthday, id is "+i);
         if (i<0) {
             passengerService.addPassengerByNameSurnameDate(name, surname,birthday);
+            logger.info("Add passenger by name "+name+" surname "+surname+" birthday "+birthday);
         }
         PassengerDTO passenger = passengerService.getById(passengerService.getPassengerId(name, surname, birthday));
-
+        logger.info("Get passenger by id "+passenger);
 
         // заполняем информаци о пассажире в общую информационну таблицу о билете
         ticketInformDTO.setName(name);
@@ -153,6 +161,7 @@ public class BuyTicketController {
         ticketInformDTO.setIdPassenger(passenger.getId());
 
         ticketInformService.edit(ticketInformDTO);
+        logger.info("Edit ticket information "+ticketInformDTO);
 
         // проверка покупки билета за 10 минут до отправления поезда
         LocalTime depTime10minutes = LocalTime.parse(ticketInformDTO.getDepartureTime()).minusMinutes(10);
@@ -166,12 +175,14 @@ public class BuyTicketController {
 
         //добавление билета
        ticketService.addTicketByTrainDTOPassengerDTO(train,passenger);
+        logger.info("Add ticket by train "+train +" and passenger "+passenger);
 
 
         // учет добавленного билета в количестве свободных мест от станции до станции
         //находим все станции для маршрута поезда
         List<TrainWayDTO> trainOneWAy = new ArrayList<>();
         List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
+        logger.info("Get all trains ways");
         for (TrainWayDTO trainWayDTO: trainWayDTOS){
             if (trainWayDTO.getNumberWay()==train.getTrainWay().getNumberWay())
             trainOneWAy.add(trainWayDTO);
@@ -179,12 +190,14 @@ public class BuyTicketController {
 
         //добавляем данные о поезде в таблицу free_sets
         List<FreeSeatsDTO> freeSeatsDTOS = freeSeatsService.allSeats();
+        logger.info("Get all free seats");
         List<FreeSeatsDTO> freeSeatInWay = new ArrayList<>();
         for (FreeSeatsDTO freeSeatsDTO: freeSeatsDTOS){
             for(TrainWayDTO trainWayDTO:trainOneWAy) {
                 if (freeSeatsDTO.getIdTrain() == train.getId()
                         && freeSeatsDTO.getStationName().equals(trainWayDTO.getStation().getNameStation())) {
                     freeSeatInWay.add(freeSeatsDTO);
+                    logger.info("Add free seats information "+freeSeatsDTO);
                 }
             }
         }
@@ -202,11 +215,13 @@ public class BuyTicketController {
 
         // поиск станций на которые покупается билет
         for (FreeSeatsDTO freeSeatsDTO: freeSeatInWay) {
+
             // поиск станции отправления
             if(freeSeatsDTO.getStationName().equals(ticketInformDTO.getDepartureStation())) {
                 if(freeSeatsDTO.getFreeSeats()>0) {
                     freeSeatsDTO.setFreeSeats(freeSeatsDTO.getFreeSeats() - 1);
                     freeSeatsService.edit(freeSeatsDTO);
+                    logger.info("Edit free seats "+freeSeatsDTO);
                 }
             }
         }
@@ -243,10 +258,7 @@ public class BuyTicketController {
                 }
             }
         }
-
         modelAndView.setViewName("redirect:/buy/ticket/");
-
-
         return modelAndView;
     }
 
@@ -257,6 +269,7 @@ public class BuyTicketController {
         modelAndView.setViewName("ticket-info/ticket-info");
         modelAndView.addObject("ticketInfo",ticketList);
         ticketInformService.delete(ticketList);
+        logger.info("Delete ticket information "+ticketList);
         return modelAndView;
     }
 

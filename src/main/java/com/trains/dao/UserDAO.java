@@ -1,5 +1,6 @@
 package com.trains.dao;
 
+
 import com.trains.model.entity.User;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
@@ -27,4 +28,5 @@ public class UserDAO extends CrudDAO {
         }
         return user;
     }
+
 }

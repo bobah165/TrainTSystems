@@ -13,17 +13,17 @@
     <tr>
         <th>Way number</th>
         <th>Station ID</th>
-        <th>Shedule</th>
-        <th>stop time</th>
-        <th>days in way</th>
+        <th>Departure Time</th>
+        <th>Arrival Time</th>
+        <th>Days in way</th>
         <th>action</th>
     </tr>
     <c:forEach var="way" items="${wayList}">
         <tr>
             <td>${way.numberWay}</td>
             <td>${way.station.id}</td>
-            <td>${way.shedule}</td>
-            <td>${way.stopTime}</td>
+            <td>${way.departureTime}</td>
+            <td>${way.arrivalTime}</td>
             <td>${way.daysInWay}</td>
 
             <td>

@@ -68,7 +68,7 @@ public class StationDAO extends CrudDAO {
                 if (trainWay.getNumberWay()==train.getTrainWay().getNumberWay()){
                     int days = 0; //количество дней в пути по расписанию
                     LocalDate localDate = train.getDepartureDate(); // время отправления поезда по расписанию
-                    LocalTime localTime = train.getTrainWay().getShedule().toLocalTime();
+                    LocalTime localTime = train.getTrainWay().getDepartureTime().toLocalTime();
                     List<TrainWay> trainWayDTOS =session.createQuery("from TrainWay").list(); // все маршруты
 
                     for (TrainWay trainWayDTO: trainWayDTOS) {
@@ -86,8 +86,8 @@ public class StationDAO extends CrudDAO {
                             TrainFromStationDTO trainFromStationDTO = new TrainFromStationDTO();
                             trainFromStationDTO.setIdTrain(train.getId());
                             trainFromStationDTO.setNameStation(station.getNameStation());
-                            trainFromStationDTO.setDepartureTime(trainWay.getShedule());
-                            trainFromStationDTO.setArrivalTime(trainWay.getStopTime());
+                            trainFromStationDTO.setDepartureTime(trainWay.getDepartureTime());
+                            trainFromStationDTO.setArrivalTime(trainWay.getArrivalTime());
                             trainFromStationDTOS.add(trainFromStationDTO);
                         }
                 }

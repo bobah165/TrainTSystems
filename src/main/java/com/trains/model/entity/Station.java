@@ -54,4 +54,12 @@ public class Station {
     public int hashCode() {
         return Objects.hash(getId());
     }
+
+    @Override
+    public String toString() {
+        return "Station {" +
+                "id=" + id +
+                ", name is " + nameStation +
+                " }";
+    }
 }

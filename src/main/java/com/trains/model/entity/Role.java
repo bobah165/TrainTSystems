@@ -4,16 +4,25 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "roles_for_users")
+@Table(name = "roles")
 public class Role {
     @Id
-    @Column(name = "id")
+    @Column(name = "id_role")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "name")
     private String name;
-    @ManyToMany(mappedBy = "roles")
-    private List<User> users;
+
+    @OneToMany(mappedBy = "role",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<UserRole> UserRoles;
+
+    public List<UserRole> getUserRoles() {
+        return UserRoles;
+    }
+
+    public void setUserRoles(List<UserRole> UserRoles) {
+        this.UserRoles = UserRoles;
+    }
 
     public int getId() {
         return id;
@@ -31,11 +40,4 @@ public class Role {
         this.name = name;
     }
 
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
-    }
 }

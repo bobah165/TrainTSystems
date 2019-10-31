@@ -2,6 +2,7 @@ package com.trains.controller;
 
 import com.trains.model.dto.TicketDTO;
 import com.trains.service.TicketService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import java.util.List;
 @RequestMapping("/ticket")
 public class TicketController {
     private TicketService ticketService;
+    private static Logger logger = Logger.getLogger(TicketController.class);
 
     @Autowired
     public void setTicketService(TicketService ticketService) {
@@ -23,8 +25,10 @@ public class TicketController {
     @GetMapping(value = "/")
     public ModelAndView allTickets() {
         List<TicketDTO> tickets = ticketService.allTickets();
+        logger.info("Get all tickets");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/tickets");
+        logger.info("Read view /ticket-view/tickets");
         modelAndView.addObject("ticketsList",tickets);
         return modelAndView;
     }
@@ -32,8 +36,10 @@ public class TicketController {
     @GetMapping(value = "/edit/{id}")
     public ModelAndView getEditPage (@PathVariable("id") int id) {
         TicketDTO ticket = ticketService.getById(id);
+        logger.info("Get ticket by id = "+id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/edit-ticket");
+        logger.info("Raed view /ticket-view/edit-ticket");
         modelAndView.addObject("ticket",ticket);
         return modelAndView;
     }
@@ -44,6 +50,7 @@ public class TicketController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/ticket/");
         ticketService.edit(ticket);
+        logger.info("Edit ticket "+ticket);
         return modelAndView;
     }
 
@@ -51,6 +58,7 @@ public class TicketController {
     public ModelAndView getAddPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/add-ticket");
+        logger.info("Read view /ticket-view/add-ticket");
         return modelAndView;
     }
 
@@ -59,6 +67,7 @@ public class TicketController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/ticket/");
         ticketService.add(ticket);
+        logger.info("Add ticket "+ticket);
         return modelAndView;
     }
 
@@ -67,6 +76,7 @@ public class TicketController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/ticket/");
         ticketService.delByID(id);
+        logger.info("Delete ticket by id = "+id);
         return modelAndView;
     }
 
@@ -75,6 +85,7 @@ public class TicketController {
     public ModelAndView getMessage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/message-ticket");
+        logger.info("Read view /ticket-view/message-ticket");
         return modelAndView;
     }
 

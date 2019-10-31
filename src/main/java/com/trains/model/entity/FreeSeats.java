@@ -53,4 +53,14 @@ public class FreeSeats {
     public void setFreeSeats(int freeSeats) {
         this.freeSeats = freeSeats;
     }
+
+    @Override
+    public String toString() {
+        return "Free seats {" +
+                "id=" + id +
+                ", train id " + idTrain +
+                ", station is "+stationName+
+                ", free seats is " + freeSeats +
+                " }";
+    }
 }

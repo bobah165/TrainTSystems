@@ -18,11 +18,11 @@
     <label for="stationId">Id Station</label>
     <input type="number" name="station.id" id="stationId">
 
-    <label for="schedule">shedule</label>
-    <input type="time" name="shedule" id="schedule">
+    <label for="departureTime">Departure Time</label>
+    <input type="time" name="departureTime" id="departureTime">
 
-    <label for="stopTime">stop time</label>
-    <input type="time" name="stopTime" id="stopTime">
+    <label for="arrivalTime">Arrival Time</label>
+    <input type="time" name="arrivalTime" id="arrivalTime">
 
     <label for="daysInWay">Days in way</label>
     <input type="text" name="daysInWay" id="daysInWay">

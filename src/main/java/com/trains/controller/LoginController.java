@@ -1,17 +1,14 @@
 package com.trains.controller;
 
 import com.trains.model.dto.PassengerDTO;
-import com.trains.model.entity.User;
 import com.trains.service.PassengerService;
-import com.trains.service.UserService;
 import com.trains.util.UserValidator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import javax.validation.Valid;
-import java.util.List;
+
 
 
 @Controller
@@ -19,6 +16,7 @@ import java.util.List;
 public class LoginController {
     private PassengerService passengerService;
     private UserValidator userValidator;
+    private static Logger logger = Logger.getLogger(LoginController.class);
 
     @Autowired
     public void setUserValidator(UserValidator userValidator) {
@@ -35,26 +33,24 @@ public class LoginController {
     public ModelAndView getStartPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("main/main-page");
+        logger.info("Read view main/main-page.jsp");
         return modelAndView;
     }
 
     @GetMapping(value = "/registration")
     public ModelAndView getRegistrationPage() {
         ModelAndView modelAndView = new ModelAndView();
-     //   modelAndView.addObject("user",new PassengerDTO());
         modelAndView.setViewName("/auth-view/registration");
+        logger.info("Read view /auth-view/registration.jsp");
         return modelAndView;
     }
 
     @PostMapping(value = "/registration")
-    public ModelAndView registration (@ModelAttribute @Valid PassengerDTO passengerDTO, BindingResult result) {
+    public ModelAndView registration (@ModelAttribute PassengerDTO passengerDTO) {
         ModelAndView modelAndView = new ModelAndView();
-//        userValidator.validate(passengerDTO, result);
-//        if(result.hasErrors()) {
-//            modelAndView.setViewName("/auth-view/registration");
-//            return modelAndView;
-//        }
+        passengerDTO.setUser("passenger");
         passengerService.add(passengerDTO);
+        logger.info("Add object Passenger from frontend");
         modelAndView.setViewName("redirect:/login");
         return modelAndView;
 
@@ -64,6 +60,7 @@ public class LoginController {
     public ModelAndView getLoginPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/auth-view/new-login");
+        logger.info("Read view /auth-view/new-login.jsp");
         return modelAndView;
     }
 

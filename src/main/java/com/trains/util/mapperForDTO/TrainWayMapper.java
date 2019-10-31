@@ -13,9 +13,9 @@ public class TrainWayMapper {
         TrainWay trainWay = new TrainWay();
         trainWay.setDaysInWay(trainWayDTO.getDaysInWay());
         trainWay.setId(trainWayDTO.getId());
-        trainWay.setShedule(Time.valueOf(trainWayDTO.getShedule()));
+        trainWay.setDepartureTime(Time.valueOf(trainWayDTO.getShedule()));
         trainWay.setStation(trainWayDTO.getStation());
-        trainWay.setStopTime(Time.valueOf(trainWayDTO.getStopTime()));
+        trainWay.setArrivalTime(Time.valueOf(trainWayDTO.getStopTime()));
         trainWay.setNumberWay(trainWayDTO.getNumberWay());
         trainWay.setTrains(trainWayDTO.getTrains());
         return trainWay;
@@ -25,9 +25,9 @@ public class TrainWayMapper {
         TrainWayDTO trainWayDTO = new TrainWayDTO();
         trainWayDTO.setDaysInWay(trainWay.getDaysInWay());
         trainWayDTO.setId(trainWay.getId());
-        trainWayDTO.setShedule(trainWay.getShedule().toString());
+        trainWayDTO.setShedule(trainWay.getDepartureTime().toString());
         trainWayDTO.setStation(trainWay.getStation());
-        trainWayDTO.setStopTime(trainWay.getStopTime().toString());
+        trainWayDTO.setStopTime(trainWay.getArrivalTime().toString());
         trainWayDTO.setNumberWay(trainWay.getNumberWay());
         trainWayDTO.setTrains(trainWay.getTrains());
         return trainWayDTO;

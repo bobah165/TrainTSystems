@@ -7,29 +7,40 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
-    @Column(name = "id")
+    @Column(name = "id_user")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
     private String password;
-    @ManyToMany
-    @JoinTable(name = "user_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private List<Role> roles;
+//    @ManyToMany
+//    @JoinTable(name = "user_roles",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private List<Role> roles;
 
-    @Transient
-    private String confirmPassword;
+    @OneToMany(mappedBy = "user",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<UserRole> UserRoles;
 
-    public String getConfirmPassword() {
-        return confirmPassword;
+//    @Transient
+//    private String confirmPassword;
+
+    public List<UserRole> getUserRoles() {
+        return UserRoles;
     }
 
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
+    public void setUserRoles(List<UserRole> UserRoles) {
+        this.UserRoles = UserRoles;
     }
+
+//    public String getConfirmPassword() {
+//        return confirmPassword;
+//    }
+//
+//    public void setConfirmPassword(String confirmPassword) {
+//        this.confirmPassword = confirmPassword;
+//    }
 
     public int getId() {
         return id;
@@ -55,11 +66,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<Role> roles) {
-        this.roles = roles;
-    }
+//    public List<Role> getRoles() {
+//        return roles;
+//    }
+//
+//    public void setRoles(List<Role> roles) {
+//        this.roles = roles;
+//    }
 }

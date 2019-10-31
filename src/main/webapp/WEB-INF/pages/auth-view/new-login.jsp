@@ -17,21 +17,20 @@
     <div id="wrapper">
         <div id="login" class="animate form">
             <form  action="/login/process/" autocomplete="on" method="post">
-                <h1>Вход</h1>
+                <h1>Entrance</h1>
                 <p>
-                    <label for="username" class="uname" data-icon="u" > Ваш логин</label>
+                    <label for="username" class="uname" data-icon="u" > Login </label>
                     <input id="username" name="login" required="required" type="text"/>
                 </p>
                 <p>
-                    <label for="password" class="youpasswd" data-icon="p"> Ваш пароль </label>
+                    <label for="password" class="youpasswd" data-icon="p"> Password </label>
                     <input id="password" name="password" required="required" type="password"  />
                 </p>
-                <p class="keeplogin">
-                    <input type="checkbox" name="loginkeeping" id="loginkeeping" value="loginkeeping" />
-                    <label for="loginkeeping">Запомнить меня</label>
+                <p class="button">
+                    <button><a href="/registration/"> Registration </a></button>
                 </p>
                 <p class="login button">
-                    <input type="submit" value="Войти" />
+                    <input type="submit" value="Enter" />
                 </p>
             </form>
         </div>

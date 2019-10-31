@@ -88,7 +88,10 @@ public class Train {
     public String toString() {
         return "TrainEntity{" +
                 "id=" + id +
-                ", countFreeSits= " + countSits + " }";
+                ", count Sits = " + countSits +
+                ", way id is = "+trainWay.getNumberWay()+
+                ", departure date is "+departureDate+
+                " }";
     }
 
     @Override

@@ -59,4 +59,14 @@ public class SearchStationDTO {
     public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
+
+    @Override
+    public String toString() {
+        return "Search Station DTO {" +
+                "id=" + id +
+                ", departure station is " + departureStation +
+                ", arrival station is "+arrivalStation+
+                ", departure date " + departureDate +
+                " }";
+    }
 }

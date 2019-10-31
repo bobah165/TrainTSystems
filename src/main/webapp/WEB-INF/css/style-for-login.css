@@ -24,7 +24,7 @@
 
 
 #wrapper h1 {
-    font-size: 48px;
+    font-size: 36px;
     color: rgb(6, 106, 117);
     padding: 2px 0 10px 0;
     font-family: 'FranchiseRegular','Arial Narrow',Arial,sans-serif;
@@ -126,7 +126,7 @@
     padding: 8px 5px;
     font-family: 'BebasNeueRegular','Arial Narrow',Arial,sans-serif;
     color: #fff;
-    font-size: 24px;
+    font-size: 20px;
     border: 1px solid rgb(28, 108, 122);
     margin-bottom: 10px;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
@@ -164,4 +164,13 @@ p.login.button,
 p.signin.button{
     text-align: right;
     margin: 5px 0;
+}
+
+#wrapper p.button.btn {
+    /*display: inline-block; !* Строчно-блочный элемент *!*/
+    /*background: #8C959D; !* Серый цвет фона *!*/
+    /*color: #fff; !* Белый цвет текста *!*/
+    /*padding: 1rem 1.5rem; !* Поля вокруг текста *!*/
+    text-decoration: none; /* Убираем подчёркивание */
+    border-radius: 3px; /* Скругляем уголки */
 }

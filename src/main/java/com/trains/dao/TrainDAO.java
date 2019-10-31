@@ -6,13 +6,10 @@ import com.trains.model.entity.*;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
-import java.util.TreeSet;
 
 @Repository
 public class TrainDAO extends CrudDAO {
@@ -124,8 +121,8 @@ public class TrainDAO extends CrudDAO {
                     for (TrainWay trainWay : timetables) {
                         if (train.getTrainWay().getNumberWay() == trainWay.getNumberWay()) {
                             if (trainWay.getStation().getNameStation().equals(stationNameA)) {
-                                depTime = trainWay.getShedule();
-                                arrivTime = trainWay.getStopTime();
+                                depTime = trainWay.getDepartureTime();
+                                arrivTime = trainWay.getArrivalTime();
                             }
                         }
                     }
