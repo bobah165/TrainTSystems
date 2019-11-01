@@ -1,8 +1,10 @@
 package com.trains.controller;
 
+
 import com.trains.model.dto.TicketInformDTO;
 import com.trains.service.TicketInformService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -14,7 +16,7 @@ import java.util.List;
 @RequestMapping("/inform")
 public class TicketInformController {
     private TicketInformService ticketInformService;
-    private static Logger logger = Logger.getLogger(TicketInformController.class);
+    private static Logger logger = LoggerFactory.getLogger(TicketInformController.class);
 
     @Autowired
     public void setTicketInformService(TicketInformService ticketInformService) {

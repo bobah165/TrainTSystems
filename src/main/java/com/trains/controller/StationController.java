@@ -1,20 +1,19 @@
 package com.trains.controller;
 
+
 import com.trains.model.dto.StationDTO;
-import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationDTO;
-import com.trains.model.entity.Station;
-import com.trains.model.entity.Train;
+
 import com.trains.service.StationService;
 import com.trains.service.TrainService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -23,7 +22,7 @@ import java.util.List;
 public class StationController {
     private StationService stationService;
     private TrainService trainService;
-    private static Logger logger = Logger.getLogger(StationController.class);
+    private static Logger logger = LoggerFactory.getLogger(StationController.class);
 
     @Autowired
     public void setStationService(StationService stationService) {
@@ -110,6 +109,7 @@ public class StationController {
                                   @RequestParam String endTime) {
         ModelAndView modelAndView = new ModelAndView();
         StationDTO station = stationService.getByName(nameStation);
+        logger.info("get station "+station+" by name "+nameStation);
         LocalTime start = LocalTime.parse(startTime);
         LocalTime end = LocalTime.parse(endTime);
         List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(station.getId(),departureDate,start,end);

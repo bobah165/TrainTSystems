@@ -1,10 +1,11 @@
 package com.trains.controller;
 
+
 import com.trains.model.dto.TrainWayDTO;
 import com.trains.service.TrainWayService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.event.LoggerListener;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,7 @@ import java.util.List;
 @RequestMapping("/way")
 public class TrainWayController {
     private TrainWayService trainWayService;
-    private static Logger logger = Logger.getLogger(TrainController.class);
+    private static Logger logger = LoggerFactory.getLogger(TrainController.class);
 
     @Autowired
     public void setTrainWayService(TrainWayService trainWayService) {

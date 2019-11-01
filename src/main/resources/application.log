@@ -1,0 +1,55 @@
+2019-11-01 12:43:58 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-01 12:44:00 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-01 12:44:01 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-01 12:44:01 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-01 12:44:04 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-01 12:44:06 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6e9b28f8, org.springframework.security.web.context.SecurityContextPersistenceFilter@46bfe7d5, org.springframework.security.web.header.HeaderWriterFilter@a4f7686, org.springframework.security.web.authentication.logout.LogoutFilter@3e585487, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6b279ae7, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@50848afe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57b90e0b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@58d0c908, org.springframework.security.web.session.SessionManagementFilter@4725923f, org.springframework.security.web.access.ExceptionTranslationFilter@1c5b74bc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@374114d4]
+2019-11-01 12:44:06 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 7911 ms
+2019-11-01 12:44:06 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-01 12:44:06 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-01 12:44:07 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-01 12:44:07 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5061c40c, org.springframework.security.web.context.SecurityContextPersistenceFilter@6286aa5, org.springframework.security.web.header.HeaderWriterFilter@17e81442, org.springframework.security.web.authentication.logout.LogoutFilter@143f9d51, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@34c2b2c6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54bf0f82, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3a25b53, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@de57e82, org.springframework.security.web.session.SessionManagementFilter@4feb0c2a, org.springframework.security.web.access.ExceptionTranslationFilter@4bc330c2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5634f67b]
+2019-11-01 12:44:07 INFO  DispatcherServlet:547 - Completed initialization in 973 ms
+2019-11-01 12:44:19 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-01 12:57:41 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-01 12:57:44 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-01 12:57:45 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-01 12:57:45 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-01 12:57:48 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-01 12:57:50 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@49fd060b, org.springframework.security.web.context.SecurityContextPersistenceFilter@5d7dcabe, org.springframework.security.web.header.HeaderWriterFilter@1d203731, org.springframework.security.web.authentication.logout.LogoutFilter@c8d7663, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@119285e0, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4e7f022b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@66cef403, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1c82fa34, org.springframework.security.web.session.SessionManagementFilter@54d7dc6, org.springframework.security.web.access.ExceptionTranslationFilter@778d9b32, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2e2969db]
+2019-11-01 12:57:50 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9005 ms
+2019-11-01 12:57:50 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-01 12:57:51 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-01 12:57:51 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-01 12:57:51 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4371e039, org.springframework.security.web.context.SecurityContextPersistenceFilter@7f41c452, org.springframework.security.web.header.HeaderWriterFilter@2b2cf92f, org.springframework.security.web.authentication.logout.LogoutFilter@15f132f9, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@15dc0459, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7b5e6dd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b1c9285, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43625f19, org.springframework.security.web.session.SessionManagementFilter@43a3a215, org.springframework.security.web.access.ExceptionTranslationFilter@48861146, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@bc0faf4]
+2019-11-01 12:57:51 INFO  DispatcherServlet:547 - Completed initialization in 1192 ms
+2019-11-01 12:57:52 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-01 12:57:53 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-01 12:57:53 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-01 13:00:28 INFO  LoginController:37 - Read view main/main-page.jsp
+2019-11-01 13:00:30 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-01 13:00:33 INFO  FindTrainController:43 - Read view train-view/new-train
+2019-11-01 13:00:55 INFO  FindTrainController:64 - Edit search station Search Station DTO {id=1, departure station is Rostov, arrival station is Omsk, departure date 2019-11-02 }
+2019-11-01 13:00:55 INFO  FindTrainController:77 - Get by id search sttion Search Station DTO {id=1, departure station is Rostov, arrival station is Omsk, departure date 2019-11-02 }
+2019-11-01 13:00:58 INFO  BuyTicketController:72 - Get all trains
+2019-11-01 13:00:58 INFO  BuyTicketController:74 - Get information search station Search Station DTO {id=1, departure station is Rostov, arrival station is Omsk, departure date 2019-11-02 }
+2019-11-01 13:00:58 INFO  BuyTicketController:88 - Get all ways
+2019-11-01 13:00:58 INFO  BuyTicketController:117 - Add ticket information com.trains.model.dto.TicketInformDTO@739e5b12
+2019-11-01 13:01:22 INFO  BuyTicketController:131 - Get ticket information com.trains.model.dto.TicketInformDTO@60b9ab38
+2019-11-01 13:01:22 INFO  BuyTicketController:133 - Get train in which passenger buy ticket TrainEntity{id=3, countFreeSits= 800 }
+2019-11-01 13:01:22 INFO  BuyTicketController:135 - Get all tickes
+2019-11-01 13:01:22 INFO  BuyTicketController:150 - Get passenger id by name, surname, birthday, id is -1
+2019-11-01 13:01:22 INFO  BuyTicketController:153 - Add passenger by name stive surname jobs birthday 1975-04-12
+2019-11-01 13:01:22 INFO  BuyTicketController:156 - Get passenger by id Passenger {id=8, name is stive, surname is jobs, birthday is 1975-04-12 }
+2019-11-01 13:01:22 INFO  BuyTicketController:165 - Edit ticket information com.trains.model.dto.TicketInformDTO@60b9ab38
+2019-11-01 13:01:23 INFO  BuyTicketController:179 - Add ticket by train TrainEntity{id=3, countFreeSits= 800 } and passenger Passenger {id=8, name is stive, surname is jobs, birthday is 1975-04-12 }
+2019-11-01 13:01:23 INFO  BuyTicketController:186 - Get all trains ways
+2019-11-01 13:01:23 INFO  BuyTicketController:194 - Get all free seats
+2019-11-01 13:01:23 INFO  BuyTicketController:201 - Add free seats information com.trains.model.dto.FreeSeatsDTO@49c814a
+2019-11-01 13:01:23 INFO  BuyTicketController:201 - Add free seats information com.trains.model.dto.FreeSeatsDTO@859ad02f
+2019-11-01 13:01:23 INFO  BuyTicketController:201 - Add free seats information com.trains.model.dto.FreeSeatsDTO@373cd0
+2019-11-01 13:01:23 INFO  BuyTicketController:201 - Add free seats information com.trains.model.dto.FreeSeatsDTO@b5c27afc
+2019-11-01 13:01:23 INFO  BuyTicketController:225 - Edit free seats com.trains.model.dto.FreeSeatsDTO@b5c27afb
+2019-11-01 13:01:23 INFO  BuyTicketController:273 - Delete ticket information com.trains.model.dto.TicketInformDTO@13f5a99c
+2019-11-01 13:01:26 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-01 13:01:31 INFO  LoginController:64 - Read view /auth-view/new-login.jsp

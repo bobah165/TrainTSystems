@@ -1,11 +1,12 @@
 package com.trains.controller;
 
+
 import com.trains.model.dto.SearchStationDTO;
 import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.service.SearchStationService;
 import com.trains.service.TrainService;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ import java.util.List;
 public class FindTrainController {
     private TrainService trainService;
     private SearchStationService searchStationService;
-    private static Logger logger =Logger.getLogger(FindTrainController.class);
+    private static Logger logger = LoggerFactory.getLogger(FindTrainController.class);
 
 
     @Autowired
@@ -39,7 +40,7 @@ public class FindTrainController {
         ModelAndView modelAndView = new ModelAndView();
       //  modelAndView.setViewName("train-view/find-train-by-stations");
         modelAndView.setViewName("train-view/new-train");
-        logger.debug("Read view train-view/new-train");
+        logger.info("Read view train-view/new-train");
         return modelAndView;
     }
 

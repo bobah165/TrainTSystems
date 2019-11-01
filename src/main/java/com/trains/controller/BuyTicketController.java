@@ -1,10 +1,11 @@
 package com.trains.controller;
 
 import com.trains.model.dto.*;
-import com.trains.model.entity.Train;
-import com.trains.model.entity.TrainWay;
+
 import com.trains.service.*;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class BuyTicketController {
     private PassengerService passengerService;
     private TicketService ticketService;
     private FreeSeatsService freeSeatsService;
-    private static Logger logger = Logger.getLogger(BuyTicketController.class);
+    private static Logger logger = LoggerFactory.getLogger(BuyTicketController.class);
 
     @Autowired
     public void setFreeSeatsService(FreeSeatsService freeSeatsService) {
