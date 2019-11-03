@@ -2,12 +2,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Find Trains</title>
+    <title>Login</title>
     <style>
         <%@include file="/WEB-INF/css/style-for-login.css"%>
         #register,
         #login {
-            width: 35%;
+            width: 30%;
         }
     </style>
     <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
@@ -21,11 +21,15 @@
     <a class="hiddenanchor" id="tologin"></a>
     <div id="wrapper">
         <div id="login" class="animate form">
-            <form  action="/station/findtrains" autocomplete="on" method="post">
-                <h1> Find Trains</h1>
+            <form  action="/findtrain/trainfromstations/" autocomplete="on" method="post">
+                <h1>Find Train</h1>
                 <p>
-                    <label for="nameStation" class="uname" data-icon="u" > Station Name </label>
-                    <input id="nameStation" name="nameStation" required="required" type="text"/>
+                    <label for="stationA" class="uname" data-icon="u" > Departure Station </label>
+                    <input id="stationA" name="stationA" required="required" type="text"/>
+                </p>
+                <p>
+                    <label for="stationB" class="youpasswd" data-icon="p"> Arrival Station </label>
+                    <input id="stationB" name="stationB" required="required" type="text"  />
                 </p>
                 <p>
                     <label for="departureDate" class="youpasswd" data-icon="p"> Departure Date </label>
@@ -49,5 +53,4 @@
     </div>
 </div>
 </body>
-
 </html>

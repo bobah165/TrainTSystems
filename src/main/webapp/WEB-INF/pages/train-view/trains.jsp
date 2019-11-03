@@ -9,10 +9,13 @@
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
     </style>
+    <%@include file="/WEB-INF/pages/main/employee.jsp"%>
 
 </head>
 
 <body>
+
+<h1 align="center"> Trains </h1>
 
 <table>
     <tr>

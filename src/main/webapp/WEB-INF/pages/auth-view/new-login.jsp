@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -5,6 +6,10 @@
     <title>Login</title>
     <style>
         <%@include file="/WEB-INF/css/style-for-login.css"%>
+        .btn {
+            text-decoration: none; /* Убираем подчёркивание */
+            border-radius: 3px; /* Скругляем уголки */
+        }
     </style>
 </head>
 <body>
@@ -26,8 +31,8 @@
                     <label for="password" class="youpasswd" data-icon="p"> Password </label>
                     <input id="password" name="password" required="required" type="password"  />
                 </p>
-                <p class="button">
-                    <button><a href="/registration/"> Registration </a></button>
+                <p class="btn">
+                    <button><a href="/registration/" class="btn"> Registration </a></button>
                 </p>
                 <p class="login button">
                     <input type="submit" value="Enter" />

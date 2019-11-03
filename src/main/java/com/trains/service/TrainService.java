@@ -1,10 +1,7 @@
 package com.trains.service;
 
 import com.trains.dao.TrainDAO;
-import com.trains.model.dto.PassengersFromTrainDTO;
-import com.trains.model.dto.TrainDTO;
-import com.trains.model.dto.TrainFromStationAToB;
-import com.trains.model.dto.TrainWayDTO;
+import com.trains.model.dto.*;
 import com.trains.model.entity.Train;
 import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,6 +94,20 @@ public class TrainService {
 
         localDate = localDate.plusDays(getDays-1);
         return localDate.toString();
+    }
+
+    public TrainDTO getTrainByDate (List<TrainDTO> trains, SearchStationDTO searchStationDTO, int trainID) {
+        TrainDTO trainDTO = new TrainDTO();
+        for (TrainDTO train: trains){
+            String depDate1 = train.getDepartureDate().toString();
+            //String depDate1 = trainService.getDateOfStation(trainID,searchStationDTO.getDepartureStation());
+            String depDate2 = searchStationDTO.getDepartureDate().toString();
+            if ((depDate1.equals(depDate2)) && train.getId()==trainID) {
+                trainDTO = train;
+            }
+        }
+
+        return trainDTO;
     }
 
 }

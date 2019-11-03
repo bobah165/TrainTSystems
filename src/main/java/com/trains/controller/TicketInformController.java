@@ -80,4 +80,5 @@ public class TicketInformController {
         logger.info("Delete ticket info by id = "+id);
         return modelAndView;
     }
+
 }

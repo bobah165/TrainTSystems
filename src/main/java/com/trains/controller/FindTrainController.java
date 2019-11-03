@@ -39,8 +39,8 @@ public class FindTrainController {
     public ModelAndView getTrainPageWithStations() {
         ModelAndView modelAndView = new ModelAndView();
       //  modelAndView.setViewName("train-view/find-train-by-stations");
-        modelAndView.setViewName("train-view/new-train");
-        logger.info("Read view train-view/new-train");
+        modelAndView.setViewName("train-view/find-train");
+        logger.info("Read view train-view/find-train");
         return modelAndView;
     }
 

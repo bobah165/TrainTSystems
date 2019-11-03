@@ -14,7 +14,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Time;
 import java.time.LocalDate;
@@ -27,8 +26,6 @@ public class TicketServiceTest {
     private TicketDTO ticketDTO;
     private Train train;
     private Passenger passenger;
-//    private TrainDTO trainDTO;
-//    private PassengerDTO passengerDTO;
 
     @Mock
     private TicketService ticketService;
@@ -67,8 +64,8 @@ public class TicketServiceTest {
         ticketDTO.setPassenger(passenger);
         ticketDTO.setTrain(train);
         ticketDTO.setId(1);
-        System.out.println();
     }
+
 
     @Test
     public void allTickets() {

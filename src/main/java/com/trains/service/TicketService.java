@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,21 @@ public class TicketService {
 
     public void addTicketByTrainDTOPassengerDTO (TrainDTO trainDTO, PassengerDTO passengerDTO) {
         ticketDAO.addTicketByTrainDTOPassengerDTO(trainMapper.mapDtoToEntity(trainDTO),passengerMapper.mapDtoToEntity(passengerDTO));
+    }
+
+    public boolean checkTicketByNameSurnameBirthday (String name, String surname, Date birthday, TrainDTO train)
+    {
+        List<Ticket> tickets = ticketDAO.allTickets();
+        for (Ticket ticketDTO: tickets) {
+            boolean b = ticketDTO.getPassenger().getName().equals(name);
+            boolean b1 = ticketDTO.getPassenger().getSurname().equals(surname);
+            boolean b2 = ticketDTO.getPassenger().getBirthday().isEqual(birthday.toLocalDate());
+            boolean b3 = ticketDTO.getTrain().getId()==train.getId();
+            if (b&&b1&&b2&&b3){
+                return true;
+            }
+        }
+        return false;
     }
 
 }

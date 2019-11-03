@@ -3,10 +3,11 @@
 <html>
 <head>
     <title>Ticket Message</title>
+    <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
 </head>
 <body>
 
-<h1>You have been registrated on this train or there is no free sit</h1>
+<h1 align="center">You have been registrated on this train or there is no free sit</h1>
 
 <c:url value="/main/pass" var="pass" />
 <a href="${pass}">Back to main</a>

@@ -3,25 +3,49 @@
 <html>
 <head>
     <title>buy ticket</title>
+    <style>
+        <%@include file="/WEB-INF/css/style-for-login.css"%>
+        #register,
+        #login {
+            width: 35%;
+        }
+    </style>
+    <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
+
 </head>
+
+
 <body>
 
-<form method="post" action="/buy/">
 
-    <label for="name">Name </label>
-    <input type="text" name="name" id="name">
+<div id="container_demo" >
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
+    <div id="wrapper">
+        <div id="login" class="animate form">
+            <form  action="/buy/" autocomplete="on" method="post">
+                <h1>Passenger Information</h1>
+                <p>
+                    <label for="name" class="uname" data-icon="u" > Name </label>
+                    <input id="name" name="name" required="required" type="text"/>
+                </p>
+                <p>
+                    <label for="surname" class="youpasswd" data-icon="p"> Surname </label>
+                    <input id="surname" name="surname" required="required" type="text"  />
+                </p>
+                <p>
+                    <label for="birthday" class="youpasswd" data-icon="p"> Birthday </label>
+                    <input id="birthday" name="birthday" required="required" type="date"  />
+                </p>
 
-    <label for="surname">Surname</label>
-    <input type="text" name="surname" id="surname">
+                <p class="login button">
+                    <input type="submit" value="Enter" />
+                </p>
 
-    <label for="birthday">Birthday</label>
-    <input type="date" name="birthday" id="birthday">
-
-
-    <input type="submit" value="Add Passenger">
-
-</form>
-
-
+            </form>
+        </div>
+    </div>
+</div>
 </body>
+
 </html>

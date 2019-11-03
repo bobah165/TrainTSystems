@@ -3,12 +3,15 @@
 <html>
 <head>
     <title>Ticket Info</title>
+    <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
 </head>
 <body>
 
 
+    <h1 align="center">Congratilation!!! You buy Ticket!!! <br>
+                            This is your ticket!!! </h1>
 
-   <h2>
+   <h2 align="center">
        Train Id ${ticketInfo.idTrain} <br>
        Passenger Id ${ticketInfo.idPassenger} <br>
        Dparture Station ${ticketInfo.departureStation}<br>
@@ -21,10 +24,6 @@
        Surname ${ticketInfo.surname}<br>
        Birthday ${ticketInfo.birthday}<br>
    </h2>
-
-   <c:url value="/main/pass" var="pass" />
-   <a href="${pass}">Back to main menu</a>
-
 
 
 
