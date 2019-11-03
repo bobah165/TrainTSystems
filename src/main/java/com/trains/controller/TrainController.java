@@ -91,10 +91,13 @@ public class TrainController {
 
     @GetMapping(value = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") int id) {
+        List<PassengersFromTrainDTO> passengersFromTrainDTOS = trainService.getPassengerFromTrain(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/train/");
-        trainService.delByID(id);
-        logger.info("Delete train by id = "+id);
+        if (passengersFromTrainDTOS.isEmpty()) {
+            modelAndView.setViewName("redirect:/train/");
+            trainService.delByID(id);
+            logger.info("Delete train by id = "+id);}
+        else modelAndView.setViewName("redirect:/train/message/");
         return modelAndView;
     }
 
@@ -106,6 +109,13 @@ public class TrainController {
         modelAndView.setViewName("train-view/get-passengers");
         logger.info("Read view /train-view/get-passengers");
         modelAndView.addObject("passfromtrainList",passengersFromTrainDTOS);
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/message")
+    public ModelAndView getMessage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("train-view/train-message");
         return modelAndView;
     }
 

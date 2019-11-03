@@ -16,16 +16,16 @@
     <input type="hidden" name="id" value="${train.id}">
 
     <label for="trainNumber">Train Number</label>
-    <input type="number" name="trainNumber" id="trainNumber">
+    <input type="number" name="trainNumber" id="trainNumber" value="${train.trainNumber}">
 
     <label for="trainWay">Train Way</label>
-    <input type="number" name="trainWay.id" id="trainWay">
+    <input type="number" name="trainWay.id" id="trainWay" value="${train.trainWay.id}">
 
     <label for="departureDate">Departure Date</label>
-    <input type="date" name="departureDate" id="departureDate">
+    <input type="date" name="departureDate" id="departureDate" value="${train.departureDate}">
 
     <label for="countSits">Count of Sits</label>
-    <input type="text" name="countSits" id="countSits">
+    <input type="text" name="countSits" id="countSits" value="${train.countSits}">
 
     <input type="submit" value="Edit Train">
 

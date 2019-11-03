@@ -1,9 +1,11 @@
-package com.trains.service;
+package com.trains.dao;
+
 
 import com.trains.model.dto.SearchStationDTO;
 import com.trains.model.dto.TicketInformDTO;
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.entity.Station;
+import com.trains.model.entity.TicketInform;
 import com.trains.model.entity.TrainWay;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,34 +18,35 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @RunWith(org.mockito.runners.MockitoJUnitRunner.class)
-public class TicketInformServiceTest {
-    private TicketInformDTO ticketInformDTO;
+public class TicketInformDAOTest {
+    private TicketInform ticketInform;
     private SearchStationDTO searchStationDTO;
     private TrainDTO trainDTO;
     private Station station;
     private TrainWay trainWay;
 
     @Mock
-    private TicketInformService ticketInformService;
+    private TicketInformDAO ticketInformDAO;
 
     @Before
     public void initTicketInform() {
-        ticketInformDTO = new TicketInformDTO();
+        ticketInform = new TicketInform();
         Date date = new Date(01-01-1987);
 
-        ticketInformDTO.setIdPassenger(1);
-        ticketInformDTO.setId(1);
-        ticketInformDTO.setBirthday(date);
-        ticketInformDTO.setSurname("smith");
-        ticketInformDTO.setName("bob");
-        ticketInformDTO.setArrivalDate(date);
-        ticketInformDTO.setDepartureTime("12:12:12");
-        ticketInformDTO.setDepartureStation("Piter");
-        ticketInformDTO.setIdTrain(1);
-        ticketInformDTO.setDepartureDate(date);
-        ticketInformDTO.setArrivalTime("13:13:13");
-        ticketInformDTO.setArrivalStation("Moscow");
+        ticketInform.setIdPassenger(1);
+        ticketInform.setId(1);
+        ticketInform.setBirthday(date.toLocalDate());
+        ticketInform.setSurname("smith");
+        ticketInform.setName("bob");
+        ticketInform.setArrivalDate(date.toLocalDate());
+        ticketInform.setDepartureTime(Time.valueOf("12:12:12"));
+        ticketInform.setDepartureStation("Piter");
+        ticketInform.setIdTrain(1);
+        ticketInform.setDepartureDate(date.toLocalDate());
+        ticketInform.setArrivalTime(Time.valueOf("13:13:13"));
+        ticketInform.setArrivalStation("Moscow");
 
         station = new Station();
         station.setNameStation("piter");
@@ -77,43 +80,18 @@ public class TicketInformServiceTest {
 
     @Test
     public void allTickets() {
-        List<TicketInformDTO> actual = new ArrayList<>();
-        actual.add(ticketInformDTO);
-        Mockito.when(ticketInformService.allTickets()).thenReturn(actual);
-    }
-
-    @Test
-    public void add() {
-        Mockito.doNothing().when(ticketInformService).add(ticketInformDTO);
-    }
-
-    @Test
-    public void delete() {
-            Mockito.doNothing().when(ticketInformService).delete(ticketInformDTO);
-    }
-
-    @Test
-    public void edit() {
-        Mockito.doNothing().when(ticketInformService).edit(ticketInformDTO);
+        List<TicketInform> actual = new ArrayList<>();
+        actual.add(ticketInform);
+        Mockito.when(ticketInformDAO.allTickets()).thenReturn(actual);
     }
 
     @Test
     public void getById() {
-        Mockito.when(ticketInformService.getById(1)).thenReturn(ticketInformDTO);
+        Mockito.when(ticketInformDAO.getById(1)).thenReturn(ticketInform);
     }
 
     @Test
     public void delByID() {
-        Mockito.doNothing().when(ticketInformService).delByID(1);
-    }
-
-    @Test
-    public void fullInformation(){
-        Mockito.when(ticketInformService.fullInformation(searchStationDTO, new ArrayList<>(),trainDTO)).thenReturn(ticketInformDTO);
-    }
-
-    @Test
-    public void checkDeapartureTime() {
-        Mockito.when(ticketInformService.checkDeapartureTime(ticketInformDTO)).thenReturn(true);
+        Mockito.doNothing().when(ticketInformDAO).delByID(1);
     }
 }

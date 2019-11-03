@@ -19,9 +19,19 @@
     <div class="top_bar"></div>
     <nav>
         <ul class="menu">
-            <li><a href="/train/">Train List</a> </li>
-            <li><a href="/station/">Stations List</a> </li>
-            <li><a href="/logout">Quit</a> </li>
+            <li><a href="">Train Information</a>
+                <ul class="submenu">
+                    <li><a href="/train/">Train List</a>
+                    <li><a href="/train/add">Add Train</a>
+                </ul>
+            </li>
+            <li><a href="">Station Information</a>
+                <ul class="submenu">
+                    <li><a href="/station/">Station List</a>
+                    <li><a href="/station/add/">Add Station</a>
+                </ul>
+            </li>
+            <li id="quit"><a href="/logout">Quit</a> </li>
         </ul>
     </nav>
 </header>

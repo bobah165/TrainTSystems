@@ -122,6 +122,8 @@ public class TrainDAO extends CrudDAO {
                         if (train.getTrainWay().getNumberWay() == trainWay.getNumberWay()) {
                             if (trainWay.getStation().getNameStation().equals(stationNameA)) {
                                 depTime = trainWay.getDepartureTime();
+                            }
+                            if (trainWay.getStation().getNameStation().equals(stationNameB)) {
                                 arrivTime = trainWay.getArrivalTime();
                             }
                         }

@@ -66,8 +66,7 @@ public class TicketInformService {
 
         Time departureTime = Time.valueOf("00:00:00");
         Time arrivalTime = Time.valueOf("00:00:00");
-//        List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
-//        logger.info("Get all ways");
+
         for (TrainWayDTO trainWayDTO:trainWayDTOS){
             int currentWay = trainDTO.getTrainWay().getNumberWay();
             if (trainWayDTO.getNumberWay()== currentWay){

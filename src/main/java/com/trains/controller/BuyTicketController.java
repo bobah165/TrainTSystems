@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalTime;
 import java.util.List;
 
 
@@ -121,10 +119,6 @@ public class BuyTicketController {
 
         // проверка покупки билета за 10 минут до отправления поезда
         if(!ticketInformService.checkDeapartureTime(ticketInformDTO)) {
-//        LocalTime depTime10minutes = LocalTime.parse(ticketInformDTO.getDepartureTime()).minusMinutes(10);
-//        LocalTime depTime = LocalTime.parse(ticketInformDTO.getDepartureTime());
-//        LocalTime currentTime = new Time(System.currentTimeMillis()).toLocalTime();
-//        if(currentTime.isAfter(depTime10minutes)&&currentTime.isBefore(depTime)) {
             modelAndView.setViewName("redirect:/ticket/message/");
             return modelAndView;
          }
@@ -140,86 +134,6 @@ public class BuyTicketController {
             return modelAndView;
         }
 
-        // учет добавленного билета в количестве свободных мест от станции до станции
-//        //находим все станции для маршрута поезда
-//        List<TrainWayDTO> trainOneWAy = new ArrayList<>();
-//        List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
-//        logger.info("Get all trains ways");
-//        for (TrainWayDTO trainWayDTO: trainWayDTOS){
-//            if (trainWayDTO.getNumberWay()==train.getTrainWay().getNumberWay())
-//            trainOneWAy.add(trainWayDTO);
-//            }
-//
-//        //добавляем данные о поезде в таблицу free_sets
-//        List<FreeSeatsDTO> freeSeatsDTOS = freeSeatsService.allSeats();
-//        logger.info("Get all free seats");
-//        List<FreeSeatsDTO> freeSeatInWay = new ArrayList<>();
-//        for (FreeSeatsDTO freeSeatsDTO: freeSeatsDTOS){
-//            for(TrainWayDTO trainWayDTO:trainOneWAy) {
-//                if (freeSeatsDTO.getIdTrain() == train.getId()
-//                        && freeSeatsDTO.getStationName().equals(trainWayDTO.getStation().getNameStation())) {
-//                    freeSeatInWay.add(freeSeatsDTO);
-//                    logger.info("Add free seats information "+freeSeatsDTO);
-//                }
-//            }
-//        }
-//
-//        // если в таблице нет информации о свободных местах то заполняем ее
-//        if (freeSeatInWay.isEmpty()) {
-//            for (TrainWayDTO trainWayDTO:trainOneWAy) {
-//                FreeSeatsDTO freeSeats = new FreeSeatsDTO();
-//                freeSeats.setStationName(trainWayDTO.getStation().getNameStation());
-//                freeSeats.setIdTrain(train.getId());
-//                freeSeats.setFreeSeats(train.getCountSits());
-//                freeSeatsService.add(freeSeats);
-//            }
-//        }
-//
-//        // поиск станций на которые покупается билет
-//        for (FreeSeatsDTO freeSeatsDTO: freeSeatInWay) {
-//
-//            // поиск станции отправления
-//            if(freeSeatsDTO.getStationName().equals(ticketInformDTO.getDepartureStation())) {
-//                if(freeSeatsDTO.getFreeSeats()>0) {
-//                    freeSeatsDTO.setFreeSeats(freeSeatsDTO.getFreeSeats() - 1);
-//                    freeSeatsService.edit(freeSeatsDTO);
-//                    logger.info("Edit free seats "+freeSeatsDTO);
-//                }
-//            }
-//        }
-//
-//        // добавление билетов (уменьшение числа свободных мест)
-//        FreeSeatsDTO freeSeatsDTOdeparture = freeSeatsService.getByStationAndTrainID(ticketInformDTO.getDepartureStation(),ticketInformDTO.getIdTrain());
-//        FreeSeatsDTO freeSeatsDTOarrival = freeSeatsService.getByStationAndTrainID(ticketInformDTO.getArrivalStation(),ticketInformDTO.getIdTrain());
-//        if(((freeSeatsDTOdeparture.getId()+1)!=freeSeatsDTOarrival.getId())||
-//                ((freeSeatsDTOdeparture.getId()-1)!=freeSeatsDTOarrival.getId())) {
-//
-//            int depNumber =  freeSeatInWay.indexOf(freeSeatsDTOdeparture);
-//            int arrNumber = freeSeatInWay.indexOf(freeSeatsDTOarrival);
-//            if (depNumber>arrNumber) {
-//                for (int j = (depNumber-1); j>arrNumber;j-- ) {
-//                    if(freeSeatInWay.get(j).getFreeSeats()>0) {
-//                        freeSeatInWay.get(j).setFreeSeats(freeSeatInWay.get(j).getFreeSeats() - 1);
-//                        freeSeatsService.edit(freeSeatInWay.get(j));
-//                    } else {
-//                        modelAndView.setViewName("redirect:/ticket/message/");
-//                        return modelAndView;
-//                    }
-//                }
-//            }
-//
-//            if (depNumber<arrNumber) {
-//                for (int j = depNumber+1; j<arrNumber;j++ ) {
-//                    if(freeSeatInWay.get(j).getFreeSeats()>0) {
-//                        freeSeatInWay.get(j).setFreeSeats(freeSeatInWay.get(j).getFreeSeats()-1);
-//                        freeSeatsService.edit(freeSeatInWay.get(j));
-//                    } else {
-//                        modelAndView.setViewName("redirect:/ticket/message/");
-//                        return modelAndView;
-//                    }
-//                }
-//            }
-//        }
         modelAndView.setViewName("redirect:/buy/ticket/");
         return modelAndView;
     }

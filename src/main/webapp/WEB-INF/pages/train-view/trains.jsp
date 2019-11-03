@@ -46,14 +46,5 @@
     </c:forEach>
 </table>
 
-
-<%--<h2>ADD</h2>--%>
-<%--<c:url value="/train/add" var="add" />--%>
-<%--<a href="${add}">Add new Train</a>--%>
-
-<%--<h2>Find</h2>--%>
-<%--<c:url value="/buy/trainfromstations" var="find" />--%>
-<%--<a href="${find}">Find Train</a>--%>
-
 </body>
 </html>

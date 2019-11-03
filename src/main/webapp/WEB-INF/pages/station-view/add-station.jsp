@@ -4,17 +4,39 @@
 <html>
 <head>
     <title>Add Station</title>
+
+    <style>
+        <%@include file="/WEB-INF/css/style-for-login.css"%>
+        #register,
+        #login {
+            width: 20%;
+        }
+    </style>
+    <%@include file="/WEB-INF/pages/main/employee.jsp"%>
+
 </head>
 <body>
 
-<form action="/station/add" method="post">
+<div id="container_demo" >
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
+    <div id="wrapper">
+        <div id="login" class="animate form">
+            <form action="/station/add" autocomplete="on" method="post">
+                <h1>Station</h1>
+                <p>
+                    <label for="nameStation" class="uname" data-icon="u" > Station Name </label>
+                    <input id="nameStation" name="nameStation" required="required" type="text"/>
+                </p>
 
-    <label for="nameStation">Station Name</label>
-    <input type="text" name="nameStation" id="nameStation">
+                <p class="login button">
+                    <input type="submit" value="Add" />
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
 
-    <input type="submit" value="Add new Station">
-
-</form>
 
 </body>
 </html>

@@ -34,9 +34,6 @@
     </c:forEach>
 </table>
 
-<h2>ADD</h2>
-<c:url value="/station/add" var="addStation"/>
-<a href="${addStation}">Add new Station</a>
 
 </body>
 </html>

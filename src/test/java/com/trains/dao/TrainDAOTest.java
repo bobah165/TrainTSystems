@@ -1,10 +1,11 @@
-package com.trains.service;
+package com.trains.dao;
 
 
 import com.trains.model.dto.PassengersFromTrainDTO;
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.model.entity.Station;
+import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainWay;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,15 +21,15 @@ import java.util.List;
 
 
 @RunWith(org.mockito.runners.MockitoJUnitRunner.class)
-public class TrainServiceTest {
-    private TrainDTO trainDTO;
+public class TrainDAOTest {
+    private Train train;
     private TrainWay trainWay;
     private Station station;
     private PassengersFromTrainDTO passengersFromTrainDTO;
     private TrainFromStationAToB trainFromStationAToB;
 
     @Mock
-    private TrainService trainService;
+    private TrainDAO trainDAO;
 
     @Before
     public void initTrain() {
@@ -46,14 +47,14 @@ public class TrainServiceTest {
         trainWay.setDaysInWay(1);
 
 
-        trainDTO = new TrainDTO();
+        train = new Train();
         Date date = new Date(11-11-2019);
-        trainDTO.setDepartureDate(date);
-        trainDTO.setTrainWay(trainWay);
-        trainDTO.setTrainNumber(1);
-        trainDTO.setCountSits(600);
-        trainDTO.setTickets(new ArrayList<>());
-        trainDTO.setId(1);
+        train.setDepartureDate(date.toLocalDate());
+        train.setTrainWay(trainWay);
+        train.setTrainNumber(1);
+        train.setCountSits(600);
+        train.setTickets(new ArrayList<>());
+        train.setId(1);
 
         passengersFromTrainDTO = new PassengersFromTrainDTO();
         LocalDate localDate = LocalDate.of(2019,10,25);
@@ -74,58 +75,36 @@ public class TrainServiceTest {
 
 
     @Test
-    public void allTrains() {
-        List<TrainDTO> actual = new ArrayList<>();
-        actual.add(trainDTO);
-        Mockito.when(trainService.allTrains()).thenReturn(actual);
-    }
-
-    @Test
-    public void add() {
-        Mockito.doNothing().when(trainService).add(trainDTO);
-    }
-
-    @Test
-    public void delete() {
-        Mockito.doNothing().when(trainService).delete(trainDTO);
-    }
-
-    @Test
-    public void edit() {
-        Mockito.doNothing().when(trainService).edit(trainDTO);
+    public void allTrain() {
+        List<Train> actual = new ArrayList<>();
+        actual.add(train);
+        Mockito.when(trainDAO.allTrain()).thenReturn(actual);
     }
 
     @Test
     public void getById() {
-        Mockito.when(trainService.getById(1)).thenReturn(trainDTO);
+        Mockito.when(trainDAO.getById(1)).thenReturn(train);
     }
 
     @Test
     public void delByID() {
-        Mockito.doNothing().when(trainService).delByID(1);
+        Mockito.doNothing().when(trainDAO).delByID(1);
     }
 
     @Test
     public void getPassengerFromTrain() {
         List<PassengersFromTrainDTO> actual = new ArrayList<>();
         actual.add(passengersFromTrainDTO);
-        Mockito.when(trainService.getPassengerFromTrain(1)).thenReturn(actual);
-
-
+        Mockito.when(trainDAO.getPassengerFromTrain(1)).thenReturn(actual);
     }
 
     @Test
     public void getTrainsFromStations() {
         List<TrainFromStationAToB> actual = new ArrayList<>();
         actual.add(trainFromStationAToB);
-        Mockito.when(trainService.getTrainsFromStations(trainFromStationAToB.getDeprtureStation(),
+        Mockito.when(trainDAO.getTrainsFromStations(trainFromStationAToB.getDeprtureStation(),
                 trainFromStationAToB.getArrivalStation(),trainFromStationAToB.getDepartureTime(),
                 trainFromStationAToB.getArrivalTime(),LocalDate.of(2019,10,25))).thenReturn(actual);
 
-    }
-
-    @Test
-    public void getDateOfStation() {
-        Mockito.when(trainService.getDateOfStation(1,"piter")).thenReturn("12-12-2019");
     }
 }

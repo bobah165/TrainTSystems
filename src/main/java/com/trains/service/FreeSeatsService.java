@@ -70,6 +70,7 @@ public class FreeSeatsService {
         return freeSeatsDTO;
     }
 
+
     public boolean checkFreeSeats(TrainDTO train, TicketInformDTO ticketInformDTO) {
         boolean isAddTicket = true;
         //находим все станции по маршруту поезда
@@ -86,7 +87,6 @@ public class FreeSeatsService {
                 .sorted(Comparator.comparing(TrainWayDTO::getDaysInWay)
                                     .thenComparing(TrainWayDTO::getShedule))
                 .collect(Collectors.toList());
-
 
         //добавляем данные о поезде в таблицу free_sets
         List<FreeSeats> freeSeats = freeSeatsDAO.allSeats();
@@ -111,7 +111,6 @@ public class FreeSeatsService {
             }
         }
 
-
         List<FreeSeats> sortedFreeSeatInWay = freeSeatInWay.stream()
                 .sorted(Comparator.comparing(FreeSeats::getId))
                 .collect(Collectors.toList());
@@ -130,31 +129,16 @@ public class FreeSeatsService {
             }
         }
 
-
-
         // добавление билетов (уменьшение числа свободных мест)
         // получаем записи из таблицы Free Seats о станции отправления и прибытия
         FreeSeats freeSeatsDeparture  = freeSeatsDAO.getByStationAndTrainID(ticketInformDTO.getDepartureStation(),ticketInformDTO.getIdTrain());
         FreeSeats freeSeatsArrival = freeSeatsDAO.getByStationAndTrainID(ticketInformDTO.getArrivalStation(),ticketInformDTO.getIdTrain());
 
         if(((freeSeatsDeparture.getId()+1)!=freeSeatsArrival.getId())) {
-           //     ||((freeSeatsDeparture.getId()-1)!=freeSeatsArrival.getId())) {
 
             int depNumber =  sortedFreeSeatInWay.indexOf(freeSeatsDeparture);
             int arrNumber = sortedFreeSeatInWay.indexOf(freeSeatsArrival);
-//            if (depNumber>arrNumber) {
-//                for (int j = (depNumber-1); j>arrNumber;j-- ) {
-//                    if(freeSeatInWay.get(j).getFreeSeats()>0) {
-//                        freeSeatInWay.get(j).setFreeSeats(freeSeatInWay.get(j).getFreeSeats() - 1);
-//                        freeSeatsDAO.edit(freeSeatInWay.get(j));
-//                    } else {
-//                        modelAndView.setViewName("redirect:/ticket/message/");
-//                        return modelAndView;
-//                    }
-//                }
-//            }
 
-           // if (depNumber<arrNumber) {
                 for (int j = depNumber+1; j<arrNumber;j++ ) {
                     if(sortedFreeSeatInWay.get(j).getFreeSeats()>0) {
                         sortedFreeSeatInWay.get(j).setFreeSeats(sortedFreeSeatInWay.get(j).getFreeSeats()-1);
@@ -164,12 +148,9 @@ public class FreeSeatsService {
                         return isAddTicket;
                     }
                 }
-            //}
         }
-
         return isAddTicket;
     }
-
 
 
     @Override

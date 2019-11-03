@@ -2,6 +2,8 @@ package com.trains.service;
 
 
 import com.trains.model.dto.FreeSeatsDTO;
+import com.trains.model.dto.TicketInformDTO;
+import com.trains.model.dto.TrainDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -56,6 +58,10 @@ public class FreeSeatsServiceTest {
 
     @Test
     public void getByStationAndTrainID() {
+        Mockito.when(freeSeatsService.getByStationAndTrainID(freeSeatsDTO.getStationName(),freeSeatsDTO.getIdTrain())).thenReturn(freeSeatsDTO);
+    }
+    @Test
+    public void checkFreeSeats() {
         Mockito.when(freeSeatsService.getByStationAndTrainID(freeSeatsDTO.getStationName(),freeSeatsDTO.getIdTrain())).thenReturn(freeSeatsDTO);
     }
 }

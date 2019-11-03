@@ -52,6 +52,7 @@ public class TrainService {
     public void delete(TrainDTO trainDTO) {
         Train train = trainMapper.mapDtoToEntity(trainDTO);
         trainDAO.delete(train);
+
     }
 
     public void edit(TrainDTO trainDTO) {
