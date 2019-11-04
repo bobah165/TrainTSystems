@@ -10,7 +10,7 @@
     <form action="/login/process/" method="post">
         <div><label> User Name : <input type="text" name="login"/> </label></div>
         <div><label> Password: <input type="password" name="password"/> </label></div>
-<%--        <input type="hidden" name="${_csrf.parametrName}" value="${_csrf.token}"/>--%>
+
         <div><input type="submit" value="Sign In"/></div>
     </form>
 

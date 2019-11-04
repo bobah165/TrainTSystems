@@ -3,24 +3,33 @@ package com.trains.model.dto;
 
 import com.trains.model.entity.Ticket;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 import java.util.List;
 
 public class PassengerDTO {
 
     private int id;
+
+    @Pattern(regexp = "^[A-Za-z]+$", message = "wrong name")
     private String name;
+    @Pattern(regexp = "^[A-Za-z]+$", message = "wrong surname")
     private String surname;
     private Date birthday;
+    @Size(min = 5,max = 32,message = "wrong login")
     private String login;
+    @Size(min = 5,max = 32, message = "wrong password")
     private String password;
+    @Email(message = "wrong email")
     private String email;
     private List<Ticket> tickets;
     private String user;
 
-    public String getUser() {
-        return user;
-    }
+
+    public String getUser() { return user; }
 
     public void setUser(String user) {
         this.user = user;

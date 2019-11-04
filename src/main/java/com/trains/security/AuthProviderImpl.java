@@ -48,7 +48,12 @@ public class AuthProviderImpl implements AuthenticationProvider {
         }
 
         List<GrantedAuthority> authorities = new ArrayList<>(); // задаем роли для пользователей
-        return new UsernamePasswordAuthenticationToken(passengerDTO,null,authorities);
+
+        authorities.add(new SimpleGrantedAuthority(passengerDTO.getUser()));
+
+        UsernamePasswordAuthenticationToken userToken = new UsernamePasswordAuthenticationToken(passengerDTO,null,authorities);
+
+        return userToken;
     }
 
 //    @Override

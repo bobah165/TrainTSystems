@@ -2,27 +2,30 @@ package com.trains.controller;
 
 import com.trains.model.dto.PassengerDTO;
 import com.trains.service.PassengerService;
-import com.trains.util.UserValidator;
+import com.trains.util.validator.PassengerDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 
 
 @Controller
 @RequestMapping("/")
 public class LoginController {
     private PassengerService passengerService;
-    private UserValidator userValidator;
+    private PassengerDTOValidator passengerDTOValidator;
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
-    public void setUserValidator(UserValidator userValidator) {
-        this.userValidator = userValidator;
+    public void setPassengerDTOValidator(PassengerDTOValidator passengerDTOValidator) {
+        this.passengerDTOValidator = passengerDTOValidator;
     }
+
 
     @Autowired
     public void setPassengerService(PassengerService passengerService) {
@@ -47,8 +50,13 @@ public class LoginController {
     }
 
     @PostMapping(value = "/registration")
-    public ModelAndView registration (@ModelAttribute PassengerDTO passengerDTO) {
+    public ModelAndView registration (@ModelAttribute @Valid PassengerDTO passengerDTO, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
+        passengerDTOValidator.validate(passengerDTO,result);
+        if(result.hasErrors()) {
+            modelAndView.setViewName("redirect:/passenger/message/");
+            return modelAndView;
+        }
         passengerDTO.setUser("passenger");
         passengerService.add(passengerDTO);
         logger.info("Add object Passenger from frontend");

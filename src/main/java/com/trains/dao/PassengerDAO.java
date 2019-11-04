@@ -6,6 +6,7 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -64,10 +65,19 @@ public class PassengerDAO extends CrudDAO {
     public Passenger getPassengerBylogin (String login) {
         Session session = sessionFactory.getCurrentSession();
         Passenger passengerLog = new Passenger();
+        passengerLog.setUser("none");
+        passengerLog.setBirthday(LocalDate.of(1990,12,12));
+        passengerLog.setEmail("none");
+        passengerLog.setId(0);
+        passengerLog.setLogin("none");
+        passengerLog.setPassword("none");
+        passengerLog.setSurname("none");
+        passengerLog.setName("none");
         List<Passenger> passengers = session.createQuery("from Passenger ").list();
         for (Passenger passenger: passengers) {
             if (passenger.getLogin().equals(login)) {
                 passengerLog = passenger;
+                break;
             }
         }
 

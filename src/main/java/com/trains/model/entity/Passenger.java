@@ -1,11 +1,14 @@
 package com.trains.model.entity;
 
 
-import org.hibernate.annotations.Proxy;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
@@ -17,19 +20,28 @@ public class Passenger implements UserDetails {
     @Column(name = "id_passenger")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(name = "name")
+   // @Pattern(regexp = "[A-z][a-z]")
     private String name;
+
     @Column(name = "surname")
+   // @Pattern(regexp = "[A-z][a-z]")
     private String surname;
 
     @Column(name = "birthday")
     private LocalDate birthday;
 
     @Column(name = "login")
+  //  @Size(min = 2,max = 32)
     private String login;
+
     @Column(name = "password")
+  //  @Size(min = 5,max = 32)
     private String password;
+
     @Column(name = "email")
+  //  @Email
     private String email;
     @Column(name = "user_state")
     private String user;

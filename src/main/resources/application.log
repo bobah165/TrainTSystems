@@ -2010,3 +2010,506 @@
 2019-11-03 23:34:43 INFO  DispatcherServlet:547 - Completed initialization in 890 ms
 2019-11-03 23:35:15 INFO  TrainController:33 - Get all trains
 2019-11-03 23:35:15 INFO  TrainController:36 - Read view /train-view/trains
+2019-11-04 18:22:54 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 18:22:57 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 18:22:57 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 18:22:58 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:23:01 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:23:03 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54b72f59, org.springframework.security.web.context.SecurityContextPersistenceFilter@33c164a6, org.springframework.security.web.header.HeaderWriterFilter@452f3da3, org.springframework.security.web.authentication.logout.LogoutFilter@6082a07b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4b533697, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a68190c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@de11135, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@78350de1, org.springframework.security.web.session.SessionManagementFilter@604c3b86, org.springframework.security.web.access.ExceptionTranslationFilter@7c765b76, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@407e1bc6]
+2019-11-04 18:23:03 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9582 ms
+2019-11-04 18:23:03 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 18:23:04 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:23:04 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:23:04 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@714f6232, org.springframework.security.web.context.SecurityContextPersistenceFilter@5831f927, org.springframework.security.web.header.HeaderWriterFilter@46f80c2e, org.springframework.security.web.authentication.logout.LogoutFilter@4b7d098d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@14efad89, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@8550635, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@e4ae26d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@21939b83, org.springframework.security.web.session.SessionManagementFilter@797780a1, org.springframework.security.web.access.ExceptionTranslationFilter@433260d4, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@400ea4cc]
+2019-11-04 18:23:04 INFO  DispatcherServlet:547 - Completed initialization in 1037 ms
+2019-11-04 18:23:05 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:23:06 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:23:07 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:23:07 WARN  PageNotFound:1251 - No mapping for GET /favicon.ico
+2019-11-04 18:23:15 INFO  LoginController:45 - Read view /auth-view/registration.jsp
+2019-11-04 18:24:17 INFO  LoginController:54 - Add object Passenger from frontend
+2019-11-04 18:24:17 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:40:40 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 18:40:43 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 18:40:43 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 18:40:44 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:41:03 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:41:20 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5ed1671a, org.springframework.security.web.context.SecurityContextPersistenceFilter@26feac26, org.springframework.security.web.header.HeaderWriterFilter@51fa91ed, org.springframework.security.web.authentication.logout.LogoutFilter@1a8967b5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@699519b3, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@75c227b7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@63833a5e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70d4c52a, org.springframework.security.web.session.SessionManagementFilter@3e0d184c, org.springframework.security.web.access.ExceptionTranslationFilter@33d80abd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4897a322]
+2019-11-04 18:41:21 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 41052 ms
+2019-11-04 18:41:21 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 18:41:23 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:41:24 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:41:26 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3cd0567d, org.springframework.security.web.context.SecurityContextPersistenceFilter@2c206e27, org.springframework.security.web.header.HeaderWriterFilter@430a8431, org.springframework.security.web.authentication.logout.LogoutFilter@5ec7952b, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@66f4e9, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d551bfe, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ae93d69, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ad1cead, org.springframework.security.web.session.SessionManagementFilter@6164a1ce, org.springframework.security.web.access.ExceptionTranslationFilter@3e33fce9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3bc39644]
+2019-11-04 18:41:27 INFO  DispatcherServlet:547 - Completed initialization in 6333 ms
+2019-11-04 18:41:29 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:41:33 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:41:34 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:41:47 INFO  LoginController:45 - Read view /auth-view/registration.jsp
+2019-11-04 18:42:20 INFO  LoginController:54 - Add object Passenger from frontend
+2019-11-04 18:42:20 INFO  LoginController:64 - Read view /auth-view/new-login.jsp
+2019-11-04 18:42:40 INFO  LoginController:45 - Read view /auth-view/registration.jsp
+2019-11-04 18:44:27 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 18:44:31 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 18:44:31 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 18:44:32 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:44:51 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:45:08 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1ffa829d, org.springframework.security.web.context.SecurityContextPersistenceFilter@5c89ebb2, org.springframework.security.web.header.HeaderWriterFilter@4eda9267, org.springframework.security.web.authentication.logout.LogoutFilter@61fcb137, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@36361e8a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@379ed576, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@349284ee, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@371962d6, org.springframework.security.web.session.SessionManagementFilter@1b83dbea, org.springframework.security.web.access.ExceptionTranslationFilter@8b4886c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@57844ed0]
+2019-11-04 18:45:09 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 41141 ms
+2019-11-04 18:45:09 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 18:45:11 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:45:12 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:45:13 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@12b4f666, org.springframework.security.web.context.SecurityContextPersistenceFilter@b3b0436, org.springframework.security.web.header.HeaderWriterFilter@59f54d26, org.springframework.security.web.authentication.logout.LogoutFilter@124dd9aa, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7df0f59, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@15a36f71, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@66cc8c9e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@f3b55ec, org.springframework.security.web.session.SessionManagementFilter@69d3b4d1, org.springframework.security.web.access.ExceptionTranslationFilter@1ae08ccc, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@ed07fab]
+2019-11-04 18:45:15 INFO  DispatcherServlet:547 - Completed initialization in 6335 ms
+2019-11-04 18:45:17 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 18:45:22 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 18:45:22 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 18:45:29 INFO  LoginController:47 - Read view /auth-view/registration.jsp
+2019-11-04 18:46:18 INFO  LoginController:61 - Add object Passenger from frontend
+2019-11-04 18:46:18 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 18:48:14 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 18:48:17 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 18:48:18 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 18:48:19 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:48:38 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:48:55 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f8079a2, org.springframework.security.web.context.SecurityContextPersistenceFilter@5471b950, org.springframework.security.web.header.HeaderWriterFilter@2596f70e, org.springframework.security.web.authentication.logout.LogoutFilter@f700b72, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@46840918, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5451eb5b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@45a2dd5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@652673d8, org.springframework.security.web.session.SessionManagementFilter@2e41e7b2, org.springframework.security.web.access.ExceptionTranslationFilter@4407d9ab, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c6ae1c4]
+2019-11-04 18:48:56 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 41358 ms
+2019-11-04 18:48:56 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 18:48:58 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 18:48:59 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 18:49:00 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1760b170, org.springframework.security.web.context.SecurityContextPersistenceFilter@6ae97668, org.springframework.security.web.header.HeaderWriterFilter@7c3efc82, org.springframework.security.web.authentication.logout.LogoutFilter@2ac9c30e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@16f23d60, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a324cb5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@51e3719d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@681a56f3, org.springframework.security.web.session.SessionManagementFilter@259bd946, org.springframework.security.web.access.ExceptionTranslationFilter@79093c5c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@588612b1]
+2019-11-04 18:49:02 INFO  DispatcherServlet:547 - Completed initialization in 6248 ms
+2019-11-04 18:49:04 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 18:49:08 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 18:49:08 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 18:49:15 INFO  LoginController:47 - Read view /auth-view/registration.jsp
+2019-11-04 18:59:33 INFO  LoginController:61 - Add object Passenger from frontend
+2019-11-04 18:59:33 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:00:59 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 19:01:02 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 19:01:03 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 19:01:04 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:01:10 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 19:01:36 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:01:54 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ba9759d, org.springframework.security.web.context.SecurityContextPersistenceFilter@27d8eb9a, org.springframework.security.web.header.HeaderWriterFilter@6e493d2c, org.springframework.security.web.authentication.logout.LogoutFilter@c1df0b8, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@11106a6d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1a51226, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@614060a9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7a29920e, org.springframework.security.web.session.SessionManagementFilter@4b7e4bd0, org.springframework.security.web.access.ExceptionTranslationFilter@6e505346, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5e3491ff]
+2019-11-04 19:01:55 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 55747 ms
+2019-11-04 19:01:55 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 19:01:57 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:01:59 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:02:00 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@287549cb, org.springframework.security.web.context.SecurityContextPersistenceFilter@47417c25, org.springframework.security.web.header.HeaderWriterFilter@423a012f, org.springframework.security.web.authentication.logout.LogoutFilter@1c370d0a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@54c4c96e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@39ce2b16, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bef7679, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43cb4592, org.springframework.security.web.session.SessionManagementFilter@2823f98f, org.springframework.security.web.access.ExceptionTranslationFilter@6a429665, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@54a853bb]
+2019-11-04 19:02:02 INFO  DispatcherServlet:547 - Completed initialization in 6955 ms
+2019-11-04 19:02:04 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:02:08 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:02:09 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:02:11 INFO  LoginController:47 - Read view /auth-view/registration.jsp
+2019-11-04 19:04:21 INFO  LoginController:47 - Read view /auth-view/registration.jsp
+2019-11-04 19:06:26 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 19:06:29 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 19:06:30 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 19:06:30 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:06:36 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 19:06:57 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:07:14 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3e2fa26f, org.springframework.security.web.context.SecurityContextPersistenceFilter@60f21f3c, org.springframework.security.web.header.HeaderWriterFilter@3d46f503, org.springframework.security.web.authentication.logout.LogoutFilter@391facfb, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4c62d59d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1910ad14, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@31d6874b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a351504, org.springframework.security.web.session.SessionManagementFilter@3aadaba7, org.springframework.security.web.access.ExceptionTranslationFilter@4d32f6f8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@c5c2dd2]
+2019-11-04 19:07:14 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 48121 ms
+2019-11-04 19:07:14 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 19:07:17 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:07:18 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:07:19 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@182b4d02, org.springframework.security.web.context.SecurityContextPersistenceFilter@78db0ac3, org.springframework.security.web.header.HeaderWriterFilter@5f69b018, org.springframework.security.web.authentication.logout.LogoutFilter@8bf7ddb, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@24651fcb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5b9570c8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@496ee2d2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@33da0355, org.springframework.security.web.session.SessionManagementFilter@49211622, org.springframework.security.web.access.ExceptionTranslationFilter@69a94898, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7c28090b]
+2019-11-04 19:07:21 INFO  DispatcherServlet:547 - Completed initialization in 6731 ms
+2019-11-04 19:07:23 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:07:27 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:07:28 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:07:30 INFO  LoginController:47 - Read view /auth-view/registration.jsp
+2019-11-04 19:30:51 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 19:30:53 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 19:30:54 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 19:30:55 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:30:56 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 19:30:58 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:31:01 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1e0786b1, org.springframework.security.web.context.SecurityContextPersistenceFilter@207bccae, org.springframework.security.web.header.HeaderWriterFilter@7b0a65a2, org.springframework.security.web.authentication.logout.LogoutFilter@228f3935, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6909ac5d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@621e250, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5c482677, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6818ca2c, org.springframework.security.web.session.SessionManagementFilter@1cdc5119, org.springframework.security.web.access.ExceptionTranslationFilter@3a8a6813, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4464c24c]
+2019-11-04 19:31:01 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9980 ms
+2019-11-04 19:31:01 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 19:31:01 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:31:01 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:31:02 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44671918, org.springframework.security.web.context.SecurityContextPersistenceFilter@467a2146, org.springframework.security.web.header.HeaderWriterFilter@30ad35fe, org.springframework.security.web.authentication.logout.LogoutFilter@1ba5fa8f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3a1ff168, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a94bac2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@734f78ab, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5926249a, org.springframework.security.web.session.SessionManagementFilter@6cb08653, org.springframework.security.web.access.ExceptionTranslationFilter@a8cd1ca, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5f2a5150]
+2019-11-04 19:31:02 INFO  DispatcherServlet:547 - Completed initialization in 1180 ms
+2019-11-04 19:31:02 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:31:04 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:31:04 INFO  LoginController:71 - Read view /auth-view/new-login.jsp
+2019-11-04 19:31:06 INFO  LoginController:47 - Read view /auth-view/registration.jsp
+2019-11-04 19:31:32 WARN  PageNotFound:1251 - No mapping for GET /passenger/message/%3Cc:url%20value=%22/ROOT/train.jpg%22%3E%3C/c:url%3E
+2019-11-04 19:32:27 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 19:32:29 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 19:32:30 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 19:32:30 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:32:31 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 19:32:33 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:32:35 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58d53ded, org.springframework.security.web.context.SecurityContextPersistenceFilter@38bad0ef, org.springframework.security.web.header.HeaderWriterFilter@4662512b, org.springframework.security.web.authentication.logout.LogoutFilter@481eb0a5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@10759247, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@71f38104, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24a8f30e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@16b9eb5c, org.springframework.security.web.session.SessionManagementFilter@429a6e7a, org.springframework.security.web.access.ExceptionTranslationFilter@373aa9b7, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1dfb5fe5]
+2019-11-04 19:32:35 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 8304 ms
+2019-11-04 19:32:35 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 19:32:36 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:32:36 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:32:36 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32c58ee3, org.springframework.security.web.context.SecurityContextPersistenceFilter@1b90e985, org.springframework.security.web.header.HeaderWriterFilter@5bd8ec99, org.springframework.security.web.authentication.logout.LogoutFilter@337ee1c0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1a62c279, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7c6c12ea, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@604c95da, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@48a8da50, org.springframework.security.web.session.SessionManagementFilter@1929490a, org.springframework.security.web.access.ExceptionTranslationFilter@478413fe, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@52afba0b]
+2019-11-04 19:32:36 INFO  DispatcherServlet:547 - Completed initialization in 1021 ms
+2019-11-04 19:33:22 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 19:33:24 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 19:33:24 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 19:33:25 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:33:26 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 19:33:28 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:33:30 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7207a13a, org.springframework.security.web.context.SecurityContextPersistenceFilter@399def14, org.springframework.security.web.header.HeaderWriterFilter@77eaefc3, org.springframework.security.web.authentication.logout.LogoutFilter@253951af, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@5e1a6886, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@63b58ae7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@325d5fe2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ce26c66, org.springframework.security.web.session.SessionManagementFilter@c17f6b6, org.springframework.security.web.access.ExceptionTranslationFilter@65730555, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7f11f6ed]
+2019-11-04 19:33:30 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 7990 ms
+2019-11-04 19:33:30 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 19:33:30 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:33:31 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:33:31 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fce5ab2, org.springframework.security.web.context.SecurityContextPersistenceFilter@4aebb3e0, org.springframework.security.web.header.HeaderWriterFilter@e631b04, org.springframework.security.web.authentication.logout.LogoutFilter@2f071bfe, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@72aadf19, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@14b8e771, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@29565d9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6cae4bf9, org.springframework.security.web.session.SessionManagementFilter@3a32f1a4, org.springframework.security.web.access.ExceptionTranslationFilter@338da00c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@135f233]
+2019-11-04 19:33:31 INFO  DispatcherServlet:547 - Completed initialization in 1235 ms
+2019-11-04 19:55:16 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 19:55:19 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 19:55:19 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 19:55:20 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:55:21 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 19:55:23 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:55:25 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3ad124ed, org.springframework.security.web.context.SecurityContextPersistenceFilter@7d82bf69, org.springframework.security.web.header.HeaderWriterFilter@2cc70ce7, org.springframework.security.web.authentication.logout.LogoutFilter@2f0c84e5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@7ad9c10b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@444f9c3f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d65e46b, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@19365aba, org.springframework.security.web.session.SessionManagementFilter@366f71a9, org.springframework.security.web.access.ExceptionTranslationFilter@7b13c4c9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3018069f]
+2019-11-04 19:55:25 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9730 ms
+2019-11-04 19:55:25 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 19:55:26 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 19:55:26 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 19:55:27 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@58f6103a, org.springframework.security.web.context.SecurityContextPersistenceFilter@233ce28c, org.springframework.security.web.header.HeaderWriterFilter@59aa7409, org.springframework.security.web.authentication.logout.LogoutFilter@5fa95ad0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1dd077e6, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@d69947a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@769a3e2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6c70c91e, org.springframework.security.web.session.SessionManagementFilter@5091113e, org.springframework.security.web.access.ExceptionTranslationFilter@1037c998, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@18e4d58f]
+2019-11-04 19:55:27 INFO  DispatcherServlet:547 - Completed initialization in 1254 ms
+2019-11-04 19:55:28 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 19:55:29 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 19:55:29 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 19:55:42 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:00:04 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:00:08 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:00:08 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:00:09 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:00:14 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:00:36 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:00:53 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4421e3ba, org.springframework.security.web.context.SecurityContextPersistenceFilter@5ea89821, org.springframework.security.web.header.HeaderWriterFilter@54f92bc7, org.springframework.security.web.authentication.logout.LogoutFilter@1cd14525, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@8edcb59, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5d86727b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@34c4b169, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3f8f4c34, org.springframework.security.web.session.SessionManagementFilter@28f17112, org.springframework.security.web.access.ExceptionTranslationFilter@73b0b3ee, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3ac1cad0]
+2019-11-04 20:00:53 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 48850 ms
+2019-11-04 20:00:53 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:00:56 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:00:57 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:00:58 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3a221e63, org.springframework.security.web.context.SecurityContextPersistenceFilter@830a134, org.springframework.security.web.header.HeaderWriterFilter@12c20033, org.springframework.security.web.authentication.logout.LogoutFilter@1cb01b19, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@36aff7c1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@55e40dff, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@57a54ce8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@92ec93d, org.springframework.security.web.session.SessionManagementFilter@7ac63306, org.springframework.security.web.access.ExceptionTranslationFilter@a6aec69, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3280309]
+2019-11-04 20:01:00 INFO  DispatcherServlet:547 - Completed initialization in 6704 ms
+2019-11-04 20:01:02 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:01:06 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:01:06 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:01:19 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:03:50 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:03:55 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:03:56 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:03:57 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:04:02 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:04:24 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:04:41 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@51411554, org.springframework.security.web.context.SecurityContextPersistenceFilter@7e692fa7, org.springframework.security.web.header.HeaderWriterFilter@3c550d3c, org.springframework.security.web.authentication.logout.LogoutFilter@532fa438, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4aa89510, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60f697e2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@54c5c527, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3290c595, org.springframework.security.web.session.SessionManagementFilter@dd199d9, org.springframework.security.web.access.ExceptionTranslationFilter@62f8e911, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@6111f354]
+2019-11-04 20:04:42 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 51771 ms
+2019-11-04 20:04:42 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:04:44 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:04:46 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:04:47 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@429713b9, org.springframework.security.web.context.SecurityContextPersistenceFilter@48292c67, org.springframework.security.web.header.HeaderWriterFilter@1e2c80fe, org.springframework.security.web.authentication.logout.LogoutFilter@1f4f8c09, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@23363403, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@28a22cb6, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@52f3622c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1dbb0356, org.springframework.security.web.session.SessionManagementFilter@1a5af57e, org.springframework.security.web.access.ExceptionTranslationFilter@36fac226, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@466faddb]
+2019-11-04 20:04:49 INFO  DispatcherServlet:547 - Completed initialization in 6803 ms
+2019-11-04 20:04:51 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:04:55 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:04:55 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:04:59 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:06:36 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:07:13 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:07:15 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:07:17 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:07:18 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:07:19 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:07:21 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:07:24 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@d6f00bc, org.springframework.security.web.context.SecurityContextPersistenceFilter@72df69e4, org.springframework.security.web.header.HeaderWriterFilter@4bd3eea3, org.springframework.security.web.authentication.logout.LogoutFilter@77f266e5, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3e6bdc85, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@487291, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@136616a5, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6fbb31df, org.springframework.security.web.session.SessionManagementFilter@59426e80, org.springframework.security.web.access.ExceptionTranslationFilter@664db757, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@95c750c]
+2019-11-04 20:07:24 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 11217 ms
+2019-11-04 20:07:24 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:07:24 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:07:25 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:07:25 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54581ec3, org.springframework.security.web.context.SecurityContextPersistenceFilter@2282f8ed, org.springframework.security.web.header.HeaderWriterFilter@29bf9fd5, org.springframework.security.web.authentication.logout.LogoutFilter@7f580018, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@33f54a74, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5646d012, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@352ac38, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3d392af2, org.springframework.security.web.session.SessionManagementFilter@4a26da10, org.springframework.security.web.access.ExceptionTranslationFilter@5c9514a3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5746f8ff]
+2019-11-04 20:07:25 INFO  DispatcherServlet:547 - Completed initialization in 1234 ms
+2019-11-04 20:07:26 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:07:27 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:07:28 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:07:30 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:12:33 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:12:35 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:12:36 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:12:36 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:12:42 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:13:01 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:13:18 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@743036b1, org.springframework.security.web.context.SecurityContextPersistenceFilter@2458f47d, org.springframework.security.web.header.HeaderWriterFilter@5fee4dde, org.springframework.security.web.authentication.logout.LogoutFilter@7f3c5aec, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@59bfed5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7a2610c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@47fb8f43, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7ac33cb5, org.springframework.security.web.session.SessionManagementFilter@4c3ba211, org.springframework.security.web.access.ExceptionTranslationFilter@46a09f2e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@a839ad9]
+2019-11-04 20:13:18 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 45592 ms
+2019-11-04 20:13:18 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:13:20 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:13:22 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:13:23 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@137f6527, org.springframework.security.web.context.SecurityContextPersistenceFilter@2e806b35, org.springframework.security.web.header.HeaderWriterFilter@251ad80a, org.springframework.security.web.authentication.logout.LogoutFilter@25d19f0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@770a14f5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@76056768, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5ac3b2a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3622260e, org.springframework.security.web.session.SessionManagementFilter@3b178c3b, org.springframework.security.web.access.ExceptionTranslationFilter@3b0cc9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3960d051]
+2019-11-04 20:13:25 INFO  DispatcherServlet:547 - Completed initialization in 6391 ms
+2019-11-04 20:13:27 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:13:31 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:13:31 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:13:40 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:21:52 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:29:07 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:29:09 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:29:10 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:29:11 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:29:16 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:29:35 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:29:53 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2b712b53, org.springframework.security.web.context.SecurityContextPersistenceFilter@360889ad, org.springframework.security.web.header.HeaderWriterFilter@592d6f72, org.springframework.security.web.authentication.logout.LogoutFilter@6850c32c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@ad69a50, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@598d522d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4f41afd8, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c332969, org.springframework.security.web.session.SessionManagementFilter@5d6a744c, org.springframework.security.web.access.ExceptionTranslationFilter@4cb4f7a3, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3c75088]
+2019-11-04 20:29:54 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 47133 ms
+2019-11-04 20:29:54 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:29:56 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:29:58 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:29:59 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@54541d38, org.springframework.security.web.context.SecurityContextPersistenceFilter@8f349bb, org.springframework.security.web.header.HeaderWriterFilter@11c80062, org.springframework.security.web.authentication.logout.LogoutFilter@6cf2313e, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@657f109b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@18977c6d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@498da40d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@f53192e, org.springframework.security.web.session.SessionManagementFilter@6268f654, org.springframework.security.web.access.ExceptionTranslationFilter@30741018, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1cb4f703]
+2019-11-04 20:30:00 INFO  DispatcherServlet:547 - Completed initialization in 6522 ms
+2019-11-04 20:30:03 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:30:06 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:30:07 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:30:13 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:34:42 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:34:45 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:34:45 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:34:46 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:34:47 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:34:49 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:34:51 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@521fe0ea, org.springframework.security.web.context.SecurityContextPersistenceFilter@5fbef486, org.springframework.security.web.header.HeaderWriterFilter@1bd41d4f, org.springframework.security.web.authentication.logout.LogoutFilter@29719fc0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@38132505, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@27ec146a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@85d1d6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@77eb9e9d, org.springframework.security.web.session.SessionManagementFilter@4067d6e7, org.springframework.security.web.access.ExceptionTranslationFilter@26b9bb00, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@486e7409]
+2019-11-04 20:34:51 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9249 ms
+2019-11-04 20:34:51 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:34:52 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:34:52 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:34:52 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7aa75c02, org.springframework.security.web.context.SecurityContextPersistenceFilter@16084cc2, org.springframework.security.web.header.HeaderWriterFilter@3be400cc, org.springframework.security.web.authentication.logout.LogoutFilter@46b6fc48, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4aed6048, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@12a5f3ae, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@9dc6356, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@797480cb, org.springframework.security.web.session.SessionManagementFilter@5794b9e, org.springframework.security.web.access.ExceptionTranslationFilter@66cc4ca9, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@245e9664]
+2019-11-04 20:34:52 INFO  DispatcherServlet:547 - Completed initialization in 1156 ms
+2019-11-04 20:34:53 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:34:54 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:34:54 INFO  LoginController:73 - Read view /auth-view/new-login.jsp
+2019-11-04 20:35:03 INFO  LoginController:48 - Read view /auth-view/registration.jsp
+2019-11-04 20:47:21 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:47:24 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:47:24 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:47:25 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:47:26 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:47:28 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:47:30 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@760d2af2, org.springframework.security.web.context.SecurityContextPersistenceFilter@2d358ba4, org.springframework.security.web.header.HeaderWriterFilter@46454264, org.springframework.security.web.authentication.logout.LogoutFilter@2963cd6a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3def1d3f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6d5b327e, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d361afa, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2897e801, org.springframework.security.web.session.SessionManagementFilter@56661419, org.springframework.security.web.access.ExceptionTranslationFilter@9ab392b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5bac3118]
+2019-11-04 20:47:30 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 8203 ms
+2019-11-04 20:47:30 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:47:30 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:47:30 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:47:31 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@253341bc, org.springframework.security.web.context.SecurityContextPersistenceFilter@3f95aaea, org.springframework.security.web.header.HeaderWriterFilter@69a2b6eb, org.springframework.security.web.authentication.logout.LogoutFilter@57870609, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@53f45d6d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@cefcb7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7c2707ab, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f999dae, org.springframework.security.web.session.SessionManagementFilter@1be60db3, org.springframework.security.web.access.ExceptionTranslationFilter@584cf50a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@dffa1ff]
+2019-11-04 20:47:31 INFO  DispatcherServlet:547 - Completed initialization in 1156 ms
+2019-11-04 20:48:27 INFO  PassengerController:32 - Get all passengers from all trains
+2019-11-04 20:48:27 INFO  PassengerController:35 - Read view passenger-view/passengers
+2019-11-04 20:48:28 INFO  LoginController:49 - Read view /auth-view/registration.jsp
+2019-11-04 20:48:29 INFO  LoginController:49 - Read view /auth-view/registration.jsp
+2019-11-04 20:50:20 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:50:23 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:50:24 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:50:24 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:50:29 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:50:50 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:51:06 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@706bb6e7, org.springframework.security.web.context.SecurityContextPersistenceFilter@36147aec, org.springframework.security.web.header.HeaderWriterFilter@390bed98, org.springframework.security.web.authentication.logout.LogoutFilter@785e400f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@78205c4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10f603e4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7cad3d5e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@72abeec2, org.springframework.security.web.session.SessionManagementFilter@19c93427, org.springframework.security.web.access.ExceptionTranslationFilter@4dcc57cd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@28c3ee9c]
+2019-11-04 20:51:06 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 46010 ms
+2019-11-04 20:51:06 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:51:08 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:51:10 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:51:11 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c12ceb, org.springframework.security.web.context.SecurityContextPersistenceFilter@3f384987, org.springframework.security.web.header.HeaderWriterFilter@4582ec3e, org.springframework.security.web.authentication.logout.LogoutFilter@4fa06154, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@112d546b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@cb57da2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e849316, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@38e9a975, org.springframework.security.web.session.SessionManagementFilter@c53bcde, org.springframework.security.web.access.ExceptionTranslationFilter@309075cf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7d6b9aee]
+2019-11-04 20:51:13 INFO  DispatcherServlet:547 - Completed initialization in 6391 ms
+2019-11-04 20:51:15 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 20:51:19 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 20:51:19 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 20:51:32 INFO  LoginController:49 - Read view /auth-view/registration.jsp
+2019-11-04 20:55:44 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 20:55:47 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 20:55:48 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 20:55:48 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:55:53 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 20:56:13 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:56:29 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ebe0075, org.springframework.security.web.context.SecurityContextPersistenceFilter@1b44ef3b, org.springframework.security.web.header.HeaderWriterFilter@2d435e13, org.springframework.security.web.authentication.logout.LogoutFilter@283f29ef, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@61f48224, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@20854de7, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3ddc247e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4df21975, org.springframework.security.web.session.SessionManagementFilter@1a6f454, org.springframework.security.web.access.ExceptionTranslationFilter@3765b3a8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7ce22dca]
+2019-11-04 20:56:29 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 44686 ms
+2019-11-04 20:56:29 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 20:56:31 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 20:56:33 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 20:56:34 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@605131a9, org.springframework.security.web.context.SecurityContextPersistenceFilter@2900ef30, org.springframework.security.web.header.HeaderWriterFilter@11df0ff4, org.springframework.security.web.authentication.logout.LogoutFilter@653fb6f4, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@341a0b75, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6e762a64, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7bf38f1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@cf08936, org.springframework.security.web.session.SessionManagementFilter@52860c8e, org.springframework.security.web.access.ExceptionTranslationFilter@2d7d4995, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7cc03611]
+2019-11-04 20:56:35 INFO  DispatcherServlet:547 - Completed initialization in 6390 ms
+2019-11-04 20:56:38 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 20:56:42 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 20:56:42 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 20:56:44 INFO  LoginController:49 - Read view /auth-view/registration.jsp
+2019-11-04 21:00:27 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:00:30 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:00:30 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:00:31 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:00:36 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:00:55 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:01:10 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5873057b, org.springframework.security.web.context.SecurityContextPersistenceFilter@f6bd0c0, org.springframework.security.web.header.HeaderWriterFilter@75c85ba4, org.springframework.security.web.authentication.logout.LogoutFilter@320b5dfb, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@3f1801cb, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@57d31580, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@203e9c98, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@45d880b, org.springframework.security.web.session.SessionManagementFilter@541f6045, org.springframework.security.web.access.ExceptionTranslationFilter@63471d03, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@334db9d7]
+2019-11-04 21:01:11 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 43940 ms
+2019-11-04 21:01:11 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:01:13 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:01:14 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:01:16 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4f4643d3, org.springframework.security.web.context.SecurityContextPersistenceFilter@107ddd1f, org.springframework.security.web.header.HeaderWriterFilter@41f40e5b, org.springframework.security.web.authentication.logout.LogoutFilter@1ed4bdca, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@415d7f1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7f8e6d88, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1ee922f4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@286cd328, org.springframework.security.web.session.SessionManagementFilter@3db7b142, org.springframework.security.web.access.ExceptionTranslationFilter@7ed1e36, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7af0cfd7]
+2019-11-04 21:01:17 INFO  DispatcherServlet:547 - Completed initialization in 6203 ms
+2019-11-04 21:01:19 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:01:23 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:01:23 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:01:28 INFO  LoginController:49 - Read view /auth-view/registration.jsp
+2019-11-04 21:05:19 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:05:21 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:05:22 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:05:23 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:05:24 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:05:26 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:05:28 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@53294e13, org.springframework.security.web.context.SecurityContextPersistenceFilter@6f34700f, org.springframework.security.web.header.HeaderWriterFilter@715537c9, org.springframework.security.web.authentication.logout.LogoutFilter@25de45cc, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@35abff, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@353b8b83, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@8690ab9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@249595d4, org.springframework.security.web.session.SessionManagementFilter@326c1729, org.springframework.security.web.access.ExceptionTranslationFilter@3a0c58b0, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@507d3aaa]
+2019-11-04 21:05:28 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9094 ms
+2019-11-04 21:05:28 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:05:28 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:05:29 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:05:29 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2566f17b, org.springframework.security.web.context.SecurityContextPersistenceFilter@662851ac, org.springframework.security.web.header.HeaderWriterFilter@6d41ba16, org.springframework.security.web.authentication.logout.LogoutFilter@6efd40f0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@1c455ffe, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64bea26f, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4cf25e4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@5f7e2471, org.springframework.security.web.session.SessionManagementFilter@47b5bdb0, org.springframework.security.web.access.ExceptionTranslationFilter@5e0b83ed, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@509a87fd]
+2019-11-04 21:05:29 INFO  DispatcherServlet:547 - Completed initialization in 1141 ms
+2019-11-04 21:05:30 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:05:31 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:05:31 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:05:33 INFO  LoginController:49 - Read view /auth-view/registration.jsp
+2019-11-04 21:06:03 INFO  LoginController:64 - Add object Passenger from frontend
+2019-11-04 21:06:03 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:06:53 INFO  LoginController:41 - Read view main/main-page.jsp
+2019-11-04 21:07:03 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-04 21:07:08 INFO  FindTrainController:43 - Read view train-view/find-train
+2019-11-04 21:07:27 INFO  FindTrainController:64 - Edit search station Search Station DTO {id=1, departure station is Rostov, arrival station is Omsk, departure date 2019-11-02 }
+2019-11-04 21:07:27 INFO  FindTrainController:77 - Get by id search sttion Search Station DTO {id=1, departure station is Rostov, arrival station is Omsk, departure date 2019-11-02 }
+2019-11-04 21:07:35 INFO  BuyTicketController:69 - Get all trains
+2019-11-04 21:07:35 INFO  BuyTicketController:71 - Get information search station Search Station DTO {id=1, departure station is Rostov, arrival station is Omsk, departure date 2019-11-02 }
+2019-11-04 21:07:35 INFO  BuyTicketController:74 - Get all ways
+2019-11-04 21:07:35 INFO  BuyTicketController:77 - Add ticket information com.trains.model.dto.TicketInformDTO@50a64e18
+2019-11-04 21:07:58 INFO  BuyTicketController:91 - Get ticket information com.trains.model.dto.TicketInformDTO@2dd74f08
+2019-11-04 21:07:58 INFO  BuyTicketController:93 - Get train in which passenger buy ticket TrainEntity{id=3, countFreeSits= 800 }
+2019-11-04 21:07:58 INFO  BuyTicketController:103 - Get passenger id by name, surname, birthday, id is -1
+2019-11-04 21:07:58 INFO  BuyTicketController:106 - Add passenger by name Asdfasdfasdf surname Afghdfghdfgh birthday 2019-11-01
+2019-11-04 21:07:58 INFO  BuyTicketController:109 - Get passenger by id Passenger {id=30, name is Asdfasdfasdf, surname is Afghdfghdfgh, birthday is 2019-11-01 }
+2019-11-04 21:07:59 INFO  BuyTicketController:118 - Edit ticket information com.trains.model.dto.TicketInformDTO@2dd74f08
+2019-11-04 21:07:59 INFO  BuyTicketController:130 - Add ticket by train TrainEntity{id=3, countFreeSits= 800 } and passenger Passenger {id=30, name is Asdfasdfasdf, surname is Afghdfghdfgh, birthday is 2019-11-01 }
+2019-11-04 21:07:59 INFO  BuyTicketController:148 - Delete ticket information com.trains.model.dto.TicketInformDTO@6495f3fe
+2019-11-04 21:08:22 INFO  LoginController:74 - Read view /auth-view/new-login.jsp
+2019-11-04 21:19:51 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:19:54 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:19:54 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:19:55 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:19:56 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:19:59 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:20:00 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@247b4cc3, org.springframework.security.web.context.SecurityContextPersistenceFilter@ce39765, org.springframework.security.web.header.HeaderWriterFilter@58e30e25, org.springframework.security.web.authentication.logout.LogoutFilter@1467271c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@67df1a8a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@46d88413, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2bcb7b9a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1281a37c, org.springframework.security.web.session.SessionManagementFilter@703bbe93, org.springframework.security.web.access.ExceptionTranslationFilter@1b194adb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@66d55bbc]
+2019-11-04 21:20:01 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9188 ms
+2019-11-04 21:20:01 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:20:01 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:20:01 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:20:02 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4192f2ce, org.springframework.security.web.context.SecurityContextPersistenceFilter@1f0fca80, org.springframework.security.web.header.HeaderWriterFilter@6444df32, org.springframework.security.web.authentication.logout.LogoutFilter@519c9a23, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@789d3063, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6a376c8d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@284893b6, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6e7dd2c8, org.springframework.security.web.session.SessionManagementFilter@5f64d92d, org.springframework.security.web.access.ExceptionTranslationFilter@3b09d894, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@8d3198c]
+2019-11-04 21:20:02 INFO  DispatcherServlet:547 - Completed initialization in 1109 ms
+2019-11-04 21:20:02 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:20:03 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:20:04 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:21:57 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:22:06 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-04 21:22:13 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:22:16 INFO  MainPageController:30 - Read view /main/employee.jsp
+2019-11-04 21:24:57 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:25:00 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:25:01 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:25:01 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:25:06 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:25:25 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:25:41 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4ac94b4, org.springframework.security.web.context.SecurityContextPersistenceFilter@70b9ab85, org.springframework.security.web.header.HeaderWriterFilter@1c9e4cc0, org.springframework.security.web.authentication.logout.LogoutFilter@4c8222c0, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@25121586, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@54b33ef4, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7abda29a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ca06970, org.springframework.security.web.session.SessionManagementFilter@1062f09d, org.springframework.security.web.access.ExceptionTranslationFilter@45aa9a0f, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3b99e77d]
+2019-11-04 21:25:42 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 44499 ms
+2019-11-04 21:25:42 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:25:44 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:25:45 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:25:46 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@11c20562, org.springframework.security.web.context.SecurityContextPersistenceFilter@3a96e539, org.springframework.security.web.header.HeaderWriterFilter@6d1e0722, org.springframework.security.web.authentication.logout.LogoutFilter@582b97ba, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6a4b5197, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@43f4bd97, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e4e85dc, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6ba22aba, org.springframework.security.web.session.SessionManagementFilter@2c7542c5, org.springframework.security.web.access.ExceptionTranslationFilter@d3e84b8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@19f89b7c]
+2019-11-04 21:25:48 INFO  DispatcherServlet:547 - Completed initialization in 6218 ms
+2019-11-04 21:25:50 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:25:54 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:25:54 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:27:08 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:28:56 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:29:11 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:29:15 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:29:19 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:31:26 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:31:28 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:31:29 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:31:30 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:31:31 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:31:33 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:31:35 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@518c9d95, org.springframework.security.web.context.SecurityContextPersistenceFilter@4d28b08c, org.springframework.security.web.header.HeaderWriterFilter@4c464e1b, org.springframework.security.web.authentication.logout.LogoutFilter@658d160c, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@6a677e4d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2673ebb2, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@415aefb4, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@10ae1b90, org.springframework.security.web.session.SessionManagementFilter@261233b9, org.springframework.security.web.access.ExceptionTranslationFilter@1770b088, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7ef728cf]
+2019-11-04 21:31:35 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 9344 ms
+2019-11-04 21:31:35 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:31:36 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:31:36 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:31:36 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@269bcfc, org.springframework.security.web.context.SecurityContextPersistenceFilter@5070ba54, org.springframework.security.web.header.HeaderWriterFilter@1c86d60d, org.springframework.security.web.authentication.logout.LogoutFilter@7b87706a, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4cc0bdec, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@19d1b0d9, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@334d2b50, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1211ed7a, org.springframework.security.web.session.SessionManagementFilter@19fa3f0c, org.springframework.security.web.access.ExceptionTranslationFilter@10eb207b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3f7f90a6]
+2019-11-04 21:31:36 INFO  DispatcherServlet:547 - Completed initialization in 1110 ms
+2019-11-04 21:31:37 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:31:38 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:31:38 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:32:29 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:32:33 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-04 21:32:37 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:32:42 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:41:50 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:41:52 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:41:52 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:41:53 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:41:54 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:41:56 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:41:57 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@32aea1a4, org.springframework.security.web.context.SecurityContextPersistenceFilter@e447b34, org.springframework.security.web.header.HeaderWriterFilter@5dbefb76, org.springframework.security.web.authentication.logout.LogoutFilter@3db4f762, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@785ed86c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@40dcab0d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3acc47ce, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4dec350, org.springframework.security.web.session.SessionManagementFilter@6737de00, org.springframework.security.web.access.ExceptionTranslationFilter@b9c583d, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@19c92528]
+2019-11-04 21:41:58 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 7843 ms
+2019-11-04 21:41:58 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:41:58 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:41:58 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:41:58 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7345144b, org.springframework.security.web.context.SecurityContextPersistenceFilter@5d5b1867, org.springframework.security.web.header.HeaderWriterFilter@44e0404c, org.springframework.security.web.authentication.logout.LogoutFilter@29331e1f, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@175a0bab, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6f122553, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2936fadd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b499f20, org.springframework.security.web.session.SessionManagementFilter@2f25e400, org.springframework.security.web.access.ExceptionTranslationFilter@18154dc2, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4ddbdeeb]
+2019-11-04 21:41:59 INFO  DispatcherServlet:547 - Completed initialization in 1062 ms
+2019-11-04 21:42:23 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:42:23 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:42:53 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:44:35 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:44:37 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:44:37 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:44:38 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:44:38 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:44:40 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:44:42 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@665e60fa, org.springframework.security.web.context.SecurityContextPersistenceFilter@ddf9089, org.springframework.security.web.header.HeaderWriterFilter@57d2ec5f, org.springframework.security.web.authentication.logout.LogoutFilter@37253309, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@e58a81, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@67b79abc, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@5e247a29, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1b11418f, org.springframework.security.web.session.SessionManagementFilter@4124f0fb, org.springframework.security.web.access.ExceptionTranslationFilter@551cb4e8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1893fa75]
+2019-11-04 21:44:42 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 7515 ms
+2019-11-04 21:44:42 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:44:42 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:44:43 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:44:43 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@713f678f, org.springframework.security.web.context.SecurityContextPersistenceFilter@7a9d1904, org.springframework.security.web.header.HeaderWriterFilter@71b80cd8, org.springframework.security.web.authentication.logout.LogoutFilter@38a96dd1, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4d001673, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@715acf1d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@40b5c322, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4d0fe627, org.springframework.security.web.session.SessionManagementFilter@77b1eab7, org.springframework.security.web.access.ExceptionTranslationFilter@18226ddf, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3753e7d4]
+2019-11-04 21:44:43 INFO  DispatcherServlet:547 - Completed initialization in 953 ms
+2019-11-04 21:45:53 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:45:53 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:46:06 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:46:12 INFO  MainPageController:30 - Read view /main/employee.jsp
+2019-11-04 21:46:17 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:46:20 INFO  MainPageController:30 - Read view /main/employee.jsp
+2019-11-04 21:46:22 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:46:33 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:46:52 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:46:54 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-04 21:47:57 INFO  ContextLoader:271 - Root WebApplicationContext: initialization started
+2019-11-04 21:47:59 INFO  Version:46 - HHH000412: Hibernate Core {5.4.2.Final}
+2019-11-04 21:47:59 INFO  Version:49 - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2019-11-04 21:48:00 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:48:01 INFO  Version:21 - HV000001: Hibernate Validator 6.0.17.Final
+2019-11-04 21:48:03 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:48:05 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1b8ce5a8, org.springframework.security.web.context.SecurityContextPersistenceFilter@636b44f2, org.springframework.security.web.header.HeaderWriterFilter@2f3257c, org.springframework.security.web.authentication.logout.LogoutFilter@5d7f33c6, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@4aee301a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@fb52a26, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7c11e7ea, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@e596728, org.springframework.security.web.session.SessionManagementFilter@35c8172a, org.springframework.security.web.access.ExceptionTranslationFilter@47ee3262, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@59b3c9f1]
+2019-11-04 21:48:05 INFO  ContextLoader:307 - Root WebApplicationContext initialized in 7531 ms
+2019-11-04 21:48:05 INFO  DispatcherServlet:525 - Initializing Servlet 'dispatcher'
+2019-11-04 21:48:05 INFO  Dialect:158 - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL94Dialect
+2019-11-04 21:48:05 INFO  JtaPlatformInitiator:52 - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2019-11-04 21:48:05 INFO  DefaultSecurityFilterChain:43 - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@61c794b4, org.springframework.security.web.context.SecurityContextPersistenceFilter@433ee38e, org.springframework.security.web.header.HeaderWriterFilter@7ff2e677, org.springframework.security.web.authentication.logout.LogoutFilter@3cd953d, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter@41ce4ab, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2357d44d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4b7e5f0e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@771e8f2c, org.springframework.security.web.session.SessionManagementFilter@2cbc98e4, org.springframework.security.web.access.ExceptionTranslationFilter@9bd3682, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@142d9158]
+2019-11-04 21:48:06 INFO  DispatcherServlet:547 - Completed initialization in 953 ms
+2019-11-04 21:48:29 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:48:41 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:48:43 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-04 21:48:46 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:48:50 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:48:51 INFO  MainPageController:22 - Read view /main/passenger.jsp
+2019-11-04 21:48:52 INFO  LoginController:72 - Read view /auth-view/new-login.jsp
+2019-11-04 21:49:01 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:49:03 INFO  MainPageController:30 - Read view /main/employee.jsp
+2019-11-04 21:49:05 INFO  LoginController:40 - Read view main/main-page.jsp
+2019-11-04 21:49:09 INFO  LoginController:40 - Read view main/main-page.jsp

@@ -9,6 +9,10 @@
     <title>Registration</title>
     <style>
         <%@include file="/WEB-INF/css/style-for-login.css"%>
+        #register,
+        #login {
+            width: 25%;
+        }
     </style>
 </head>
 <body>

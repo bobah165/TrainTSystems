@@ -7,8 +7,8 @@
         <%@include file="/WEB-INF/css/style-for-login.css"%>
         #register,
         #login {
-            width: 20%;
-        }
+             width: 20%;
+         }
     </style>
     <%@include file="/WEB-INF/pages/main/employee.jsp"%>
 </head>
