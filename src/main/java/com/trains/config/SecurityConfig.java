@@ -1,6 +1,7 @@
 package com.trains.config;
 
 import com.trains.security.AuthProviderImpl;
+import com.trains.security.MyAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,12 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @ComponentScan("com.trains.security")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private AuthProviderImpl authProvider;
+    private MyAuthenticationSuccessHandler myAuthenticationSuccessHandler;
+
+    @Autowired
+    public void setMyAuthenticationSuccessHandler(MyAuthenticationSuccessHandler myAuthenticationSuccessHandler) {
+        this.myAuthenticationSuccessHandler = myAuthenticationSuccessHandler;
+    }
 
     @Autowired
     public void setAuthProvider(AuthProviderImpl authProvider) {
@@ -33,15 +40,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .loginProcessingUrl("/login/process/")
                 .usernameParameter("login")
+                .successHandler(myAuthenticationSuccessHandler)
                 .and().logout();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("bob").password("1234").roles("user")
-//                .and()
-//                .withUser("alex").password("1234").roles("admin");
 
        auth.authenticationProvider(authProvider);
     }
