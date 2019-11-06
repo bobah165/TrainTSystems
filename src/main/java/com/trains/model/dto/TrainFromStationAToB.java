@@ -3,13 +3,14 @@ package com.trains.model.dto;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalTime;
 
 public class TrainFromStationAToB {
     private int trainID;
     private String deprtureStation;
     private String arrivalStation;
-    private Time departureTime;
-    private Time arrivalTime;
+    private LocalTime departureTime;
+    private LocalTime arrivalTime;
     private int countFreeSits;
 
     public int getTrainID() {
@@ -36,19 +37,19 @@ public class TrainFromStationAToB {
         this.arrivalStation = arrivalStation;
     }
 
-    public Time getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Time departureTime) {
+    public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Time getArrivalTime() {
+    public LocalTime getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Time arrivalTime) {
+    public void setArrivalTime(LocalTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

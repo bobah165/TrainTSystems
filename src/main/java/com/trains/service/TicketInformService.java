@@ -1,13 +1,17 @@
 package com.trains.service;
 
 import com.trains.dao.TicketInformDAO;
-import com.trains.model.dto.SearchStationDTO;
-import com.trains.model.dto.TicketInformDTO;
-import com.trains.model.dto.TrainDTO;
-import com.trains.model.dto.TrainWayDTO;
+import com.trains.model.dto.*;
+import com.trains.model.entity.SearchStations;
 import com.trains.model.entity.TicketInform;
+import com.trains.model.entity.Train;
+import com.trains.model.entity.TrainWay;
+import com.trains.util.mapperForDTO.SearchStationMapper;
 import com.trains.util.mapperForDTO.TicketInformMapper;
+import com.trains.util.mapperForDTO.TrainMapper;
+import com.trains.util.mapperForDTO.TrainWayMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,6 +26,24 @@ import java.util.List;
 public class TicketInformService {
     private TicketInformDAO ticketInformDAO;
     private TicketInformMapper ticketInformMapper;
+    private SearchStationMapper searchStationMapper;
+    private TrainWayMapper trainWayMapper;
+    private TrainMapper trainMapper;
+
+    @Autowired
+    public void setTrainMapper(TrainMapper trainMapper) {
+        this.trainMapper = trainMapper;
+    }
+
+    @Autowired
+    public void setTrainWayMapper(TrainWayMapper trainWayMapper) {
+        this.trainWayMapper = trainWayMapper;
+    }
+
+    @Autowired
+    public void setSearchStationMapper(SearchStationMapper searchStationMapper) {
+        this.searchStationMapper = searchStationMapper;
+    }
 
     @Autowired
     public void setTicketInformDAO(TicketInformDAO ticketInformDAO) {
@@ -63,38 +85,15 @@ public class TicketInformService {
     public void delByID (int id) { ticketInformDAO.delByID(id); }
 
     public TicketInformDTO fullInformation(SearchStationDTO searchStationDTO, List<TrainWayDTO> trainWayDTOS, TrainDTO trainDTO) {
-
-        Time departureTime = Time.valueOf("00:00:00");
-        Time arrivalTime = Time.valueOf("00:00:00");
-
-        for (TrainWayDTO trainWayDTO:trainWayDTOS){
-            int currentWay = trainDTO.getTrainWay().getNumberWay();
-            if (trainWayDTO.getNumberWay()== currentWay){
-                if (trainWayDTO.getStation().getNameStation().equals(searchStationDTO.getDepartureStation())){
-                    departureTime=Time.valueOf(trainWayDTO.getShedule());
-                }
-                if(trainWayDTO.getStation().getNameStation().equals(searchStationDTO.getArrivalStation())){
-                    arrivalTime = Time.valueOf(trainWayDTO.getShedule());
-                }
-            }
+        SearchStations searchStations = searchStationMapper.mapDtoToEntity(searchStationDTO);
+        List<TrainWay> trainWays = new ArrayList<>();
+        for(TrainWayDTO trainWayDTO: trainWayDTOS){
+            trainWays.add(trainWayMapper.mapDtoToEntity(trainWayDTO));
         }
+        Train train = trainMapper.mapDtoToEntity(trainDTO);
+        TicketInform ticketInform = ticketInformDAO.fullInformation(searchStations,trainWays,train);
 
-        TicketInformDTO ticketInform = new TicketInformDTO();
-        ticketInform.setId(1); // по ID пользователя
-
-        ticketInform.setIdTrain(trainDTO.getId());
-        ticketInform.setDepartureStation(searchStationDTO.getDepartureStation());
-        ticketInform.setArrivalStation(searchStationDTO.getArrivalStation());
-        ticketInform.setArrivalDate(Date.valueOf("1990-01-01"));
-        ticketInform.setDepartureDate(searchStationDTO.getDepartureDate());
-        ticketInform.setDepartureTime(departureTime.toString());
-        ticketInform.setArrivalTime(arrivalTime.toString());
-
-        ticketInform.setBirthday(Date.valueOf("1990-01-01"));
-        ticketInform.setName("none");
-        ticketInform.setSurname("none");
-
-        return ticketInform;
+        return ticketInformMapper.mapEntityToDto(ticketInform);
     }
 
     public boolean checkDeapartureTime(TicketInformDTO  ticketInformDTO) {
@@ -107,6 +106,18 @@ public class TicketInformService {
             return isTimeCheck;
         }
         return isTimeCheck;
+    }
+
+    public void addPassengerInformationToTicket(String name, String surname, Date birthday, int idPassenger){
+        int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        TicketInform ticketInformDTO = ticketInformDAO.getById(idCurrentPassenger);
+
+        ticketInformDTO.setName(name);
+        ticketInformDTO.setSurname(surname);
+        ticketInformDTO.setBirthday(birthday.toLocalDate());
+        ticketInformDTO.setIdPassenger(idPassenger);
+
+        ticketInformDAO.edit(ticketInformDTO);
     }
 
 }

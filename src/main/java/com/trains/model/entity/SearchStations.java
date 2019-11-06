@@ -6,6 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "search_train")
@@ -20,23 +21,23 @@ public class SearchStations {
     @Column(name = "departure_date")
     private LocalDate departureDate;
     @Column(name = "start_time")
-    private Time startTime;
+    private LocalTime startTime;
     @Column(name = "end_time")
-    private Time endTime;
+    private LocalTime endTime;
 
-    public Time getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 

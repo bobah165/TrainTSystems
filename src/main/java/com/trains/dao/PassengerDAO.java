@@ -2,7 +2,7 @@ package com.trains.dao;
 
 import com.trains.model.entity.Passenger;
 import org.hibernate.Session;
-import org.springframework.security.core.parameters.P;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
@@ -29,18 +29,14 @@ public class PassengerDAO extends CrudDAO {
     }
 
     public int getPassengerId (String name, String surname, Date birthday) {
-        int getID = 0;
+        int getID = -1;
         Session session = sessionFactory.getCurrentSession();
-        List<Passenger> passengers = session.createQuery("from Passenger").list();
-        for (Passenger passenger: passengers) {
-            boolean b = passenger.getName().equals(name);
-            boolean b1 =passenger.getSurname().equals(surname);
-            boolean b2 = passenger.getBirthday().isEqual(birthday.toLocalDate());
-            if (passenger.getName().equals(name)&&passenger.getSurname().equals(surname)&&passenger.getBirthday().isEqual(birthday.toLocalDate())) {
-                        getID = passenger.getId();
-                        break;
-                    } else getID = -1;
-            }
+        Query query = session.createQuery("from Passenger p where p.name like :name and p.surname like :surname and p.birthday = :birthday");
+        query.setParameter("name",name);
+        query.setParameter("surname",surname);
+        query.setParameter("birthday",birthday.toLocalDate());
+        List<Passenger> passengers = query.list();
+        if (!passengers.isEmpty()) getID = passengers.get(0).getId();
 
         return getID;
     }
@@ -73,13 +69,11 @@ public class PassengerDAO extends CrudDAO {
         passengerLog.setPassword("none");
         passengerLog.setSurname("none");
         passengerLog.setName("none");
-        List<Passenger> passengers = session.createQuery("from Passenger ").list();
-        for (Passenger passenger: passengers) {
-            if (passenger.getLogin().equals(login)) {
-                passengerLog = passenger;
-                break;
-            }
-        }
+        Query query = session.createQuery("from Passenger p where p.login like :login");
+        query.setParameter("login",login);
+        List<Passenger> passengers = query.list();
+        if(!passengers.isEmpty()) passengerLog = passengers.get(0);
+
 
         return passengerLog;
     }

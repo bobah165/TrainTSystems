@@ -33,11 +33,11 @@
                 </p>
                 <p>
                     <label for="startTime" class="youpasswd" data-icon="p"> Start Time </label>
-                    <input id="startTime" name="startTime" required="required" type="time"  />
+                    <input id="startTime" name="startTime" required="required" type="time"  value="00:00" />
                 </p>
                 <p>
                     <label for="endTime" class="youpasswd" data-icon="p"> End Time </label>
-                    <input id="endTime" name="endTime" required="required" type="time"  />
+                    <input id="endTime" name="endTime" required="required" type="time"  value="23:59"/>
                 </p>
 
                 <p class="login button">

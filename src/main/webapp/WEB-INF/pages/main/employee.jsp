@@ -19,18 +19,20 @@
     <div class="top_bar"></div>
     <nav>
         <ul class="menu">
-            <li><a href="">Train Information</a>
+            <li><a href="">Train Info</a>
                 <ul class="submenu">
                     <li><a href="/train/">Train List</a>
                     <li><a href="/train/add">Add Train</a>
                 </ul>
             </li>
-            <li><a href="">Station Information</a>
+            <li><a href="">Station Info</a>
                 <ul class="submenu">
                     <li><a href="/station/">Station List</a>
                     <li><a href="/station/add/">Add Station</a>
                 </ul>
             </li>
+
+            <li><a href="/passenger/addempl">Add Employee</a> </li>
             <li id="quit"><a href="/logout">Quit</a> </li>
         </ul>
     </nav>

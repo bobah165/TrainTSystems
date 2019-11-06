@@ -3,13 +3,16 @@ package com.trains.model.dto;
 import com.trains.model.entity.Ticket;
 import com.trains.model.entity.TrainWay;
 
+import javax.validation.constraints.Pattern;
 import java.sql.Date;
 import java.util.List;
 
 public class TrainDTO {
 
     private int id;
+    @Pattern(regexp = "^[0-9]*$")
     private int trainNumber;
+    @Pattern(regexp = "^[0-9]*$")
     private int countSits;
     private List<Ticket> tickets;
     private TrainWay trainWay;

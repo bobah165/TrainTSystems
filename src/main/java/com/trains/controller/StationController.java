@@ -110,9 +110,7 @@ public class StationController {
         ModelAndView modelAndView = new ModelAndView();
         StationDTO station = stationService.getByName(nameStation);
         logger.info("get station "+station+" by name "+nameStation);
-        LocalTime start = LocalTime.parse(startTime);
-        LocalTime end = LocalTime.parse(endTime);
-        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(station.getId(),departureDate,start,end);
+        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(station.getId(),departureDate,LocalTime.parse(startTime),LocalTime.parse(endTime));
         modelAndView.setViewName("station-view/get-trains");
         modelAndView.addObject("trainsList",trainFromStation);
         return modelAndView;

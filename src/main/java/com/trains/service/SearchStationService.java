@@ -1,13 +1,21 @@
 package com.trains.service;
 
 import com.trains.dao.SearchStationDAO;
+import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.SearchStationDTO;
+import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.model.entity.SearchStations;
 import com.trains.util.mapperForDTO.SearchStationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,4 +67,23 @@ public class SearchStationService {
     }
 
     public void delByID (int id) {searchStationDAO.delByID(id);}
+
+    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, LocalTime startTime, LocalTime endTime, LocalDate departureDate) {
+        return searchStationDAO.getTrainsFromStations(stationNameA,stationNameB,startTime,endTime, departureDate);
+    }
+
+
+    public void addInformationAboutSearch (String stationA, String stationB, LocalDate departureDate, String startTime, String endTime) {
+
+        int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        SearchStations searchStation = new SearchStations();
+        searchStation.setId(idCurrentPassenger);
+        searchStation.setDepartureDate(departureDate);
+        searchStation.setStartTime(LocalTime.parse(startTime));
+        searchStation.setDepartureStation(stationA);
+        searchStation.setArrivalStation(stationB);
+        searchStation.setEndTime(LocalTime.parse(endTime));
+
+        searchStationDAO.add(searchStation);
+    }
 }

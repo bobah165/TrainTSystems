@@ -15,9 +15,9 @@ public class SearchStationMapper {
         searchStations.setArrivalStation(searchStationDTO.getArrivalStation());
         searchStations.setDepartureDate(searchStationDTO.getDepartureDate().toLocalDate());
         searchStations.setDepartureStation(searchStationDTO.getDepartureStation());
-        searchStations.setStartTime(Time.valueOf(searchStationDTO.getStartTime()+":00"));
+        searchStations.setStartTime(searchStationDTO.getStartTime());
         searchStations.setId(searchStationDTO.getId());
-        searchStations.setEndTime(Time.valueOf(searchStationDTO.getEndTime()+":00"));
+        searchStations.setEndTime(searchStationDTO.getEndTime());
         return searchStations;
     }
 
@@ -26,9 +26,9 @@ public class SearchStationMapper {
         searchStationDTO.setArrivalStation(searchStations.getArrivalStation());
         searchStationDTO.setDepartureDate(Date.valueOf(searchStations.getDepartureDate()));
         searchStationDTO.setDepartureStation(searchStations.getDepartureStation());
-        searchStationDTO.setStartTime(searchStations.getStartTime().toString());
+        searchStationDTO.setStartTime(searchStations.getStartTime());
         searchStationDTO.setId(searchStations.getId());
-        searchStationDTO.setEndTime(searchStations.getEndTime().toString());
+        searchStationDTO.setEndTime(searchStations.getEndTime());
         return searchStationDTO;
     }
 }

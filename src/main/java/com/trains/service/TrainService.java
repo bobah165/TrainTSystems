@@ -1,15 +1,24 @@
 package com.trains.service;
 
+import com.trains.dao.SearchStationDAO;
+import com.trains.dao.TicketInformDAO;
 import com.trains.dao.TrainDAO;
+import com.trains.dao.TrainWayDAO;
 import com.trains.model.dto.*;
+import com.trains.model.entity.SearchStations;
+import com.trains.model.entity.TicketInform;
 import com.trains.model.entity.Train;
+import com.trains.model.entity.TrainWay;
+import com.trains.util.mapperForDTO.SearchStationMapper;
 import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +27,25 @@ import java.util.List;
 public class TrainService {
     private TrainMapper trainMapper;
     private TrainDAO trainDAO;
-    private TrainWayService trainWayService;
+    private SearchStationDAO searchStationDAO;
+    private TicketInformDAO ticketInformDAO;
+    private SearchStationMapper searchStationMapper;
 
     @Autowired
-    public void setTrainWayService(TrainWayService trainWayService) {
-        this.trainWayService = trainWayService;
+    public void setSearchStationMapper(SearchStationMapper searchStationMapper) {
+        this.searchStationMapper = searchStationMapper;
     }
+
+    @Autowired
+    public void setTicketInformDAO(TicketInformDAO ticketInformDAO) {
+        this.ticketInformDAO = ticketInformDAO;
+    }
+
+    @Autowired
+    public void setSearchStationDAO(SearchStationDAO searchStationDAO) {
+        this.searchStationDAO = searchStationDAO;
+    }
+
 
     @Autowired
     public void setTrainDAO (TrainDAO trainDAO) {
@@ -72,43 +94,49 @@ public class TrainService {
         return trainDAO.getPassengerFromTrain(idTrain);
     }
 
-    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime, Time endTime, LocalDate departureDate) {
-        return trainDAO.getTrainsFromStations(stationNameA,stationNameB,startTime,endTime, departureDate);
-    }
+//    public String getDateOfStation (int trainId, String stationName) {
+//        Train train = trainDAO.getById(trainId);
+//        int getDays = 1;
+//        LocalDate localDate = train.getDepartureDate();
+//        List<TrainWay> trainWays = trainWayDAO.allWays();
+//        List<TrainWayDTO> getForOneTrain = new ArrayList<>();
+//        for (TrainWay trainWay: trainWays) {
+//            if (trainWay.getNumberWay()==train.getTrainWay().getNumberWay()){
+//                getForOneTrain.add(trainWay);
+//            }
+//        }
+//        for (TrainWayDTO trainWayDTO: getForOneTrain) {
+//            if(trainWayDTO.getStation().equals(stationName)) {
+//                getDays = trainWayDTO.getDaysInWay();
+//            }
+//        }
+//
+//        localDate = localDate.plusDays(getDays-1);
+//        return localDate.toString();
+//    }
 
-    public String getDateOfStation (int trainId, String stationName) {
-        Train train = trainDAO.getById(trainId);
-        int getDays = 1;
-        LocalDate localDate = train.getDepartureDate();
-        List<TrainWayDTO> trainWays = trainWayService.allWays();
-        List<TrainWayDTO> getForOneTrain = new ArrayList<>();
-        for (TrainWayDTO trainWayDTO: trainWays) {
-            if (trainWayDTO.getNumberWay()==train.getTrainWay().getNumberWay()){
-                getForOneTrain.add(trainWayDTO);
-            }
-        }
-        for (TrainWayDTO trainWayDTO: getForOneTrain) {
-            if(trainWayDTO.getStation().equals(stationName)) {
-                getDays = trainWayDTO.getDaysInWay();
-            }
-        }
+//    public TrainDTO getTrainByDate (List<TrainDTO> trains, SearchStationDTO searchStationDTO, int trainID) {
+//        List<Train> trainsList = new ArrayList<>();
+//        for (TrainDTO trainDTO: trains ) {
+//            trainsList.add(trainMapper.mapDtoToEntity(trainDTO));
+//        }
+//        SearchStations searchStations = searchStationMapper.mapDtoToEntity(searchStationDTO);
+//
+//        return trainMapper.mapEntityToDto(trainDAO.getTrainByDate(trainsList,searchStations,trainID));
+//    }
 
-        localDate = localDate.plusDays(getDays-1);
-        return localDate.toString();
-    }
 
-    public TrainDTO getTrainByDate (List<TrainDTO> trains, SearchStationDTO searchStationDTO, int trainID) {
-        TrainDTO trainDTO = new TrainDTO();
-        for (TrainDTO train: trains){
-            String depDate1 = train.getDepartureDate().toString();
-            //String depDate1 = trainService.getDateOfStation(trainID,searchStationDTO.getDepartureStation());
-            String depDate2 = searchStationDTO.getDepartureDate().toString();
-            if ((depDate1.equals(depDate2)) && train.getId()==trainID) {
-                trainDTO = train;
-            }
-        }
+    public void addTicketInfByTrainId (int idTrain) {
+        List<Train> trains = trainDAO.allTrain();
+        int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        SearchStations searchStation = searchStationDAO.getById(idCurrentPassenger);
 
-        return trainDTO;
+        Train trainDTO = trainDAO.getTrainByDate(trains,searchStation,idTrain);
+        List<TrainWay> trainWays = trainDAO.getTrainWaysForTrain();
+
+        TicketInform ticketInform = ticketInformDAO.fullInformation(searchStation,trainWays,trainDTO);
+        ticketInformDAO.add(ticketInform);
+        searchStationDAO.delete(searchStation);
     }
 
 }

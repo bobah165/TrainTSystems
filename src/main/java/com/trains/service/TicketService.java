@@ -75,14 +75,6 @@ public class TicketService {
 
     public void delByID (int id) { ticketDAO.delByID(id); }
 
-    public List<TicketDTO> getByTrain (Train train) {
-        List<Ticket> tickets = ticketDAO.getByTrain(train);
-        List<TicketDTO> ticketDTOS = new ArrayList<>();
-        for (Ticket ticket:tickets) {
-            ticketDTOS.add(ticketMapper.mapEntityToDto(ticket));
-        }
-        return ticketDTOS;
-    }
 
     public void addTicketByTrainDTOPassengerDTO (TrainDTO trainDTO, PassengerDTO passengerDTO) {
         ticketDAO.addTicketByTrainDTOPassengerDTO(trainMapper.mapDtoToEntity(trainDTO),passengerMapper.mapDtoToEntity(passengerDTO));

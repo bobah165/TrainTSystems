@@ -1,10 +1,12 @@
 package com.trains.dao;
 
 import com.trains.model.dto.TrainFromStationDTO;
+import com.trains.model.dto.TrainWayDTO;
 import com.trains.model.entity.Station;
 import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainWay;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
@@ -28,14 +30,11 @@ public class StationDAO extends CrudDAO {
 
     public Station getByName (String name) {
         Session session = sessionFactory.getCurrentSession();
-        List<Station> stations = session.createQuery("from Station ").list();
         Station station = new Station();
-        for (Station stationFromList: stations) {
-            if(stationFromList.getNameStation().equals(name)) {
-                station = stationFromList;
-                break;
-            }
-        }
+        Query query = session.createQuery("from Station where nameStation like :stationName");
+        query.setParameter("stationName",name);
+        List<Station> stations = query.list();
+        if (!stations.isEmpty())  station = stations.get(0);
         return station;
     }
 
@@ -68,15 +67,15 @@ public class StationDAO extends CrudDAO {
                 if (trainWay.getNumberWay()==train.getTrainWay().getNumberWay()){
                     int days = 0; //количество дней в пути по расписанию
                     LocalDate localDate = train.getDepartureDate(); // время отправления поезда по расписанию
-                    LocalTime localTime = train.getTrainWay().getDepartureTime().toLocalTime();
-                    List<TrainWay> trainWayDTOS =session.createQuery("from TrainWay").list(); // все маршруты
 
-                    for (TrainWay trainWayDTO: trainWayDTOS) {
-                        if (trainWayDTO.getNumberWay() == trainWay.getNumberWay() &&
-                                trainWayDTO.getStation().getId() == idStation) { //ищем объект по номеру маршрута и станции
-                            days = trainWayDTO.getDaysInWay();
-                            days = days - 1;
-                        }
+                    //ищем объект по номеру маршрута и станции
+                    Query query = session.createQuery("from TrainWay t where t.station.id =:idStation and t.numberWay =:trainWay");
+                    query.setParameter("idStation",idStation);
+                    query.setParameter("trainWay",trainWay.getNumberWay());
+                    List<TrainWay> trainWayDTOS = query.list();
+                    if (!trainWayDTOS.isEmpty()) {
+                        days = trainWayDTOS.get(0).getDaysInWay();
+                        days = days - 1;
                     }
 
                     LocalDate localDateSearch = departureDate.toLocalDate(); // дата поиска

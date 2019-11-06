@@ -35,14 +35,6 @@ public class LoginController {
     }
 
 
-    @GetMapping(value = "/")
-    public ModelAndView getStartPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("main/main-page");
-        logger.info("Read view main/main-page.jsp");
-        return modelAndView;
-    }
-
     @GetMapping(value = "/registration")
     public ModelAndView getRegistrationPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -72,6 +64,22 @@ public class LoginController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("/auth-view/new-login");
         logger.info("Read view /auth-view/new-login.jsp");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/pass")
+    public ModelAndView getPassengerPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/main/passenger");
+        logger.info("Read view /main/passenger.jsp");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/empl")
+    public ModelAndView getEmployeePage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("/main/employee");
+        logger.info("Read view /main/employee.jsp");
         return modelAndView;
     }
 

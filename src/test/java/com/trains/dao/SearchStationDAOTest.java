@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,11 @@ public class SearchStationDAOTest {
         searchStation = new SearchStations();
         Date date = new Date(12-12-1995);
 
-        searchStation.setEndTime(Time.valueOf("00:00:00"));
+        searchStation.setEndTime(LocalTime.parse("00:00"));
         searchStation.setArrivalStation("Piter");
         searchStation.setDepartureStation("Moscow");
         searchStation.setId(1);
-        searchStation.setStartTime(Time.valueOf("00:00:00"));
+        searchStation.setStartTime(LocalTime.parse("00:00"));
         searchStation.setDepartureDate(date.toLocalDate());
     }
 
@@ -51,4 +52,5 @@ public class SearchStationDAOTest {
     public void delByID() {
         Mockito.doNothing().when(searchStationDAO).delByID(1);
     }
+
 }

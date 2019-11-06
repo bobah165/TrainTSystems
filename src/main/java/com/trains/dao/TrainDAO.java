@@ -1,13 +1,14 @@
 package com.trains.dao;
 
-import com.trains.model.dto.PassengersFromTrainDTO;
-import com.trains.model.dto.TrainFromStationAToB;
+import com.trains.model.dto.*;
 import com.trains.model.entity.*;
 import org.hibernate.Session;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,115 +48,22 @@ public class TrainDAO extends CrudDAO {
         return passengersFromTrainDTOS;
     }
 
+    public Train getTrainByDate (List<Train> trains, SearchStations searchStationDTO, int trainID) {
+        Train currentTrain = new Train();
+        for (Train train: trains){
+            //String depDate1 = trainService.getDateOfStation(trainID,searchStationDTO.getDepartureStation());
+            if ((train.getDepartureDate().isEqual(searchStationDTO.getDepartureDate()) && train.getId()==trainID)) {
+                currentTrain = train;
+            }
+        }
 
-    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, Time startTime, Time endTime, LocalDate departureDate)
-    {
+        return currentTrain;
+    }
+
+    public List<TrainWay> getTrainWaysForTrain () {
         Session session = sessionFactory.getCurrentSession();
-        List<TrainWay> timetables = session.createQuery("from TrainWay ").list();
-        List<Station> stations = session.createQuery("from Station").list();
-        // находим инофрмаци о станциях в БД
-        Station stationA = new Station();
-        Station stationB = new Station();
-        for (Station station: stations){
-            if (station.getNameStation().equals(stationNameA)) {
-                stationA = station;
-            }
-            if (station.getNameStation().equals(stationNameB)) {
-                stationB = station;
-            }
-        }
+        return session.createQuery("from TrainWay ").list();
 
-        List<TrainFromStationAToB> trainFromStationAToBS = new ArrayList<>();
-        List<TrainWay> getTrainWayA = new ArrayList<>();
-        List<TrainWay> getTrainWayB = new ArrayList<>();
-        List<TrainWay> trainWaysBetweenAandB = new ArrayList<>();
-
-        for (TrainWay timetable: timetables) {
-            //находим маршруты поездов через станцию А
-            if (timetable.getStation().getId() == stationA.getId()) {
-                getTrainWayA.add(timetable);
-            }
-            //находим маршруты поездов через станцию В
-            if (timetable.getStation().getId() == stationB.getId()) {
-                getTrainWayB.add(timetable);
-            }
-        }
-        // находим маршруты поездов проходящих и через А и через В
-        for (TrainWay trainWayA: getTrainWayA ) {
-            for (TrainWay trainWayB: getTrainWayB) {
-                if(trainWayA.getNumberWay()==trainWayB.getNumberWay()){
-                    trainWaysBetweenAandB.add(trainWayA);
-                }
-            }
-        }
-
-            //ищем поезда проезжающие по этим маршрутам
-            List<Train> allTrains = session.createQuery("from Train ").list();
-            List<Train> trainsFromAtoB = new ArrayList<>();
-            for (Train train: allTrains) {
-                for (TrainWay trainWay: trainWaysBetweenAandB)
-                if (train.getTrainWay().getNumberWay()==trainWay.getNumberWay()) {
-                    trainsFromAtoB.add(train);
-                }
-            }
-
-            int days = 0; // количество дней в пути
-            // получение даты у поездов которые несколько дней в пути
-            for (Train train:trainsFromAtoB) {
-                for (TrainWay trainWay: timetables) {
-                    if (train.getTrainWay().getNumberWay()==trainWay.getNumberWay()) {
-                        if (trainWay.getStation().getNameStation().equals(stationNameA)){
-                            days = trainWay.getDaysInWay();
-                        }
-                    }
-                }
-                if (train.getDepartureDate().plusDays(days-1).isEqual(departureDate)) {
-                    TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
-                    trainFromStationAToB.setTrainID(train.getId());
-                    trainFromStationAToB.setCountFreeSits(train.getCountSits());
-                    trainFromStationAToB.setArrivalStation(stationNameB);
-                    trainFromStationAToB.setDeprtureStation(stationNameA);
-
-                    Time depTime = Time.valueOf("00:00:00");
-                    Time arrivTime = Time.valueOf("00:00:00");
-                    for (TrainWay trainWay : timetables) {
-                        if (train.getTrainWay().getNumberWay() == trainWay.getNumberWay()) {
-                            if (trainWay.getStation().getNameStation().equals(stationNameA)) {
-                                depTime = trainWay.getDepartureTime();
-                            }
-                            if (trainWay.getStation().getNameStation().equals(stationNameB)) {
-                                arrivTime = trainWay.getArrivalTime();
-                            }
-                        }
-                    }
-                    trainFromStationAToB.setDepartureTime(depTime);
-                    trainFromStationAToB.setArrivalTime(arrivTime);
-
-                    trainFromStationAToBS.add(trainFromStationAToB);
-                }
-            }
-
-            //ищем поезда в деапазоне времени
-        List<TrainFromStationAToB> trainFromStationAToBS1 = new ArrayList<>();
-            trainFromStationAToBS1.addAll(trainFromStationAToBS);
-        for (TrainFromStationAToB trainFromStationAToB: trainFromStationAToBS) {
-            if(!(trainFromStationAToB.getDepartureTime().after(startTime)&&trainFromStationAToB.getDepartureTime().before(endTime))){
-               trainFromStationAToBS1.remove(trainFromStationAToB);
-            }
-       }
-
-        List<FreeSeats> freeSeats = session.createQuery("from FreeSeats ").list();
-        for(TrainFromStationAToB trainFromStationAToB: trainFromStationAToBS1) {
-            for(FreeSeats freeSeat: freeSeats) {
-                if (trainFromStationAToB.getTrainID()==freeSeat.getIdTrain()
-                &&trainFromStationAToB.getDeprtureStation().equals(freeSeat.getStationName())) {
-                    trainFromStationAToB.setCountFreeSits(freeSeat.getFreeSeats());
-                }
-            }
-        }
-
-
-        return trainFromStationAToBS1;
     }
 
 }

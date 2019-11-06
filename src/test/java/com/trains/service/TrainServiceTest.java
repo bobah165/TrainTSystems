@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,8 +65,8 @@ public class TrainServiceTest {
 
         trainFromStationAToB = new TrainFromStationAToB();
         trainFromStationAToB.setCountFreeSits(200);
-        trainFromStationAToB.setArrivalTime(Time.valueOf("00:00:00"));
-        trainFromStationAToB.setDepartureTime(Time.valueOf("00:00:00"));
+        trainFromStationAToB.setArrivalTime(LocalTime.parse("00:00"));
+        trainFromStationAToB.setDepartureTime(LocalTime.parse("00:00"));
         trainFromStationAToB.setDeprtureStation("piter");
         trainFromStationAToB.setArrivalStation("moscow");
         trainFromStationAToB.setTrainID(1);
@@ -110,22 +111,7 @@ public class TrainServiceTest {
         List<PassengersFromTrainDTO> actual = new ArrayList<>();
         actual.add(passengersFromTrainDTO);
         Mockito.when(trainService.getPassengerFromTrain(1)).thenReturn(actual);
-
-
     }
 
-    @Test
-    public void getTrainsFromStations() {
-        List<TrainFromStationAToB> actual = new ArrayList<>();
-        actual.add(trainFromStationAToB);
-        Mockito.when(trainService.getTrainsFromStations(trainFromStationAToB.getDeprtureStation(),
-                trainFromStationAToB.getArrivalStation(),trainFromStationAToB.getDepartureTime(),
-                trainFromStationAToB.getArrivalTime(),LocalDate.of(2019,10,25))).thenReturn(actual);
 
-    }
-
-    @Test
-    public void getDateOfStation() {
-        Mockito.when(trainService.getDateOfStation(1,"piter")).thenReturn("12-12-2019");
-    }
 }

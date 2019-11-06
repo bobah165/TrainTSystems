@@ -2,6 +2,7 @@ package com.trains.model.dto;
 
 
 import java.sql.Date;
+import java.time.LocalTime;
 
 public class SearchStationDTO {
 
@@ -9,14 +10,14 @@ public class SearchStationDTO {
     private String departureStation;
     private String arrivalStation;
     private Date departureDate;
-    private String startTime;
-    private String endTime;
+    private LocalTime startTime;
+    private LocalTime endTime;
 
-    public String getEndTime() {
+    public LocalTime getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(String endTime) {
+    public void setEndTime(LocalTime endTime) {
         this.endTime = endTime;
     }
 
@@ -52,11 +53,11 @@ public class SearchStationDTO {
         this.departureDate = departureDate;
     }
 
-    public String getStartTime() {
+    public LocalTime getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(String startTime) {
+    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
     }
 

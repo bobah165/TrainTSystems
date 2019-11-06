@@ -11,7 +11,8 @@ public class TrainWayDAO extends CrudDAO {
 
     public List<TrainWay> allWays() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from TrainWay").list();
+        List<TrainWay> trainWays = session.createQuery("from TrainWay").list();
+        return trainWays;
     }
 
     public void delByID (int id) {

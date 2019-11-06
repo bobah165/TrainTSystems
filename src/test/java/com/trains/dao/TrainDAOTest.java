@@ -16,6 +16,7 @@ import org.mockito.Mockito;
 import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,8 +66,8 @@ public class TrainDAOTest {
 
         trainFromStationAToB = new TrainFromStationAToB();
         trainFromStationAToB.setCountFreeSits(200);
-        trainFromStationAToB.setArrivalTime(Time.valueOf("00:00:00"));
-        trainFromStationAToB.setDepartureTime(Time.valueOf("00:00:00"));
+        trainFromStationAToB.setArrivalTime(LocalTime.parse("00:00"));
+        trainFromStationAToB.setDepartureTime(LocalTime.parse("00:00"));
         trainFromStationAToB.setDeprtureStation("piter");
         trainFromStationAToB.setArrivalStation("moscow");
         trainFromStationAToB.setTrainID(1);
@@ -98,13 +99,4 @@ public class TrainDAOTest {
         Mockito.when(trainDAO.getPassengerFromTrain(1)).thenReturn(actual);
     }
 
-    @Test
-    public void getTrainsFromStations() {
-        List<TrainFromStationAToB> actual = new ArrayList<>();
-        actual.add(trainFromStationAToB);
-        Mockito.when(trainDAO.getTrainsFromStations(trainFromStationAToB.getDeprtureStation(),
-                trainFromStationAToB.getArrivalStation(),trainFromStationAToB.getDepartureTime(),
-                trainFromStationAToB.getArrivalTime(),LocalDate.of(2019,10,25))).thenReturn(actual);
-
-    }
 }

@@ -9,6 +9,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.sql.Date;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,11 +25,11 @@ public class SearchStationServiceTest {
     public void initSearchStation(){
         searchStationDTO = new SearchStationDTO();
         Date date = new Date(12-12-1995);
-        searchStationDTO.setEndTime("00:00:00");
+        searchStationDTO.setEndTime(LocalTime.parse("00:00"));
         searchStationDTO.setArrivalStation("Piter");
         searchStationDTO.setDepartureStation("Moscow");
         searchStationDTO.setId(1);
-        searchStationDTO.setStartTime("00:00:00");
+        searchStationDTO.setStartTime(LocalTime.parse("00:00"));
         searchStationDTO.setDepartureDate(date);
     }
 

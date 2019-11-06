@@ -1,6 +1,7 @@
 package com.trains.controller;
 
 
+import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.SearchStationDTO;
 import com.trains.model.dto.TrainFromStationAToB;
 import com.trains.service.SearchStationService;
@@ -8,6 +9,8 @@ import com.trains.service.TrainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,16 +21,9 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/findtrain")
-public class FindTrainController {
-    private TrainService trainService;
+public class SearchStationController {
     private SearchStationService searchStationService;
-    private static Logger logger = LoggerFactory.getLogger(FindTrainController.class);
-
-
-    @Autowired
-    public void setTrainService(TrainService trainService) {
-        this.trainService = trainService;
-    }
+    private static Logger logger = LoggerFactory.getLogger(SearchStationController.class);
 
     @Autowired
     public void setSearchStationService(SearchStationService searchStationService) {
@@ -38,7 +34,6 @@ public class FindTrainController {
     @GetMapping(value = "/trainfromstations")
     public ModelAndView getTrainPageWithStations() {
         ModelAndView modelAndView = new ModelAndView();
-      //  modelAndView.setViewName("train-view/find-train-by-stations");
         modelAndView.setViewName("train-view/find-train");
         logger.info("Read view train-view/find-train");
         return modelAndView;
@@ -51,33 +46,23 @@ public class FindTrainController {
                                               @RequestParam String startTime,
                                               @RequestParam String endTime) {
         ModelAndView modelAndView = new ModelAndView();
-        SearchStationDTO searchStationDTO = new SearchStationDTO();
-        searchStationDTO.setId(1); // надо подставить ID залогиневшегося пользователя
-        searchStationDTO.setDepartureDate(departureDate);
-        searchStationDTO.setStartTime(startTime);
-        searchStationDTO.setDepartureStation(stationA);
-        searchStationDTO.setArrivalStation(stationB);
-        searchStationDTO.setEndTime(endTime);
+        searchStationService.addInformationAboutSearch(stationA,stationB,departureDate.toLocalDate(),startTime,endTime);
+        logger.info("Edit or add search station ");
         modelAndView.setViewName("redirect:/findtrain/trainstation/");
-        if (!searchStationService.allTrains().isEmpty()) {
-            searchStationService.edit(searchStationDTO);
-            logger.info("Edit search station "+searchStationDTO);
-        } else searchStationService.add(searchStationDTO);
-
         return modelAndView;
     }
-
 
 
     //таблица поездов по результатам поиска
     @GetMapping(value = "/trainstation")
     public ModelAndView getTrainstAB (){
         ModelAndView modelAndView = new ModelAndView();
-        SearchStationDTO searchStationDTO = searchStationService.getById(1); //подставить ID залогинившегося пользователя
+        int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        SearchStationDTO searchStationDTO = searchStationService.getById(idCurrentPassenger);
         logger.info("Get by id search sttion "+searchStationDTO);
         List<TrainFromStationAToB> trainFromStationAToBS =
-                trainService.getTrainsFromStations(searchStationDTO.getDepartureStation(), searchStationDTO.getArrivalStation(),
-                        Time.valueOf(searchStationDTO.getStartTime()),Time.valueOf(searchStationDTO.getEndTime()),searchStationDTO.getDepartureDate().toLocalDate());
+                searchStationService.getTrainsFromStations(searchStationDTO.getDepartureStation(), searchStationDTO.getArrivalStation(),
+                        searchStationDTO.getStartTime(),searchStationDTO.getEndTime(),searchStationDTO.getDepartureDate().toLocalDate());
         modelAndView.setViewName("train-view/get-train-from-stations");
         modelAndView.addObject("trainListfromAtoB",trainFromStationAToBS);
         return modelAndView;

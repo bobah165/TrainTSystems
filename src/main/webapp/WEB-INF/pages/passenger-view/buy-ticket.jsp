@@ -23,7 +23,7 @@
     <a class="hiddenanchor" id="tologin"></a>
     <div id="wrapper">
         <div id="login" class="animate form">
-            <form  action="/buy/" autocomplete="on" method="post">
+            <form  action="/train/buy/" autocomplete="on" method="post">
                 <h1>Passenger Information</h1>
                 <p>
                     <label for="name" class="uname" data-icon="u" > Name </label>

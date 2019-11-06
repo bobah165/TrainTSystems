@@ -23,13 +23,13 @@ public class MyAuthenticationSuccessHandler implements org.springframework.secur
         authorities.forEach(authority -> {
             if (authority.getAuthority().equals("passenger")) {
                 try {
-                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/main/pass/");
+                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/pass/");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             } else if (authority.getAuthority().equals("employee")) {
                 try {
-                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/main/empl/");
+                    redirectStrategy.sendRedirect(httpServletRequest, httpServletResponse, "/empl/");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

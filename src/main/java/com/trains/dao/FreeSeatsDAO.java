@@ -3,6 +3,7 @@ package com.trains.dao;
 import com.trains.model.entity.FreeSeats;
 import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -22,11 +23,12 @@ public class FreeSeatsDAO extends CrudDAO {
 
     public FreeSeats getByStationAndTrainID (String stationName, int trainID) {
         Session session = sessionFactory.getCurrentSession();
-        List<FreeSeats> freeSeats = session.createQuery("from FreeSeats where idTrain = "+trainID).list();
-        for(FreeSeats freeSeat:freeSeats){
-            if (freeSeat.getStationName().equals(stationName))
-                return freeSeat;
-        }
-        return new FreeSeats();
+        FreeSeats freeSeat = new FreeSeats();
+        Query query = session.createQuery("from FreeSeats where idTrain = :trainID and stationName like :stationName");
+        query.setParameter("stationName",stationName);
+        query.setParameter("trainID",trainID);
+        List<FreeSeats> freeSeats = query.list();
+        if (!freeSeats.isEmpty()) freeSeat = freeSeats.get(0);
+        return freeSeat;
     }
  }

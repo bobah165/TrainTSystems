@@ -103,12 +103,6 @@ public class TicketServiceTest {
         Mockito.doNothing().when(ticketService).delByID(1);
     }
 
-    @Test
-    public void getByTrain() {
-        List<TicketDTO> actual = new ArrayList<>();
-        actual.add(ticketDTO);
-        Mockito.when(ticketService.getByTrain(train)).thenReturn(actual);
-    }
 
     @Test
     public void addTicketByTrainDTOPassengerDTO() {

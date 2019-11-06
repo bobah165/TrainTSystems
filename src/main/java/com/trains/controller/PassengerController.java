@@ -4,6 +4,7 @@ package com.trains.controller;
 ;
 import com.trains.model.dto.PassengerDTO;
 import com.trains.service.PassengerService;
+import com.trains.util.validator.PassengerDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,13 @@ import java.util.List;
 @RequestMapping("/passenger")
 public class PassengerController {
     private PassengerService passengerService;
+    private PassengerDTOValidator passengerDTOValidator;
     private static Logger logger = LoggerFactory.getLogger(PassengerController.class);
+
+    @Autowired
+    public void setPassengerDTOValidator(PassengerDTOValidator passengerDTOValidator) {
+        this.passengerDTOValidator = passengerDTOValidator;
+    }
 
     @Autowired
     public void setPassengerService(PassengerService passengerService) {
@@ -68,7 +75,7 @@ public class PassengerController {
     }
 
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("passenger") PassengerDTO passenger) {
+    public ModelAndView createPassenger(@ModelAttribute("passenger") PassengerDTO passenger) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/passenger/");
         passengerService.add(passenger);
@@ -90,6 +97,30 @@ public class PassengerController {
     public ModelAndView getMessage () {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("passenger-view/message-passenger");
+        return modelAndView;
+    }
+
+    @GetMapping(value = "/addempl")
+    public ModelAndView getEmplPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("passenger-view/add-passenger");
+        logger.info("Read view /passenger-view/add-passenger");
+        return modelAndView;
+    }
+
+    @PostMapping(value = "/addempl")
+    public ModelAndView createEmployee(@ModelAttribute("passenger") @Valid PassengerDTO passenger,BindingResult result) {
+        ModelAndView modelAndView = new ModelAndView();
+        passengerDTOValidator.validate(passenger,result);
+        if(result.hasErrors()) {
+            modelAndView.setViewName("redirect:/passenger/message/");
+            return modelAndView;
+        }
+
+        modelAndView.setViewName("redirect:/empl/");
+        passenger.setUser("employee");
+        passengerService.add(passenger);
+        logger.info("Add passenger "+passenger);
         return modelAndView;
     }
 

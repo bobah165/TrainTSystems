@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 
 import java.sql.Date;
 import java.sql.Time;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,11 +64,11 @@ public class TicketInformDAOTest {
 
         searchStationDTO = new SearchStationDTO();
         searchStationDTO.setDepartureDate(date);
-        searchStationDTO.setStartTime("12:12:12");
+        searchStationDTO.setStartTime(LocalTime.parse("12:12"));
         searchStationDTO.setId(1);
         searchStationDTO.setDepartureStation("piter");
         searchStationDTO.setArrivalStation("moscow");
-        searchStationDTO.setEndTime("14:13:13");
+        searchStationDTO.setEndTime(LocalTime.parse("14:13"));
 
         trainDTO = new TrainDTO();
         trainDTO.setId(1);
