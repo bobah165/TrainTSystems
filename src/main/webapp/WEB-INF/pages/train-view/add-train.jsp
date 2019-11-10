@@ -43,6 +43,8 @@
                     <datalist id="ways">
                         <option>everyday</option>
                         <option>other</option>
+                        <option>odd</option>
+                        <option>even</option>
                     </datalist>
                 </p>
 

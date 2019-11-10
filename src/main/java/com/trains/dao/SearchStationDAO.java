@@ -1,6 +1,7 @@
 package com.trains.dao;
 
 import com.trains.model.dto.TrainFromStationAToB;
+import com.trains.model.dto.TrainWayDTO;
 import com.trains.model.entity.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -10,7 +11,9 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class SearchStationDAO extends CrudDAO{
@@ -52,26 +55,45 @@ public class SearchStationDAO extends CrudDAO{
         List<TrainFromStationAToB> trainFromStationAToBS = new ArrayList<>();
         List<TrainWay> trainWaysBetweenAandB = new ArrayList<>();
 
-        Query queryWayA = session.createQuery("from TrainWay t where t.id = : stationId");
-        queryWayA.setParameter("stationId",stationA.getId());
+        Query queryWayA = session.createQuery("from TrainWay t where t.station.id = :stationIdA");
+        queryWayA.setParameter("stationIdA",stationA.getId());
         List<TrainWay> getTrainWayA = queryWayA.list();
 
-        Query queryWayB = session.createQuery("from TrainWay t where t.id = : stationId");
-        queryWayA.setParameter("stationId",stationB.getId());
-        List<TrainWay> getTrainWayB = queryWayA.list();
+        Query queryWayB = session.createQuery("from TrainWay t where t.station.id = : idStation");
+        queryWayB.setParameter("idStation",stationB.getId());
+        List<TrainWay> getTrainWayB = queryWayB.list();
 
 
         // находим маршруты поездов проходящих и через А и через В
         for (TrainWay trainWayA: getTrainWayA ) {
             for (TrainWay trainWayB: getTrainWayB) {
-                if(trainWayA.getNumberWay()==trainWayB.getNumberWay()){
-                    trainWaysBetweenAandB.add(trainWayA);
+                if (trainWayA.getNumberWay() == trainWayB.getNumberWay()) {
+                    Query query = session.createQuery("from TrainWay t where t.numberWay = :way");
+                    query.setParameter("way",trainWayA.getNumberWay());
+                    List<TrainWay> oneWay = query.list();
+                    List<TrainWay> sortedTrainWay= oneWay.stream()
+                            .sorted(Comparator.comparing(TrainWay::getDaysInWay)
+                                    .thenComparing(TrainWay::getDepartureTime))
+                            .collect(Collectors.toList());
+                    if (sortedTrainWay.indexOf(trainWayA)<sortedTrainWay.indexOf(trainWayB)) {
+                        trainWaysBetweenAandB.add(trainWayA);
+                    }
+
+//                    if (trainWayA.getDepartureTime().before(trainWayB.getDepartureTime()) &&
+//                            trainWayA.getDaysInWay() == trainWayB.getDaysInWay()) {
+//                        trainWaysBetweenAandB.add(trainWayA);
+//                    }
+//                    if (trainWayA.getDaysInWay() != trainWayB.getDaysInWay()) {
+//                        trainWaysBetweenAandB.add(trainWayA);
+//                    }
                 }
             }
         }
 
+
         //ищем поезда проезжающие по этим маршрутам
-        List<Train> allTrains = session.createQuery("from Train ").list();
+       List<Train> allTrains = session.createQuery("from Train ").list();
+      //  List<Train> trains = trainDAO.addTrainBySchedule(departureDate);
         List<Train> trainsFromAtoB = new ArrayList<>();
         for (Train train: allTrains) {
             for (TrainWay trainWay: trainWaysBetweenAandB)
@@ -136,7 +158,10 @@ public class SearchStationDAO extends CrudDAO{
         }
 
 
+
         return trainFromStationAToBS1;
     }
+
+
 
 }

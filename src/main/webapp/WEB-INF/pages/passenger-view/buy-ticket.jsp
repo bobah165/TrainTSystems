@@ -27,15 +27,15 @@
                 <h1>Passenger Information</h1>
                 <p>
                     <label for="name" class="uname" data-icon="u" > Name </label>
-                    <input id="name" name="name" required="required" type="text"/>
+                    <input id="name" name="name" required="required" type="text" value="${passenger.name}"/>
                 </p>
                 <p>
                     <label for="surname" class="youpasswd" data-icon="p"> Surname </label>
-                    <input id="surname" name="surname" required="required" type="text"  />
+                    <input id="surname" name="surname" required="required" type="text" value="${passenger.surname}" />
                 </p>
                 <p>
                     <label for="birthday" class="youpasswd" data-icon="p"> Birthday </label>
-                    <input id="birthday" name="birthday" required="required" type="date"  />
+                    <input id="birthday" name="birthday" required="required" type="date" value="${passenger.birthday}" />
                 </p>
 
                 <p class="login button">

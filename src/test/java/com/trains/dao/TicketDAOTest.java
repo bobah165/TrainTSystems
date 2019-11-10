@@ -55,6 +55,7 @@ public class TicketDAOTest {
         train.setTrainWay(trainWay);
         train.setTrainNumber(1);
         train.setCountSits(800);
+        train.setSchedule("odd");
 
         ticket = new Ticket();
         ticket.setPassenger(passenger);
@@ -80,12 +81,6 @@ public class TicketDAOTest {
         Mockito.doNothing().when(ticketDAO).delByID(1);
     }
 
-    @Test
-    public void getByTrain() {
-        List<Ticket> actual = new ArrayList<>();
-        actual.add(ticket);
-        Mockito.when(ticketDAO.getByTrain(train)).thenReturn(actual);
-    }
 
     @Test
     public void addTicketByTrainDTOPassengerDTO() {

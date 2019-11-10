@@ -3,7 +3,9 @@ package com.trains.controller;
 
 import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.SearchStationDTO;
+import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
+import com.trains.model.entity.Train;
 import com.trains.service.SearchStationService;
 import com.trains.service.TrainService;
 import org.slf4j.Logger;
@@ -23,7 +25,13 @@ import java.util.List;
 @RequestMapping("/findtrain")
 public class SearchStationController {
     private SearchStationService searchStationService;
+    private TrainService trainService;
     private static Logger logger = LoggerFactory.getLogger(SearchStationController.class);
+
+    @Autowired
+    public void setTrainService(TrainService trainService) {
+        this.trainService = trainService;
+    }
 
     @Autowired
     public void setSearchStationService(SearchStationService searchStationService) {
@@ -46,6 +54,7 @@ public class SearchStationController {
                                               @RequestParam String startTime,
                                               @RequestParam String endTime) {
         ModelAndView modelAndView = new ModelAndView();
+        searchStationService.addTrainBySchedule(departureDate.toLocalDate());
         searchStationService.addInformationAboutSearch(stationA,stationB,departureDate.toLocalDate(),startTime,endTime);
         logger.info("Edit or add search station ");
         modelAndView.setViewName("redirect:/findtrain/trainstation/");
@@ -55,7 +64,7 @@ public class SearchStationController {
 
     //таблица поездов по результатам поиска
     @GetMapping(value = "/trainstation")
-    public ModelAndView getTrainstAB (){
+    public ModelAndView getTrainstAB () {
         ModelAndView modelAndView = new ModelAndView();
         int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         SearchStationDTO searchStationDTO = searchStationService.getById(idCurrentPassenger);

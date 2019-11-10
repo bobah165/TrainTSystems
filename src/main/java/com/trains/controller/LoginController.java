@@ -2,6 +2,7 @@ package com.trains.controller;
 
 import com.trains.model.dto.PassengerDTO;
 import com.trains.service.PassengerService;
+import com.trains.util.WebSocketServerEndPoint;
 import com.trains.util.validator.PassengerDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,7 @@ public class LoginController {
     private PassengerService passengerService;
     private PassengerDTOValidator passengerDTOValidator;
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+
 
     @Autowired
     public void setPassengerDTOValidator(PassengerDTOValidator passengerDTOValidator) {

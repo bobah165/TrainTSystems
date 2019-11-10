@@ -5,11 +5,20 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 public class TrainFromStationDTO {
+    private int id;
     private int idTrain;
     private String nameStation;
     private Time departureTime;
     private Time arrivalTime;
     private Date date;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Date getDate() {
         return date;

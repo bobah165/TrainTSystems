@@ -60,6 +60,7 @@ public class TrainController {
 
     @GetMapping(value = "/")
     public ModelAndView getAllTrains() {
+     //   trainService.deleteIfNoPassengerInTrain();
         List<TrainDTO> trains = trainService.allTrains();
         logger.info("Get all trains");
         ModelAndView modelAndView = new ModelAndView();
@@ -106,8 +107,7 @@ public class TrainController {
 
 
     @PostMapping(value = "/add")
-    public ModelAndView create(@ModelAttribute("train") @Valid TrainDTO train, BindingResult result,
-                               @RequestParam String schedule) {
+    public ModelAndView create(@ModelAttribute("train") @Valid TrainDTO train, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
         trainDTOValidator.validate(train,result);
         if(result.hasErrors()) {
@@ -168,7 +168,9 @@ public class TrainController {
     @GetMapping(value = "/buy/{trainID}")
     public ModelAndView addTicket(@PathVariable("trainID") int trainID){
         ModelAndView modelAndView = new ModelAndView();
+        PassengerDTO passengerDTO = (PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         trainService.addTicketInfByTrainId(trainID);
+        modelAndView.addObject("passenger",passengerDTO);
         modelAndView.setViewName("passenger-view/buy-ticket");
         logger.info("Add ticket information by Train ID");
 
@@ -223,7 +225,6 @@ public class TrainController {
             modelAndView.setViewName("redirect:/ticket/message/");
             return modelAndView;
         }
-
         modelAndView.setViewName("redirect:/train/buy/ticket/");
         return modelAndView;
     }
@@ -235,6 +236,7 @@ public class TrainController {
         ModelAndView modelAndView = new ModelAndView();
         int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         TicketInformDTO ticketList = ticketInformService.getById(idCurrentPassenger);
+        trainService.deleteIfNoPassengerInTrain();
         modelAndView.setViewName("ticket-info/ticket-info");
         modelAndView.addObject("ticketInfo",ticketList);
         ticketInformService.delete(ticketList);

@@ -3,6 +3,7 @@ package com.trains.dao;
 import com.trains.model.dto.*;
 import com.trains.model.entity.*;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
@@ -10,7 +11,9 @@ import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public class TrainDAO extends CrudDAO {
@@ -65,5 +68,25 @@ public class TrainDAO extends CrudDAO {
         return session.createQuery("from TrainWay ").list();
 
     }
+
+    public List<Train> getTrainByDepartureDate (LocalDate departureDate) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Train t where t.departureDate = :departureDate");
+        query.setParameter("departureDate",departureDate);
+        List<Train> trains = query.list();
+        return trains;
+    }
+
+    public void deleteIfNoPassengerInTrain() {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Train where tickets.size = 0");
+        List<Train> trains = query.list();
+        if (!trains.isEmpty()) {
+            for (Train train : trains) {
+                session.delete(train);
+            }
+        }
+    }
+
 
 }

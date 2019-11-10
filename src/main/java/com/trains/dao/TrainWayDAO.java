@@ -2,6 +2,7 @@ package com.trains.dao;
 
 import com.trains.model.entity.TrainWay;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -24,5 +25,13 @@ public class TrainWayDAO extends CrudDAO {
     public TrainWay getById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(TrainWay.class,id);
+    }
+
+    public List<TrainWay> getWaysByNumberWay (int numberWay) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from TrainWay t where t.numberWay = :numberWay");
+        query.setParameter("numberWay",numberWay);
+        List<TrainWay> trainWays = query.list();
+        return trainWays;
     }
 }

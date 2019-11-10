@@ -73,6 +73,7 @@ public class FreeSeatsService {
 
     public boolean checkFreeSeats(TrainDTO train, TicketInformDTO ticketInformDTO) {
         boolean isAddTicket = true;
+
         //находим все станции по маршруту поезда
         List<TrainWayDTO> trainOneWAy = new ArrayList<>();
         List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
@@ -81,6 +82,7 @@ public class FreeSeatsService {
             if (trainWayDTO.getNumberWay()==train.getTrainWay().getNumberWay())
                 trainOneWAy.add(trainWayDTO);
         }
+
 
         //сортировка полученного расписания для одной станции по времени отправления
         List<TrainWayDTO> sortedTrainWay= trainOneWAy.stream()
@@ -108,19 +110,23 @@ public class FreeSeatsService {
                 seatsDTO.setIdTrain(train.getId());
                 seatsDTO.setFreeSeats(train.getCountSits());
                 freeSeatsDAO.add(seatsDTO);
+                freeSeatInWay.add(seatsDTO);
             }
         }
 
         List<FreeSeats> sortedFreeSeatInWay = freeSeatInWay.stream()
                 .sorted(Comparator.comparing(FreeSeats::getId))
                 .collect(Collectors.toList());
+
         // поиск станций на которые покупается билет
         for (FreeSeats freeSeats1: sortedFreeSeatInWay) {
 
             // поиск станции отправления
             if(freeSeats1.getStationName().equals(ticketInformDTO.getDepartureStation())) {
                 if(freeSeats1.getFreeSeats()>0) {
-                    freeSeats1.setFreeSeats(freeSeats1.getFreeSeats() - 1);
+                    int free = freeSeats1.getFreeSeats() - 1;
+                    freeSeats1.setFreeSeats(free);
+                 //   freeSeats1.setFreeSeats(freeSeats1.getFreeSeats() - 1);
                     freeSeatsDAO.edit(freeSeats1);
                 } else {
                     isAddTicket = false;
@@ -140,6 +146,9 @@ public class FreeSeatsService {
             int arrNumber = sortedFreeSeatInWay.indexOf(freeSeatsArrival);
 
                 for (int j = depNumber+1; j<arrNumber;j++ ) {
+                    //проверка наличия мест на промежуточных станциях
+                    //если хотя бы на одной промежуточной станции нет мест, то false,
+                    // если есть места, то true
                     if(sortedFreeSeatInWay.get(j).getFreeSeats()>0) {
                         sortedFreeSeatInWay.get(j).setFreeSeats(sortedFreeSeatInWay.get(j).getFreeSeats()-1);
                         freeSeatsDAO.edit(sortedFreeSeatInWay.get(j));
@@ -149,6 +158,28 @@ public class FreeSeatsService {
                     }
                 }
         }
+
+
+//        if(((freeSeatsDeparture.getId()-1)!=freeSeatsArrival.getId())) {
+//
+//            int depNumber =  sortedFreeSeatInWay.indexOf(freeSeatsDeparture);
+//            int arrNumber = sortedFreeSeatInWay.indexOf(freeSeatsArrival);
+//
+//            for (int j = depNumber-1; j>arrNumber;j-- ) {
+//                //проверка наличия мест на промежуточных станциях
+//                //если хотя бы на одной промежуточной станции нет мест, то false,
+//                // если есть места, то true
+//                if(sortedFreeSeatInWay.get(j).getFreeSeats()>0) {
+//                    sortedFreeSeatInWay.get(j).setFreeSeats(sortedFreeSeatInWay.get(j).getFreeSeats()-1);
+//                    freeSeatsDAO.edit(sortedFreeSeatInWay.get(j));
+//                } else {
+//                    isAddTicket = false;
+//                    return isAddTicket;
+//                }
+//            }
+//        }
+
+
         return isAddTicket;
     }
 

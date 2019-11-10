@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import java.time.LocalDate;
+
 @Component
 public class PassengerDTOValidator implements Validator {
 
@@ -34,6 +36,14 @@ public class PassengerDTOValidator implements Validator {
         if(passengerService.getPassengerId(passengerDTO.getName(),passengerDTO.getSurname(),passengerDTO.getBirthday())>0){
             errors.rejectValue(
                     "id", "", "This passenger is already exist"
+            );
+        }
+        LocalDate date = passengerDTO.getBirthday().toLocalDate();
+        LocalDate date1 = LocalDate.now();
+        boolean b = date.isAfter(date1);
+        if (b){
+            errors.rejectValue(
+                    "birthday", "", "Wrong birthday"
             );
         }
     }

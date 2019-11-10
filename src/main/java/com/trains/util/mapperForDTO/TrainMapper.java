@@ -18,6 +18,7 @@ public class TrainMapper {
         train.setTrainNumber(trainDTO.getTrainNumber());
         train.setTrainWay(trainDTO.getTrainWay());
         train.setDepartureDate(trainDTO.getDepartureDate().toLocalDate());
+        train.setSchedule(trainDTO.getSchedule());
         return train;
     }
 
@@ -29,6 +30,7 @@ public class TrainMapper {
         trainDTO.setTrainNumber(train.getTrainNumber());
         trainDTO.setTrainWay(train.getTrainWay());
         trainDTO.setDepartureDate(Date.valueOf(train.getDepartureDate()));
+        trainDTO.setSchedule(train.getSchedule());
         return trainDTO;
     }
 }

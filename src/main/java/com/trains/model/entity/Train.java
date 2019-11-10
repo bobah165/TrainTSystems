@@ -5,6 +5,8 @@ import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -22,6 +24,7 @@ public class Train {
     private int trainNumber;
 
     @Column(name = "count_sits")
+    @DecimalMin(value = "0")
     private int countSits;
 
     @OneToMany(mappedBy = "train",cascade = CascadeType.ALL,orphanRemoval = true)
@@ -34,6 +37,17 @@ public class Train {
     @NaturalId(mutable = true)
     @Column(name = "departure_date")
     private LocalDate departureDate;
+
+    @Column(name = "schedule")
+    private String schedule;
+
+    public String getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(String schedule) {
+        this.schedule = schedule;
+    }
 
     public LocalDate getDepartureDate() {
         return departureDate;
@@ -99,11 +113,12 @@ public class Train {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Train train = (Train) object;
-        return getId() == train.getId();
+        return getTrainNumber() == train.getTrainNumber() &&
+                (getTrainWay().getNumberWay() == train.getTrainWay().getNumberWay());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId());
+        return Objects.hash(getTrainNumber(), getTrainWay());
     }
 }
