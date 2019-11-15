@@ -6,6 +6,7 @@ import com.trains.model.dto.TrainFromStationDTO;
 
 import com.trains.service.StationService;
 import com.trains.service.TrainService;
+import com.trains.util.MessageSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
 public class StationController {
     private StationService stationService;
     private TrainService trainService;
+    private int page;
     private static Logger logger = LoggerFactory.getLogger(StationController.class);
 
     @Autowired
@@ -35,13 +37,18 @@ public class StationController {
     }
 
     @GetMapping(value = "/")
-    public ModelAndView allPassengers() {
+    public ModelAndView getStations(@RequestParam(defaultValue = "1") int page) {
         List<StationDTO> stations = stationService.allStations();
-        logger.info("Get all stations");
         ModelAndView modelAndView = new ModelAndView();
+        List<StationDTO> stationDTOList = stationService.allStatinPagination(page);
+        int stationCount = stationService.stationCountForPage();
+        int pageCount = (stationCount+9)/10;
         modelAndView.setViewName("station-view/stations");
-        logger.info("Read view /station-view/stations");
-        modelAndView.addObject("stationsList", stations);
+        modelAndView.addObject("page",page);
+        modelAndView.addObject("stationsList",stationDTOList);
+        modelAndView.addObject("stationCount",stationCount);
+        modelAndView.addObject("pageCount",pageCount);
+        this.page = page;
         return modelAndView;
     }
 
@@ -87,7 +94,8 @@ public class StationController {
     @GetMapping (value = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("redirect:/station/");
+        modelAndView.setViewName("redirect:/station/?page=" + this.page);
+       // modelAndView.setViewName("redirect:/station/");
         stationService.delByID(id);
         logger.info("Delete station by id = "+id);
         return modelAndView;

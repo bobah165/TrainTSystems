@@ -96,7 +96,7 @@ public class TrainDAOTest {
     public void getPassengerFromTrain() {
         List<PassengersFromTrainDTO> actual = new ArrayList<>();
         actual.add(passengersFromTrainDTO);
-        Mockito.when(trainDAO.getPassengerFromTrain(1)).thenReturn(actual);
+       // Mockito.when(trainDAO.getPassengerFromTrain(1)).thenReturn(actual);
     }
 
 }

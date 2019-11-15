@@ -4,21 +4,18 @@ import com.trains.dao.*;
 import com.trains.model.dto.*;
 import com.trains.model.entity.*;
 import com.trains.util.MessageSender;
-import com.trains.util.mapperForDTO.SearchStationMapper;
 import com.trains.util.mapperForDTO.TrainMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.jms.JMSException;
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @Transactional
@@ -27,23 +24,13 @@ public class TrainService {
     private TrainDAO trainDAO;
     private SearchStationDAO searchStationDAO;
     private TicketInformDAO ticketInformDAO;
-    private SearchStationMapper searchStationMapper;
     private TrainFromStationDAO trainFromStationDAO;
-    private TrainWayDAO trainWayDAO;
 
-    @Autowired
-    public void setTrainWayDAO(TrainWayDAO trainWayDAO) {
-        this.trainWayDAO = trainWayDAO;
-    }
+    private static Logger logger = LoggerFactory.getLogger(TrainService.class);
 
     @Autowired
     public void setTrainFromStationDAO(TrainFromStationDAO trainFromStationDAO) {
         this.trainFromStationDAO = trainFromStationDAO;
-    }
-
-    @Autowired
-    public void setSearchStationMapper(SearchStationMapper searchStationMapper) {
-        this.searchStationMapper = searchStationMapper;
     }
 
     @Autowired
@@ -76,39 +63,31 @@ public class TrainService {
         return trainDTOS;
     }
 
+    public List<TrainDTO> allTrainsPagination(int page) {
+        List<Train> trains = trainDAO.allTrainPagination(page);
+        List<TrainDTO> trainDTOS = new ArrayList<>();
+        for (Train train: trains) {
+            trainDTOS.add(trainMapper.mapEntityToDto(train));
+        }
+        return trainDTOS;
+    }
+
+    public int trainCountForPage() {
+        return trainDAO.trainCountForPage();
+    }
+
     public void add(TrainDTO trainDTO) {
-        List<Train> trainList = trainDAO.getTrainByDepartureDate(LocalDate.now());
         Train train = trainMapper.mapDtoToEntity(trainDTO);
         trainDAO.add(train);
 
-     //   List<TrainFromStation> trainFromStation = trainFromStationDAO.allTrain();
-        List<Train> trains = trainDAO.getTrainByDepartureDate(LocalDate.now());
-
-//        boolean b = trainFromStation.isEmpty();
-//        if (b) {
-//            for (Train train1 : trains) {
-//                TrainFromStation trainFromStation1 = new TrainFromStation();
-//                trainFromStation1.setIdTrain(train1.getId());
-//                trainFromStation1.setDate(train1.getDepartureDate());
-//
-//                for (TrainWay trainWay : trainWayDAO.getWaysByNumberWay(train1.getTrainWay().getNumberWay())) {
-//                    trainFromStation1.setNameStation(trainWay.getStation().getNameStation());
-//                    trainFromStation1.setDepartureTime(trainWay.getDepartureTime().toLocalTime());
-//                    trainFromStation1.setArrivalTime(trainWay.getArrivalTime().toLocalTime());
-//                    trainFromStationDAO.add(trainFromStation1);
-//                }
-//            }
-//        } else {
-            boolean b1 = trainList.size() != trains.size();
-            if (b1) {
-                // если добавленный поезд будет на сегодня в расписаниии, то отправляем сообщение
-                try {
-                    MessageSender.send();
-                } catch (JMSException ex) {
-                    System.out.println(ex.getStackTrace()); // вставить логгер
-                }
+        if(train.getDepartureDate().isEqual(LocalDate.now())) {
+            try {
+                MessageSender.send();
+            } catch (Exception e) {
+                logger.error("Message haven't been sent");
             }
-       // }
+        }
+
     }
 
     public void delete(TrainDTO trainDTO) {
@@ -131,23 +110,33 @@ public class TrainService {
     }
 
     public void delByID (int id) {
-        List<Train> trainList = trainDAO.getTrainByDepartureDate(LocalDate.now());
-        trainDAO.delByID(id);
-
-        List<Train> trains = trainDAO.getTrainByDepartureDate(LocalDate.now());
-
-        if (trainList.size()!=trains.size()){
-            // если изменилось расписание, удалили поезд, то отправлем сообщение
+        Train train = trainDAO.getById(id);
+        if (train.getDepartureDate().isEqual(LocalDate.now())){
+            trainFromStationDAO.deleteByTrainNumber(train.getTrainNumber());
             try {
                 MessageSender.send();
             } catch (JMSException ex) {
-                System.out.println(ex.getStackTrace()); // вставить логгер
+                logger.error("Message haven't been sent");
             }
         }
+
+        trainDAO.delByID(id);
     }
 
     public List<PassengersFromTrainDTO> getPassengerFromTrain (int idTrain) {
-        return trainDAO.getPassengerFromTrain(idTrain);
+        List<Ticket> tickets = trainDAO.getPassengerFromTrain(idTrain);
+        List<PassengersFromTrainDTO> passengersFromTrainDTOS = new ArrayList<>();
+        for (Ticket ticket: tickets) {
+            PassengersFromTrainDTO passengersFromTrainDTO = new PassengersFromTrainDTO();
+            passengersFromTrainDTO.setTicketID(ticket.getId());
+            passengersFromTrainDTO.setName(ticket.getPassenger().getName());
+            passengersFromTrainDTO.setSurname(ticket.getPassenger().getSurname());
+            passengersFromTrainDTO.setBirthday(ticket.getPassenger().getBirthday());
+
+            passengersFromTrainDTOS.add(passengersFromTrainDTO);
+        }
+
+        return passengersFromTrainDTOS;
     }
 
 //    public String getDateOfStation (int trainId, String stationName) {

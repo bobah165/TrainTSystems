@@ -2,7 +2,6 @@ package com.trains.model.entity;
 
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 
@@ -24,8 +23,16 @@ public class TrainFromStation {
     private LocalTime departureTime;
     @Column(name = "arrival_time")
     private LocalTime arrivalTime;
-    @Column(name = "date")
-    private LocalDate date;
+    @Column(name="days_in_way")
+    private int daysInWay;
+
+    public int getDaysInWay() {
+        return daysInWay;
+    }
+
+    public void setDaysInWay(int days) {
+        this.daysInWay = days;
+    }
 
     public int getId() {
         return id;
@@ -67,13 +74,6 @@ public class TrainFromStation {
         this.arrivalTime = arrivalTime;
     }
 
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
 
     @Override
     public String toString() {

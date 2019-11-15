@@ -3,12 +3,15 @@ package com.trains.service;
 import com.trains.dao.StationDAO;
 import com.trains.dao.TrainFromStationDAO;
 import com.trains.model.dto.StationDTO;
+import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationDTO;
 import com.trains.model.entity.Station;
+import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainFromStation;
 import com.trains.util.MessageSender;
 import com.trains.util.mapperForDTO.StationMapper;
 import com.trains.util.mapperForDTO.TrainFromStationMapper;
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,6 +36,7 @@ public class StationService {
     public void setTrainFromStationMapper(TrainFromStationMapper trainFromStationMapper) {
         this.trainFromStationMapper = trainFromStationMapper;
     }
+
 
     @Autowired
     public void setTrainFromStationDAO(TrainFromStationDAO trainFromStationDAO) {
@@ -59,6 +63,19 @@ public class StationService {
     return stationDTOS;
     }
 
+    public List<StationDTO> allStatinPagination(int page) {
+        List<Station> stations = stationDAO.allStatinPagination(page);
+        List<StationDTO> stationDTOS = new ArrayList<>();
+        for (Station station: stations) {
+            stationDTOS.add(stationMapper.mapEntityToDto(station));
+        }
+        return stationDTOS;
+    }
+
+    public int stationCountForPage() {
+        return stationDAO.stationCountForPage();
+    }
+
     public void add(StationDTO stationDTO) {
         Station station = stationMapper.mapDtoToEntity(stationDTO);
         stationDAO.add(station); }
@@ -78,23 +95,7 @@ public class StationService {
     }
 
     public List<TrainFromStationDTO> getTrainFromStation(int idStation, Date departureDate, LocalTime startTime, LocalTime endTime) {
-              // List<TrainFromStation> trains = trainFromStationDAO.allTrain();
         List<TrainFromStationDTO> trainFromStations = stationDAO.getTrainFromStation(idStation,departureDate,startTime,endTime);
-
-//        if (trains.isEmpty()) {
-//            for (TrainFromStationDTO trainFromStationDTO: trainFromStations) {
-//                trainFromStationDAO.add(trainFromStationMapper.mapDtoToEntity(trainFromStationDTO));
-//            }
-//            // если изначально таблица пуста,то отпарвляем сообщение
-//            try {
-//                MessageSender.send();
-//            }catch (JMSException ex) {
-//                System.out.println(ex.getStackTrace()); // вставить логгер
-//            }
-//        }
-//
-//        if()
-
         return trainFromStations;
     }
 

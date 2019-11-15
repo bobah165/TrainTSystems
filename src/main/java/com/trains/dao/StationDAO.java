@@ -23,6 +23,17 @@ public class StationDAO extends CrudDAO {
         return session.createQuery("from Station ").list();
     }
 
+    public List<Station> allStatinPagination(int page) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Station").setFirstResult(10*(page-1)).setMaxResults(10).list();
+    }
+
+    public int stationCountForPage() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("select count (*) from Station ",Number.class).getSingleResult().intValue();
+    }
+
+
     public Station getById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(Station.class,id);
@@ -85,8 +96,8 @@ public class StationDAO extends CrudDAO {
                             TrainFromStationDTO trainFromStationDTO = new TrainFromStationDTO();
                             trainFromStationDTO.setIdTrain(train.getId());
                             trainFromStationDTO.setNameStation(station.getNameStation());
-                            trainFromStationDTO.setDepartureTime(trainWay.getDepartureTime());
-                            trainFromStationDTO.setArrivalTime(trainWay.getArrivalTime());
+                            trainFromStationDTO.setDepartureTime(trainWay.getDepartureTime().toLocalTime());
+                            trainFromStationDTO.setArrivalTime(trainWay.getArrivalTime().toLocalTime());
                             trainFromStationDTOS.add(trainFromStationDTO);
                         }
                 }
@@ -96,7 +107,7 @@ public class StationDAO extends CrudDAO {
         // из полученного листа поездов по дате ищем поезда удовлетворяющие заданному промежутку времени
         List<TrainFromStationDTO> finalTrainList = new ArrayList<>();
             for (TrainFromStationDTO trainFromStationDTO: trainFromStationDTOS) {
-                LocalTime trainTime = trainFromStationDTO.getDepartureTime().toLocalTime();
+                LocalTime trainTime = trainFromStationDTO.getDepartureTime();
                 if (trainTime.isAfter(startTime) && trainTime.isBefore(endTime)) {
                     finalTrainList.add(trainFromStationDTO);
                 }

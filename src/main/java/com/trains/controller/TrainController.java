@@ -25,6 +25,7 @@ public class TrainController {
     private PassengerService passengerService;
     private FreeSeatsService freeSeatsService;
     private TicketInformService ticketInformService;
+    private int page;
     private static Logger logger = LoggerFactory.getLogger(TrainController.class);
 
     @Autowired
@@ -59,14 +60,17 @@ public class TrainController {
     }
 
     @GetMapping(value = "/")
-    public ModelAndView getAllTrains() {
-     //   trainService.deleteIfNoPassengerInTrain();
-        List<TrainDTO> trains = trainService.allTrains();
-        logger.info("Get all trains");
+    public ModelAndView getAllTrains(@RequestParam(defaultValue = "1") int page) {
         ModelAndView modelAndView = new ModelAndView();
+        List<TrainDTO> trainList = trainService.allTrainsPagination(page);
+        int trainCount = trainService.trainCountForPage();
+        int pageCount = (trainCount+9)/10;
         modelAndView.setViewName("train-view/trains");
-        logger.info("Read view /train-view/trains");
-        modelAndView.addObject("trainList",trains);
+        modelAndView.addObject("page",page);
+        modelAndView.addObject("trainList",trainList);
+        modelAndView.addObject("trainCount",trainCount);
+        modelAndView.addObject("pageCount",pageCount);
+        this.page = page;
         return modelAndView;
     }
 
@@ -126,7 +130,7 @@ public class TrainController {
         List<PassengersFromTrainDTO> passengersFromTrainDTOS = trainService.getPassengerFromTrain(id);
         ModelAndView modelAndView = new ModelAndView();
         if (passengersFromTrainDTOS.isEmpty()) {
-            modelAndView.setViewName("redirect:/train/");
+            modelAndView.setViewName("redirect:/train/?page=" + this.page);
             trainService.delByID(id);
             logger.info("Delete train by id = "+id);}
         else modelAndView.setViewName("redirect:/train/message/");

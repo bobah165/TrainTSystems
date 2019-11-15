@@ -1,16 +1,14 @@
 package com.trains.model.dto;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
+import java.time.LocalTime;
 
 public class TrainFromStationDTO {
     private int id;
     private int idTrain;
     private String nameStation;
-    private Time departureTime;
-    private Time arrivalTime;
-    private Date date;
+    private LocalTime departureTime;
+    private LocalTime arrivalTime;
+    private int daysInWay;
 
     public int getId() {
         return id;
@@ -20,12 +18,12 @@ public class TrainFromStationDTO {
         this.id = id;
     }
 
-    public Date getDate() {
-        return date;
+    public int getDaysInWay() {
+        return daysInWay;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setDaysInWay(int daysInWay) {
+        this.daysInWay = daysInWay;
     }
 
     public int getIdTrain() {
@@ -44,25 +42,25 @@ public class TrainFromStationDTO {
         this.nameStation = nameStation;
     }
 
-    public Time getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Time departureTime) {
+    public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
 
-    public Time getArrivalTime() {
+    public LocalTime getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Time arrivalTime) {
+    public void setArrivalTime(LocalTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 
     @Override
     public String toString() {
-        return "TrainEntity{" +
+        return "Train Schedule {" +
                 "id train is "+idTrain+
                 ", Station name is " + nameStation +
                 ", departure time is " + departureTime+

@@ -1,27 +1,33 @@
 package com.trains.dao;
 
-import com.trains.model.dto.*;
+
 import com.trains.model.entity.*;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
-import java.sql.Time;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public class TrainDAO extends CrudDAO {
 
     public List<Train> allTrain() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from Train").list();
+         return session.createQuery("from Train").list();
     }
+
+    public List<Train> allTrainPagination(int page) {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("from Train").setFirstResult(10*(page-1)).setMaxResults(10).list();
+    }
+
+    public int trainCountForPage() {
+        Session session = sessionFactory.getCurrentSession();
+        return session.createQuery("select count (*) from Train ",Number.class).getSingleResult().intValue();
+    }
+
+
 
 
     public Train getById(int id) {
@@ -34,21 +40,10 @@ public class TrainDAO extends CrudDAO {
         session.delete(session.get(Train.class,id));
     }
 
-    public List<PassengersFromTrainDTO> getPassengerFromTrain (int idTrain){
+    public List<Ticket> getPassengerFromTrain (int idTrain){
         Session session = sessionFactory.getCurrentSession();
         List<Ticket> tickets = session.createQuery("from Ticket where train.id ="+idTrain).list();
-        List<PassengersFromTrainDTO> passengersFromTrainDTOS = new ArrayList<>();
-        for (Ticket ticket: tickets) {
-            PassengersFromTrainDTO passengersFromTrainDTO = new PassengersFromTrainDTO();
-            passengersFromTrainDTO.setTicketID(ticket.getId());
-            passengersFromTrainDTO.setName(ticket.getPassenger().getName());
-            passengersFromTrainDTO.setSurname(ticket.getPassenger().getSurname());
-            passengersFromTrainDTO.setBirthday(ticket.getPassenger().getBirthday());
-
-            passengersFromTrainDTOS.add(passengersFromTrainDTO);
-        }
-
-        return passengersFromTrainDTOS;
+        return tickets;
     }
 
     public Train getTrainByDate (List<Train> trains, SearchStations searchStationDTO, int trainID) {

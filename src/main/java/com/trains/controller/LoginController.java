@@ -2,13 +2,11 @@ package com.trains.controller;
 
 import com.trains.model.dto.PassengerDTO;
 import com.trains.service.PassengerService;
-import com.trains.util.WebSocketServerEndPoint;
 import com.trains.util.validator.PassengerDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;

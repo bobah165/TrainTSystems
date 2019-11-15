@@ -54,4 +54,8 @@ public class TrainFromStationService {
         TrainFromStation train = trainFromStationDAO.getById(id);
         TrainFromStationDTO trainDTO = trainFromStationMapper.mapEntityToDto(train);
         return trainDTO; }
+
+    public void fillTheTable() {
+        trainFromStationDAO.fillTheTable();
+    }
 }
