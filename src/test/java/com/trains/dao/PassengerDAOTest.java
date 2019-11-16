@@ -41,7 +41,7 @@ public class PassengerDAOTest {
     public void allPassengers() {
         List<Passenger> actual = new ArrayList<>();
         actual.add(passenger);
-        Mockito.when(passengerDAO.allPassengers()).thenReturn(actual);
+        Mockito.when(passengerDAO.getAllPassengers()).thenReturn(actual);
     }
 
     @Test

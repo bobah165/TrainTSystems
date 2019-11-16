@@ -22,7 +22,7 @@ public class TrainDAO extends CrudDAO {
         return session.createQuery("from Train").setFirstResult(10*(page-1)).setMaxResults(10).list();
     }
 
-    public int trainCountForPage() {
+    public int getCountOfPage() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("select count (*) from Train ",Number.class).getSingleResult().intValue();
     }
@@ -46,17 +46,7 @@ public class TrainDAO extends CrudDAO {
         return tickets;
     }
 
-    public Train getTrainByDate (List<Train> trains, SearchStations searchStationDTO, int trainID) {
-        Train currentTrain = new Train();
-        for (Train train: trains){
-            //String depDate1 = trainService.getDateOfStation(trainID,searchStationDTO.getDepartureStation());
-            if ((train.getDepartureDate().isEqual(searchStationDTO.getDepartureDate()) && train.getId()==trainID)) {
-                currentTrain = train;
-            }
-        }
 
-        return currentTrain;
-    }
 
     public List<TrainWay> getTrainWaysForTrain () {
         Session session = sessionFactory.getCurrentSession();
@@ -64,13 +54,6 @@ public class TrainDAO extends CrudDAO {
 
     }
 
-    public List<Train> getTrainByDepartureDate (LocalDate departureDate) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from Train t where t.departureDate = :departureDate");
-        query.setParameter("departureDate",departureDate);
-        List<Train> trains = query.list();
-        return trains;
-    }
 
     public void deleteIfNoPassengerInTrain() {
         Session session = sessionFactory.getCurrentSession();
@@ -81,6 +64,14 @@ public class TrainDAO extends CrudDAO {
                 session.delete(train);
             }
         }
+    }
+
+    public List<Train> getTrainsByDepartureDate(LocalDate departureDate) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Train where departureDate = :date");
+        query.setParameter("date",departureDate);
+        List<Train> trains = query.list();
+        return trains;
     }
 
 

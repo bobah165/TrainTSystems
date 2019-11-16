@@ -6,6 +6,7 @@ import com.trains.model.entity.TicketInform;
 import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainWay;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +18,7 @@ import java.util.List;
 @Repository
 public class TicketInformDAO extends CrudDAO {
 
-    public List<TicketInform> allTickets() {
+    public List<TicketInform> getAllTickets() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from TicketInform ").list();
     }
@@ -72,5 +73,18 @@ public class TicketInformDAO extends CrudDAO {
         ticketInform.setSurname("none");
 
         return ticketInform;
+    }
+
+    public void addPassengerInformationToTicket(String name, String surname, Date birthday, int idPassenger){
+        Session session = sessionFactory.getCurrentSession();
+        int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        TicketInform ticketInform = session.get(TicketInform.class,idCurrentPassenger);
+
+        ticketInform.setName(name);
+        ticketInform.setSurname(surname);
+        ticketInform.setBirthday(birthday.toLocalDate());
+        ticketInform.setIdPassenger(idPassenger);
+
+        session.update(ticketInform);
     }
 }

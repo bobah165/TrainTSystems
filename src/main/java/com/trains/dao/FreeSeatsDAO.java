@@ -15,7 +15,7 @@ public class FreeSeatsDAO extends CrudDAO {
         return session.get(FreeSeats.class,id);
     }
 
-    public List<FreeSeats> allSeats () {
+    public List<FreeSeats> getAllSeats() {
         Session session = sessionFactory.getCurrentSession();
         List<FreeSeats> freeSeats = session.createQuery("from FreeSeats ").list();
         return freeSeats;

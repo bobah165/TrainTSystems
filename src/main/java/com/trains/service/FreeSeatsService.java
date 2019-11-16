@@ -1,30 +1,35 @@
 package com.trains.service;
 
 import com.trains.dao.FreeSeatsDAO;
+import com.trains.dao.TrainWayDAO;
 import com.trains.model.dto.FreeSeatsDTO;
-import com.trains.model.dto.TicketInformDTO;
-import com.trains.model.dto.TrainDTO;
-import com.trains.model.dto.TrainWayDTO;
 import com.trains.model.entity.FreeSeats;
 import com.trains.util.mapperForDTO.FreeSeatsMapper;
+import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Controller
 @Transactional
 public class FreeSeatsService {
     private FreeSeatsDAO freeSeatsDAO;
     private FreeSeatsMapper freeSeatsMapper;
-    private TrainWayService trainWayService;
+    private TrainWayDAO trainWayDAO;
+    private TrainMapper trainMapper;
 
     @Autowired
-    public void setTrainWayService(TrainWayService trainWayService) {
-        this.trainWayService = trainWayService;
+    public void setTrainMapper(TrainMapper trainMapper) {
+        this.trainMapper = trainMapper;
     }
+
+    @Autowired
+    public void setTrainWayDAO(TrainWayDAO trainWayDAO) {
+        this.trainWayDAO = trainWayDAO;
+    }
+
 
     @Autowired
     public void setFreeSeatsDAO(FreeSeatsDAO freeSeatsDAO) {
@@ -36,8 +41,8 @@ public class FreeSeatsService {
         this.freeSeatsMapper = freeSeatsMapper;
     }
 
-    public List<FreeSeatsDTO> allSeats() {
-        List<FreeSeats> freeSeats = freeSeatsDAO.allSeats();
+    public List<FreeSeatsDTO> getAllSeats() {
+        List<FreeSeats> freeSeats = freeSeatsDAO.getAllSeats();
         List<FreeSeatsDTO> freeSeatsDTOS = new ArrayList<>();
         for (FreeSeats freeSeat: freeSeats) {
             freeSeatsDTOS.add(freeSeatsMapper.mapEntityToDto(freeSeat));
@@ -58,6 +63,7 @@ public class FreeSeatsService {
         FreeSeats freeSeats = freeSeatsMapper.mapDtoToEntity(freeSeatsDTO);
         freeSeatsDAO.edit(freeSeats); }
 
+
     public FreeSeatsDTO getById(int id) {
         FreeSeats freeSeats = freeSeatsDAO.getById(id);
         FreeSeatsDTO freeSeatsDTO = freeSeatsMapper.mapEntityToDto(freeSeats);
@@ -70,131 +76,4 @@ public class FreeSeatsService {
         return freeSeatsDTO;
     }
 
-
-    public boolean checkFreeSeats(TrainDTO train, TicketInformDTO ticketInformDTO) {
-        boolean isAddTicket = true;
-
-        //находим все станции по маршруту поезда
-        List<TrainWayDTO> trainOneWAy = new ArrayList<>();
-        List<TrainWayDTO> trainWayDTOS = trainWayService.allWays();
-
-        for (TrainWayDTO trainWayDTO: trainWayDTOS){
-            if (trainWayDTO.getNumberWay()==train.getTrainWay().getNumberWay())
-                trainOneWAy.add(trainWayDTO);
-        }
-
-
-        //сортировка полученного расписания для одной станции по времени отправления
-        List<TrainWayDTO> sortedTrainWay= trainOneWAy.stream()
-                .sorted(Comparator.comparing(TrainWayDTO::getDaysInWay)
-                                    .thenComparing(TrainWayDTO::getShedule))
-                .collect(Collectors.toList());
-
-        //добавляем данные о поезде в таблицу free_sets
-        List<FreeSeats> freeSeats = freeSeatsDAO.allSeats();
-        List<FreeSeats> freeSeatInWay = new ArrayList<>();
-        for (FreeSeats freeSeat: freeSeats){
-            for(TrainWayDTO trainWayDTO: sortedTrainWay) {
-                if (freeSeat.getIdTrain() == train.getId()
-                        && freeSeat.getStationName().equals(trainWayDTO.getStation().getNameStation())) {
-                    freeSeatInWay.add(freeSeat);
-                }
-            }
-        }
-
-        // если в таблице нет информации о свободных местах то заполняем ее
-        if (freeSeatInWay.isEmpty()) {
-            for (TrainWayDTO trainWayDTO: sortedTrainWay) {
-                FreeSeats seatsDTO = new FreeSeats();
-                seatsDTO.setStationName(trainWayDTO.getStation().getNameStation());
-                seatsDTO.setIdTrain(train.getId());
-                seatsDTO.setFreeSeats(train.getCountSits());
-                freeSeatsDAO.add(seatsDTO);
-                freeSeatInWay.add(seatsDTO);
-            }
-        }
-
-        List<FreeSeats> sortedFreeSeatInWay = freeSeatInWay.stream()
-                .sorted(Comparator.comparing(FreeSeats::getId))
-                .collect(Collectors.toList());
-
-        // поиск станций на которые покупается билет
-        for (FreeSeats freeSeats1: sortedFreeSeatInWay) {
-
-            // поиск станции отправления
-            if(freeSeats1.getStationName().equals(ticketInformDTO.getDepartureStation())) {
-                if(freeSeats1.getFreeSeats()>0) {
-                    int free = freeSeats1.getFreeSeats() - 1;
-                    freeSeats1.setFreeSeats(free);
-                 //   freeSeats1.setFreeSeats(freeSeats1.getFreeSeats() - 1);
-                    freeSeatsDAO.edit(freeSeats1);
-                } else {
-                    isAddTicket = false;
-                    return isAddTicket;
-                }
-            }
-        }
-
-        // добавление билетов (уменьшение числа свободных мест)
-        // получаем записи из таблицы Free Seats о станции отправления и прибытия
-        FreeSeats freeSeatsDeparture  = freeSeatsDAO.getByStationAndTrainID(ticketInformDTO.getDepartureStation(),ticketInformDTO.getIdTrain());
-        FreeSeats freeSeatsArrival = freeSeatsDAO.getByStationAndTrainID(ticketInformDTO.getArrivalStation(),ticketInformDTO.getIdTrain());
-
-        if(((freeSeatsDeparture.getId()+1)!=freeSeatsArrival.getId())) {
-
-            int depNumber =  sortedFreeSeatInWay.indexOf(freeSeatsDeparture);
-            int arrNumber = sortedFreeSeatInWay.indexOf(freeSeatsArrival);
-
-                for (int j = depNumber+1; j<arrNumber;j++ ) {
-                    //проверка наличия мест на промежуточных станциях
-                    //если хотя бы на одной промежуточной станции нет мест, то false,
-                    // если есть места, то true
-                    if(sortedFreeSeatInWay.get(j).getFreeSeats()>0) {
-                        sortedFreeSeatInWay.get(j).setFreeSeats(sortedFreeSeatInWay.get(j).getFreeSeats()-1);
-                        freeSeatsDAO.edit(sortedFreeSeatInWay.get(j));
-                    } else {
-                        isAddTicket = false;
-                        return isAddTicket;
-                    }
-                }
-        }
-
-
-//        if(((freeSeatsDeparture.getId()-1)!=freeSeatsArrival.getId())) {
-//
-//            int depNumber =  sortedFreeSeatInWay.indexOf(freeSeatsDeparture);
-//            int arrNumber = sortedFreeSeatInWay.indexOf(freeSeatsArrival);
-//
-//            for (int j = depNumber-1; j>arrNumber;j-- ) {
-//                //проверка наличия мест на промежуточных станциях
-//                //если хотя бы на одной промежуточной станции нет мест, то false,
-//                // если есть места, то true
-//                if(sortedFreeSeatInWay.get(j).getFreeSeats()>0) {
-//                    sortedFreeSeatInWay.get(j).setFreeSeats(sortedFreeSeatInWay.get(j).getFreeSeats()-1);
-//                    freeSeatsDAO.edit(sortedFreeSeatInWay.get(j));
-//                } else {
-//                    isAddTicket = false;
-//                    return isAddTicket;
-//                }
-//            }
-//        }
-
-
-        return isAddTicket;
-    }
-
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        FreeSeatsService that = (FreeSeatsService) object;
-        return Objects.equals(freeSeatsDAO, that.freeSeatsDAO) &&
-                Objects.equals(freeSeatsMapper, that.freeSeatsMapper);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(freeSeatsDAO, freeSeatsMapper);
-    }
 }

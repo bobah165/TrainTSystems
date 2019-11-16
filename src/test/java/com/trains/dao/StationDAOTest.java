@@ -1,6 +1,5 @@
 package com.trains.dao;
 
-import com.trains.model.dto.StationDTO;
 import com.trains.model.dto.TrainFromStationDTO;
 import com.trains.model.entity.Station;
 import org.junit.Before;
@@ -9,8 +8,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -44,7 +41,7 @@ public class StationDAOTest {
     public void allStations() {
         List<Station> actual = new ArrayList<>();
         actual.add(station);
-        Mockito.when(stationDAO.allStations()).thenReturn(actual);
+        Mockito.when(stationDAO.getAllStations()).thenReturn(actual);
     }
 
     @Test

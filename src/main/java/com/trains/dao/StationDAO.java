@@ -18,17 +18,17 @@ import java.util.List;
 @Repository
 public class StationDAO extends CrudDAO {
 
-    public List<Station> allStations() {
+    public List<Station> getAllStations() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from Station ").list();
     }
 
-    public List<Station> allStatinPagination(int page) {
+    public List<Station> getStationsForPagination(int page) {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from Station").setFirstResult(10*(page-1)).setMaxResults(10).list();
     }
 
-    public int stationCountForPage() {
+    public int getCountStationsForPagination() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("select count (*) from Station ",Number.class).getSingleResult().intValue();
     }

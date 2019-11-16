@@ -24,6 +24,6 @@ public class TrainFromStaionController {
     @ResponseBody
     public List<TrainFromStationDTO> getSchedule() {
         trainFromStationService.fillTheTable();
-        return trainFromStationService.allTrains();
+        return trainFromStationService.getAllTrains();
     }
 }

@@ -40,7 +40,7 @@ public class PassengerServiceTest {
     public void allPassengers() {
         List<PassengerDTO> actual = new ArrayList<>();
         actual.add(passengerDTO);
-        Mockito.when(passengerService.allPassengers()).thenReturn(actual);
+        Mockito.when(passengerService.getAllPassengers()).thenReturn(actual);
     }
 
     @Test

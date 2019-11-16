@@ -78,14 +78,6 @@ public class SearchStationDAO extends CrudDAO{
                     if (sortedTrainWay.indexOf(trainWayA)<sortedTrainWay.indexOf(trainWayB)) {
                         trainWaysBetweenAandB.add(trainWayA);
                     }
-
-//                    if (trainWayA.getDepartureTime().before(trainWayB.getDepartureTime()) &&
-//                            trainWayA.getDaysInWay() == trainWayB.getDaysInWay()) {
-//                        trainWaysBetweenAandB.add(trainWayA);
-//                    }
-//                    if (trainWayA.getDaysInWay() != trainWayB.getDaysInWay()) {
-//                        trainWaysBetweenAandB.add(trainWayA);
-//                    }
                 }
             }
         }
@@ -93,7 +85,6 @@ public class SearchStationDAO extends CrudDAO{
 
         //ищем поезда проезжающие по этим маршрутам
        List<Train> allTrains = session.createQuery("from Train ").list();
-      //  List<Train> trains = trainDAO.addTrainBySchedule(departureDate);
         List<Train> trainsFromAtoB = new ArrayList<>();
         for (Train train: allTrains) {
             for (TrainWay trainWay: trainWaysBetweenAandB)

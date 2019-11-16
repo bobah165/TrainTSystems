@@ -9,8 +9,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -45,7 +43,7 @@ public class StationServiceTest {
     public void allStations() {
         List<StationDTO> actual = new ArrayList<>();
         actual.add(stationDTO);
-        Mockito.when(stationService.allStations()).thenReturn(actual);
+        Mockito.when(stationService.getAllStations()).thenReturn(actual);
     }
 
     @Test

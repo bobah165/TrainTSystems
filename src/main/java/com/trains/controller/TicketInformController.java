@@ -25,7 +25,7 @@ public class TicketInformController {
 
     @GetMapping(value = "/")
     public ModelAndView allTickets() {
-        List<TicketInformDTO> tickets = ticketInformService.allTickets();
+        List<TicketInformDTO> tickets = ticketInformService.getAllTickets();
         logger.info("Get all info about tickets");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-info/ticket-info");

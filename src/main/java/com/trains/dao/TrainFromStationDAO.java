@@ -20,7 +20,7 @@ public class TrainFromStationDAO extends CrudDAO {
         return session.get(TrainFromStation.class,id);
     }
 
-    public List<TrainFromStation> allTrain (){
+    public List<TrainFromStation> getAllTrain(){
         Session session = sessionFactory.getCurrentSession();
         List<TrainFromStation> trains = session.createQuery("from TrainFromStation ").list();
         return trains;

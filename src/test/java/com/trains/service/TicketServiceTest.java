@@ -104,15 +104,15 @@ public class TicketServiceTest {
     }
 
 
-    @Test
-    public void addTicketByTrainDTOPassengerDTO() {
-        TrainDTO trainDTO = new TrainDTO();
-        PassengerDTO passengerDTO = new PassengerDTO();
-        Mockito.doNothing().when(ticketService).addTicketByTrainDTOPassengerDTO(trainDTO,passengerDTO);
-    }
+//    @Test
+//    public void addTicketByTrainDTOPassengerDTO() {
+//        TrainDTO trainDTO = new TrainDTO();
+//        PassengerDTO passengerDTO = new PassengerDTO();
+//        Mockito.doNothing().when(ticketService).addTicketByTrainDTOPassengerDTO(trainDTO,passengerDTO);
+//    }
 
-    @Test
-    public void checkTicketByNameSurnameBirthday() {
-        Mockito.when(ticketService.checkTicketByNameSurnameBirthday(passenger.getName(),passenger.getSurname(), Date.valueOf(passenger.getBirthday()),trainDTO)).thenReturn(true);
-    }
+//    @Test
+//    public void checkTicketByNameSurnameBirthday() {
+//        Mockito.when(ticketService.checkTicketByNameSurnameBirthday(passenger.getName(),passenger.getSurname(), Date.valueOf(passenger.getBirthday()),trainDTO)).thenReturn(true);
+//    }
 }

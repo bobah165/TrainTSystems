@@ -43,7 +43,7 @@ public class TrainWayServiceTest {
     public void allWays() {
             List<TrainWayDTO> actual = new ArrayList<>();
             actual.add(trainWayDTO);
-            Mockito.when(trainWayService.allWays()).thenReturn(actual);
+            Mockito.when(trainWayService.getAllWays()).thenReturn(actual);
         }
 
         @Test

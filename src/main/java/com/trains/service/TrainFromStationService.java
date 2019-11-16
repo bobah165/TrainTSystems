@@ -27,8 +27,8 @@ public class TrainFromStationService {
         this.trainFromStationDAO = trainFromStationDAO;
     }
 
-    public List<TrainFromStationDTO> allTrains() {
-        List<TrainFromStation> trains = trainFromStationDAO.allTrain();
+    public List<TrainFromStationDTO> getAllTrains() {
+        List<TrainFromStation> trains = trainFromStationDAO.getAllTrain();
         List<TrainFromStationDTO> trainDTOS = new ArrayList<>();
         for (TrainFromStation train: trains) {
             trainDTOS.add(trainFromStationMapper.mapEntityToDto(train));
@@ -48,7 +48,6 @@ public class TrainFromStationService {
         TrainFromStation train = trainFromStationMapper.mapDtoToEntity(trainFromStationDTO);
         trainFromStationDAO.edit(train);
     }
-
 
     public TrainFromStationDTO getById(int id) {
         TrainFromStation train = trainFromStationDAO.getById(id);

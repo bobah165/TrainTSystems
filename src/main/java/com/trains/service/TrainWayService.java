@@ -27,8 +27,8 @@ public class TrainWayService {
         this.trainWayMapper = trainWayMapper;
     }
 
-    public List<TrainWayDTO> allWays() {
-        List<TrainWay> trainWays = trainWayDAO.allWays();
+    public List<TrainWayDTO> getAllWays() {
+        List<TrainWay> trainWays = trainWayDAO.getAllWays();
         List<TrainWayDTO> trainWayDTOS = new ArrayList<>();
         for (TrainWay trainWay: trainWays) {
             trainWayDTOS.add(trainWayMapper.mapEntityToDto(trainWay));

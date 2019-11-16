@@ -38,7 +38,7 @@ public class SearchStationServiceTest {
     public void allTrains() {
         List<SearchStationDTO> actual = new ArrayList<>();
         actual.add(searchStationDTO);
-        Mockito.when(searchStationService.allTrains()).thenReturn(actual);
+        Mockito.when(searchStationService.getAllStations()).thenReturn(actual);
     }
 
     @Test

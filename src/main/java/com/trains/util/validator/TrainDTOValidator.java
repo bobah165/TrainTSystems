@@ -54,7 +54,7 @@ public class TrainDTOValidator implements Validator {
             );
         }
 
-        List<TrainWayDTO> trainWayDTOList = trainWayService.allWays();
+        List<TrainWayDTO> trainWayDTOList = trainWayService.getAllWays();
         boolean isTrereIsWay = false;
         for (TrainWayDTO wayDTO: trainWayDTOList) {
             if (wayDTO.getId()==trainDTO.getTrainWay().getId()) {

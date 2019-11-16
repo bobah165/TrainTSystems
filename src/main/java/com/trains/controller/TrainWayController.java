@@ -25,7 +25,7 @@ public class TrainWayController {
 
     @GetMapping(value = "/")
     public ModelAndView getAllTrains() {
-        List<TrainWayDTO> ways = trainWayService.allWays();
+        List<TrainWayDTO> ways = trainWayService.getAllWays();
         logger.info("Get all ways");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-way-view/ways");

@@ -3,23 +3,15 @@ package com.trains.service;
 import com.trains.dao.StationDAO;
 import com.trains.dao.TrainFromStationDAO;
 import com.trains.model.dto.StationDTO;
-import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationDTO;
 import com.trains.model.entity.Station;
-import com.trains.model.entity.Train;
-import com.trains.model.entity.TrainFromStation;
-import com.trains.util.MessageSender;
 import com.trains.util.mapperForDTO.StationMapper;
 import com.trains.util.mapperForDTO.TrainFromStationMapper;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.jms.JMSException;
 import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,18 +45,17 @@ public class StationService {
         this.stationMapper = stationMapper;
     }
 
-    public List<StationDTO> allStations() {
-        List<Station> stations = stationDAO.allStations();
+    public List<StationDTO> getAllStations() {
+        List<Station> stations = stationDAO.getAllStations();
         List<StationDTO> stationDTOS = new ArrayList<>();
         for (Station station: stations) {
             stationDTOS.add(stationMapper.mapEntityToDto(station));
         }
-
     return stationDTOS;
     }
 
-    public List<StationDTO> allStatinPagination(int page) {
-        List<Station> stations = stationDAO.allStatinPagination(page);
+    public List<StationDTO> getStationsForPagination(int page) {
+        List<Station> stations = stationDAO.getStationsForPagination(page);
         List<StationDTO> stationDTOS = new ArrayList<>();
         for (Station station: stations) {
             stationDTOS.add(stationMapper.mapEntityToDto(station));
@@ -72,8 +63,8 @@ public class StationService {
         return stationDTOS;
     }
 
-    public int stationCountForPage() {
-        return stationDAO.stationCountForPage();
+    public int getCountStationsForPagination() {
+        return stationDAO.getCountStationsForPagination();
     }
 
     public void add(StationDTO stationDTO) {

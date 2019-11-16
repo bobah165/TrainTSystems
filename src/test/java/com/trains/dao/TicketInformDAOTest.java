@@ -2,7 +2,6 @@ package com.trains.dao;
 
 
 import com.trains.model.dto.SearchStationDTO;
-import com.trains.model.dto.TicketInformDTO;
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.entity.Station;
 import com.trains.model.entity.TicketInform;
@@ -83,7 +82,7 @@ public class TicketInformDAOTest {
     public void allTickets() {
         List<TicketInform> actual = new ArrayList<>();
         actual.add(ticketInform);
-        Mockito.when(ticketInformDAO.allTickets()).thenReturn(actual);
+        Mockito.when(ticketInformDAO.getAllTickets()).thenReturn(actual);
     }
 
     @Test

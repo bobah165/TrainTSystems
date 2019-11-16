@@ -35,7 +35,7 @@ public class PassengerController {
 
 @GetMapping(value = "/")
     public ModelAndView allPassengers() {
-    List<PassengerDTO> passengers = passengerService.allPassengers();
+    List<PassengerDTO> passengers = passengerService.getAllPassengers();
     logger.info("Get all passengers from all trains");
     ModelAndView modelAndView = new ModelAndView();
     modelAndView.setViewName("passenger-view/passengers");

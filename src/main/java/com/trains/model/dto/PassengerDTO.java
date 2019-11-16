@@ -14,16 +14,16 @@ public class PassengerDTO {
 
     private int id;
 
-    @Pattern(regexp = "^[A-Za-z]+$", message = "wrong name")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Invalid name. Name have to consist only from letters")
     private String name;
-    @Pattern(regexp = "^[A-Za-z]+$", message = "wrong surname")
+    @Pattern(regexp = "^[A-Za-z]+$", message = "Invalid surname. Name have to consist only from letters")
     private String surname;
     private Date birthday;
-    @Size(min = 5,max = 32,message = "wrong login")
+    @Size(min = 5,max = 32,message = "Invalid login. Login should have min 5 and max 32 symbols")
     private String login;
-    @Size(min = 5,max = 32, message = "wrong password")
+    @Size(min = 5,max = 32, message = "Invalid login. Login should have min 5 and max 32 symbols")
     private String password;
-    @Email(message = "wrong email")
+    @Email(message = "Invalid email")
     private String email;
     private List<Ticket> tickets;
     private String user;

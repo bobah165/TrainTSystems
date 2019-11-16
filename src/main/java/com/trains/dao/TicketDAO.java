@@ -1,12 +1,14 @@
 package com.trains.dao;
 
+import com.trains.model.dto.TrainDTO;
 import com.trains.model.entity.Passenger;
 import com.trains.model.entity.Ticket;
 import com.trains.model.entity.Train;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
-import javax.management.Query;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,22 @@ public class TicketDAO extends CrudDAO {
         ticket.setTrain(train);
         session.persist(ticket);
 
+    }
+
+    public boolean checkTicketByNameSurnameBirthday (String name, String surname, Date birthday, Train train) {
+        Session session = sessionFactory.getCurrentSession();
+        boolean isValid = false;
+        Query query = session.createQuery("from Ticket where train.id = :idTrain " +
+                "and passenger.name like :name" +
+                " and passenger.surname like :surname");
+        query.setParameter("idTrain",train.getId());
+        query.setParameter("name",name);
+        query.setParameter("surname",surname);
+        List<Ticket> tickets = query.list();
+        if (tickets.isEmpty()) {
+            isValid = true;
+        }
+        return isValid;
     }
 
 }

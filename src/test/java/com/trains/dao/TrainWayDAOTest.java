@@ -1,6 +1,5 @@
 package com.trains.dao;
 
-import com.trains.model.dto.TrainWayDTO;
 import com.trains.model.entity.Station;
 import com.trains.model.entity.TrainWay;
 import org.junit.Before;
@@ -42,7 +41,7 @@ public class TrainWayDAOTest {
     public void allWays() {
         List<TrainWay> actual = new ArrayList<>();
         actual.add(trainWay);
-        Mockito.when(trainWayDAO.allWays()).thenReturn(actual);
+        Mockito.when(trainWayDAO.getAllWays()).thenReturn(actual);
     }
 
     @Test

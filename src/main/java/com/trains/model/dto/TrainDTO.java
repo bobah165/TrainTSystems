@@ -13,7 +13,7 @@ public class TrainDTO {
 
     private int id;
     private int trainNumber;
-    @DecimalMin(value = "0")
+    @DecimalMin(value = "0", message = "Number should be bigger then 0")
     private int countSits;
     private List<Ticket> tickets;
     private TrainWay trainWay;

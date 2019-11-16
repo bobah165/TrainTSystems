@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public class TrainWayDAO extends CrudDAO {
 
-    public List<TrainWay> allWays() {
+    public List<TrainWay> getAllWays() {
         Session session = sessionFactory.getCurrentSession();
         List<TrainWay> trainWays = session.createQuery("from TrainWay").list();
         return trainWays;

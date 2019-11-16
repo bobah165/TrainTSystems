@@ -2,8 +2,6 @@ package com.trains.service;
 
 
 import com.trains.model.dto.FreeSeatsDTO;
-import com.trains.model.dto.TicketInformDTO;
-import com.trains.model.dto.TrainDTO;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +30,7 @@ public class FreeSeatsServiceTest {
     public void allSeats() {
         List<FreeSeatsDTO> actual = new ArrayList<>();
         actual.add(freeSeatsDTO);
-        Mockito.when(freeSeatsService.allSeats()).thenReturn(actual);
+        Mockito.when(freeSeatsService.getAllSeats()).thenReturn(actual);
 
     }
 

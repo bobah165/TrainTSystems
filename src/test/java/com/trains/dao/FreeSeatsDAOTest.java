@@ -1,7 +1,6 @@
 package com.trains.dao;
 
 
-import com.trains.model.dto.FreeSeatsDTO;
 import com.trains.model.entity.FreeSeats;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,7 +39,7 @@ public class FreeSeatsDAOTest {
     public void allSeats() {
         List<FreeSeats> actual = new ArrayList<>();
         actual.add(freeSeatsDTO);
-        Mockito.when(freeSeatsDAO.allSeats()).thenReturn(actual);
+        Mockito.when(freeSeatsDAO.getAllSeats()).thenReturn(actual);
     }
 
     @Test

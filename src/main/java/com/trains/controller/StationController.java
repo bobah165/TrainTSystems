@@ -6,7 +6,6 @@ import com.trains.model.dto.TrainFromStationDTO;
 
 import com.trains.service.StationService;
 import com.trains.service.TrainService;
-import com.trains.util.MessageSender;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,10 +37,10 @@ public class StationController {
 
     @GetMapping(value = "/")
     public ModelAndView getStations(@RequestParam(defaultValue = "1") int page) {
-        List<StationDTO> stations = stationService.allStations();
+        List<StationDTO> stations = stationService.getAllStations();
         ModelAndView modelAndView = new ModelAndView();
-        List<StationDTO> stationDTOList = stationService.allStatinPagination(page);
-        int stationCount = stationService.stationCountForPage();
+        List<StationDTO> stationDTOList = stationService.getStationsForPagination(page);
+        int stationCount = stationService.getCountStationsForPagination();
         int pageCount = (stationCount+9)/10;
         modelAndView.setViewName("station-view/stations");
         modelAndView.addObject("page",page);
@@ -95,7 +94,6 @@ public class StationController {
     public ModelAndView delete(@PathVariable("id") int id) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/station/?page=" + this.page);
-       // modelAndView.setViewName("redirect:/station/");
         stationService.delByID(id);
         logger.info("Delete station by id = "+id);
         return modelAndView;

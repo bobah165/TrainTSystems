@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public class PassengerDAO extends CrudDAO {
 
-    public List<Passenger> allPassengers() {
+    public List<Passenger> getAllPassengers() {
         Session session = sessionFactory.getCurrentSession();
         return session.createQuery("from Passenger").list();
     }

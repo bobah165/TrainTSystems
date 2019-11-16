@@ -27,14 +27,16 @@ public class PassengerService {
         this.passengerMapper = passengerMapper;
     }
 
-    public List<PassengerDTO> allPassengers() {
-        List<Passenger> passengers = passengerDAO.allPassengers();
+
+    public List<PassengerDTO> getAllPassengers() {
+        List<Passenger> passengers = passengerDAO.getAllPassengers();
         List<PassengerDTO> passengerDTOS = new ArrayList<>();
         for (Passenger passenger: passengers) {
             passengerDTOS.add(passengerMapper.mapEntityToDto(passenger));
         }
         return passengerDTOS;
     }
+
 
     public void add(PassengerDTO passengerDTO) {
         Passenger passenger = passengerMapper.mapDtoToEntity(passengerDTO);
@@ -45,9 +47,11 @@ public class PassengerService {
         Passenger passenger = passengerMapper.mapDtoToEntity(passengerDTO);
         passengerDAO.delete(passenger); }
 
+
     public void edit(PassengerDTO passengerDTO) {
         Passenger passenger = passengerMapper.mapDtoToEntity(passengerDTO);
         passengerDAO.edit(passenger); }
+
 
     public PassengerDTO getById(int id) {
         Passenger passenger = passengerDAO.getById(id);

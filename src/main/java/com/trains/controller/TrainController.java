@@ -2,6 +2,8 @@ package com.trains.controller;
 
 import com.trains.model.dto.*;
 import com.trains.service.*;
+import com.trains.util.EmailSender;
+import com.trains.util.PDFWriterForTicket;
 import com.trains.util.validator.TrainDTOValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import java.sql.Date;
 import java.util.List;
 
@@ -22,8 +25,6 @@ public class TrainController {
     private TrainDTOValidator trainDTOValidator;
     private TrainService trainService;
     private TicketService ticketService;
-    private PassengerService passengerService;
-    private FreeSeatsService freeSeatsService;
     private TicketInformService ticketInformService;
     private int page;
     private static Logger logger = LoggerFactory.getLogger(TrainController.class);
@@ -43,27 +44,17 @@ public class TrainController {
         this.ticketInformService = ticketInformService;
     }
 
-
     @Autowired
     public void setTicketService(TicketService ticketService) {
         this.ticketService = ticketService;
     }
 
-    @Autowired
-    public void setPassengerService(PassengerService passengerService) {
-        this.passengerService = passengerService;
-    }
-
-    @Autowired
-    public void setFreeSeatsService(FreeSeatsService freeSeatsService) {
-        this.freeSeatsService = freeSeatsService;
-    }
 
     @GetMapping(value = "/")
     public ModelAndView getAllTrains(@RequestParam(defaultValue = "1") int page) {
         ModelAndView modelAndView = new ModelAndView();
         List<TrainDTO> trainList = trainService.allTrainsPagination(page);
-        int trainCount = trainService.trainCountForPage();
+        int trainCount = trainService.getCountOfPage();
         int pageCount = (trainCount+9)/10;
         modelAndView.setViewName("train-view/trains");
         modelAndView.addObject("page",page);
@@ -187,48 +178,16 @@ public class TrainController {
                                                 @RequestParam("surname") String surname,
                                                 @RequestParam("birthday") Date birthday) {
         ModelAndView modelAndView = new ModelAndView();
-
-        // проверка на наличие билета у зарегистртрованных пассажиров на поезд
-        int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        TicketInformDTO ticketInformDTO = ticketInformService.getById(idCurrentPassenger);
-
-        TrainDTO train = trainService.getById(ticketInformDTO.getIdTrain()); //информация о поезде на который покупается билет
-        logger.info("Get train in which passenger buy ticket "+train);
-
-        if (ticketService.checkTicketByNameSurnameBirthday(name,surname,birthday, train)){
-            modelAndView.setViewName("redirect:/ticket/message/");
-            return modelAndView;
-        };
-
-        // добавление пассажира: если такой пассажир не зарегистрирован, то добавляем, если есть то вытаскиваем о нем
-        // информацию из БД
-        if (passengerService.getPassengerId(name,surname,birthday)<0) {
-            passengerService.addPassengerByNameSurnameDate(name, surname,birthday);
-            logger.info("Add passenger by name "+name+" surname "+surname+" birthday "+birthday);
-        }
-        PassengerDTO passenger = passengerService.getById(passengerService.getPassengerId(name, surname, birthday));
-        logger.info("Get passenger by id "+passenger);
-
-        // заполняем информаци о пассажире в общую информационну таблицу о билете
-        ticketInformService.addPassengerInformationToTicket(name,surname,birthday,passenger.getId());
-        logger.info("Edit ticket information "+ticketInformDTO);
-
-        // проверка покупки билета за 10 минут до отправления поезда
-        if(!ticketInformService.checkDeapartureTime(ticketInformDTO)) {
+        try {
+            PassengerDTO passenger = trainService.сheckPassengerByNameSurnameBirthday(name, surname, birthday);
+            trainService.checkFreeSeatsInTrain();
+            ticketService.addTicketByTrainDTOPassengerDTO(passenger);
+        } catch (NullPointerException ex) {
+            logger.error("This passenger already exist");
             modelAndView.setViewName("redirect:/ticket/message/");
             return modelAndView;
         }
 
-        // проверка на наличие свободных мест, если места есть, то внесение изменений в БД
-        if (freeSeatsService.checkFreeSeats(train,ticketInformDTO)) {
-            //добавление билета
-            ticketService.addTicketByTrainDTOPassengerDTO(train, passenger);
-            logger.info("Add ticket by train " + train + " and passenger " + passenger);
-        } else  {
-            //вывод информации,что билет не куплен
-            modelAndView.setViewName("redirect:/ticket/message/");
-            return modelAndView;
-        }
         modelAndView.setViewName("redirect:/train/buy/ticket/");
         return modelAndView;
     }
@@ -240,10 +199,12 @@ public class TrainController {
         ModelAndView modelAndView = new ModelAndView();
         int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         TicketInformDTO ticketList = ticketInformService.getById(idCurrentPassenger);
+        PDFWriterForTicket.writePDFOfticket(ticketList);
         trainService.deleteIfNoPassengerInTrain();
         modelAndView.setViewName("ticket-info/ticket-info");
         modelAndView.addObject("ticketInfo",ticketList);
         ticketInformService.delete(ticketList);
+        EmailSender.sendMail();
         logger.info("Delete ticket information "+ticketList);
         return modelAndView;
     }

@@ -80,7 +80,7 @@ public class TicketInformServiceTest {
     public void allTickets() {
         List<TicketInformDTO> actual = new ArrayList<>();
         actual.add(ticketInformDTO);
-        Mockito.when(ticketInformService.allTickets()).thenReturn(actual);
+        Mockito.when(ticketInformService.getAllTickets()).thenReturn(actual);
     }
 
     @Test
@@ -110,11 +110,11 @@ public class TicketInformServiceTest {
 
     @Test
     public void fullInformation(){
-        Mockito.when(ticketInformService.fullInformation(searchStationDTO, new ArrayList<>(),trainDTO)).thenReturn(ticketInformDTO);
+        Mockito.when(ticketInformService.fillInformationByStationAndWay(searchStationDTO, new ArrayList<>(),trainDTO)).thenReturn(ticketInformDTO);
     }
 
     @Test
     public void checkDeapartureTime() {
-        Mockito.when(ticketInformService.checkDeapartureTime(ticketInformDTO)).thenReturn(true);
+        Mockito.when(ticketInformService.checkLegalTimeForBuyTicket(ticketInformDTO)).thenReturn(true);
     }
 }

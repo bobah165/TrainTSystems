@@ -69,7 +69,7 @@ public class SearchStationService {
         return searchStationDTO;
     }
 
-    public List<SearchStationDTO> allTrains() {
+    public List<SearchStationDTO> getAllStations() {
         List<SearchStations> searchStations = searchStationDAO.allTrains();
         List<SearchStationDTO> searchStationDTOS = new ArrayList<>();
         for (SearchStations searchStation: searchStations) {
@@ -101,8 +101,6 @@ public class SearchStationService {
 
 
     public void addTrainBySchedule (LocalDate departureDate) {
-//        List<Train> trainIndate = trainDAO.getTrainByDepartureDate(departureDate);
-//        if (!trainIndate.isEmpty()) return;
 
         List<Train> trainList = new ArrayList<>();
         boolean everydayFlag = true;
@@ -121,8 +119,6 @@ public class SearchStationService {
                 newTrain.setCountSits(train.getCountSits());
                 newTrain.setTrainNumber(train.getTrainNumber());
                 newTrain.setTrainWay(train.getTrainWay());
-           //     newTrain.setTickets(train.getTickets());
-             //   trainDAO.add(newTrain);
                 trainList.add(newTrain);
                 continue;
             }
@@ -135,8 +131,6 @@ public class SearchStationService {
                 newTrain.setCountSits(train.getCountSits());
                 newTrain.setTrainNumber(train.getTrainNumber());
                 newTrain.setTrainWay(train.getTrainWay());
-              //  newTrain.setTickets(train.getTickets());
-             //   trainDAO.add(newTrain);
                trainList.add(newTrain);
                 continue;
             }
@@ -150,31 +144,12 @@ public class SearchStationService {
                 newTrain.setCountSits(train.getCountSits());
                 newTrain.setTrainNumber(train.getTrainNumber());
                 newTrain.setTrainWay(train.getTrainWay());
-               // newTrain.setTickets(train.getTickets());
-             //   trainDAO.add(newTrain);
                 trainList.add(newTrain);
                 continue;
             }
-
-            //поезда один раз в неделю
-//            if (departureDate.getDayOfWeek().name().equals(train.getSchedule())) {
-//                Train newTrain = new Train();
-//                newTrain.setDepartureDate(departureDate);
-//                newTrain.setSchedule(train.getSchedule());
-//                newTrain.setCountSits(train.getCountSits());
-//                newTrain.setTrainNumber(train.getTrainNumber());
-//                newTrain.setTrainWay(train.getTrainWay());
-//              //  newTrain.setTickets(train.getTickets());
-//                trainDAO.add(newTrain);
-//                continue;
-//            }
         }
 
-        everydayFlag = true;
-        oddFlag = true;
-        evenFlag = true;
-
-        List<Train> trainIndate = trainDAO.getTrainByDepartureDate(departureDate);
+        List<Train> trainIndate = trainDAO.getTrainsByDepartureDate(departureDate);
 
         if (trainIndate.size()==trainList.size()) {
             return;
@@ -185,7 +160,5 @@ public class SearchStationService {
                 }
             }
         }
-
-      //  return trainList;
     }
 }
