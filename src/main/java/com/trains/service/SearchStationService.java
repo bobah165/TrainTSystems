@@ -1,37 +1,42 @@
 package com.trains.service;
 
-import com.trains.dao.SearchStationDAO;
-import com.trains.dao.TrainDAO;
+import com.trains.dao.*;
 import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.SearchStationDTO;
-import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
-import com.trains.model.entity.SearchStations;
-import com.trains.model.entity.Train;
+import com.trains.model.entity.*;
 import com.trains.util.mapperForDTO.SearchStationMapper;
-import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 
 @Service
 @Transactional
 public class SearchStationService {
     private SearchStationDAO searchStationDAO;
+    private TrainWayDAO trainWayDAO;
     private SearchStationMapper searchStationMapper;
+    private FreeSeatsDAO freeSeatsDAO;
     private TrainDAO trainDAO;
+
+
+    @Autowired
+    public void setFreeSeatsDAO(FreeSeatsDAO freeSeatsDAO) {
+        this.freeSeatsDAO = freeSeatsDAO;
+    }
+
+    @Autowired
+    public void setTrainWayDAO(TrainWayDAO trainWayDAO) {
+        this.trainWayDAO = trainWayDAO;
+    }
 
     @Autowired
     public void setTrainDAO(TrainDAO trainDAO) {
@@ -80,9 +85,104 @@ public class SearchStationService {
 
     public void delByID (int id) {searchStationDAO.delByID(id);}
 
-    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, LocalTime startTime, LocalTime endTime, LocalDate departureDate) {
-        return searchStationDAO.getTrainsFromStations(stationNameA,stationNameB,startTime,endTime, departureDate);
+
+
+    public List<TrainWay> getTrainWaysFromStationAToB(String stationNameA, String stationNameB) {
+        // находим инофрмаци о станциях в БД
+        Station stationA = searchStationDAO.getStationByName(stationNameA);
+        Station stationB = searchStationDAO.getStationByName(stationNameB);
+
+        List<TrainWay> trainWaysBetweenAandB = new ArrayList<>();
+
+        List<TrainWay> getTrainWaysA = trainWayDAO.getWaysByStationId(stationA.getId());
+        List<TrainWay> getTrainWaysB = trainWayDAO.getWaysByStationId(stationB.getId());
+
+        // находим маршруты поездов проходящих и через А и через В
+        for (TrainWay trainWayA: getTrainWaysA ) {
+            for (TrainWay trainWayB: getTrainWaysB) {
+                if (trainWayA.getNumberWay() == trainWayB.getNumberWay()) {
+                    List<TrainWay> oneWay = trainWayDAO.getWaysByNumberWay(trainWayA.getNumberWay());
+
+                    List<TrainWay> sortedTrainWay= oneWay.stream()
+                            .sorted(Comparator.comparing(TrainWay::getDaysInWay)
+                                    .thenComparing(TrainWay::getDepartureTime))
+                            .collect(Collectors.toList());
+
+                    if (sortedTrainWay.indexOf(trainWayA)<sortedTrainWay.indexOf(trainWayB)) {
+                        trainWaysBetweenAandB.add(trainWayA);
+                    }
+                }
+            }
+        }
+        return trainWaysBetweenAandB;
     }
+
+
+
+
+    public List<TrainFromStationAToB> getTrainsWithCorrectDate(List<Train> trainsFromAtoB, List<TrainFromStationAToB> trainFromStationAToBS,String stationNameA, String stationNameB,LocalDate departureDate) {
+
+        int days = 0; // количество дней в пути
+        // получение даты у поездов которые несколько дней в пути
+        for (Train train:trainsFromAtoB) {
+            TrainWay trainWayByStationAndWay = trainWayDAO.getTrainWayByStationAndWay(stationNameA,train.getTrainWay().getNumberWay());
+            days = trainWayByStationAndWay.getDaysInWay();
+
+            if (train.getDepartureDate().plusDays(days-1).isEqual(departureDate)) {
+                TrainFromStationAToB trainFromStationAToB = new TrainFromStationAToB();
+                trainFromStationAToB.setTrainID(train.getId());
+                trainFromStationAToB.setCountFreeSits(train.getCountSits());
+                trainFromStationAToB.setArrivalStation(stationNameB);
+                trainFromStationAToB.setDeprtureStation(stationNameA);
+
+                Time depTime = trainWayDAO.getTrainWayByStationAndWay(stationNameA,train.getTrainWay().getNumberWay()).getDepartureTime();
+                Time arrivTime = trainWayDAO.getTrainWayByStationAndWay(stationNameB,train.getTrainWay().getNumberWay()).getArrivalTime();
+
+                trainFromStationAToB.setDepartureTime((depTime.toLocalTime()));
+                trainFromStationAToB.setArrivalTime(arrivTime.toLocalTime());
+
+                trainFromStationAToBS.add(trainFromStationAToB);
+            }
+        }
+        return trainFromStationAToBS;
+    }
+
+
+
+    public List<TrainFromStationAToB> getTrainsFromStations (String stationNameA, String stationNameB, LocalTime startTime, LocalTime endTime, LocalDate departureDate) {
+
+        List<TrainFromStationAToB> trainFromStationAToBS = new ArrayList<>();
+        // ищем маршруты проходящие станции А и В
+        List<TrainWay> trainWaysBetweenAandB = getTrainWaysFromStationAToB(stationNameA,stationNameB);
+
+        //ищем поезда проезжающие по этим маршрутам
+        List<Train> trainsFromAtoB = new ArrayList<>();
+            for (TrainWay trainWay: trainWaysBetweenAandB) {
+                    trainsFromAtoB.addAll(trainDAO.getTrainByNumberWay(trainWay.getNumberWay()));
+                }
+        //корректировка списка поездов с учетом тех поездов, которые находятся в пути несколько дней
+        trainFromStationAToBS = getTrainsWithCorrectDate(trainsFromAtoB,trainFromStationAToBS,stationNameA,stationNameB,departureDate);
+
+        //ищем поезда в деапазоне времени
+        List<TrainFromStationAToB> trainFromStationAToBS1 = new ArrayList<>();
+        trainFromStationAToBS1.addAll(trainFromStationAToBS);
+        for (TrainFromStationAToB trainFromStationAToB: trainFromStationAToBS) {
+            if(!(trainFromStationAToB.getDepartureTime().isAfter(startTime)&&trainFromStationAToB.getDepartureTime().isBefore(endTime))){
+                trainFromStationAToBS1.remove(trainFromStationAToB);
+            }
+        }
+        // задаем количество свободных мест
+        for(TrainFromStationAToB trainFromStationAToB: trainFromStationAToBS1) {
+            FreeSeats freeSeat = freeSeatsDAO.getByStationAndTrainID(trainFromStationAToB.getDeprtureStation(),trainFromStationAToB.getTrainID());
+            if(!freeSeat.equals(new FreeSeats())) {
+                trainFromStationAToB.setCountFreeSits(freeSeat.getFreeSeats());
+            }
+        }
+
+        return trainFromStationAToBS1;
+    }
+
+
 
 
     public void addInformationAboutSearch (String stationA, String stationB, LocalDate departureDate, String startTime, String endTime) {
@@ -97,6 +197,7 @@ public class SearchStationService {
         searchStation.setEndTime(LocalTime.parse(endTime));
 
         searchStationDAO.add(searchStation);
+
     }
 
 
@@ -131,7 +232,7 @@ public class SearchStationService {
                 newTrain.setCountSits(train.getCountSits());
                 newTrain.setTrainNumber(train.getTrainNumber());
                 newTrain.setTrainWay(train.getTrainWay());
-               trainList.add(newTrain);
+                trainList.add(newTrain);
                 continue;
             }
 

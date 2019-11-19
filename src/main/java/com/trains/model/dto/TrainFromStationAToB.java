@@ -1,8 +1,5 @@
 package com.trains.model.dto;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.time.LocalTime;
 
 public class TrainFromStationAToB {

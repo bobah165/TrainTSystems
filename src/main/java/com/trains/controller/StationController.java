@@ -5,7 +5,6 @@ import com.trains.model.dto.StationDTO;
 import com.trains.model.dto.TrainFromStationDTO;
 
 import com.trains.service.StationService;
-import com.trains.service.TrainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,6 @@ import java.util.List;
 @RequestMapping("/station")
 public class StationController {
     private StationService stationService;
-    private TrainService trainService;
     private int page;
     private static Logger logger = LoggerFactory.getLogger(StationController.class);
 
@@ -30,14 +28,8 @@ public class StationController {
         this.stationService = stationService;
     }
 
-    @Autowired
-    public void setTrainService(TrainService trainService) {
-        this.trainService = trainService;
-    }
-
     @GetMapping(value = "/")
     public ModelAndView getStations(@RequestParam(defaultValue = "1") int page) {
-        List<StationDTO> stations = stationService.getAllStations();
         ModelAndView modelAndView = new ModelAndView();
         List<StationDTO> stationDTOList = stationService.getStationsForPagination(page);
         int stationCount = stationService.getCountStationsForPagination();
@@ -76,7 +68,6 @@ public class StationController {
     public ModelAndView getPassPage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("station-view/add-station");
-        logger.info("Read view /station-view/add-station");
         return modelAndView;
     }
 
@@ -100,7 +91,6 @@ public class StationController {
     }
 
 
-
     @GetMapping(value = "/findtrains")
     public ModelAndView findTrainsPage() {
         ModelAndView modelAndView = new ModelAndView();
@@ -116,10 +106,9 @@ public class StationController {
         ModelAndView modelAndView = new ModelAndView();
         StationDTO station = stationService.getByName(nameStation);
         logger.info("get station "+station+" by name "+nameStation);
-        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(station.getId(),departureDate,LocalTime.parse(startTime),LocalTime.parse(endTime));
+        List<TrainFromStationDTO> trainFromStation = stationService.getTrainFromStation(station.getId(),departureDate.toLocalDate(),LocalTime.parse(startTime),LocalTime.parse(endTime));
         modelAndView.setViewName("station-view/get-trains");
         modelAndView.addObject("trainsList",trainFromStation);
         return modelAndView;
     }
-
 }

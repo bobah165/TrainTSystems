@@ -4,6 +4,7 @@ import com.trains.dao.*;
 import com.trains.model.dto.*;
 import com.trains.model.entity.*;
 import com.trains.util.MessageSender;
+import com.trains.util.MyExeptions.MyException;
 import com.trains.util.mapperForDTO.PassengerMapper;
 import com.trains.util.mapperForDTO.TrainMapper;
 import org.slf4j.Logger;
@@ -30,7 +31,6 @@ public class TrainService {
     private TrainDAO trainDAO;
     private TicketDAO ticketDAO;
     private PassengerDAO passengerDAO;
-    private SearchStationDAO searchStationDAO;
     private TicketInformDAO ticketInformDAO;
     private TrainFromStationDAO trainFromStationDAO;
     private FreeSeatsDAO freeSeatsDAO;
@@ -73,12 +73,6 @@ public class TrainService {
     public void setTicketInformDAO(TicketInformDAO ticketInformDAO) {
         this.ticketInformDAO = ticketInformDAO;
     }
-
-    @Autowired
-    public void setSearchStationDAO(SearchStationDAO searchStationDAO) {
-        this.searchStationDAO = searchStationDAO;
-    }
-
 
     @Autowired
     public void setTrainDAO (TrainDAO trainDAO) {
@@ -139,8 +133,7 @@ public class TrainService {
 
     public TrainDTO getById(int idTrain) {
         Train train = trainDAO.getById(idTrain);
-        TrainDTO trainDTO = trainMapper.mapEntityToDto(train);
-        return trainDTO;
+        return trainMapper.mapEntityToDto(train);
     }
 
     public void delByID (int id) {
@@ -173,34 +166,36 @@ public class TrainService {
         return passengersFromTrainDTOS;
     }
 
-    public Train getTrainByDate (List<Train> trains, SearchStations searchStationDTO, int trainID) {
-        Train currentTrain = new Train();
-        for (Train train: trains){
-            if ((train.getDepartureDate().isEqual(searchStationDTO.getDepartureDate()) && train.getId()==trainID)) {
-                currentTrain = train;
-            }
-        }
-        return currentTrain;
-    }
 
+    public void addInformatonInTicket (int trainID, String deprtureStation,String arrivalStation,LocalTime arrivalTime,LocalTime departureTime) {
 
-    public void addTicketInfByTrainId (int idTrain) {
-        List<Train> trains = trainDAO.allTrain();
         int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        SearchStations searchStation = searchStationDAO.getById(idCurrentPassenger);
 
-        Train trainDTO = getTrainByDate(trains,searchStation,idTrain);
-        List<TrainWay> trainWays = trainDAO.getTrainWaysForTrain();
+        Train train = trainDAO.getById(trainID);
+        TrainWay trainWay = trainWayDAO.getTrainWayByStationAndWay(arrivalStation,train.getTrainWay().getNumberWay());
 
-        TicketInform ticketInform = ticketInformDAO.fullInformation(searchStation,trainWays,trainDTO);
+        TicketInform ticketInform = new TicketInform();
+        ticketInform.setId(idCurrentPassenger);
+        ticketInform.setIdTrain(trainID);
+
+        ticketInform.setArrivalStation(arrivalStation);
+        ticketInform.setDepartureStation(deprtureStation);
+        ticketInform.setDepartureTime(departureTime);
+        ticketInform.setArrivalTime(arrivalTime);
+        ticketInform.setDepartureDate(train.getDepartureDate());
+        ticketInform.setArrivalDate(train.getDepartureDate().plusDays(trainWay.getDaysInWay()-1));
+
+        ticketInform.setBirthday(LocalDate.of(1990,01,01));
+        ticketInform.setSurname("none");
+        ticketInform.setName("none");
+
         ticketInformDAO.add(ticketInform);
-        searchStationDAO.delete(searchStation);
+
     }
 
     public void deleteIfNoPassengerInTrain() {
         trainDAO.deleteIfNoPassengerInTrain();
     }
-
 
 
     public PassengerDTO сheckPassengerByNameSurnameBirthday(String name, String surname, Date birthday) throws NullPointerException {
@@ -225,8 +220,8 @@ public class TrainService {
         ticketInformDAO.addPassengerInformationToTicket(name,surname,birthday,passenger.getId());
 
         // проверка покупки билета за 10 минут до отправления поезда
-        LocalTime depTime10minutes = ticketInform.getDepartureTime().toLocalTime().minusMinutes(10);
-        LocalTime depTime = ticketInform.getDepartureTime().toLocalTime();
+        LocalTime depTime10minutes = ticketInform.getDepartureTime().minusMinutes(10);
+        LocalTime depTime = ticketInform.getDepartureTime();
         LocalTime currentTime = new Time(System.currentTimeMillis()).toLocalTime();
         if(currentTime.isAfter(depTime10minutes)&&currentTime.isBefore(depTime)) {
             isValid = false;
@@ -234,7 +229,7 @@ public class TrainService {
 
         if(isValid){
             return passengerMapper.mapEntityToDto(passenger);
-        } else throw new NullPointerException();
+        } else throw new MyException("Threre is such passenger");
 
     }
 
@@ -243,15 +238,15 @@ public class TrainService {
     public List<FreeSeats>  addInfAboutFreeSeatsIntoTable(Train train) {
 
         //находим все станции по маршруту поезда
-        List<TrainWay> trainOneWAy = new ArrayList<>();
-        List<TrainWay> trainWays = trainWayDAO.getAllWays();
+        List<TrainWay> trainOneWAy = trainWayDAO.getWaysByNumberWay(train.getTrainWay().getNumberWay());
 
-        for (TrainWay trainWay: trainWays){
-            if (trainWay.getNumberWay()==train.getTrainWay().getNumberWay())
-                trainOneWAy.add(trainWay);
-        }
+//        List<TrainWay> trainWays = trainWayDAO.getAllWays();
+//        for (TrainWay trainWay: trainWays){
+//            if (trainWay.getNumberWay()==train.getTrainWay().getNumberWay())
+//                trainOneWAy.add(trainWay);
+//        }
 
-        //сортировка полученного расписания для одной станции по времени отправления
+        //сортировка полученного расписания для одного маршрута по времени отправления
         List<TrainWay> sortedTrainWay= trainOneWAy.stream()
                 .sorted(Comparator.comparing(TrainWay::getDaysInWay)
                         .thenComparing(TrainWay::getDepartureTime))
@@ -316,7 +311,7 @@ public class TrainService {
                 .collect(Collectors.toList());
 
         if(!checkFreeSeatsInDepartureStation(sortedFreeSeatInWay,ticketInform)) {
-            throw  new NullPointerException();
+            throw  new MyException("Trere is no free seats");
         }
 
 
@@ -338,7 +333,7 @@ public class TrainService {
                     sortedFreeSeatInWay.get(j).setFreeSeats(sortedFreeSeatInWay.get(j).getFreeSeats()-1);
                     freeSeatsDAO.edit(sortedFreeSeatInWay.get(j));
                 } else {
-                    throw new NullPointerException();
+                    throw new MyException("There is no free seats");
                 }
             }
         }

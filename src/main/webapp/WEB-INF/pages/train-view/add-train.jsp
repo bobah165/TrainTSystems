@@ -48,6 +48,15 @@
                     </datalist>
                 </p>
 
+                <p>
+                    <!-- Error Message -->
+                <div id="errormessage">
+                    <c:if test="${not empty errMsg}">
+                        <h4 class="text-danger">${errMsg}</h4>
+                    </c:if>
+                </div>
+                </p>
+
                 <p class="login button">
                     <input type="submit" value="Add" />
                 </p>

@@ -1,6 +1,5 @@
 package com.trains.dao;
 
-import com.trains.model.dto.TrainDTO;
 import com.trains.model.entity.Passenger;
 import com.trains.model.entity.Ticket;
 import com.trains.model.entity.Train;
@@ -9,7 +8,6 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 @Repository

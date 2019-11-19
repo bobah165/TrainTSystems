@@ -23,16 +23,6 @@ public class EmailSender {
     private static Logger logger = LoggerFactory.getLogger(TrainController.class);
 
 
-//    public EmailSender(String host, int port, String username, String password) {
-//
-//        this.host = host;
-//        this.port = port;
-//        this.username = username;
-//        this.password = password;
-//
-//        sendMail();
-//    }
-
     public static void sendMail() {
 
         Properties prop = new Properties();
@@ -77,9 +67,4 @@ public class EmailSender {
             logger.error("email doesn't send");
         }
     }
-
-//    public static void main(String ... args) {
-//        new EmailSender("smtp.gmail.com", 587, "MyTrainSender@gmail.com", "qwER1234");
-//    }
-
 }

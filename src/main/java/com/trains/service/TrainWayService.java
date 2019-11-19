@@ -51,8 +51,7 @@ public class TrainWayService {
 
     public TrainWayDTO getById(int id) {
         TrainWay trainWay = trainWayDAO.getById(id);
-        TrainWayDTO trainWayDTO = trainWayMapper.mapEntityToDto(trainWay);
-        return trainWayDTO;
+        return trainWayMapper.mapEntityToDto(trainWay);
     }
 
     public void delByID (int id) {trainWayDAO.delByID(id); }

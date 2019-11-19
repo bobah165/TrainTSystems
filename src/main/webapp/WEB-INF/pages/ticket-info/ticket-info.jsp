@@ -7,9 +7,7 @@
 </head>
 <body>
 
-
-    <h1 align="center">Congratilation!!! You buy Ticket!!! <br>
-                            This is your ticket!!! </h1>
+    <h1 align="center">Ticket has been sent on your email</h1>
 
    <h2 align="center">
        Train Id ${ticketInfo.idTrain} <br>

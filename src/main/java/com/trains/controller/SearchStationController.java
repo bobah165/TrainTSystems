@@ -3,35 +3,24 @@ package com.trains.controller;
 
 import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.SearchStationDTO;
-import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
-import com.trains.model.entity.Train;
 import com.trains.service.SearchStationService;
-import com.trains.service.TrainService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.util.List;
 
 @Controller
 @RequestMapping("/findtrain")
 public class SearchStationController {
     private SearchStationService searchStationService;
-    private TrainService trainService;
     private static Logger logger = LoggerFactory.getLogger(SearchStationController.class);
-
-    @Autowired
-    public void setTrainService(TrainService trainService) {
-        this.trainService = trainService;
-    }
 
     @Autowired
     public void setSearchStationService(SearchStationService searchStationService) {
@@ -64,7 +53,7 @@ public class SearchStationController {
 
     //таблица поездов по результатам поиска
     @GetMapping(value = "/trainstation")
-    public ModelAndView getTrainstAB () {
+    public ModelAndView getTrainsAB () {
         ModelAndView modelAndView = new ModelAndView();
         int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         SearchStationDTO searchStationDTO = searchStationService.getById(idCurrentPassenger);
@@ -74,6 +63,7 @@ public class SearchStationController {
                         searchStationDTO.getStartTime(),searchStationDTO.getEndTime(),searchStationDTO.getDepartureDate().toLocalDate());
         modelAndView.setViewName("train-view/get-train-from-stations");
         modelAndView.addObject("trainListfromAtoB",trainFromStationAToBS);
+        searchStationService.delByID(idCurrentPassenger);
         return modelAndView;
     }
 

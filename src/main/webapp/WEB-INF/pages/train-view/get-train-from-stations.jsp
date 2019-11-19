@@ -32,7 +32,12 @@
             <td>${trainAB.arrivalTime}</td>
             <td>${trainAB.countFreeSits}</td>
             <td>
-                <a href="/train/buy/${trainAB.trainID}">buy ticket</a>
+                <c:if test="${trainAB.countFreeSits>0}">
+                <a href="/train/buy/${trainAB.trainID},${trainAB.deprtureStation},${trainAB.arrivalStation},${trainAB.arrivalTime},${trainAB.departureTime}">buy ticket</a>
+                </c:if>
+                <c:if test="${trainAB.countFreeSits==0}">
+                    No seats
+                </c:if>
             </td>
         </tr>
     </c:forEach>

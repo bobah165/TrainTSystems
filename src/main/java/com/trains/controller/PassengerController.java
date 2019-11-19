@@ -1,7 +1,5 @@
 package com.trains.controller;
 
-
-;
 import com.trains.model.dto.PassengerDTO;
 import com.trains.service.PassengerService;
 import com.trains.util.validator.PassengerDTOValidator;
@@ -9,11 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -109,14 +105,8 @@ public class PassengerController {
     }
 
     @PostMapping(value = "/addempl")
-    public ModelAndView createEmployee(@ModelAttribute("passenger") @Valid PassengerDTO passenger,BindingResult result) {
+    public ModelAndView createEmployee(@ModelAttribute("passenger") PassengerDTO passenger) {
         ModelAndView modelAndView = new ModelAndView();
-        passengerDTOValidator.validate(passenger,result);
-        if(result.hasErrors()) {
-            modelAndView.setViewName("redirect:/passenger/message/");
-            return modelAndView;
-        }
-
         modelAndView.setViewName("redirect:/empl/");
         passenger.setUser("employee");
         passengerService.add(passenger);

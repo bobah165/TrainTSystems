@@ -1,8 +1,8 @@
 package com.trains.model.entity;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "ticket_inform")
@@ -21,13 +21,13 @@ public class TicketInform {
     @Column(name = "departure_date")
     private LocalDate departureDate;
     @Column(name = "departure_time")
-    private Time departureTime;
+    private LocalTime departureTime;
     @Column(name = "arrival_station")
     private String arrivalStation;
     @Column(name = "arrival_date")
     private LocalDate arrivalDate;
     @Column(name = "arrival_time")
-    private Time arrivalTime;
+    private LocalTime arrivalTime;
     @Column(name = "name")
     private String name;
     @Column(name = "surname")
@@ -75,11 +75,11 @@ public class TicketInform {
         this.departureDate = departureDate;
     }
 
-    public Time getDepartureTime() {
+    public LocalTime getDepartureTime() {
         return departureTime;
     }
 
-    public void setDepartureTime(Time departureTime) {
+    public void setDepartureTime(LocalTime departureTime) {
         this.departureTime = departureTime;
     }
 
@@ -99,11 +99,11 @@ public class TicketInform {
         this.arrivalDate = arrivalDate;
     }
 
-    public Time getArrivalTime() {
+    public LocalTime getArrivalTime() {
         return arrivalTime;
     }
 
-    public void setArrivalTime(Time arrivalTime) {
+    public void setArrivalTime(LocalTime arrivalTime) {
         this.arrivalTime = arrivalTime;
     }
 

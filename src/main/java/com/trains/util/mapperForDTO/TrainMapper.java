@@ -5,7 +5,6 @@ import com.trains.model.entity.Train;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-import java.time.LocalDate;
 
 @Component
 public class TrainMapper {

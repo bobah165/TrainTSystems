@@ -41,11 +41,11 @@ public class TicketInformDAOTest {
         ticketInform.setSurname("smith");
         ticketInform.setName("bob");
         ticketInform.setArrivalDate(date.toLocalDate());
-        ticketInform.setDepartureTime(Time.valueOf("12:12:12"));
+        ticketInform.setDepartureTime(LocalTime.parse("12:12:12"));
         ticketInform.setDepartureStation("Piter");
         ticketInform.setIdTrain(1);
         ticketInform.setDepartureDate(date.toLocalDate());
-        ticketInform.setArrivalTime(Time.valueOf("13:13:13"));
+        ticketInform.setArrivalTime(LocalTime.parse("13:13:13"));
         ticketInform.setArrivalStation("Moscow");
 
         station = new Station();

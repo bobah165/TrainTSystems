@@ -29,7 +29,6 @@ public class TicketInformController {
         logger.info("Get all info about tickets");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-info/ticket-info");
-        logger.info("Read view /ticket-info/ticket-info");
         modelAndView.addObject("ticketsList",tickets);
         return modelAndView;
     }
@@ -40,7 +39,6 @@ public class TicketInformController {
         logger.info("Get ticket info by id = "+id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("ticket-view/edit-ticket");
-        logger.info("Read view /ticket-view/edit-ticket");
         modelAndView.addObject("ticket",ticket);
         return modelAndView;
     }

@@ -2,11 +2,9 @@ package com.trains.model.entity;
 
 
 import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;

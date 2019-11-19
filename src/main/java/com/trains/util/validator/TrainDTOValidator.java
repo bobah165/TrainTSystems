@@ -4,6 +4,8 @@ import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainWayDTO;
 import com.trains.service.TrainService;
 import com.trains.service.TrainWayService;
+import com.trains.util.MyExeptions.MyException;
+import com.trains.util.MyExeptions.MyExeptionForTrain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -42,6 +44,7 @@ public class TrainDTOValidator implements Validator {
                 errors.rejectValue(
                         "trainNumber", "", "There is this train"
                 );
+                throw new MyExeptionForTrain("There is this train");
             }
         }
 
@@ -52,6 +55,7 @@ public class TrainDTOValidator implements Validator {
             errors.rejectValue(
                     "departureDate", "", "Wrong departure date"
             );
+            throw new MyExeptionForTrain("Wrong departure date. The date should be in future");
         }
 
         List<TrainWayDTO> trainWayDTOList = trainWayService.getAllWays();
@@ -66,6 +70,8 @@ public class TrainDTOValidator implements Validator {
             errors.rejectValue(
                     "trainWay", "", "Wrong train way"
             );
+            throw new MyExeptionForTrain("Wrong train way");
+
         }
 
 

@@ -2,7 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="с" uri="http://www.springframework.org/tags/form" %>
 
 <html>
 <head>
@@ -14,6 +15,9 @@
             width: 25%;
         }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
 </head>
 <body>
 
@@ -22,8 +26,10 @@
     <a class="hiddenanchor" id="tologin"></a>
     <div id="wrapper">
         <div id="login" class="animate form">
-            <form  action="/registration" autocomplete="on" method="post">
+
+            <form action="/registration" autocomplete="on" method="post">
                 <h1>Registration</h1>
+
                 <p>
                     <label for="username" class="uname" data-icon="u" > Login </label>
                     <input id="username" name="login" required="required" type="text"/>
@@ -49,13 +55,25 @@
                     <input id="surname" name="surname" required="required" type="text"  />
                 </p>
 
+                <p>
+                    <!-- Error Message -->
+                <div id="errormessage">
+                    <c:if test="${not empty errMsg}">
+                        <h4 class="text-danger">${errMsg}</h4>
+                    </c:if>
+                </div>
+                </p>
+
                 <p class="login button">
                     <input type="submit" value="Submit" />
                 </p>
+
             </form>
+
         </div>
     </div>
 </div>
+
 
 </body>
 </html>

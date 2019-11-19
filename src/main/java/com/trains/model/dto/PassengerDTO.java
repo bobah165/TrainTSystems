@@ -4,7 +4,6 @@ package com.trains.model.dto;
 import com.trains.model.entity.Ticket;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.sql.Date;

@@ -17,9 +17,6 @@ public class PDFWriterForTicket {
     private static final String imageURL = "C://Users/ACER/IdeaProjects/TrainTsystems/src/main/webapp/ROOT/train.jpg";
     private static Logger logger = LoggerFactory.getLogger(PDFWriterForTicket.class);
 
-//    public static void main(String[] args ) {
-//        PDFWriterForTicket.writePDFOfticket();
-//    }
 
     public static void writePDFOfticket(TicketInformDTO ticketInformDTO){
         Document document = new Document(PageSize.A4,50,50,50,50);

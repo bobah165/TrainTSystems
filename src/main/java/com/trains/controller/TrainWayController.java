@@ -26,10 +26,8 @@ public class TrainWayController {
     @GetMapping(value = "/")
     public ModelAndView getAllTrains() {
         List<TrainWayDTO> ways = trainWayService.getAllWays();
-        logger.info("Get all ways");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-way-view/ways");
-        logger.info("Read view /train-way-view/ways");
         modelAndView.addObject("wayList",ways);
         return modelAndView;
     }
@@ -41,7 +39,6 @@ public class TrainWayController {
         logger.info("Get train way by id = "+id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-way-view/edit-way");
-        logger.info("Read view /train-way-view/edit-way");
         modelAndView.addObject("way",way);
         return modelAndView;
     }

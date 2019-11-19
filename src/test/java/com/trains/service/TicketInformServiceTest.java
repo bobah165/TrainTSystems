@@ -108,13 +108,13 @@ public class TicketInformServiceTest {
         Mockito.doNothing().when(ticketInformService).delByID(1);
     }
 
-    @Test
-    public void fullInformation(){
-        Mockito.when(ticketInformService.fillInformationByStationAndWay(searchStationDTO, new ArrayList<>(),trainDTO)).thenReturn(ticketInformDTO);
-    }
+//    @Test
+//    public void fullInformation(){
+//        Mockito.when(ticketInformService.fillInformationByStationAndWay(searchStationDTO, new ArrayList<>(),trainDTO)).thenReturn(ticketInformDTO);
+//    }
 
-    @Test
-    public void checkDeapartureTime() {
-        Mockito.when(ticketInformService.checkLegalTimeForBuyTicket(ticketInformDTO)).thenReturn(true);
-    }
+//    @Test
+//    public void checkDeapartureTime() {
+//        Mockito.when(ticketInformService.checkLegalTimeForBuyTicket(ticketInformDTO)).thenReturn(true);
+//    }
 }

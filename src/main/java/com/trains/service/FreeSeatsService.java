@@ -1,11 +1,9 @@
 package com.trains.service;
 
 import com.trains.dao.FreeSeatsDAO;
-import com.trains.dao.TrainWayDAO;
 import com.trains.model.dto.FreeSeatsDTO;
 import com.trains.model.entity.FreeSeats;
 import com.trains.util.mapperForDTO.FreeSeatsMapper;
-import com.trains.util.mapperForDTO.TrainMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,18 +15,6 @@ import java.util.*;
 public class FreeSeatsService {
     private FreeSeatsDAO freeSeatsDAO;
     private FreeSeatsMapper freeSeatsMapper;
-    private TrainWayDAO trainWayDAO;
-    private TrainMapper trainMapper;
-
-    @Autowired
-    public void setTrainMapper(TrainMapper trainMapper) {
-        this.trainMapper = trainMapper;
-    }
-
-    @Autowired
-    public void setTrainWayDAO(TrainWayDAO trainWayDAO) {
-        this.trainWayDAO = trainWayDAO;
-    }
 
 
     @Autowired

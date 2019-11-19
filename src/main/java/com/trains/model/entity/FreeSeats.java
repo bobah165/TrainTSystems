@@ -3,6 +3,7 @@ package com.trains.model.entity;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "free_seats")
@@ -62,5 +63,20 @@ public class FreeSeats {
                 ", station is "+stationName+
                 ", free seats is " + freeSeats +
                 " }";
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        FreeSeats freeSeats1 = (FreeSeats) object;
+        return getId() == freeSeats1.getId() &&
+                getIdTrain() == freeSeats1.getIdTrain() &&
+                getFreeSeats() == freeSeats1.getFreeSeats();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getIdTrain(), getFreeSeats());
     }
 }

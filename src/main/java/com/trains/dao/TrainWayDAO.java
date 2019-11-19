@@ -31,7 +31,22 @@ public class TrainWayDAO extends CrudDAO {
         Session session = sessionFactory.getCurrentSession();
         Query query = session.createQuery("from TrainWay t where t.numberWay = :numberWay");
         query.setParameter("numberWay",numberWay);
-        List<TrainWay> trainWays = query.list();
-        return trainWays;
+        return query.list();
+    }
+
+    public List<TrainWay> getWaysByStationId(int stationId) {
+        Session session = sessionFactory.getCurrentSession();
+        Query queryWay = session.createQuery("from TrainWay t where t.station.id = :stationId");
+        queryWay.setParameter("stationId",stationId);
+        return queryWay.list();
+    }
+
+    public TrainWay getTrainWayByStationAndWay(String stationName, int numberWay) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from TrainWay where station.nameStation like :stationName " +
+                "and numberWay = :numberWay");
+        query.setParameter("stationName",stationName);
+        query.setParameter("numberWay",numberWay);
+        return (TrainWay)query.getSingleResult();
     }
 }

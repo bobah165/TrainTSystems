@@ -2,6 +2,8 @@ package com.trains.util.validator;
 
 import com.trains.model.dto.PassengerDTO;
 import com.trains.service.PassengerService;
+import com.trains.util.MyExeptions.MyException;
+import com.trains.util.MyExeptions.MyExeptionForPassenger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -32,11 +34,13 @@ public class PassengerDTOValidator implements Validator {
             errors.rejectValue(
                     "login", "", "This login is already in use"
             );
+            throw new MyExeptionForPassenger("Wrong Login. This login is already exixt");
         }
         if(passengerService.getPassengerId(passengerDTO.getName(),passengerDTO.getSurname(),passengerDTO.getBirthday())>0){
             errors.rejectValue(
                     "id", "", "This passenger is already exist"
             );
+            throw new MyExeptionForPassenger("Wrong passenger. This passenger is already exist");
         }
         LocalDate date = passengerDTO.getBirthday().toLocalDate();
         LocalDate date1 = LocalDate.now();
@@ -45,6 +49,8 @@ public class PassengerDTOValidator implements Validator {
             errors.rejectValue(
                     "birthday", "", "Wrong birthday"
             );
+
+            throw new MyExeptionForPassenger("Wrong birthday. The birthday should be in past");
         }
     }
 }

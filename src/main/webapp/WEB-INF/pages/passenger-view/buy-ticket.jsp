@@ -25,6 +25,8 @@
         <div id="login" class="animate form">
             <form  action="/train/buy/" autocomplete="on" method="post">
                 <h1>Passenger Information</h1>
+
+
                 <p>
                     <label for="name" class="uname" data-icon="u" > Name </label>
                     <input id="name" name="name" required="required" type="text" value="${passenger.name}"/>
@@ -38,6 +40,15 @@
                     <input id="birthday" name="birthday" required="required" type="date" value="${passenger.birthday}" />
                 </p>
 
+                <p>
+                    <!-- Error Message -->
+                <div id="errormessage">
+                    <c:if test="${not empty errMsg}">
+                        <h4 class="text-danger">${errMsg}</h4>
+                    </c:if>
+                </div>
+                </p>
+
                 <p class="login button">
                     <input type="submit" value="Enter" />
                 </p>
@@ -46,6 +57,8 @@
         </div>
     </div>
 </div>
+
+
 </body>
 
 </html>

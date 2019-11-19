@@ -1,13 +1,6 @@
 package com.trains.model.entity;
 
-
-import org.hibernate.annotations.NaturalId;
-import org.hibernate.annotations.Proxy;
-
 import javax.persistence.*;
-import java.nio.file.LinkOption;
-import java.sql.Date;
-import java.time.LocalDate;
 
 @Entity
 @Table(name = "tickets")

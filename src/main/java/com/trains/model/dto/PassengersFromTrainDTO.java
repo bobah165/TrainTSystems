@@ -1,6 +1,6 @@
 package com.trains.model.dto;
 
-import java.sql.Date;
+
 import java.time.LocalDate;
 
 public class PassengersFromTrainDTO {

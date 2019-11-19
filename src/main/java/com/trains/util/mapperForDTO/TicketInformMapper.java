@@ -5,8 +5,7 @@ import com.trains.model.entity.TicketInform;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-import java.sql.Time;
-import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Component
 public class TicketInformMapper {
@@ -17,13 +16,10 @@ public class TicketInformMapper {
         ticket.setArrivalDate(ticketInformDTO.getArrivalDate().toLocalDate());
         ticket.setDepartureDate(ticketInformDTO.getDepartureDate().toLocalDate());
         ticket.setBirthday(ticketInformDTO.getBirthday().toLocalDate());
-
         ticket.setArrivalStation(ticketInformDTO.getArrivalStation());
-        ticket.setArrivalTime(Time.valueOf(ticketInformDTO.getArrivalTime()));
-
-
+        ticket.setArrivalTime(LocalTime.parse(ticketInformDTO.getArrivalTime()));
         ticket.setDepartureStation(ticketInformDTO.getDepartureStation());
-        ticket.setDepartureTime(Time.valueOf(ticketInformDTO.getDepartureTime()));
+        ticket.setDepartureTime(LocalTime.parse(ticketInformDTO.getDepartureTime()));
         ticket.setId(ticketInformDTO.getId());
         ticket.setIdPassenger(ticketInformDTO.getIdPassenger());
         ticket.setIdTrain(ticketInformDTO.getIdTrain());

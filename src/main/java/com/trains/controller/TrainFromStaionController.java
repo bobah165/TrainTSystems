@@ -18,8 +18,6 @@ public class TrainFromStaionController {
         this.trainFromStationService = trainFromStationService;
     }
 
-
-
     @GetMapping("/")
     @ResponseBody
     public List<TrainFromStationDTO> getSchedule() {

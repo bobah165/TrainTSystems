@@ -44,13 +44,9 @@ public class LoginController {
     }
 
     @PostMapping(value = "/registration")
-    public ModelAndView registration (@ModelAttribute @Valid PassengerDTO passengerDTO, BindingResult result) {
+    public ModelAndView registration (@Valid @ModelAttribute("passengerDTO") PassengerDTO passengerDTO, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
         passengerDTOValidator.validate(passengerDTO,result);
-        if(result.hasErrors()) {
-            modelAndView.setViewName("redirect:/passenger/message/");
-            return modelAndView;
-        }
         passengerDTO.setUser("passenger");
         passengerService.add(passengerDTO);
         logger.info("Add object Passenger from frontend");

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import java.sql.Date;
+import java.time.LocalTime;
 import java.util.List;
 
 @Controller
@@ -72,20 +72,14 @@ public class TrainController {
         logger.info("Get train by id = "+id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-view/edit-train");
-        logger.info("Read file /train-view/edit-train");
         modelAndView.addObject("train",train);
         return modelAndView;
     }
 
 
     @PostMapping (value = "/edit")
-    public ModelAndView update (@ModelAttribute("train") @Valid TrainDTO train, BindingResult result) {
+    public ModelAndView update (@ModelAttribute("train") TrainDTO train) {
         ModelAndView modelAndView = new ModelAndView();
-        trainDTOValidator.validate(train,result);
-        if(result.hasErrors()) {
-            modelAndView.setViewName("redirect:/train/addeditmessage/");
-            return modelAndView;
-        }
         modelAndView.setViewName("redirect:/train/");
         trainService.edit(train);
         logger.info("Edit train "+train);
@@ -100,15 +94,10 @@ public class TrainController {
     }
 
 
-
     @PostMapping(value = "/add")
     public ModelAndView create(@ModelAttribute("train") @Valid TrainDTO train, BindingResult result) {
         ModelAndView modelAndView = new ModelAndView();
         trainDTOValidator.validate(train,result);
-        if(result.hasErrors()) {
-            modelAndView.setViewName("redirect:/train/addeditmessage/");
-            return modelAndView;
-        }
         trainService.add(train);
         logger.info("Add train "+train);
         modelAndView.setViewName("redirect:/train/");
@@ -118,13 +107,10 @@ public class TrainController {
 
     @GetMapping(value = "/delete/{id}")
     public ModelAndView delete(@PathVariable("id") int id) {
-        List<PassengersFromTrainDTO> passengersFromTrainDTOS = trainService.getPassengerFromTrain(id);
         ModelAndView modelAndView = new ModelAndView();
-        if (passengersFromTrainDTOS.isEmpty()) {
-            modelAndView.setViewName("redirect:/train/?page=" + this.page);
-            trainService.delByID(id);
-            logger.info("Delete train by id = "+id);}
-        else modelAndView.setViewName("redirect:/train/message/");
+        modelAndView.setViewName("redirect:/train/?page=" + this.page);
+        trainService.delByID(id);
+        logger.info("Delete train by id = "+id);
         return modelAndView;
     }
 
@@ -132,10 +118,8 @@ public class TrainController {
     @GetMapping(value = "/passfromtrain/{id}")
     public ModelAndView getPassFromTrain (@PathVariable("id") int id) {
         List<PassengersFromTrainDTO> passengersFromTrainDTOS = trainService.getPassengerFromTrain(id);
-        logger.info("Get passengers from train");
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("train-view/get-passengers");
-        logger.info("Read view /train-view/get-passengers");
         modelAndView.addObject("passfromtrainList",passengersFromTrainDTOS);
         return modelAndView;
     }
@@ -160,15 +144,17 @@ public class TrainController {
 
 
 
-    @GetMapping(value = "/buy/{trainID}")
-    public ModelAndView addTicket(@PathVariable("trainID") int trainID){
+    @GetMapping(value = "/buy/{trainID},{deprtureStation},{arrivalStation},{arrivalTime},{departureTime}")
+    public ModelAndView addTicket(@PathVariable("trainID") int trainID,
+                                  @PathVariable("deprtureStation") String deprtureStation,
+                                  @PathVariable("arrivalStation") String arrivalStation,
+                                  @PathVariable("arrivalTime") LocalTime arrivalTime,
+                                  @PathVariable("departureTime") LocalTime departureTime){
         ModelAndView modelAndView = new ModelAndView();
         PassengerDTO passengerDTO = (PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        trainService.addTicketInfByTrainId(trainID);
+        trainService.addInformatonInTicket(trainID,deprtureStation,arrivalStation,arrivalTime,departureTime);
         modelAndView.addObject("passenger",passengerDTO);
         modelAndView.setViewName("passenger-view/buy-ticket");
-        logger.info("Add ticket information by Train ID");
-
         return modelAndView;
     }
 
@@ -178,16 +164,9 @@ public class TrainController {
                                                 @RequestParam("surname") String surname,
                                                 @RequestParam("birthday") Date birthday) {
         ModelAndView modelAndView = new ModelAndView();
-        try {
-            PassengerDTO passenger = trainService.сheckPassengerByNameSurnameBirthday(name, surname, birthday);
-            trainService.checkFreeSeatsInTrain();
-            ticketService.addTicketByTrainDTOPassengerDTO(passenger);
-        } catch (NullPointerException ex) {
-            logger.error("This passenger already exist");
-            modelAndView.setViewName("redirect:/ticket/message/");
-            return modelAndView;
-        }
-
+        PassengerDTO passenger = trainService.сheckPassengerByNameSurnameBirthday(name, surname, birthday);
+        trainService.checkFreeSeatsInTrain();
+        ticketService.addTicketByTrainDTOPassengerDTO(passenger);
         modelAndView.setViewName("redirect:/train/buy/ticket/");
         return modelAndView;
     }
@@ -203,10 +182,9 @@ public class TrainController {
         trainService.deleteIfNoPassengerInTrain();
         modelAndView.setViewName("ticket-info/ticket-info");
         modelAndView.addObject("ticketInfo",ticketList);
-        ticketInformService.delete(ticketList);
         EmailSender.sendMail();
+        ticketInformService.deleteTicketInfoOfCurrentPassenger();
         logger.info("Delete ticket information "+ticketList);
         return modelAndView;
     }
-
 }

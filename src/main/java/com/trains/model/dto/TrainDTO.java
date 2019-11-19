@@ -4,8 +4,6 @@ import com.trains.model.entity.Ticket;
 import com.trains.model.entity.TrainWay;
 
 import javax.validation.constraints.DecimalMin;
-import javax.validation.constraints.Future;
-import javax.validation.constraints.Pattern;
 import java.sql.Date;
 import java.util.List;
 

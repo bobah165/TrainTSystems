@@ -31,4 +31,6 @@ public class FreeSeatsDAO extends CrudDAO {
         if (!freeSeats.isEmpty()) freeSeat = freeSeats.get(0);
         return freeSeat;
     }
+
+
  }

@@ -5,7 +5,6 @@ import com.trains.model.entity.SearchStations;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-import java.sql.Time;
 
 @Component
 public class SearchStationMapper {
