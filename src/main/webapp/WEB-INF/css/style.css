@@ -1,5 +1,6 @@
 table {
-    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande";
+    /*Sans-Serif*/
     font-size: 14px;
     border-collapse: collapse;
     text-align: center;
@@ -110,6 +111,43 @@ ul.submenu > li > a:hover {
     text-decoration: underline;
 }
 
+ul.submenu {
+    display: none;
+    position: absolute;
+    width: 200px;
+    top: 37px;
+    padding-left: 0px;
+    background-color: white;
+    /*border: 1px solid white;*/
+}
+
+ul.submenu > li {
+    display: block;
+}
+ul.submenu > li > a {
+    display: block;
+    padding: 1px;
+    color: white;
+    background-color: white;
+    text-decoration: none;
+}
+ul.submenu > li > a:hover {
+    text-decoration: underline;
+}
+
 ul.menu > li:hover > ul.submenu {
     display: block;
 }
+
+button.forTable{
+    background: #AFCDE7;
+    border: #AFCDE7;
+    font-family:Lucida Sans Unicode, Lucida Grande;
+    margin-top: 9px;
+    text-decoration: none;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+

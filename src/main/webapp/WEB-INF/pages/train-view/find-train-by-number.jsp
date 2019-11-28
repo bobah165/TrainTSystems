@@ -5,7 +5,6 @@
 
 <head>
     <title>Trains</title>
-
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
         .btn {
@@ -16,6 +15,7 @@
 </head>
 
 <body>
+
 
 <div class="top_bar"></div>
 <div class="welcome">
@@ -28,16 +28,10 @@
         <ul class="menu">
             <li><a href="/empl">Back</a></li>
 
+            <li><a href="/train/">Train List</a></li>
+
             <li><a href="#">Find</a>
                 <ul class="submenu">
-                    <li><a href="#">Train Number</a>
-                        <br>
-                        <form action="/train/findByTrainNumber" method="post">
-                            <input name="trainNumber" required="required" type="number"/>
-                            <input type="submit" value="Enter" />
-                        </form>
-                    </li>
-
                     <li><a href="#">Departure Date</a>
                         <br>
                         <form action="/train/findByDate" method="post">
@@ -48,37 +42,32 @@
                 </ul>
             </li>
 
+            <li ><a href="/train/add">Add Train</a> </li>
             <li id="quit"><a href="/logout">Quit</a> </li>
         </ul>
     </nav>
 </header>
 
 
+
+
 <h1 align="center"> Trains </h1>
 
-
-<table id="table">
-
+<table id="myTable" class="tablesorter">
 
     <tr>
-        <th>
-            <form action="/train/sortbynumber">
-                <button class="forTable">Train Number</button>
-            </form>
-        </th>
+        <th>Train Number</th>
         <th>Way</th>
         <th>count of sits</th>
-        <th>
-            <form action="/train/sortbydate">
-                <button class="forTable">Departure Date</button>
-            </form>
-        </th>
+        <th>Departure Date</th>
         <th>Passengers</th>
         <th>Edit Train</th>
         <th>Delete Train</th>
     </tr>
 
+
     <c:forEach var="train" items="${trainList}">
+
         <tr>
             <td>${train.trainNumber}</td>
             <td>${train.trainWay.id}</td>
@@ -94,27 +83,9 @@
                 <button><a href="/train/delete/${train.id}" class="btn">delete</a></button>
             </td>
         </tr>
+
     </c:forEach>
-
-    <tr>
-        <td colspan="8">
-            <c:forEach begin="${1}" end="${pageCount}" step="1" varStatus="i">
-                <c:url value="/train/" var="url">
-                    <c:param name="page" value="${i.index}"/>
-                </c:url>
-                <a href="${url}">${i.index}</a>
-            </c:forEach>
-        </td>
-    </tr>
 </table>
-
-
-<div align="center" id="errormessage">
-    <c:if test="${not empty errMsg}">
-        <h4 class="text-danger">${errMsg}</h4>
-    </c:if>
-</div>
-
 
 </body>
 </html>

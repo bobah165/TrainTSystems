@@ -4,9 +4,7 @@ package com.trains.dao;
 import com.trains.model.dto.PassengersFromTrainDTO;
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
-import com.trains.model.entity.Station;
-import com.trains.model.entity.Train;
-import com.trains.model.entity.TrainWay;
+import com.trains.model.entity.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,12 +26,15 @@ public class TrainDAOTest {
     private Station station;
     private PassengersFromTrainDTO passengersFromTrainDTO;
     private TrainFromStationAToB trainFromStationAToB;
+    private Ticket ticket;
 
     @Mock
     private TrainDAO trainDAO;
 
     @Before
     public void initTrain() {
+
+
         station = new Station();
         station.setId(1);
         station.setNameStation("Piter");
@@ -71,6 +72,11 @@ public class TrainDAOTest {
         trainFromStationAToB.setDeprtureStation("piter");
         trainFromStationAToB.setArrivalStation("moscow");
         trainFromStationAToB.setTrainID(1);
+
+        ticket = new Ticket();
+        ticket.setTrain(train);
+        ticket.setPassenger(new Passenger());
+        ticket.setId(1);
     }
 
 
@@ -94,9 +100,47 @@ public class TrainDAOTest {
 
     @Test
     public void getPassengerFromTrain() {
-        List<PassengersFromTrainDTO> actual = new ArrayList<>();
-        actual.add(passengersFromTrainDTO);
-       // Mockito.when(trainDAO.getPassengerFromTrain(1)).thenReturn(actual);
+        List<Ticket> actual = new ArrayList<>();
+        actual.add(ticket);
+        Mockito.when(trainDAO.getPassengerFromTrain(train.getId())).thenReturn(actual);
+    }
+
+    @Test
+    public void allTrainPagination() {
+        List<Train> actual = new ArrayList<>();
+        actual.add(train);
+        Mockito.when(trainDAO.allTrainPagination(1)).thenReturn(actual);
+    }
+
+    @Test
+    public void getCountOfPage(){
+        Mockito.when(trainDAO.getCountOfPage()).thenReturn(1);
+    }
+
+    @Test
+    public void deleteIfNoPassengerInTrain(){
+        Mockito.doNothing().when(trainDAO).deleteIfNoPassengerInTrain();
+    }
+
+    @Test
+    public void getTrainsByDepartureDate() {
+        List<Train> actual = new ArrayList<>();
+        actual.add(train);
+        Mockito.when(trainDAO.getTrainsByDepartureDate(train.getDepartureDate())).thenReturn(actual);
+    }
+
+    @Test
+    public void getTrainByNumberWay() {
+        List<Train> actual = new ArrayList<>();
+        actual.add(train);
+        Mockito.when(trainDAO.getTrainByNumberWay(train.getTrainWay().getNumberWay())).thenReturn(actual);
+    }
+
+    @Test
+    public void getTrainsByDepartureDateAndNumberWay() {
+        List<Train> actual = new ArrayList<>();
+        actual.add(train);
+        Mockito.when(trainDAO.getTrainsByDepartureDateAndNumberWay(train.getDepartureDate(),train.getTrainWay().getNumberWay())).thenReturn(actual);
     }
 
 }

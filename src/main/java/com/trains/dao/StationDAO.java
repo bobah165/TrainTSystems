@@ -43,9 +43,27 @@ public class StationDAO extends CrudDAO {
         return station;
     }
 
+    public boolean isExistStationInDB(String nameStation){
+        Session session = sessionFactory.getCurrentSession();
+        boolean isExist=true;
+        Query query = session.createQuery("from Station  where nameStation like :name");
+        query.setParameter("name",nameStation);
+        List<Station> stations = query.list();
+        if(stations.isEmpty()){
+            isExist = false;
+        }
+        return isExist;
+    }
+
     public void delByID (int id) {
         Session session = sessionFactory.getCurrentSession();
         session.delete(session.get(Station.class,id));
+    }
+
+    public List<Station> getSortedListByNameStation(int page) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Station order by nameStation");
+        return query.setFirstResult(10*(page-1)).setMaxResults(10).list();
     }
 
 }

@@ -8,6 +8,7 @@ import com.trains.model.dto.TrainFromStationDTO;
 import com.trains.model.entity.Station;
 import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainWay;
+import com.trains.util.MyExeptions.MyExeptionForStation;
 import com.trains.util.mapperForDTO.StationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -72,6 +73,9 @@ public class StationService {
 
     public void add(StationDTO stationDTO) {
         Station station = stationMapper.mapDtoToEntity(stationDTO);
+        if(stationDAO.isExistStationInDB(stationDTO.getNameStation())) {
+            throw new MyExeptionForStation("There is such station");
+        }
         stationDAO.add(station); }
 
     public void delete(StationDTO stationDTO) {
@@ -108,6 +112,8 @@ public class StationService {
                 finalTrainList.add(trainFromStationDTO);
             }
         }
+
+        trainDAO.deleteIfNoPassengerInTrain();
         return finalTrainList;
     }
 
@@ -142,6 +148,15 @@ public class StationService {
     public StationDTO getByName (String name) {
         Station station = stationDAO.getByName(name);
         return stationMapper.mapEntityToDto(station);
+    }
+
+    public List<StationDTO> getSortedListByNameStation(int page) {
+        List<Station> stations = stationDAO.getSortedListByNameStation(page);
+        List<StationDTO> stationDTOS = new ArrayList<>();
+        for (Station station: stations) {
+            stationDTOS.add(stationMapper.mapEntityToDto(station));
+        }
+        return stationDTOS;
     }
 
 }

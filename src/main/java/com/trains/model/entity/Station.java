@@ -43,23 +43,24 @@ public class Station {
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (this == object) return true;
-        if (object == null || getClass() != object.getClass()) return false;
-        Station station = (Station) object;
-        return getId() == station.getId();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId());
-    }
-
-    @Override
     public String toString() {
         return "Station {" +
                 "id=" + id +
                 ", name is " + nameStation +
                 " }";
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        if (this == object) return true;
+        if (object == null || getClass() != object.getClass()) return false;
+        Station station = (Station) object;
+        return getId() == station.getId() &&
+                Objects.equals(getNameStation(), station.getNameStation());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getNameStation());
     }
 }

@@ -1,8 +1,9 @@
 package com.trains.dao;
 
 
-import com.trains.model.dto.SearchStationDTO;
+
 import com.trains.model.entity.SearchStations;
+import com.trains.model.entity.Station;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -10,7 +11,6 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 
 import java.sql.Date;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,7 @@ import java.util.List;
 @RunWith(org.mockito.runners.MockitoJUnitRunner.class)
 public class SearchStationDAOTest {
     private SearchStations searchStation;
+    private Station station;
 
     @Mock
     private SearchStationDAO searchStationDAO;
@@ -34,6 +35,11 @@ public class SearchStationDAOTest {
         searchStation.setId(1);
         searchStation.setStartTime(LocalTime.parse("00:00"));
         searchStation.setDepartureDate(date.toLocalDate());
+
+        station = new Station();
+        station.setTrainWays(new ArrayList<>());
+        station.setId(1);
+        station.setNameStation("Piter");
     }
 
     @Test
@@ -53,4 +59,9 @@ public class SearchStationDAOTest {
         Mockito.doNothing().when(searchStationDAO).delByID(1);
     }
 
+
+    @Test
+    public void getStationByName() {
+        Mockito.when(searchStationDAO.getStationByName(station.getNameStation())).thenReturn(station);
+    }
 }

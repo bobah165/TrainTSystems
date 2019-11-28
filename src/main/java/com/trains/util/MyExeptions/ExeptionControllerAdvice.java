@@ -31,4 +31,27 @@ public class ExeptionControllerAdvice {
         model.setViewName("train-view/add-train");
         return model;
     }
+
+    @ExceptionHandler(Exception.class)
+    public ModelAndView AllExeptions (Exception ex){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("main/exeption-page");
+        return model;
+    }
+
+    @ExceptionHandler(MyExeptionForTicket.class)
+    public ModelAndView ticketExeption(MyExeptionForTicket ex){
+        ModelAndView model = new ModelAndView();
+        model.addObject("errMsg", ex.getErrMsg());
+        model.setViewName("train-view/trains");
+        return model;
+    }
+
+    @ExceptionHandler(MyExeptionForStation.class)
+    public ModelAndView stationExeption(MyExeptionForStation ex){
+        ModelAndView model = new ModelAndView();
+        model.addObject("errMsg", ex.getErrMsg());
+        model.setViewName("station-view/add-station");
+        return model;
+    }
 }

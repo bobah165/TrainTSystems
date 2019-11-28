@@ -59,10 +59,15 @@ public class StationDAOTest {
         Mockito.doNothing().when(stationDAO).delByID(1);
     }
 
-//    @Test
-//    public void getTrainFromStation() {
-//        List<TrainFromStationDTO> actual = new ArrayList<>();
-//        actual.add(trainFromStationDTO);
-//        Mockito.when(stationDAO.getTrainFromStation(station.getId(), LocalTime.parse("00:00:00"),LocalTime.parse("23:59:00"))).thenReturn(actual);
-//    }
+    @Test
+    public void getStationsForPagination() {
+        List<Station> actual = new ArrayList<>();
+        actual.add(station);
+        Mockito.when(stationDAO.getStationsForPagination(1)).thenReturn(actual);
+    }
+
+    @Test
+    public void getCountStationsForPagination(){
+        Mockito.when(stationDAO.getCountStationsForPagination()).thenReturn(1);
+    }
 }

@@ -7,14 +7,12 @@
     <title>Stations</title>
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
-        .btn {
-            text-decoration: none; /* Убираем подчёркивание */
-            border-radius: 3px; /* Скругляем уголки */
-        }
     </style>
+<%--    <%@include file="/WEB-INF/pages/main/employee.jsp"%>--%>
 
 </head>
 <body>
+
 
 <div class="top_bar"></div>
 <div class="welcome">
@@ -26,6 +24,7 @@
     <nav>
         <ul class="menu">
             <li><a href="/empl">Back</a></li>
+            <li><a href="/station/add">Add Station</a></li>
             <li><a href="">Find Station</a>
                 <ul class="submenu">
                     <li>
@@ -42,15 +41,13 @@
 </header>
 
 
-
-
 <h1 align="center">Stations</h1>
 
 
 <table id="stationTable">
     <tr>
         <th>
-            <form action="/station/sorted">
+            <form action="#">
                 <button class="forTable">Name</button>
             </form>
         </th>
@@ -72,7 +69,7 @@
     <tr>
         <td colspan="4">
             <c:forEach begin="${1}" end="${pageCount}" step="1" varStatus="i">
-                <c:url value="/station/" var="url">
+                <c:url value="/station/sorted" var="url">
                     <c:param name="page" value="${i.index}"/>
                 </c:url>
                 <a href="${url}">${i.index}</a>
@@ -81,5 +78,7 @@
     </tr>
 </table>
 
+
 </body>
 </html>
+

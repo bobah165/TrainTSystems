@@ -5,6 +5,7 @@ import com.trains.model.dto.*;
 import com.trains.model.entity.*;
 import com.trains.util.MessageSender;
 import com.trains.util.MyExeptions.MyException;
+import com.trains.util.MyExeptions.MyExeptionForTicket;
 import com.trains.util.mapperForDTO.PassengerMapper;
 import com.trains.util.mapperForDTO.TrainMapper;
 import org.slf4j.Logger;
@@ -19,9 +20,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -147,6 +146,9 @@ public class TrainService {
             }
         }
 
+        if(!trainDAO.getPassengerFromTrain(id).isEmpty()){
+            throw new MyExeptionForTicket("There are passengers in this train");
+        }
         trainDAO.delByID(id);
     }
 
@@ -198,7 +200,7 @@ public class TrainService {
     }
 
 
-    public PassengerDTO сheckPassengerByNameSurnameBirthday(String name, String surname, Date birthday) throws NullPointerException {
+    public PassengerDTO checkPassengerByNameSurnameBirthday(String name, String surname, Date birthday) throws NullPointerException {
         boolean isValid = true;
         int idCurrentPassenger = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         TicketInform ticketInform = ticketInformDAO.getById(idCurrentPassenger);
@@ -229,7 +231,7 @@ public class TrainService {
 
         if(isValid){
             return passengerMapper.mapEntityToDto(passenger);
-        } else throw new MyException("Threre is such passenger");
+        } else throw new MyException("There is such passenger");
 
     }
 
@@ -239,12 +241,6 @@ public class TrainService {
 
         //находим все станции по маршруту поезда
         List<TrainWay> trainOneWAy = trainWayDAO.getWaysByNumberWay(train.getTrainWay().getNumberWay());
-
-//        List<TrainWay> trainWays = trainWayDAO.getAllWays();
-//        for (TrainWay trainWay: trainWays){
-//            if (trainWay.getNumberWay()==train.getTrainWay().getNumberWay())
-//                trainOneWAy.add(trainWay);
-//        }
 
         //сортировка полученного расписания для одного маршрута по времени отправления
         List<TrainWay> sortedTrainWay= trainOneWAy.stream()
@@ -339,6 +335,40 @@ public class TrainService {
         }
     }
 
+    public List<TrainDTO> getSortedByTrainNumber(int page) {
+        List<Train> trains = trainDAO.getSortedByTrainNumber(page);
+        List<TrainDTO> trainDTOS = new ArrayList<>();
+        for (Train train: trains) {
+            trainDTOS.add(trainMapper.mapEntityToDto(train));
+        }
+        return trainDTOS;
+    }
 
+    public List<TrainDTO> getSortedListByDepartureDate(int page) {
+        List<Train> trains = trainDAO.getSortedListByDepartureDate(page);
+        List<TrainDTO> trainDTOS = new ArrayList<>();
+        for (Train train: trains) {
+            trainDTOS.add(trainMapper.mapEntityToDto(train));
+        }
+        return trainDTOS;
+    }
+
+    public List<TrainDTO> findTrainsByDepartureDate(Date departureDate) {
+        List<Train> trains = trainDAO.findTrainByDepartureDate(departureDate.toLocalDate());
+        List<TrainDTO> trainDTOS = new ArrayList<>();
+        for (Train train: trains) {
+            trainDTOS.add(trainMapper.mapEntityToDto(train));
+        }
+        return trainDTOS;
+    }
+
+    public List<TrainDTO> getTrainByTrainNumber(int trainNumber) {
+        List<Train> trains = trainDAO.findTrainByTrainNumber(trainNumber);
+        List<TrainDTO> trainDTOS = new ArrayList<>();
+        for (Train train: trains) {
+            trainDTOS.add(trainMapper.mapEntityToDto(train));
+        }
+        return trainDTOS;
+    }
 }
 

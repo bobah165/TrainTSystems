@@ -11,11 +11,12 @@
 
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+<!--        <docker.image.prefix>springio</docker.image.prefix>-->
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-
-
 
 
     <build>
@@ -25,9 +26,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
                 <version>3.2.3</version>
-                <configuration>
-                    <webappDirectory>/sample/servlet/container/deploy/directory</webappDirectory>
-                </configuration>
             </plugin>
 
 
@@ -36,8 +34,8 @@
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.8.1</version>
                     <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
+                        <source>11</source>
+                        <target>11</target>
                     </configuration>
                 </plugin>
 
@@ -87,31 +85,6 @@
     </dependency>
 
 
-    <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-dbcp -->
-    <dependency>
-        <groupId>org.apache.tomcat</groupId>
-        <artifactId>tomcat-dbcp</artifactId>
-        <version>9.0.14</version>
-    </dependency>
-
-
-
-
-<!--????????????????????????????????????????-->
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-tx</artifactId>
-        <version>5.2.0.RELEASE</version>
-    </dependency>
-
-    <!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-jdbc</artifactId>
-        <version>5.2.0.RELEASE</version>
-    </dependency>
-
     <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
     <dependency>
         <groupId>org.postgresql</groupId>
@@ -119,19 +92,13 @@
         <version>42.2.8</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
+<!--    &lt;!&ndash; https://mvnrepository.com/artifact/org.springframework.security/spring-security-web &ndash;&gt;-->
     <dependency>
         <groupId>org.springframework.security</groupId>
         <artifactId>spring-security-web</artifactId>
         <version>5.1.6.RELEASE</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-core -->
-    <dependency>
-        <groupId>org.springframework.security</groupId>
-        <artifactId>spring-security-core</artifactId>
-        <version>5.1.6.RELEASE</version>
-    </dependency>
 
     <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-config -->
     <dependency>
@@ -140,12 +107,6 @@
         <version>5.1.6.RELEASE</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-taglibs -->
-    <dependency>
-        <groupId>org.springframework.security</groupId>
-        <artifactId>spring-security-taglibs</artifactId>
-        <version>5.1.6.RELEASE</version>
-    </dependency>
 
     <!-- https://mvnrepository.com/artifact/javax.validation/validation-api -->
     <dependency>
@@ -162,34 +123,6 @@
     </dependency>
 
 
-
-
-    <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
-<!--    <dependency>-->
-<!--        <groupId>org.apache.logging.log4j</groupId>-->
-<!--        <artifactId>log4j-slf4j-impl</artifactId>-->
-<!--        <version>2.12.1</version>-->
-<!--        <scope>test</scope>-->
-<!--    </dependency>-->
-
-
-<!--    <dependency>-->
-<!--        <groupId>org.slf4j</groupId>-->
-<!--        <artifactId>slf4j-api</artifactId>-->
-<!--        <version>1.7.5</version>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--        <groupId>org.slf4j</groupId>-->
-<!--        <artifactId>slf4j-log4j12</artifactId>-->
-<!--        <version>1.7.5</version>-->
-<!--    </dependency>-->
-
-<!--    <dependency>-->
-<!--        <groupId>log4j</groupId>-->
-<!--        <artifactId>log4j</artifactId>-->
-<!--        <version>1.2.17</version>-->
-<!--    </dependency>-->
 
     <!-- https://mvnrepository.com/artifact/junit/junit -->
     <dependency>
@@ -223,6 +156,8 @@
         <version>7.0</version>
         <scope>provided</scope>
     </dependency>
+
+
     <dependency>
         <groupId>javax.jms</groupId>
         <artifactId>javax.jms-api</artifactId>
@@ -254,15 +189,8 @@
 
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
-    <dependency>
-        <groupId>javax.websocket</groupId>
-        <artifactId>javax.websocket-api</artifactId>
-        <version>1.1</version>
-        <scope>provided</scope>
-    </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
+
     <dependency>
         <groupId>com.google.code.gson</groupId>
         <artifactId>gson</artifactId>
@@ -276,7 +204,7 @@
         <version>1.5.0-b01</version>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/com.sun.mail/javax.mail -->
+
     <dependency>
         <groupId>com.sun.mail</groupId>
         <artifactId>javax.mail</artifactId>

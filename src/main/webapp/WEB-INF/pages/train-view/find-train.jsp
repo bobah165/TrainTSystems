@@ -11,6 +11,28 @@
         }
     </style>
     <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            var availableTags = [
+                "Piter", "Moscow", "Omsk", "Tver", "Rayzan", "Rostov", "Bologoe", "Kazan", "Ufa", "Tomsk"
+            ];
+
+            $("#stationA").autocomplete({
+                source: availableTags
+            });
+
+            $("#stationB").autocomplete({
+                source: availableTags
+            });
+        });
+
+    </script>
+
 </head>
 <body>
 
@@ -21,6 +43,7 @@
     <a class="hiddenanchor" id="tologin"></a>
     <div id="wrapper">
         <div id="login" class="animate form">
+            <div class="ui-widget">
             <form  action="/findtrain/trainfromstations/" autocomplete="on" method="post">
                 <h1>Find Train</h1>
                 <p>
@@ -28,8 +51,10 @@
                     <input id="stationA" name="stationA" required="required" type="text"/>
                 </p>
                 <p>
+                    <div class="ui-widget">
                     <label for="stationB" class="youpasswd" data-icon="p"> Arrival Station </label>
                     <input id="stationB" name="stationB" required="required" type="text"  />
+                    </div>
                 </p>
                 <p>
                     <label for="departureDate" class="youpasswd" data-icon="p"> Departure Date </label>
@@ -49,6 +74,7 @@
                 </p>
 
             </form>
+            </div>
         </div>
     </div>
 </div>

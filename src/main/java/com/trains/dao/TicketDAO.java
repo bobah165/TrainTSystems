@@ -43,11 +43,13 @@ public class TicketDAO extends CrudDAO {
         Session session = sessionFactory.getCurrentSession();
         boolean isValid = false;
         Query query = session.createQuery("from Ticket where train.id = :idTrain " +
-                "and passenger.name like :name" +
-                " and passenger.surname like :surname");
+                " and passenger.name like :name" +
+                " and passenger.surname like :surname"+
+                " and passenger.birthday = :date");
         query.setParameter("idTrain",train.getId());
         query.setParameter("name",name);
         query.setParameter("surname",surname);
+        query.setParameter("date",birthday.toLocalDate());
         List<Ticket> tickets = query.list();
         if (tickets.isEmpty()) {
             isValid = true;

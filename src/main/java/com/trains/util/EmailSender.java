@@ -16,11 +16,11 @@ public class EmailSender {
 
     private static String host = "smtp.gmail.com";
     private static int port = 587;
-    private static String username = "MyTrainSender@gmail.com";
+    private static String username = "trnsender@gmail.com";
     private static String password = "qwER1234";
     private static final String fileName = "C://Users/ACER/IdeaProjects/TrainTsystems/src/main/resources/ticket.pdf";
 
-    private static Logger logger = LoggerFactory.getLogger(TrainController.class);
+    private static Logger logger = LoggerFactory.getLogger(EmailSender.class);
 
 
     public static void sendMail() {

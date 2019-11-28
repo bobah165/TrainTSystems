@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -58,15 +59,19 @@ public class LoginController {
     @GetMapping(value = "/login")
     public ModelAndView getLoginPage(Authentication authentication) {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/auth-view/new-login");
-        logger.info("Read view /auth-view/new-login.jsp");
+        modelAndView.setViewName("auth-view/login");
+        logger.info("Read view /auth-view/login.jsp");
         return modelAndView;
     }
 
     @GetMapping(value = "/pass")
     public ModelAndView getPassengerPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/main/passenger");
+        String passengerName = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getName();
+        modelAndView.addObject("passengerName",passengerName);
+        String text = passengerService.getTextForDidYouKnow();
+        modelAndView.addObject("text",text);
+        modelAndView.setViewName("passenger-view/main-passenger-page");
         logger.info("Read view /main/passenger.jsp");
         return modelAndView;
     }
@@ -74,7 +79,11 @@ public class LoginController {
     @GetMapping(value = "/empl")
     public ModelAndView getEmployeePage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("/main/employee");
+        String employeeName = ((PassengerDTO) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getName();
+        modelAndView.addObject("employeeName",employeeName);
+        String text = passengerService.getTextForDidYouKnow();
+        modelAndView.addObject("text",text);
+        modelAndView.setViewName("passenger-view/main-employee-page");
         logger.info("Read view /main/employee.jsp");
         return modelAndView;
     }

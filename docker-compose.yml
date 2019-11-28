@@ -1,0 +1,20 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=1234
+      - POSTGRES_DB=postgres
+    ports:
+      - 5432:5432
+    restart: always
+
+  app:
+    image: bobah/train-t-system
+    depends_on:
+      - postgres
+    ports:
+      - 8080:8080
+    restart: always

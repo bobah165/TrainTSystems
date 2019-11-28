@@ -3,6 +3,7 @@
 <html>
 <head>
     <title>Passenger</title>
+
     <style>
         <%@include file="/WEB-INF/css/style.css"%>
     </style>
@@ -24,6 +25,8 @@
         </ul>
     </nav>
 </header>
+
+
 
 </body>
 </html>

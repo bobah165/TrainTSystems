@@ -126,21 +126,21 @@ public class TrainController {
 
 
 
-    @GetMapping(value = "/message")
-    public ModelAndView getMessage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("train-view/train-message");
-        return modelAndView;
-    }
+//    @GetMapping(value = "/message")
+//    public ModelAndView getMessage() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("train-view/train-message");
+//        return modelAndView;
+//    }
 
 
 
-    @GetMapping(value = "/addeditmessage")
-    public ModelAndView getAddEditMessage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("train-view/train-add-edit-message");
-        return modelAndView;
-    }
+//    @GetMapping(value = "/addeditmessage")
+//    public ModelAndView getAddEditMessage() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("train-view/train-add-edit-message");
+//        return modelAndView;
+//    }
 
 
 
@@ -164,7 +164,7 @@ public class TrainController {
                                                 @RequestParam("surname") String surname,
                                                 @RequestParam("birthday") Date birthday) {
         ModelAndView modelAndView = new ModelAndView();
-        PassengerDTO passenger = trainService.сheckPassengerByNameSurnameBirthday(name, surname, birthday);
+        PassengerDTO passenger = trainService.checkPassengerByNameSurnameBirthday(name, surname, birthday);
         trainService.checkFreeSeatsInTrain();
         ticketService.addTicketByTrainDTOPassengerDTO(passenger);
         modelAndView.setViewName("redirect:/train/buy/ticket/");
@@ -187,4 +187,53 @@ public class TrainController {
         logger.info("Delete ticket information "+ticketList);
         return modelAndView;
     }
+
+    @GetMapping("/sortbynumber")
+    public ModelAndView getSortedListByTrainNumber(@RequestParam(defaultValue = "1") int page) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<TrainDTO> trainList = trainService.getSortedByTrainNumber(page);
+        int trainCount = trainService.getCountOfPage();
+        int pageCount = (trainCount + 9) / 10;
+        modelAndView.setViewName("train-view/sorted-by-train-number");
+        modelAndView.addObject("page", page);
+        modelAndView.addObject("trainList", trainList);
+        modelAndView.addObject("trainCount", trainCount);
+        modelAndView.addObject("pageCount", pageCount);
+        this.page = page;
+        return modelAndView;
+    }
+
+    @GetMapping("/sortbydate")
+    public ModelAndView getSortedListByDepartureDate(@RequestParam(defaultValue = "1") int page) {
+        ModelAndView modelAndView = new ModelAndView();
+        List<TrainDTO> trainList = trainService.getSortedListByDepartureDate(page);
+        int trainCount = trainService.getCountOfPage();
+        int pageCount = (trainCount + 9) / 10;
+        modelAndView.setViewName("train-view/sorted-by-date");
+        modelAndView.addObject("page", page);
+        modelAndView.addObject("trainList", trainList);
+        modelAndView.addObject("trainCount", trainCount);
+        modelAndView.addObject("pageCount", pageCount);
+        return modelAndView;
+    }
+
+    @PostMapping("/findByDate")
+    public ModelAndView getTrainsByDate(@RequestParam Date departureDate){
+        ModelAndView modelAndView = new ModelAndView();
+        List<TrainDTO> trainDTOS = trainService.findTrainsByDepartureDate(departureDate);
+        modelAndView.addObject("trainList",trainDTOS);
+        modelAndView.setViewName("train-view/find-train-by-date");
+        return modelAndView;
+    }
+
+
+    @PostMapping("/findByTrainNumber")
+    public ModelAndView getTrainsByTrainNumber(@RequestParam int trainNumber){
+        ModelAndView modelAndView = new ModelAndView();
+        List<TrainDTO> trainDTOS = trainService.getTrainByTrainNumber(trainNumber);
+        modelAndView.addObject("trainList",trainDTOS);
+        modelAndView.setViewName("train-view/find-train-by-number");
+        return modelAndView;
+    }
+
 }

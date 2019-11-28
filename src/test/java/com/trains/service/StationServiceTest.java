@@ -3,12 +3,16 @@ package com.trains.service;
 
 import com.trains.model.dto.StationDTO;
 import com.trains.model.dto.TrainFromStationDTO;
+import com.trains.model.entity.Station;
+import com.trains.model.entity.TrainFromStation;
+import com.trains.model.entity.TrainWay;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -18,7 +22,9 @@ import java.util.List;
 @RunWith(org.mockito.runners.MockitoJUnitRunner.class)
 public class StationServiceTest {
     private StationDTO stationDTO;
+    private Station station;
     private TrainFromStationDTO trainFromStationDTO;
+    private TrainWay trainWay;
 
     @Mock
     private StationService stationService;
@@ -30,12 +36,26 @@ public class StationServiceTest {
         stationDTO.setNameStation("Piter");
         stationDTO.setId(1);
 
+        station = new Station();
+        station.setNameStation("Piter");
+        station.setId(1);
+        station.setTrainWays(new ArrayList<>());
+
         trainFromStationDTO = new TrainFromStationDTO();
         trainFromStationDTO.setIdTrain(1);
         trainFromStationDTO.setArrivalTime(LocalTime.of(12,12));
         trainFromStationDTO.setDepartureTime(LocalTime.of(12,12));
         trainFromStationDTO.setNameStation("Piter");
         LocalDate date  = LocalDate.of(2019,12,12);
+
+        trainWay = new TrainWay();
+        trainWay.setDepartureTime(Time.valueOf("12:12:12"));
+        trainWay.setArrivalTime(Time.valueOf("12:12:12"));
+        trainWay.setDaysInWay(1);
+        trainWay.setId(1);
+        trainWay.setStation(station);
+        trainWay.setNumberWay(1);
+        trainWay.setTrains(new ArrayList<>());
     }
 
 
@@ -71,15 +91,39 @@ public class StationServiceTest {
         Mockito.doNothing().when(stationService).delByID(1);
     }
 
-//    @Test
-//    public void getTrainFromStation() {
-//        List<TrainFromStationDTO> actual = new ArrayList<>();
-//        actual.add(trainFromStationDTO);
-//        Mockito.when(stationService.getTrainFromStation(stationDTO.getId(), Date.valueOf(trainFromStationDTO.getDate()), LocalTime.parse("00:00:00"),LocalTime.parse("23:59:00"))).thenReturn(actual);
-//    }
 
     @Test
     public void getByName() {
         Mockito.when(stationService.getByName(stationDTO.getNameStation())).thenReturn(stationDTO);
     }
+
+    @Test
+    public void getStationsForPagination() {
+        List<StationDTO> actual = new ArrayList<>();
+        actual.add(stationDTO);
+        Mockito.when(stationService.getStationsForPagination(1)).thenReturn(actual);
+    }
+
+    @Test
+    public void getCountStationsForPagination() {
+        Mockito.when(stationService.getCountStationsForPagination()).thenReturn(1);
+    }
+
+    @Test
+    public void getTrainFromStation() {
+        List<TrainFromStationDTO> actual = new ArrayList<>();
+        actual.add(trainFromStationDTO);
+        Mockito.when(stationService.getTrainFromStation(trainFromStationDTO.getId(),LocalDate.of(1990,12,12),
+                trainFromStationDTO.getArrivalTime(),trainFromStationDTO.getDepartureTime())).thenReturn(actual);
+    }
+
+    @Test
+    public void getTrainsFromStationInDate() {
+        List<TrainFromStationDTO> actual = new ArrayList<>();
+        actual.add(trainFromStationDTO);
+        Mockito.when(stationService.getTrainsFromStationInDate(LocalDate.of(1990,12,12),
+                station,actual,trainWay)).thenReturn(actual);
+    }
+
+
 }

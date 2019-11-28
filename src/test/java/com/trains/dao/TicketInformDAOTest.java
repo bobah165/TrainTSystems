@@ -94,4 +94,10 @@ public class TicketInformDAOTest {
     public void delByID() {
         Mockito.doNothing().when(ticketInformDAO).delByID(1);
     }
+
+    @Test
+    public void addPassengerInformationToTicket() {
+        Mockito.doNothing().when(ticketInformDAO).addPassengerInformationToTicket("alex","smith",
+                Date.valueOf("2001-12-12"),1);
+    }
 }

@@ -30,8 +30,6 @@ public class TrainDAO extends CrudDAO {
     }
 
 
-
-
     public Train getById(int id) {
         Session session = sessionFactory.getCurrentSession();
         return session.get(Train.class,id);
@@ -50,14 +48,13 @@ public class TrainDAO extends CrudDAO {
 
 
 
-    public List<TrainWay> getTrainWaysForTrain(Train train) {
-        Session session = sessionFactory.getCurrentSession();
-        Query query = session.createQuery("from TrainWay where numberWay = :way");
-        query.setParameter("way",train.getTrainWay().getNumberWay());
-        List<TrainWay> trainWays = query.list();
-        return trainWays;
-
-    }
+//    public List<TrainWay> getTrainWaysForTrain(Train train) {
+//        Session session = sessionFactory.getCurrentSession();
+//        Query query = session.createQuery("from TrainWay where numberWay = :way");
+//        query.setParameter("way",train.getTrainWay().getNumberWay());
+//        List<TrainWay> trainWays = query.list();
+//        return trainWays;
+//    }
 
 
     public void deleteIfNoPassengerInTrain() {
@@ -96,4 +93,32 @@ public class TrainDAO extends CrudDAO {
         return query.list();
     }
 
+    public List<Train> getSortedByTrainNumber(int page) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Train order by trainNumber");
+        return query.setFirstResult(10*(page-1)).setMaxResults(10).list();
+    }
+
+    public List<Train> getSortedListByDepartureDate(int page) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Train order by departureDate");
+        return query.setFirstResult(10*(page-1)).setMaxResults(10).list();
+    }
+
+    public List<Train> findTrainByTrainNumber(int trainNumber) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Train where trainNumber = :trainNum");
+        query.setParameter("trainNum",trainNumber);
+        return query.list();
+    }
+
+
+    public List<Train> findTrainByDepartureDate(LocalDate departureDate) {
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Train where departureDate = :date");
+        query.setParameter("date",departureDate);
+        return query.list();
+    }
+
 }
+

@@ -1,9 +1,6 @@
 package com.trains.dao;
 
 
-import com.trains.model.dto.PassengerDTO;
-import com.trains.model.dto.TicketDTO;
-import com.trains.model.dto.TrainDTO;
 import com.trains.model.entity.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,6 +8,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -85,5 +83,11 @@ public class TicketDAOTest {
     @Test
     public void addTicketByTrainDTOPassengerDTO() {
         Mockito.doNothing().when(ticketDAO).addTicketByTrainDTOPassengerDTO(train,passenger);
+    }
+
+    @Test
+    public void checkTicketByNameSurnameBirthday () {
+        Mockito.when(ticketDAO.checkTicketByNameSurnameBirthday(passenger.getName(),passenger.getSurname(),
+                Date.valueOf(passenger.getBirthday()),train)).thenReturn(true);
     }
 }

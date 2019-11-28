@@ -83,12 +83,12 @@ public class TicketController {
     }
 
 
-    @GetMapping(value = "/message")
-    public ModelAndView getMessage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("ticket-view/message-ticket");
-        logger.info("Read view /ticket-view/message-ticket");
-        return modelAndView;
-    }
+//    @GetMapping(value = "/message")
+//    public ModelAndView getMessage() {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("ticket-view/message-ticket");
+//        logger.info("Read view /ticket-view/message-ticket");
+//        return modelAndView;
+//    }
 
 }

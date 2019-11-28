@@ -7,6 +7,7 @@
         <%@include file="/WEB-INF/css/style.css"%>
     </style>
     <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
+
 </head>
 <body>
 

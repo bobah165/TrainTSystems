@@ -47,7 +47,6 @@ public class PassengerController {
         logger.info("Get passenger by ID "+passenger.toString());
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("passenger-view/edit-passenger");
-        logger.info("Read view /passenger-view/edit-passenger");
         modelAndView.addObject("passenger",passenger);
         return modelAndView;
     }
@@ -89,12 +88,12 @@ public class PassengerController {
     }
 
 
-    @GetMapping(value = "/message")
-    public ModelAndView getMessage () {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("passenger-view/message-passenger");
-        return modelAndView;
-    }
+//    @GetMapping(value = "/message")
+//    public ModelAndView getMessage () {
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("passenger-view/message-passenger");
+//        return modelAndView;
+//    }
 
     @GetMapping(value = "/addempl")
     public ModelAndView getEmplPage() {

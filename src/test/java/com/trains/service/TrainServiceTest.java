@@ -1,11 +1,12 @@
 package com.trains.service;
 
 
+import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.PassengersFromTrainDTO;
 import com.trains.model.dto.TrainDTO;
 import com.trains.model.dto.TrainFromStationAToB;
-import com.trains.model.entity.Station;
-import com.trains.model.entity.TrainWay;
+import com.trains.model.entity.*;
+import com.trains.util.mapperForDTO.TrainMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,6 +28,9 @@ public class TrainServiceTest {
     private Station station;
     private PassengersFromTrainDTO passengersFromTrainDTO;
     private TrainFromStationAToB trainFromStationAToB;
+    private FreeSeats freeSeats;
+    private Train train;
+    private PassengerDTO passengerDTO;
 
     @Mock
     private TrainService trainService;
@@ -55,6 +59,17 @@ public class TrainServiceTest {
         trainDTO.setCountSits(600);
         trainDTO.setTickets(new ArrayList<>());
         trainDTO.setId(1);
+        TrainMapper trainMapper = new TrainMapper();
+        train = trainMapper.mapDtoToEntity(trainDTO);
+
+        passengerDTO = new PassengerDTO();
+        passengerDTO.setTickets(new ArrayList<>());
+        passengerDTO.setUser("passenger");
+        passengerDTO.setId(1);
+        passengerDTO.setBirthday(date);
+        passengerDTO.setName("alex");
+        passengerDTO.setLogin("1234");
+        passengerDTO.setEmail("alex@mail.ru");
 
         passengersFromTrainDTO = new PassengersFromTrainDTO();
         LocalDate localDate = LocalDate.of(2019,10,25);
@@ -70,6 +85,12 @@ public class TrainServiceTest {
         trainFromStationAToB.setDeprtureStation("piter");
         trainFromStationAToB.setArrivalStation("moscow");
         trainFromStationAToB.setTrainID(1);
+
+        freeSeats = new FreeSeats();
+        freeSeats.setFreeSeats(1);
+        freeSeats.setIdTrain(1);
+        freeSeats.setStationName("Piter");
+
     }
 
 
@@ -112,6 +133,59 @@ public class TrainServiceTest {
         actual.add(passengersFromTrainDTO);
         Mockito.when(trainService.getPassengerFromTrain(1)).thenReturn(actual);
     }
+
+    @Test
+    public void testAllTrains() {
+
+    }
+
+    @Test
+    public void allTrainsPagination() {
+        List<TrainDTO> actual = new ArrayList<>();
+        actual.add(trainDTO);
+        Mockito.when(trainService.allTrainsPagination(1)).thenReturn(actual);
+    }
+
+    @Test
+    public void getCountOfPage(){
+        Mockito.when(trainService.getCountOfPage()).thenReturn(1);
+    }
+
+
+    @Test
+    public void addInformatonInTicket() {
+        Mockito.doNothing().when(trainService).addInformatonInTicket(train.getId(),trainWay.getStation().getNameStation(),
+                "Moscow",trainWay.getArrivalTime().toLocalTime(),trainWay.getDepartureTime().toLocalTime());
+    }
+
+    @Test
+    public void deleteIfNoPassengerInTrain() {
+        Mockito.doNothing().when(trainService).deleteIfNoPassengerInTrain();
+    }
+
+    @Test
+    public void checkPassengerByNameSurnameBirthday() {
+        Mockito.when(trainService.checkPassengerByNameSurnameBirthday(passengerDTO.getName(),
+                passengerDTO.getSurname(),passengerDTO.getBirthday())).thenReturn(passengerDTO);
+    }
+
+    @Test
+    public void addInfAboutFreeSeatsIntoTable() {
+        List<FreeSeats> actual = new ArrayList<>();
+        actual.add(freeSeats);
+        Mockito.when(trainService.addInfAboutFreeSeatsIntoTable(train)).thenReturn(actual);
+    }
+
+    @Test
+    public void checkFreeSeatsInDepartureStation() {
+        Mockito.when(trainService.checkFreeSeatsInDepartureStation(new ArrayList<>(),new TicketInform())).thenReturn(true);
+    }
+
+    @Test
+    public void checkFreeSeatsInTrain() {
+        Mockito.doNothing().when(trainService).checkFreeSeatsInTrain();
+    }
+
 
 
 }

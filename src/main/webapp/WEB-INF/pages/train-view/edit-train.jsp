@@ -1,33 +1,73 @@
 
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Edit Train</title>
-
+    <title>Add</title>
+    <style>
+        <%@include file="/WEB-INF/css/style-for-login.css"%>
+        #register,
+        #login {
+            width: 20%;
+        }
+    </style>
+    <%@include file="/WEB-INF/pages/main/employee.jsp"%>
 </head>
 <body>
 
+<div id="container_demo" >
+    <a class="hiddenanchor" id="toregister"></a>
+    <a class="hiddenanchor" id="tologin"></a>
+    <div id="wrapper">
+        <div id="login" class="animate form">
+            <form  action="/train/edit" autocomplete="on" method="post">
+                <h1>Train</h1>
+                <input type="hidden" name="id" value="${train.id}">
+                <p>
+                    <label for="trainNumber" class="uname" data-icon="u" > Train Number </label>
+                    <input id="trainNumber" name="trainNumber" required="required" type="number" value="${train.trainNumber}"/>
+                </p>
+                <p>
+                    <label for="trainWay" class="youpasswd" data-icon="p"> Train Way </label>
+                    <input id="trainWay" name="trainWay.id" required="required" type="number" value="${train.trainWay.id}"  />
+                </p>
+                <p>
+                    <label for="departureDate" class="youpasswd" data-icon="p"> Departure Date </label>
+                    <input id="departureDate" name="departureDate" required="required" type="date" value="${train.departureDate}"  />
+                </p>
+                <p>
+                    <label for="countSits" class="youpasswd" data-icon="p"> Count Seats </label>
+                    <input id="countSits" name="countSits" required="required" type="number" value="${train.countSits}" />
+                </p>
+                <p>
+                    <label for="schedule" class="youpasswd" data-icon="p"> Schedule </label>
+                    <input id="schedule" name="schedule" required="required" type="text" list="ways" value="${train.schedule}" />
+                    <datalist id="ways">
+                        <option>everyday</option>
+                        <option>other</option>
+                        <option>odd</option>
+                        <option>even</option>
+                    </datalist>
+                </p>
 
-<form method="post" action="/train/edit">
+                <p>
+                    <!-- Error Message -->
+                <div id="errormessage">
+                    <c:if test="${not empty errMsg}">
+                        <h4 class="text-danger">${errMsg}</h4>
+                    </c:if>
+                </div>
+                </p>
 
-    <input type="hidden" name="id" value="${train.id}">
+                <p class="login button">
+                    <input type="submit" value="Add" />
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
 
-    <label for="trainNumber">Train Number</label>
-    <input type="number" name="trainNumber" id="trainNumber" value="${train.trainNumber}">
-
-    <label for="trainWay">Train Way</label>
-    <input type="number" name="trainWay.id" id="trainWay" value="${train.trainWay.id}">
-
-    <label for="departureDate">Departure Date</label>
-    <input type="date" name="departureDate" id="departureDate" value="${train.departureDate}">
-
-    <label for="countSits">Count of Sits</label>
-    <input type="text" name="countSits" id="countSits" value="${train.countSits}">
-
-    <input type="submit" value="Edit Train">
 
 </form>
 

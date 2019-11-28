@@ -19,11 +19,13 @@
     <div class="top_bar"></div>
     <nav>
         <ul class="menu">
-            <li><a href="/main/empl/">Employees</a> </li>
-            <li><a href="/main/pass/">passengers</a> </li>
+            <li><a href="/login/">Login</a> </li>
+            <li><a href="/registration/">Registration</a> </li>
         </ul>
     </nav>
 </header>
+
+<h1 align="center"> Goes somthing wrong</h1>
 
 </body>
 </html>

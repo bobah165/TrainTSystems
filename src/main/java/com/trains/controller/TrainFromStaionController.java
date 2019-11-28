@@ -1,6 +1,7 @@
 package com.trains.controller;
 
 import com.trains.model.dto.TrainFromStationDTO;
+import com.trains.model.entity.Station;
 import com.trains.service.TrainFromStationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

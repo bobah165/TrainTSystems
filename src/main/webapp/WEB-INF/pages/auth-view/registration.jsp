@@ -9,6 +9,7 @@
 <head>
     <title>Registration</title>
     <style>
+        body {background: url(/ROOT/forLoginImage.jpg);background-size: 100% }
         <%@include file="/WEB-INF/css/style-for-login.css"%>
         #register,
         #login {

@@ -204,16 +204,12 @@ public class SearchStationService {
     public void addTrainBySchedule (LocalDate departureDate) {
 
         List<Train> trainList = new ArrayList<>();
-        boolean everydayFlag = true;
-        boolean oddFlag = true;
-        boolean evenFlag = true;
 
         Set<Train> trains =new HashSet<>(trainDAO.allTrain());
 
         for (Train train : trains) {
             // поезд с ежедневным расписанием
-            if (train.getSchedule().equals("everyday")&&everydayFlag) {
-                everydayFlag = false;
+            if (train.getSchedule().equals("everyday")) {
                 Train newTrain = new Train();
                 newTrain.setDepartureDate(departureDate);
                 newTrain.setSchedule(train.getSchedule());
@@ -224,8 +220,7 @@ public class SearchStationService {
                 continue;
             }
             // поезд двигающийся по четным дням
-            if (departureDate.getDayOfMonth() % 2 == 0 && train.getSchedule().equals("even") && evenFlag) {
-                evenFlag = false;
+            if (departureDate.getDayOfMonth() % 2 == 0 && train.getSchedule().equals("even")) {
                 Train newTrain = new Train();
                 newTrain.setDepartureDate(departureDate);
                 newTrain.setSchedule(train.getSchedule());
@@ -237,8 +232,7 @@ public class SearchStationService {
             }
 
             // поезд двигающийся по нечетным дням
-            if (departureDate.getDayOfMonth() % 2 != 0 && train.getSchedule().equals("odd")&&oddFlag) {
-                oddFlag = false;
+            if (departureDate.getDayOfMonth() % 2 != 0 && train.getSchedule().equals("odd")) {
                 Train newTrain = new Train();
                 newTrain.setDepartureDate(departureDate);
                 newTrain.setSchedule(train.getSchedule());

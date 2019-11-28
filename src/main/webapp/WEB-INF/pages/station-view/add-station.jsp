@@ -29,6 +29,12 @@
                     <input id="nameStation" name="nameStation" required="required" type="text"/>
                 </p>
 
+                <div id="errormessage">
+                    <c:if test="${not empty errMsg}">
+                        <h4 class="text-danger">${errMsg}</h4>
+                    </c:if>
+                </div>
+
                 <p class="login button">
                     <input type="submit" value="Add" />
                 </p>

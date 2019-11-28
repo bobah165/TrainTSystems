@@ -47,11 +47,30 @@ public class TrainWayDAOTest {
     @Test
     public void delByID() {
         Mockito.doNothing().when(trainWayDAO).delByID(1);
-
     }
 
     @Test
     public void getById() {
         Mockito.when(trainWayDAO.getById(1)).thenReturn(trainWay);
+    }
+
+    @Test
+    public void getWaysByNumberWay() {
+        List<TrainWay> actual = new ArrayList<>();
+        actual.add(trainWay);
+        Mockito.when(trainWayDAO.getWaysByNumberWay(trainWay.getNumberWay())).thenReturn(actual);
+    }
+
+    @Test
+    public void getWaysByStationId() {
+        List<TrainWay> actual = new ArrayList<>();
+        actual.add(trainWay);
+        Mockito.when(trainWayDAO.getWaysByStationId(trainWay.getStation().getId())).thenReturn(actual);
+    }
+
+    @Test
+    public void getTrainWayByStationAndWay() {
+        Mockito.when(trainWayDAO.getTrainWayByStationAndWay(trainWay.getStation().getNameStation(),
+                trainWay.getNumberWay())).thenReturn(trainWay);
     }
 }

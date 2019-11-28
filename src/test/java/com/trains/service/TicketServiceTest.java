@@ -2,20 +2,16 @@ package com.trains.service;
 
 import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.TicketDTO;
-import com.trains.model.dto.TrainDTO;
 import com.trains.model.entity.Passenger;
 import com.trains.model.entity.Station;
 import com.trains.model.entity.Train;
 import com.trains.model.entity.TrainWay;
-import com.trains.util.mapperForDTO.PassengerMapper;
-import com.trains.util.mapperForDTO.TrainMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 
-import java.sql.Date;
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -27,7 +23,6 @@ public class TicketServiceTest {
     private TicketDTO ticketDTO;
     private Train train;
     private Passenger passenger;
-    private TrainDTO trainDTO;
 
     @Mock
     private TicketService ticketService;
@@ -61,8 +56,6 @@ public class TicketServiceTest {
         train.setTrainWay(trainWay);
         train.setTrainNumber(1);
         train.setCountSits(800);
-
-        trainDTO = new TrainDTO();
 
         ticketDTO = new TicketDTO();
         ticketDTO.setPassenger(passenger);
@@ -104,15 +97,11 @@ public class TicketServiceTest {
     }
 
 
-//    @Test
-//    public void addTicketByTrainDTOPassengerDTO() {
-//        TrainDTO trainDTO = new TrainDTO();
-//        PassengerDTO passengerDTO = new PassengerDTO();
-//        Mockito.doNothing().when(ticketService).addTicketByTrainDTOPassengerDTO(trainDTO,passengerDTO);
-//    }
+    @Test
+    public void addTicketByTrainDTOPassengerDTO() {
+        PassengerDTO passengerDTO = new PassengerDTO();
+        Mockito.doNothing().when(ticketService).addTicketByTrainDTOPassengerDTO(passengerDTO);
+    }
 
-//    @Test
-//    public void checkTicketByNameSurnameBirthday() {
-//        Mockito.when(ticketService.checkTicketByNameSurnameBirthday(passenger.getName(),passenger.getSurname(), Date.valueOf(passenger.getBirthday()),trainDTO)).thenReturn(true);
-//    }
+
 }

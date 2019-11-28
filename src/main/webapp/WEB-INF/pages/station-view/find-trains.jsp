@@ -10,6 +10,22 @@
             width: 35%;
         }
     </style>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            var availableTags = [
+                "Piter", "Moscow", "Omsk", "Tver", "Rayzan", "Rostov", "Bologoe", "Kazan", "Ufa", "Tomsk"
+            ];
+
+            $("#nameStation").autocomplete({
+                source: availableTags
+            });
+        });
+    </script>
     <%@include file="/WEB-INF/pages/main/passenger.jsp"%>
 </head>
 <body>
@@ -21,6 +37,7 @@
     <a class="hiddenanchor" id="tologin"></a>
     <div id="wrapper">
         <div id="login" class="animate form">
+            <div class="ui-widget">
             <form  action="/station/findtrains" autocomplete="on" method="post">
                 <h1> Find Trains</h1>
                 <p>
@@ -45,6 +62,7 @@
                 </p>
 
             </form>
+            </div>
         </div>
     </div>
 </div>
