@@ -1,34 +1,47 @@
 package com.trains.service;
 
+import com.trains.dao.TicketDAO;
 import com.trains.model.dto.PassengerDTO;
 import com.trains.model.dto.TicketDTO;
-import com.trains.model.entity.Passenger;
-import com.trains.model.entity.Station;
-import com.trains.model.entity.Train;
-import com.trains.model.entity.TrainWay;
+import com.trains.model.entity.*;
+import com.trains.util.mapperForDTO.TicketMapper;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 
 import java.sql.Time;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.mockito.Matchers.any;
+
 
 @RunWith(org.mockito.runners.MockitoJUnitRunner.class)
 public class TicketServiceTest {
     private TicketDTO ticketDTO;
+    private Ticket ticket;
     private Train train;
     private Passenger passenger;
 
     @Mock
+    private TicketDAO ticketDAO;
+
+    @Mock
+    private TicketMapper ticketMapper;
+
+    @InjectMocks
     private TicketService ticketService;
 
     @Before
     public void initTicket() {
+        MockitoAnnotations.initMocks(this);
+
         passenger = new Passenger();
         passenger.setName("bob");
         passenger.setSurname("smith");
@@ -61,47 +74,55 @@ public class TicketServiceTest {
         ticketDTO.setPassenger(passenger);
         ticketDTO.setTrain(train);
         ticketDTO.setId(1);
+
+        ticket = new Ticket();
+        ticket.setPassenger(passenger);
+        ticket.setTrain(train);
+        ticket.setId(1);
     }
 
 
     @Test
     public void allTickets() {
-        List<TicketDTO> actual = new ArrayList<>();
-        actual.add(ticketDTO);
-        Mockito.when(ticketService.allTickets()).thenReturn(actual);
+        List<TicketDTO> actualDTO = new ArrayList<>();
+        actualDTO.add(ticketDTO);
+
+        List<Ticket> actual = new ArrayList<>();
+        actual.add(ticket);
+
+        Mockito.when(ticketDAO.allTickets()).thenReturn(actual);
+        Mockito.when(ticketMapper.mapEntityToDto(ticket)).thenReturn(ticketDTO);
+        Assertions.assertEquals(ticketService.allTickets(),actualDTO);
     }
 
     @Test
     public void add() {
-        Mockito.doNothing().when(ticketService).add(ticketDTO);
+        ticketService.add(any(TicketDTO.class));
+        Mockito.verify(ticketDAO,Mockito.atLeastOnce()).add(any(TicketDTO.class));
     }
 
     @Test
     public void delete() {
-        Mockito.doNothing().when(ticketService).delete(ticketDTO);
+        ticketService.delete(any(TicketDTO.class));
+        Mockito.verify(ticketDAO,Mockito.atLeastOnce()).delete(any(TicketDTO.class));
     }
 
     @Test
     public void edit() {
-        Mockito.doNothing().when(ticketService).edit(ticketDTO);
+        ticketService.edit(any(TicketDTO.class));
+        Mockito.verify(ticketDAO,Mockito.atLeastOnce()).edit(any(TicketDTO.class));
     }
 
     @Test
     public void getById() {
-        Mockito.when(ticketService.getById(1)).thenReturn(ticketDTO);
+        Mockito.when(ticketDAO.getById(1)).thenReturn(ticket);
+        Mockito.when(ticketMapper.mapEntityToDto(any(Ticket.class))).thenReturn(ticketDTO);
+        Assertions.assertEquals(ticketService.getById(1),ticketDTO);
     }
 
     @Test
     public void delByID() {
-        Mockito.doNothing().when(ticketService).delByID(1);
+        ticketService.delByID(1);
+        Mockito.verify(ticketDAO,Mockito.atLeastOnce()).delByID(1);
     }
-
-
-    @Test
-    public void addTicketByTrainDTOPassengerDTO() {
-        PassengerDTO passengerDTO = new PassengerDTO();
-        Mockito.doNothing().when(ticketService).addTicketByTrainDTOPassengerDTO(passengerDTO);
-    }
-
-
 }
