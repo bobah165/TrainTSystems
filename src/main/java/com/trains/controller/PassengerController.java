@@ -88,13 +88,6 @@ public class PassengerController {
     }
 
 
-//    @GetMapping(value = "/message")
-//    public ModelAndView getMessage () {
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("passenger-view/message-passenger");
-//        return modelAndView;
-//    }
-
     @GetMapping(value = "/addempl")
     public ModelAndView getEmplPage() {
         ModelAndView modelAndView = new ModelAndView();
